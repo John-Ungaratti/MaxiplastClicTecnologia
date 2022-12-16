@@ -826,8 +826,6 @@ $.ajax({
 	function abrirModalEdicao(_id, _unidade) {
 	
 		var orcamento =	orcamentosClicJson.find(({id})=> id == _id );
-
-		console.log(orcamento);
 		
 		linhasRafiaEdicao = [... orcamento.itens];
 		
@@ -1211,7 +1209,7 @@ $.ajax({
 
 	function removerElementoEdicao(elementoClicado, i) {
 		linhasRafiaEdicao.splice(i, 1);
-		atualizarTabelaRafia();
+		atualizarTabelaRafiaEdicao();
 	}
 
 	function montaJsonRafiaEdicao(){
