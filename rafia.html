@@ -437,7 +437,6 @@
 </form>
 <!-- MODAL Matriz Produto -->
 
-
 <!-- MODAL EDIÇÃO -->
 <div id="modalEdicao" class="modal" tabindex="-1">
   <div class="modal-dialog modal-fullscreen">
@@ -1752,9 +1751,7 @@
 		});
 	}, false);
 
-</script>
 
-<script>
 	$("#addItensMatriz").click(function () {
 		var formulario = document.getElementById("formMatriz");
 		if (!formulario.checkValidity()) {
@@ -1804,10 +1801,9 @@
 		document.getElementById("orcamentoMatriz").style.filter = "unset";
 		$("#modalSelectTipoItemMatriz").modal('hide');
 	});
-</script>
 
 
-<script>
+
 	function enableInputMatriz() {
 		document.querySelector(`input[id="inputProdutoMatriz"]`).disabled = false;
 	}
