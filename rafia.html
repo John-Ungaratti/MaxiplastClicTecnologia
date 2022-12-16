@@ -814,6 +814,7 @@ $.ajax({
 	var clienteSel;
 	var orcamentoSel;
 	var vendedorSel;
+	var idSel;
 	
 	function mostraModalProdutos(){
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
@@ -830,6 +831,11 @@ $.ajax({
 		console.log(orcamento);
 		
 		linhasRafiaEdicao = [... orcamento.itens];
+
+		clienteSel = orcamento.cliente;
+		orcamentoSel = orcamento.orcamento;
+		vendedorSel = orcamento.vendedor;
+		idSel = _id;
 		
 		if(_unidade == "Rafia"){
 			orcamento.itens.map((prod, indice) => {
@@ -1480,24 +1486,15 @@ $.ajax({
 		atualizarTabelaRafia();
 	}
 	
-	function montaJsonRafia(){
+	function montaJsonRafiaEdicao(){
 	
-		var unidadeSel = document.getElementById("unidadeSelecionada").value;
-		 
-		var clienteSel = document.getElementById("filtroCliente").value;
-		
-		var orcamentoSel = document.getElementById("inputOrcamento").value;
-		
-		var vendedorSel = document.getElementById("filtroVendedor").value;
-		
-	
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDIÇÃO" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasRafia};
+		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDIÇÃO" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasRafiaEdicao};
 		
 	}	
 	
 	function salvaItensBaseClicRafia(){
 	
-		montaJsonRafia();
+		montaJsonRafiaEdicao();
 		
 		var parametros = {
 			"cnpj":  {
@@ -1507,16 +1504,16 @@ $.ajax({
 		};
 		
 		$.ajax({
-			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				$("#orcamentoRafia").modal('hide');
-				$('#formRafia').each (function(){
+				$("#modalEdicao").modal('hide');
+				$('#formRafiaEdicao').each (function(){
 					this.reset();
 				});
-				linhasRafia = [];
-				atualizarTabelaRafia();
+				linhasRafiaEdicao = [];
+				atualizarTabelaRafiaEdicao();
 				document.location.reload();
 			}
 		});
