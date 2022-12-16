@@ -826,6 +826,8 @@ $.ajax({
 	function abrirModalEdicao(_id, _unidade) {
 	
 		var orcamento =	orcamentosClicJson.find(({id})=> id == _id );
+
+		console.log(orcamento);
 		
 		linhasRafiaEdicao = [... orcamento.itens];
 		
