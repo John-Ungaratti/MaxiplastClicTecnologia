@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<html style="font-size: small">
+
+<div class="container-fluid">
+	<div class="btn-group" role="group" aria-label="Default button group">
+		<button id="abreModal" type="button" class="btn btn-outline-dark">Nova Cotação</button>
+		&nbsp;
+		<button type="button" class="btn btn-outline-dark">Cancelar Cotação / Orçamento</button>
+		&nbsp;
+		<button type="button" class="btn btn-outline-dark">Imprimir Orçamento / Pedido</button>
+	</div>
+</div>
+<br>
+<div class="container-fluid">
+	<table id="orcamentosClic" class="table table-hover" style="font-size:90%">
+		<thead>
+			<tr style="text-align: center">
+				<th scope="col">N° Cotação Clic</th>
+				<th scope="col">Situação</th>
+				<th scope="col">N° Orçamento ERP</th>
+				<th scope="col">N° Pedido ERP</th>
+				<th scope="col">Unidade</th>
+				<th scope="col">Cliente</th>
+				<th scope="col">Data de Geração</th>
+				<th scope="col">Vendedor</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody id="tbodyOrcamentosClic">
+		</tbody>
+	</table>
+</div>
+<div id="modalSelectUnidade" class="modal" tabindex="-1" data-bs-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content" style="height: 180px;">
+			<div class="modal-header">
+				<h5 class="modal-title">Selecione a Unidade</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<select id="unidadeSelecionada" class="form-select" id="floatingSelect"
+					aria-label="Floating label select example">
+					<option selected disabled>Escolha uma unidade</option>
+					<option value="Rafia">Rafia</option>
+					<option value="Serafina">Flexível - Serafina</option>
+					<option value="Matriz"> Flexível - Matriz</option>
+				</select>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+				<button id="botaoSelUnidade" class="btn btn-primary">Confirmar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- MODAL Rafia -->
+<form id="formRafia">
+	<div id="orcamentoRafia" class="modal" tabindex="-1" data-bs-backdrop="static">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edição de orçamento - Rafia</h5>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="inputCliente" class="form-label">Cliente</label>
+						<input id="filtroCliente" type="text" class="form-control" placeholder="Buscar cliente"
+							list="clientes" required />
+						<datalist id="clientes"></datalist>
+					</div>
+					<div class="mb-3">
+						<label for="inputOrcamento" class="form-label">Orçamento</label>
+						<input class="form-control" id="inputOrcamento" placeholder="Informe o tipo de orçamento"
+							list="orcamento" required>
+						<datalist id="orcamento">
+							<option name="orcamento">1x Sem juros</option>
+							<option name="orcamento">2x Sem juros</option>
+							<option name="orcamento">3x Com juros</option>
+						</datalist>
+					</div>
+					<div class="mb-3">
+						<label for="vendedorInput" class="form-label">Vendedor</label>
+						<input id="filtroVendedor" type="text" class="form-control" placeholder="Buscar vendedor"
+							list="vendedores" required>
+						<datalist id="vendedores"></datalist>
+					</div>
+					<div>
+						<label>Itens</label>
+						<br>
+						<button id="addItensRafia" type="submit" class="btn btn-outline-dark">Adicionar Item</button>
+						<br>
+					</div>
+					<br>
+					<div style="overflow-x: scroll">
+						<table id="tableRafia" class="table table-bordered border-dark" style="font-size: small">
+							<thead>
+								<tr style="text-align: center;vertical-align: middle;">
+									<th></th>
+									<th scope="col">Item</th>
+									<th scope="col">Unid. Medida</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Preço</th>
+									<th scope="col">Total</th>
+									<th scope="col">Tipo Embalagem</th>
+									<th scope="col">Convencional / Laminado</th>
+									<th scope="col">Pigmentado / Transparente</th>
+									<th scope="col">Liso / Impresso</th>
+									<th scope="col">Quantidade Cores Frente </th>
+									<th scope="col">Quantidade Cores Verso</th>
+									<th scope="col">Gramatura Laminado</th>
+									<th scope="col">Gramatura Convencional</th>
+									<th scope="col">Cor Trama</th>
+									<th scope="col">Cor Urdame</th>
+									<th scope="col">Sanfona</th>
+									<th scope="col">Medida Sanfona</th>
+									<th scope="col">Válvula</th>
+									<th scope="col">Medida Válvula</th>
+									<th scope="col">Lyner</th>
+									<th scope="col">largura</th>
+									<th scope="col">comprimento</th>
+									<th scope="col">Estado Destino</th>
+									<th scope="col">Gramatura</th>
+								</tr>
+							</thead>
+							<tbody id="linhaTableRafia">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelaRafia" type="button" class="btn btn-secondary"data-bs-dismiss="modal">Cancelar</button>
+					<button id="salvaRafia" type="button" onclick="salvaItensBaseClicRafia()" class="btn btn-primary">Salvar</button>
+					<button id="enviaRafia" type="submit" class="btn btn-success" disabled>Enviar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!-- MODAL Rafia -->
+
+<!-- MODAL Rafia Produto -->
+<form id="formProdutoRafia">
+	<div id="modalSelectTipoItemRafia" class="modal fade" data-bs-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Selecione a Opção</h5>
+				</div>
+				<div class="modal-body">
+					<label for="inputProdutoRafia" class="form-label">Produto</label>
+					<input class="form-control" type="text" list="produtos" id="inputProdutoRafia" disabled />
+					<datalist id="produtos"></datalist>
+					<br>
+					<div class="container">
+						<div class="row ">
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioRafia" type="radio" id="inputBrancoRafia"
+									value="Novo Produto - Branco" onclick="disableInputRafia()" required>
+								<label class="form-check-label" for="inputBrancoRafia">Novo Produto - Branco</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioRafia" type="radio" id="inputCopiaRafia"
+									value="Novo Produto - Copiar" onclick="enableInputRafia()" required>
+								<label class="form-check-label" for="inputCopiaRafia">Novo Produto - Copiar</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioRafia" type="radio"
+									id="inputExistenteRafia" value="Produto já existente" onclick="enableInputRafia()"
+									required>
+								<label class="form-check-label" for="inputExistenteRafia">Produto já existente</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelModalProdutoRafia" type="button" class="btn btn-secondary">Cancelar</button>
+					<button id="confirmModalProdutoRafia" type="submit" class="btn btn-primary"onclick="addLinhas()">Confirmar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!-- MODAL Rafia Produto -->
+
+<!-- MODAL Serafina -->
+<form id="formSerafina">
+	<div id="orcamentoSerafina" class="modal" tabindex="-1" data-bs-backdrop="static">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edição de orçamento - Flexível - Serafina</h5>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="filtroClienteSerafina" class="form-label">Cliente</label>
+						<input id="filtroClienteSerafina" type="text" class="form-control" placeholder="Buscar cliente"
+							list="clientes" required />
+						<datalist id="clientes"></datalist>
+					</div>
+					<div class="mb-3">
+						<label for="inputOrcamentoSerafina" class="form-label">Orçamento</label>
+						<input class="form-control" id="inputOrcamentoSerafina" placeholder="Informe o tipo de orçamento"
+							list="orcamento" required>
+						<datalist id="orcamento">
+							<option name="orcamento">1x Sem juros</option>
+							<option name="orcamento">2x Sem juros</option>
+							<option name="orcamento">3x Com juros</option>
+						</datalist>
+					</div>
+					<div class="mb-3">
+						<label for="filtroVendedorSerafina" class="form-label">Vendedor</label>
+						<input id="filtroVendedorSerafina" type="text" class="form-control" placeholder="Buscar vendedor"
+							list="vendedores" required>
+						<datalist id="vendedores"></datalist>
+					</div>
+					<div>
+						<label>Itens</label>
+						<br>
+						<button id="addItensSerafina" type="submit" class="btn btn-outline-dark">Adicionar Item</button>
+						<br>
+					</div>
+					<br>
+					<div id="tableFlexivel" style="overflow-x: scroll">
+						<table class="table table-bordered border-dark">
+							<thead>
+								<tr style="text-align: center;vertical-align: middle;">
+									<th scope="col"></th>
+									<th scope="col">Item</th>
+									<th scope="col">Largura(cm)</th>
+									<th scope="col">Altura(cm)</th>
+									<th scope="col">Espessura(mm)</th>
+									<th scope="col">Unid. Medida</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Tipo Embalagem</th>
+									<th scope="col">Monocamada / Laminado / Bilaminado</th>
+									<th scope="col">Tipo Material</th>
+									<th scope="col">Pigmentado / Transparente</th>
+									<th scope="col">Liso / Impresso</th>
+									<th scope="col">Quantidade Cores</th>
+									<th scope="col">Tipo de Solda</th>
+									<th scope="col">Prazo Entrega</th>
+									<th scope="col">Obs</th>
+									<th scope="col">Preço</th>
+									<th scope="col">Total</th>
+								</tr>
+							</thead>
+							<tbody id="linhaTableSerafina">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelaSerafina" type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cancelar</button>
+					<button id="salvaSerafina" type="submit" class="btn btn-primary" onclick="salvaItensBaseClicSerafina()">Salvar</button>
+					<button id="enviaSerafina" type="submit" class="btn btn-success" disabled>Enviar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!-- MODAL Serafina -->
+
+<!-- MODAL Produto Serafina-->
+<form id="formProdutoSerafina">
+	<div id="modalSelectTipoItemSerafina" class="modal fade" tabindex="-1" data-bs-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Selecione a Opção</h5>
+				</div>
+				<div class="modal-body">
+					<label for="inputProdutoSerafina" class="form-label">Produto</label>
+					<input id="inputProdutoSerafina" class="form-control" type="text" list="produtosSerafina" disabled />
+					<datalist id="produtosSerafina"></datalist>
+					<br>
+					<div class="container">
+						<div class="row ">
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioSerafina" type="radio"
+									id="inputBrancoSerafina" value="Novo Produto - Branco"
+									onclick="disableInputSerafina()" required>
+								<label class="form-check-label" for="inputBrancoSerafina">Novo Produto - Branco</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioSerafina" type="radio"
+									id="inputCopiaSerafina" value="Novo Produto - Copiar"
+									onclick="enableInputSerafina()" required>
+								<label class="form-check-label" for="inputCopiaSerafina">Novo Produto - Copiar</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioSerafina" type="radio"
+									id="inputExistenteSerafina" value="Produto já existente"
+									onclick="enableInputSerafina()" required>
+								<label class="form-check-label" for="inputExistenteSerafina">Produto já
+									existente</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelModalProdutoSerafina" type="button" class="btn btn-secondary">Cancelar</button>
+					<button id="confirmModalProdutoSerafina" type="submit" class="btn btn-primary"
+						onclick="addLinhasSerafina()">Confirmar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!-- MODAL Produto Serafina-->
+
+<!-- MODAL Matriz -->
+<form id="formMatriz">
+	<div id="orcamentoMatriz" class="modal" tabindex="-1" data-bs-backdrop="static">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edição de orçamento - Flexível - Matriz</h5>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="filtroClienteMatriz" class="form-label">Cliente</label>
+						<input id="filtroClienteMatriz" type="text" class="form-control" placeholder="Buscar cliente" list="clientes" required />
+						<datalist id="clientes"></datalist>
+					</div>
+					<div class="mb-3">
+						<label for="inputOrcamentoMatriz" class="form-label">Orçamento</label>
+						<input class="form-control" id="inputOrcamentoMatriz" placeholder="Informe o tipo de orçamento" list="orcamento" required>
+						<datalist id="orcamento">
+							<option name="orcamento">1x Sem juros</option>
+							<option name="orcamento">2x Sem juros</option>
+							<option name="orcamento">3x Com juros</option>
+						</datalist>
+					</div>
+					<div class="mb-3">
+						<label for="filtroVendedorMatriz" class="form-label">Vendedor</label>
+						<input id="filtroVendedorMatriz" type="text" class="form-control" placeholder="Buscar vendedor" list="vendedores" required>
+						<datalist id="vendedores"></datalist>
+					</div>
+					<div>
+						<label>Itens</label>
+						<br>
+						<button id="addItensMatriz" type="submit" class="btn btn-outline-dark">Adicionar Item</button>
+						<br>
+					</div>
+					<br>
+					<div id="tableMatriz" style="overflow-x: scroll">
+						<table class="table table-bordered border-dark">
+							<thead>
+								<tr style="text-align: center;vertical-align: middle;">
+									<th scope="col"></th>
+									<th scope="col">Item</th>
+									<th scope="col">Largura(cm)</th>
+									<th scope="col">Altura(cm)</th>
+									<th scope="col">Espessura(mm)</th>
+									<th scope="col">Unid. Medida</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Tipo Embalagem</th>
+									<th scope="col">Monocamada / Laminado / Bilaminado</th>
+									<th scope="col">Tipo Material</th>
+									<th scope="col">Pigmentado / Transparente</th>
+									<th scope="col">Liso / Impresso</th>
+									<th scope="col">Quantidade Cores</th>
+									<th scope="col">Tipo de Solda</th>
+									<th scope="col">Prazo Entrega</th>
+									<th scope="col">Obs</th>
+									<th scope="col">Preço</th>
+									<th scope="col">Total</th>
+								</tr>
+							</thead>
+							<tbody id="linhaTableMatriz">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelaMatriz" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					<button id="salvaMatriz" type="button" class="btn btn-primary" onclick="salvaItensBaseClicMatriz()">Salvar</button>
+					<button id="enviaMatriz" type="button" class="btn btn-success" disabled>Enviar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!-- MODAL Matriz -->
+
+<!-- MODAL Matriz Produto -->
+<form id="formProdutoMatriz">
+<div id="modalSelectTipoItemMatriz" class="modal fade" tabindex="-1" data-bs-backdrop="static">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Selecione a Opção</h5>
+			</div>
+			<div class="modal-body">
+				<label for="inputProdutoMatriz" class="form-label">Produto</label>
+				<input id="inputProdutoMatriz" class="form-control" type="text" list="produtosMatriz" disabled>
+				<datalist id="produtosMatriz"></datalist>
+				<br>
+				<div class="container">
+					<div class="row">
+						<div class="form-check col">
+							<input class="form-check-input" type="radio" name="flexRadioMatriz" id="inputBrancoMatriz" value="Novo Produto - Branco" onclick="disableInputMatriz()">
+							<label class="form-check-label" for="inputBrancoMatriz">Novo Produto - Branco</label>
+						</div>
+						<div class="form-check col">
+							<input class="form-check-input" type="radio" name="flexRadioMatriz" id="inputCopiaMatriz"  value="Novo Produto - Copiar" onclick="enableInputMatriz()">
+							<label class="form-check-label" for="inputCopiaMatriz">Novo Produto - Copiar</label>
+						</div>
+						<div class="form-check col">
+							<input class="form-check-input" type="radio" name="flexRadioMatriz" id="inputExistenteMatriz" value="Produto já existente" onclick="enableInputMatriz()">
+							<label class="form-check-label" for="inputExistenteMatriz">Produto já existente</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="cancelModalProdutoMatriz" type="button" class="btn btn-secondary">Cancelar</button>
+				<button id="confirmModalProdutoMatriz" type="submit" class="btn btn-primary" onclick="addLinhasMatriz()">Confirmar</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+<!-- MODAL Matriz Produto -->
+
+
+<!-- MODAL EDIÇÃO -->
+<div id="modalEdicao" class="modal" tabindex="-1">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edição Orçamento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="corpoModalEdicao" class="modal-body">
+			<div style="overflow-x: scroll">
+				<table id="tableRafiaEdicao" class="table table-bordered border-dark" style="font-size: small">
+					<thead>
+						<tr style="text-align: center;vertical-align: middle;">
+							<th></th>
+							<th scope="col">Item</th>
+							<th scope="col">Unid. Medida</th>
+							<th scope="col">Quantidade</th>
+							<th scope="col">Preço</th>
+							<th scope="col">Total</th>
+							<th scope="col">Tipo Embalagem</th>
+							<th scope="col">Convencional / Laminado</th>
+							<th scope="col">Pigmentado / Transparente</th>
+							<th scope="col">Liso / Impresso</th>
+							<th scope="col">Quantidade Cores Frente </th>
+							<th scope="col">Quantidade Cores Verso</th>
+							<th scope="col">Gramatura Laminado</th>
+							<th scope="col">Gramatura Convencional</th>
+							<th scope="col">Cor Trama</th>
+							<th scope="col">Cor Urdame</th>
+							<th scope="col">Sanfona</th>
+							<th scope="col">Medida Sanfona</th>
+							<th scope="col">Válvula</th>
+							<th scope="col">Medida Válvula</th>
+							<th scope="col">Lyner</th>
+							<th scope="col">largura</th>
+							<th scope="col">comprimento</th>
+							<th scope="col">Estado Destino</th>
+							<th scope="col">Gramatura</th>
+						</tr>
+					</thead>
+					<tbody id="linhaTableRafiaEdicao">
+						<div style="margin-bottom: 10px">
+							<br>
+								<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark" onclick="mostraModalProdutos()">Adicionar Item</button>
+							<br>
+						</div>
+					</tbody>
+				</table>
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="limparLinhasEdicao()">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-success">Enviar</button>
+      </div>
+    </div>|
+  </div>
+</div>
+<!-- MODAL EDIÇÃO -->
+
+<!-- MODAL EDIÇÃO PRODUTOS RAFIA -->
+	<div id="modalSelectTipoItemRafiaEdicao" class="modal fade" data-bs-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Selecione a Opção</h5>
+				</div>
+				<div class="modal-body">
+					<label for="inputProdutoRafiaEdicao" class="form-label">Produto</label>
+					<input class="form-control" type="text" list="produtos" id="inputProdutoRafiaEdicao" disabled />
+					<datalist id="produtos"></datalist>
+					<br>
+					<div class="container">
+						<div class="row ">
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioRafiaEdicao" type="radio" id="inputBrancoRafiaEdicao"
+									value="Novo Produto - Branco" onclick="disableInputRafiaEdicao()" required>
+								<label class="form-check-label" for="inputBrancoRafiaEdicao">Novo Produto - Branco</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioRafiaEdicao" type="radio" id="inputCopiaRafiaEdicao"
+									value="Novo Produto - Copiar" onclick="enableInputRafiaEdicao()" required>
+								<label class="form-check-label" for="inputCopiaRafiaEdicao">Novo Produto - Copiar</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioRafiaEdicao" type="radio" id="inputExistenteRafiaEdicao"
+								value="Produto já existente" onclick="enableInputRafiaEdicao()" required>
+								<label class="form-check-label" for="inputExistenteRafiaEdicao">Produto já existente</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelModalProdutoRafiaEdicao" type="button" class="btn btn-secondary">Cancelar</button>
+					<button id="confirmModalProdutoRafiaEdicao" type="submit" class="btn btn-primary"onclick="addLinhasEdicao()">Confirmar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- MODAL EDIÇÃO PRODUTOS RAFIA -->
+
+
+
+</html>
+
+<!--          						S C R I P T S - LOAD           						-->
+<script>
+	var linhaOrcamentosClic = "";
+	var orcamentosClicJson = [];
+	var linhasTableEdicao = "";
+	var linhasRafiaEdicao;	
+	var preencheTabela = "";
+	var linhasRafia = [];
+	var linhasSerafina = [];
+	var linhasMatriz = [];
+
+	
+	window.addEventListener("load", function listaItensBaseClic(){
+					
+		var parametros = {
+			"param":  {
+				"idCvTccnpj": parent.dadosUserLogado().cId
+			} ,
+			"filter": {
+				"customFilter":[
+				]
+			}
+		};
+		
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/lista',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+			
+				var array = response.data;
+				
+				array.map(({id, jsonDocs, dataAlteracao}) => {	
+				
+				var dataAlteracao = new Date();
+				
+				dataAlteracao = dataAlteracao.toLocaleDateString();
+				
+				var json = JSON.parse(jsonDocs);
+				
+				orcamentosClicJson.push({id, ...json});
+				
+					linhaOrcamentosClic += `<tr style="text-align: center">
+											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
+											 <td class="col-md-1">${json.situacao}</td>
+											 <td class="col-md-2">${json.numOrcamentoERP}</td>
+											 <td class="col-md-1">${json.numPedidoERP}</td>
+											 <td class="col-md-1">${json.unidade}</td>
+											 <td class="col-md-2">${json.cliente}</td>
+											 <td class="col-md-1">${dataAlteracao}</td>
+											 <td class="col-md-2">${json.vendedor}</td>
+											 <td style="font-size: 18px">
+												<span type="button" title="Editar" >
+													<i class="bi bi-pencil-square" style="color: grey" onclick="abrirModalEdicao(${id}, '${json.unidade}')"></i>
+												</span>
+												<span type="button" title="Excluir">
+													<i class="bi bi-trash" style="color: red"></i>
+												</span>
+											 </td>
+											</tr>`;
+			
+				});		
+
+					document.getElementById("tbodyOrcamentosClic").innerHTML = linhaOrcamentosClic;
+				
+			}
+				
+		});
+			
+	}, false);
+	
+	
+	window.addEventListener("load", function filtroClientes() {
+
+		var clientesExistentesHTML = "";
+
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaClienteMock"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+	
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.map(({ id, nome }) => clientesExistentesHTML += `<option id="${id}" name="clientes">${nome}</option>`);
+				document.getElementById("clientes").innerHTML = clientesExistentesHTML;
+			},
+			beforeSend: function () {
+				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
+			},
+			complete: function () {
+				$("#loadingModal").modal('hide');
+			},
+			error: function (response) {
+				alert(response);
+			}
+		});
+	}, false);
+
+
+	window.addEventListener("load", function filtroVendedores() {
+
+		var vendedoresExistentesHTML = "";
+
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaVendedorMock"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.map(({ id, nome }) => vendedoresExistentesHTML += `<option id="${id}" name="vendedores">${nome}</option>`);
+
+				document.getElementById("vendedores").innerHTML = vendedoresExistentesHTML;
+
+			},
+			beforeSend: function () {
+				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
+			},
+			complete: function () {
+				$("#loadingModal").modal('hide');
+			},
+			error: function (response) {
+				alert(response);
+			}
+		});
+	}, false);
+
+	window.addEventListener("load", function listarProdutosRafia() {
+
+		var produtosExistentesHTML = "";
+
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMock"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+	
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtos">${item}</option>`);
+
+				document.getElementById("produtos").innerHTML = produtosExistentesHTML;
+
+			},
+			beforeSend: function () {
+				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
+			},
+			complete: function () {
+				$("#loadingModal").modal('hide');
+			},
+			error: function (response) {
+				alert(response);
+			}
+		});
+	}, false);
+	
+	$("#abreModal").click(function () {
+		$("#modalSelectUnidade").modal('show');
+	});
+
+	$("#botaoSelUnidade").click(function () {
+		if (document.getElementById("unidadeSelecionada").value == "Rafia") {
+			$("#modalSelectUnidade").modal('hide');
+			$("#orcamentoRafia").modal('show');
+		} else if (document.getElementById("unidadeSelecionada").value == "Serafina") {
+			$("#modalSelectUnidade").modal('hide');
+			$("#orcamentoSerafina").modal('show');
+		} else {
+			$("#modalSelectUnidade").modal('hide');
+			$("#orcamentoMatriz").modal('show');
+		}
+	});
+	
+</script>
+<!--          						S C R I P T S - LOAD           						-->
+
+
+<!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
+<script>
+
+	function mostraModalProdutos(){
+		$("#modalSelectTipoItemRafiaEdicao").modal('show');
+	}
+	
+	function limparLinhasEdicao(){
+		linhasTableEdicao = "";
+	}
+	
+	
+	function abrirModalEdicao(_id, _unidade) {
+	
+		var orcamento =	orcamentosClicJson.find(({id})=> id == _id );
+		
+		linhasRafiaEdicao = [... orcamento.itens];
+		
+		if(_unidade == "Rafia"){
+			orcamento.itens.map((prod, indice) => {
+			linhasTableEdicao += `
+								<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+								<th scope="row">
+								<span type="button">
+								<i class="bi bi-x-square-fill" style="color: red" onclick="removerElemento(event.target, ${indice})"></i>
+								</span>
+								</th>
+								<td><input value= "${prod.item}" onkeyup="escreverValor('item',${indice},this.value)"></input></td>
+								<td><input value= "${prod.unidMed}" onkeyup="escreverValor('unidMed',${indice},this.value)"></input></td>
+								<td><input value="${prod.quantidade}" onkeyup="escreverValor('quantidade',${indice},this.value)"></input></td>
+								<td><input value="${prod.preco}" onkeyup="escreverValor('preco',${indice},this.value)"></input></td>
+								<td><input value="${prod.total}" onkeyup="escreverValor('total',${indice},this.value)"></input></td>
+								<td>
+									<select onchange="escreverValor('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.tipoEmbalagem}"</option>
+									  <option value="1">Saco</option>
+									  <option value="2">Tecido</option> 
+									</select>
+								</td>
+								<td >
+									<select onchange="escreverValor('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.convencionalLaminado}"</option>
+									  <option value="1">Convencional</option>
+									  <option value="2">Laminado</option>
+									</select>
+								</td>
+								<td >
+									<select onchange="escreverValor('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
+									  <option value="1">Azul</option>
+									  <option value="3">Verde</option>
+									  <option value="2">Amarelo</option>
+									  <option value="4">Vermelho</option>
+									  <option value="5">Preto</option>
+									  <option value="6">Transparente</option>
+									</select>
+								</td>
+								<td>
+									<select onchange="escreverValor('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.lisoImpresso}"</option>
+									  <option value="1">Liso</option>
+									  <option value="2">Impresso</option>	
+									</select>
+								</td>
+								<td >
+									<select onchange="escreverValor('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.qtdCoresFrente}"</option>
+										<option value="1">1C</option>
+										<option value="2">2C</option>
+										<option value="3">3C</option>
+										<option value="4">4C</option>
+										<option value="5">5C</option>
+										<option value="6">6C</option>
+										<option value="7">7C</option>
+										<option value="8">8C</option>
+									</select>
+								</td>
+								<td >
+									<select onchange="escreverValor('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
+									 <option selected disabled>"${prod.qtdCoresVerso}"</option>
+									 <option value="1">1C</option>
+									 <option value="2">2C</option>
+									 <option value="3">3C</option>
+									 <option value="4">4C</option>
+									 <option value="5">5C</option>
+									 <option value="6">6C</option>
+									 <option value="7">7C</option>
+									 <option value="8">8C</option>
+									</select>
+								</td>
+								<td >
+									<select onchange="escreverValor('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.gramaturaLaminado}"</option>
+									  <option value="1">59</option>
+									  <option value="2">63</option>
+									  <option value="3">66</option>
+									  <option value="4">69</option>
+									  <option value="5">72</option>
+									</select>
+								</td>
+								<td >
+									<select onchange="escreverValor('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.gramaturaConvencional}"</option>
+									  <option value="1">54</option>
+									  <option value="2">58</option>
+									  <option value="3">62</option>
+									</select>
+								</td>
+								<td><input value="${prod.corTrama}" onkeyup="escreverValor('corTrama',${indice},this.value)"></input></td>
+								<td><input value="${prod.corUrdume}" onkeyup="escreverValor('corUrdume',${indice},this.value)"></input></td>
+								<td>
+									<select onchange="escreverValor('sanfona',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.sanfona}"</option>
+									  <option value="1">Sim</option>
+									  <option value="2">Não</option>
+									</select>
+								</td>
+								<td >
+									<select onchange="escreverValor('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.medidaSanfona}"</option>
+									  <option value="1">5</option>
+									  <option value="2">6</option>
+									  <option value="3">7</option>
+									  <option value="4">8</option>
+									 </select>
+								</td>
+								<td>
+									<select onchange="escreverValor('valvula',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.valvula}"</option>
+									  <option value="1">Sim</option>
+									  <option value="2">Não</option>
+									</select>
+								</td>
+								<td >
+									<select onchange="escreverValor('medidaValvula',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.medidaValvula}"</option>
+									  <option value="1">5</option>
+									  <option value="2">6</option>
+									  <option value="3">7</option>
+									  <option value="4">8</option>
+									</select>
+								</td>
+								<td>
+									<select onchange="escreverValor('lyner',${indice},this.options[this.selectedIndex].text)">
+									  <option selected disabled>"${prod.lyner}"</option>
+									  <option value="1">Sim</option>
+									  <option value="2">Não</option>
+									</select>
+								</td>
+								<td><input value="${prod.largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
+								<td><input value="${prod.comprimento}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
+								<td><input value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
+								<td><input value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+							</tr>`;
+				}).join("");
+				
+				document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableEdicao;
+				$("#modalEdicao").modal('show');
+		}
+		else{
+			console.log("teste boy");
+		}
+		
+		
+	}
+	
+	$("#addItensRafiaEdicao").click(function () {	
+		$("#modalSelectTipoItemRafiaEdicao").modal('show');
+		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
+		document.getElementById("modalEdicao").style.filter = "blur(2px)";
+	});
+	
+	$("#cancelModalProdutoRafiaEdicao").click(function () {
+		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "unset";
+		document.getElementById("modalEdicao").style.filter = "unset";
+		$("#modalSelectTipoItemRafiaEdicao").modal('hide');
+	});
+	
+	
+	function enableInputRafiaEdicao() {
+		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = false;
+	}
+
+	function disableInputRafiaEdicao() {
+		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = true;
+	}
+	
+	function atualizarTabelaRafiaEdicao() {
+		document.querySelector('#linhaTableRafiaEdicao').innerHTML = linhasRafiaEdicao.map(function (prod, indice) {
+			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+						<th scope="row">
+						<span type="button">
+						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElemento(event.target, ${indice})"></i>
+						</span>
+						</th>
+						<td><input ${prod.disabled && "disabled"} value= "${prod.item}" onkeyup="escreverValor('item',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValor('unidMed',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.quantidade}" onkeyup="escreverValor('quantidade',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.preco}" onkeyup="escreverValor('preco',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.total}" onkeyup="escreverValor('total',${indice},this.value)"></input></td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.tipoEmbalagem}"</option>
+							  <option value="1">Saco</option>
+							  <option value="2">Tecido</option> 
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.convencionalLaminado}"</option>
+							  <option value="1">Convencional</option>
+							  <option value="2">Laminado</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
+							  <option value="1">Azul</option>
+							  <option value="3">Verde</option>
+							  <option value="2">Amarelo</option>
+							  <option value="4">Vermelho</option>
+							  <option value="5">Preto</option>
+							  <option value="6">Transparente</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.lisoImpresso}"</option>
+							  <option value="1">Liso</option>
+							  <option value="2">Impresso</option>	
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
+								<option selected disabled>"${prod.qtdCoresFrente}"</option>
+								<option value="1">1C</option>
+								<option value="2">2C</option>
+								<option value="3">3C</option>
+								<option value="4">4C</option>
+								<option value="5">5C</option>
+								<option value="6">6C</option>
+								<option value="7">7C</option>
+								<option value="8">8C</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
+							 <option selected disabled>"${prod.qtdCoresVerso}"</option>
+							 <option value="1">1C</option>
+							 <option value="2">2C</option>
+							 <option value="3">3C</option>
+							 <option value="4">4C</option>
+							 <option value="5">5C</option>
+							 <option value="6">6C</option>
+							 <option value="7">7C</option>
+							 <option value="8">8C</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.gramaturaLaminado}"</option>
+							  <option value="1">59</option>
+							  <option value="2">63</option>
+							  <option value="3">66</option>
+							  <option value="4">69</option>
+							  <option value="5">72</option>
+							</select>
+						</td>
+						<td >
+							<select  ${prod.disabled && "disabled"} onchange="escreverValor('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.gramaturaConvencional}"</option>
+							  <option value="1">54</option>
+							  <option value="2">58</option>
+							  <option value="3">62</option>
+							</select>
+						</td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.corTrama}" onkeyup="escreverValor('corTrama',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValor('corUrdume',${indice},this.value)"></input></td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('sanfona',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.sanfona}"</option>
+							  <option value="1">Sim</option>
+							  <option value="2">Não</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.medidaSanfona}"</option>
+							  <option value="1">5</option>
+							  <option value="2">6</option>
+							  <option value="3">7</option>
+							  <option value="4">8</option>
+							 </select>
+						</td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('valvula',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.valvula}"</option>
+							  <option value="1">Sim</option>
+							  <option value="2">Não</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('medidaValvula',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.medidaValvula}"</option>
+							  <option value="1">5</option>
+							  <option value="2">6</option>
+							  <option value="3">7</option>
+							  <option value="4">8</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('lyner',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.lyner}"</option>
+							  <option value="1">Sim</option>
+							  <option value="2">Não</option>
+							</select>
+						</td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.comprimento}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+					</tr>`;
+		}).join("");
+	}
+	
+	function addLinhasEdicao() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMock"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+
+				var objRetorno = JSON.parse(response);
+
+				var produtoSel = document.getElementById("inputProdutoRafiaEdicao").value;
+
+				var checkBox = document.querySelector(`input[name="flexRadioRafiaEdicao"]:checked`).value;
+				
+				console.log(linhasRafiaEdicao); 
+
+				if (checkBox == "Novo Produto - Branco") {
+					linhasRafiaEdicao.push({ "disabled": false, "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
+				}
+				else if (checkBox == "Novo Produto - Copiar") {
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+
+					linhasRafiaEdicao.push({ "disabled": false, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+				}
+				else if (checkBox == "Produto já existente") {
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+
+					linhasRafiaEdicao.push({ "disabled": true, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+				}
+				
+				console.log(linhasRafiaEdicao);
+
+				atualizarTabelaRafiaEdicao();
+
+			}
+		});
+	}
+	
+</script>
+<!--          						S C R I P T S  -  R A F I A  - EDICAO   			-->
+
+
+<!--          						S C R I P T S  -  R A F I A           				-->
+<script>
+
+	$("#addItensRafia").click(function () {
+		var formulario = document.getElementById("formRafia");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			$("#modalSelectTipoItemRafia").modal('show');
+			document.getElementById("modalSelectTipoItemRafia").style.filter = "drop-shadow(2px 4px 6px black)";
+			document.getElementById("orcamentoRafia").style.filter = "blur(2px)";
+		}
+
+	});
+	
+	$("#cancelModalProdutoRafia").click(function () {
+		document.getElementById("modalSelectTipoItemRafia").style.filter = "unset";
+		document.getElementById("orcamentoRafia").style.filter = "unset";
+		$("#modalSelectTipoItemRafia").modal('hide');
+	});
+	
+	function enableInputRafia() {
+		document.querySelector(`input[id="inputProdutoRafia"]`).disabled = false;
+	}
+
+	function disableInputRafia() {
+		document.querySelector(`input[id="inputProdutoRafia"]`).disabled = true;
+	}
+
+	function escreverValor(prop, i, value) {
+		var item = linhasRafia[i];
+		item[prop] = value;
+	}
+
+	function atualizarTabelaRafia() {
+		document.querySelector('#linhaTableRafia').innerHTML = linhasRafia.map(function (prod, indice) {
+			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+						<th scope="row">
+						<span type="button">
+						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElemento(event.target, ${indice})"></i>
+						</span>
+						</th>
+						<td><input ${prod.disabled && "disabled"} value= "${prod.item}" onkeyup="escreverValor('item',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValor('unidMed',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.quantidade}" onkeyup="escreverValor('quantidade',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.preco}" onkeyup="escreverValor('preco',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.total}" onkeyup="escreverValor('total',${indice},this.value)"></input></td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.tipoEmbalagem}"</option>
+							  <option value="1">Saco</option>
+							  <option value="2">Tecido</option> 
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.convencionalLaminado}"</option>
+							  <option value="1">Convencional</option>
+							  <option value="2">Laminado</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
+							  <option value="1">Azul</option>
+							  <option value="3">Verde</option>
+							  <option value="2">Amarelo</option>
+							  <option value="4">Vermelho</option>
+							  <option value="5">Preto</option>
+							  <option value="6">Transparente</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.lisoImpresso}"</option>
+							  <option value="1">Liso</option>
+							  <option value="2">Impresso</option>	
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
+								<option selected disabled>"${prod.qtdCoresFrente}"</option>
+								<option value="1">1C</option>
+								<option value="2">2C</option>
+								<option value="3">3C</option>
+								<option value="4">4C</option>
+								<option value="5">5C</option>
+								<option value="6">6C</option>
+								<option value="7">7C</option>
+								<option value="8">8C</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
+							 <option selected disabled>"${prod.qtdCoresVerso}"</option>
+							 <option value="1">1C</option>
+							 <option value="2">2C</option>
+							 <option value="3">3C</option>
+							 <option value="4">4C</option>
+							 <option value="5">5C</option>
+							 <option value="6">6C</option>
+							 <option value="7">7C</option>
+							 <option value="8">8C</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.gramaturaLaminado}"</option>
+							  <option value="1">59</option>
+							  <option value="2">63</option>
+							  <option value="3">66</option>
+							  <option value="4">69</option>
+							  <option value="5">72</option>
+							</select>
+						</td>
+						<td >
+							<select  ${prod.disabled && "disabled"} onchange="escreverValor('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.gramaturaConvencional}"</option>
+							  <option value="1">54</option>
+							  <option value="2">58</option>
+							  <option value="3">62</option>
+							</select>
+						</td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.corTrama}" onkeyup="escreverValor('corTrama',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValor('corUrdume',${indice},this.value)"></input></td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('sanfona',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.sanfona}"</option>
+							  <option value="1">Sim</option>
+							  <option value="2">Não</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.medidaSanfona}"</option>
+							  <option value="1">5</option>
+							  <option value="2">6</option>
+							  <option value="3">7</option>
+							  <option value="4">8</option>
+							 </select>
+						</td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('valvula',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.valvula}"</option>
+							  <option value="1">Sim</option>
+							  <option value="2">Não</option>
+							</select>
+						</td>
+						<td >
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('medidaValvula',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.medidaValvula}"</option>
+							  <option value="1">5</option>
+							  <option value="2">6</option>
+							  <option value="3">7</option>
+							  <option value="4">8</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.disabled && "disabled"} onchange="escreverValor('lyner',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.lyner}"</option>
+							  <option value="1">Sim</option>
+							  <option value="2">Não</option>
+							</select>
+						</td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.comprimento}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
+						<td><input ${prod.disabled && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+					</tr>`;
+		}).join("");
+	}
+	
+	function addLinhas() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMock"
+		};
+
+	$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+
+				var objRetorno = JSON.parse(response);
+
+				var produtoSel = document.getElementById("inputProdutoRafia").value;
+
+				var checkBox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
+				
+
+				if (checkBox == "Novo Produto - Branco") {
+					linhasRafia.push({ "disabled": false, "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
+				}
+				else if (checkBox == "Novo Produto - Copiar") {
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+
+					linhasRafia.push({ "disabled": false, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+				}
+				else if (checkBox == "Produto já existente") {
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+
+					linhasRafia.push({ "disabled": true, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+				}
+				
+
+				atualizarTabelaRafia();
+
+			}
+		});
+	}
+	
+	
+	
+
+	function removerElemento(elementoClicado, i) {
+		linhasRafia.splice(i, 1);
+		atualizarTabelaRafia();
+	}
+	
+	var jsonFormatado;
+	
+	function montaJsonRafia(){
+	
+		var unidadeSel = document.getElementById("unidadeSelecionada").value;
+		 
+		var clienteSel = document.getElementById("filtroCliente").value;
+		
+		var orcamentoSel = document.getElementById("inputOrcamento").value;
+		
+		var vendedorSel = document.getElementById("filtroVendedor").value;
+		
+	
+		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDIÇÃO" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasRafia};
+		
+	}	
+	
+	function montaJsonSerafina(){
+	
+		var unidadeSel = document.getElementById("unidadeSelecionada").value;
+		 
+		var clienteSel = document.getElementById("filtroClienteSerafina").value;
+		
+		var orcamentoSel = document.getElementById("inputOrcamentoSerafina").value;
+		
+		var vendedorSel = document.getElementById("filtroVendedorSerafina").value;
+		
+	
+		jsonFormatado = {"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDIÇÃO" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasSerafina};
+				
+	}
+	
+	function montaJsonMatriz(){
+	
+		var unidadeSel = document.getElementById("unidadeSelecionada").value;
+		 
+		var clienteSel = document.getElementById("filtroClienteMatriz").value;
+		
+		var orcamentoSel = document.getElementById("inputOrcamentoMatriz").value;
+		
+		var vendedorSel = document.getElementById("filtroVendedorMatriz").value;
+		
+	
+		jsonFormatado = {"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDIÇÃO",  "unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasMatriz};
+				
+	}
+	
+	
+	function salvaItensBaseClicRafia(){
+	
+		montaJsonRafia();
+		
+		var parametros = {
+			"cnpj":  {
+				"id": parent.dadosUserLogado().cId
+			} ,
+			"jsonDocs": JSON.stringify(jsonFormatado)
+		};
+		
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				$("#orcamentoRafia").modal('hide');
+				$('#formRafia').each (function(){
+					this.reset();
+				});
+				linhasRafia = [];
+				atualizarTabelaRafia();
+				document.location.reload();
+			}
+		});
+	}	
+
+	function salvaItensBaseClicSerafina(){
+	
+		montaJsonSerafina();
+		
+		var parametros = {
+			"cnpj":  {
+				"id": parent.dadosUserLogado().cId
+			} ,
+			"jsonDocs": JSON.stringify(jsonFormatado)
+		};
+		
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				$("#orcamentoSerafina").modal('hide');
+				$('#formSerafina').each (function(){
+					this.reset();
+				});
+				linhasSerafina= [];
+				atualizarTabelaSerafina();
+				document.location.reload();
+			}
+		});
+		
+	}	
+	
+	function salvaItensBaseClicMatriz(){
+	
+		montaJsonMatriz();
+		
+		var parametros = {
+			"cnpj":  {
+				"id": parent.dadosUserLogado().cId
+			} ,
+			"jsonDocs": JSON.stringify(jsonFormatado)
+		};
+		
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+			$("#orcamentoMatriz").modal('hide');
+				$('#formMatriz').each (function(){
+					this.reset();
+				});
+				linhasMatriz= [];
+				atualizarTabelaMatriz();
+				document.location.reload();
+			}
+		});
+		
+	}	
+
+</script>
+
+<!--          						S C R I P T S  -  S E R A F I N A          					-->
+<script>
+
+	window.addEventListener("load", function listarProdutosSerafina() {
+
+		var produtosExistentesHTML = "";
+
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMatrizMock"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				
+				console.log("listaProdutosMatrizMock");
+				console.log(response);
+
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
+
+				document.getElementById("produtosSerafina").innerHTML = produtosExistentesHTML;
+
+			},
+			beforeSend: function () {
+				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
+			},
+			complete: function () {
+				$("#loadingModal").modal('hide');
+			},
+			error: function (response) {
+				alert(response);
+			}
+		});
+	}, false);
+</script>
+
+<script>
+	$("#addItensSerafina").click(function () {
+		var formulario = document.getElementById("formSerafina");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			$("#modalSelectTipoItemSerafina").modal('show');
+			document.getElementById("modalSelectTipoItemSerafina").style.filter = "drop-shadow(2px 4px 6px black)";
+			document.getElementById("orcamentoSerafina").style.filter = "blur(2px)";
+		}
+
+	});
+
+	$("#confirmModalProdutoSerafina").click(function () {
+		var formulario = document.getElementById("formProdutoSerafina");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			var checkbox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
+
+			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto já existente") {
+				document.querySelector(`input[id="inputProdutoSerafina"]`).required = true;
+				if (!formulario.checkValidity()) {
+				}
+				else {
+					document.getElementById("modalSelectTipoItemSerafina").style.filter = "unset";
+					document.getElementById("orcamentoSerafina").style.filter = "unset";
+					$("#modalSelectTipoItemSerafina").modal('hide');
+				}
+			}
+			else {
+				document.getElementById("formProdutoSerafina").style.filter = "unset";
+				document.getElementById("orcamentoSerafina").style.filter = "unset";
+				$("#modalSelectTipoItemSerafina").modal('hide');
+			}
+
+		}
+	});
+
+	$("#cancelModalProdutoSerafina").click(function () {
+		document.getElementById("modalSelectTipoItemSerafina").style.filter = "unset";
+		document.getElementById("orcamentoSerafina").style.filter = "unset";
+		$("#modalSelectTipoItemSerafina").modal('hide');
+	});
+</script>
+
+
+<script>
+	function enableInputSerafina() {
+		document.querySelector(`input[id="inputProdutoSerafina"]`).disabled = false;
+	}
+
+	function disableInputSerafina() {
+		document.querySelector(`input[id="inputProdutoSerafina"]`).disabled = true;
+	}
+
+	function addLinhasSerafina() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMatrizMock"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+
+				var objRetorno = JSON.parse(response);
+
+				var produtoSel = document.getElementById("inputProdutoSerafina").value;
+
+				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
+
+				if (checkBox == "Novo Produto - Branco") {
+					linhasSerafina.push({ "disabled": false, "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "monocamadaLaminadoBilaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "" , "obs":""});
+				}
+				else if (checkBox == "Novo Produto - Copiar") {
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+					linhasSerafina.push({ "disabled": false, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "monocamadaLaminadoBilaminado": prod[0].monocamadaLaminadoBilaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": prod[0].prazoEntrega, "obs":"" });
+				}
+				else if (checkBox == "Produto já existente") {
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+					linhasSerafina.push({ "disabled": true, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "monocamadaLaminadoBilaminado": prod[0].monocamadaLaminadoBilaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": prod[0].prazoEntrega, "obs":""});
+				}
+
+				atualizarTabelaSerafina();
+
+			},
+			beforeSend: function () {
+				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
+			},
+			complete: function () {
+				$("#loadingModal").modal('hide');
+			},
+			error: function (response) {
+				alert(response);
+			}
+		});
+	}
+
+	function escreverValorSerafina(prop, i, value) {
+		var item = linhasSerafina[i];
+		item[prop] = value;
+	}
+
+
+	function atualizarTabelaSerafina() {
+	document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
+		return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+		<th scope="row">
+			<span type="button">
+			<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoSerafina(event.target, ${indice})"></i>
+			</span>
+		</th>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.item}" onkeyup="escreverValorSerafina('item',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.largura}" onkeyup="escreverValorSerafina('largura',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.altura}" onkeyup="escreverValorSerafina('altura',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorSerafina('espessura',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorSerafina('unidMed',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.quantidade}" onkeyup="escreverValorSerafina('quantidade',${indice},this.value)"></input></td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.tipoEmbalagem}"</option>
+						  <option value="1">Saco</option>
+						  <option value="2">Filme</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorSerafina('monocamadaLaminadoBilaminado',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.monocamadaLaminadoBilaminado}"</option>
+						  <option value="1">Monocamada</option>
+						  <option value="2">Laminado</option>
+						  <option value="2">Bilaminado</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.tipoMaterial}"</option>
+						  <option value="1">tipoMaterial-1</option>
+						  <option value="2">tipoMaterial-2</option>
+						  <option value="3">tipoMaterial-3</option>
+						  <option value="4">tipoMaterial-4</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
+						  <option value="1">Azul</option>
+						  <option value="3">Verde</option>
+						  <option value="2">Amarelo</option>
+						  <option value="4">Vermelho</option>
+						  <option value="5">Preto</option>
+						  <option value="6">Transparente</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.lisoImpresso}"</option>
+						  <option value="1">Liso</option>
+						  <option value="2">Impresso</option>	
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorSerafina('qtdCores',${indice},this.options[this.selectedIndex].text)">
+						 <option selected disabled>"${prod.qtdCores}"</option>
+						 <option value="1">1C</option>
+						 <option value="2">2C</option>
+						 <option value="3">3C</option>
+						 <option value="4">4C</option>
+						 <option value="5">5C</option>
+						 <option value="6">6C</option>
+						 <option value="7">7C</option>
+						 <option value="8">8C</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+						 <option selected disabled>"${prod.tipoSolda}"</option>
+						 <option value="1">Solda Lateral Simples</option>
+						 <option value="2">Solda Lateral Bainha</option>
+						 <option value="3">Solda Pouch</option>
+			</select>
+		</td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.prazoEntrega}" onkeyup="escreverValorSerafina('prazoEntrega',${indice},this.value)"></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.obs}" onkeyup="escreverValorSerafina('obs',${indice},this.value)"></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.preco}" onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.total}" onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
+	</tr>`;
+	}).join("");
+}
+	
+	function removerElementoSerafina(elementoClicado, i) {
+		linhasSerafina.splice(i, 1);
+		atualizarTabelaSerafina();
+	}
+</script>
+
+<!--          						S C R I P T S  -	M A T R I Z         					-->
+<script>
+	window.addEventListener("load", function listarProdutosSerafina() {
+
+		var produtosExistentesHTML = "";
+
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMatrizMock"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosMatriz">${item}</option>`);
+
+				document.getElementById("produtosMatriz").innerHTML = produtosExistentesHTML;
+
+			},
+			beforeSend: function () {
+				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
+			},
+			complete: function () {
+				$("#loadingModal").modal('hide');
+			},
+			error: function (response) {
+				alert(response);
+			}
+		});
+	}, false);
+
+</script>
+
+<script>
+	$("#addItensMatriz").click(function () {
+		var formulario = document.getElementById("formMatriz");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			$("#modalSelectTipoItemMatriz").modal('show');
+			document.getElementById("modalSelectTipoItemMatriz").style.filter = "drop-shadow(2px 4px 6px black)";
+			document.getElementById("orcamentoMatriz").style.filter = "blur(2px)";
+		}
+
+	});
+
+	$("#confirmModalProdutoMatriz").click(function () {
+		var formulario = document.getElementById("formProdutoMatriz");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			var checkbox = document.querySelector(`input[name="flexRadioMatriz"]:checked`).value;
+
+			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto já existente") {
+				document.querySelector(`input[id="inputProdutoMatriz"]`).required = true;
+				if (!formulario.checkValidity()) {
+				}
+				else {
+					document.getElementById("modalSelectTipoItemMatriz").style.filter = "unset";
+					document.getElementById("orcamentoMatriz").style.filter = "unset";
+					$("#modalSelectTipoItemMatriz").modal('hide');
+				}
+			}
+			else {
+				document.getElementById("formProdutoMatriz").style.filter = "unset";
+				document.getElementById("orcamentoMatriz").style.filter = "unset";
+				$("#modalSelectTipoItemMatriz").modal('hide');
+			}
+
+		}
+	});
+
+	$("#cancelModalProdutoMatriz").click(function () {
+		document.getElementById("modalSelectTipoItemMatriz").style.filter = "unset";
+		document.getElementById("orcamentoMatriz").style.filter = "unset";
+		$("#modalSelectTipoItemMatriz").modal('hide');
+	});
+</script>
+
+
+<script>
+	function enableInputMatriz() {
+		document.querySelector(`input[id="inputProdutoMatriz"]`).disabled = false;
+	}
+
+	function disableInputMatriz() {
+		document.querySelector(`input[id="inputProdutoMatriz"]`).disabled = true;
+	}
+
+	function addLinhasMatriz() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMatrizMock"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+
+				var objRetorno = JSON.parse(response);
+
+				var produtoSel = document.getElementById("inputProdutoMatriz").value;
+
+				var checkBox = document.querySelector(`input[name="flexRadioMatriz"]:checked`).value;
+
+				if (checkBox == "Novo Produto - Branco") {
+					linhasMatriz.push({ "disabled": false, "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "monocamadaLaminadoBilaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "" , "obs":""});
+				}
+				else if (checkBox == "Novo Produto - Copiar") {
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+					linhasMatriz.push({ "disabled": false, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "monocamadaLaminadoBilaminado": prod[0].monocamadaLaminadoBilaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": prod[0].prazoEntrega, "obs":"" });
+				}
+				else if (checkBox == "Produto já existente") {
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+					linhasMatriz.push({ "disabled": true, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "monocamadaLaminadoBilaminado": prod[0].monocamadaLaminadoBilaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": prod[0].prazoEntrega, "obs":""});
+				}
+				
+				atualizarTabelaMatriz();
+			},
+			beforeSend: function () {
+				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
+			},
+			complete: function () {
+				$("#loadingModal").modal('hide');
+			},
+			error: function (response) {
+				alert(response);
+			}
+		});
+	}
+
+	function escreverValorMatriz(prop, i, value) {
+		var item = linhasMatriz[i];
+		item[prop] = value;
+	}
+
+
+	function atualizarTabelaMatriz() {
+	document.querySelector('#linhaTableMatriz').innerHTML = linhasMatriz.map(function (prod, indice) {
+		return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+		<th scope="row">
+			<span type="button">
+			<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoMatriz(event.target, ${indice})"></i>
+			</span>
+		</th>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.item}" onkeyup="escreverValorMatriz('item',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.largura}" onkeyup="escreverValorMatriz('largura',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.altura}" onkeyup="escreverValorMatriz('altura',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorMatriz('espessura',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorMatriz('unidMed',${indice},this.value)"></input></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.quantidade}" onkeyup="escreverValorMatriz('quantidade',${indice},this.value)"></input></td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorMatriz('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.tipoEmbalagem}"</option>
+						  <option value="1">Saco</option>
+						  <option value="2">Filme</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorMatriz('monocamadaLaminadoBilaminado',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.monocamadaLaminadoBilaminado}"</option>
+						  <option value="1">Monocamada</option>
+						  <option value="2">Laminado</option>
+						  <option value="2">Bilaminado</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorMatriz('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.tipoMaterial}"</option>
+						  <option value="1">tipoMaterial-1</option>
+						  <option value="2">tipoMaterial-2</option>
+						  <option value="3">tipoMaterial-3</option>
+						  <option value="4">tipoMaterial-4</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorMatriz('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
+						  <option value="1">Azul</option>
+						  <option value="3">Verde</option>
+						  <option value="2">Amarelo</option>
+						  <option value="4">Vermelho</option>
+						  <option value="5">Preto</option>
+						  <option value="6">Transparente</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorMatriz('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+						  <option selected disabled>"${prod.lisoImpresso}"</option>
+						  <option value="1">Liso</option>
+						  <option value="2">Impresso</option>	
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorMatriz('qtdCores',${indice},this.options[this.selectedIndex].text)">
+						 <option selected disabled>"${prod.qtdCores}"</option>
+						 <option value="1">1C</option>
+						 <option value="2">2C</option>
+						 <option value="3">3C</option>
+						 <option value="4">4C</option>
+						 <option value="5">5C</option>
+						 <option value="6">6C</option>
+						 <option value="7">7C</option>
+						 <option value="8">8C</option>
+			</select>
+		</td>
+		<td>
+			<select ${prod.disabled && "disabled"} onchange="escreverValorMatriz('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+						 <option selected disabled>"${prod.tipoSolda}"</option>
+						 <option value="1">Solda Lateral Simples</option>
+						 <option value="2">Solda Lateral Bainha</option>
+						 <option value="3">Solda Pouch</option>
+			</select>
+		</td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.prazoEntrega}" onkeyup="escreverValorMatriz('prazoEntrega',${indice},this.value)"></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.obs}" onkeyup="escreverValorMatriz('obs',${indice},this.value)"></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.preco}" onkeyup="escreverValorMatriz('preco',${indice},this.value)"></td>
+		<td><input ${prod.disabled && "disabled"} value= "${prod.total}" onkeyup="escreverValorMatriz('total',${indice},this.value)"></td>
+	</tr>`;
+	}).join("");
+}
+	
+	function removerElementoMatriz(elementoClicado, i) {
+		linhasMatriz.splice(i, 1);
+		atualizarTabelaMatriz();
+	}
+</script>
