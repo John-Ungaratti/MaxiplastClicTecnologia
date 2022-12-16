@@ -537,9 +537,6 @@
 		</div>
 	</div>
 <!-- MODAL EDIÇÃO PRODUTOS RAFIA -->
-
-
-
 </html>
 
 <!--          						S C R I P T S - LOAD           						-->
@@ -735,8 +732,6 @@
 	});
 	
 </script>
-<!--          						S C R I P T S - LOAD           						-->
-
 
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
 <script>
@@ -1107,8 +1102,6 @@
 	}
 	
 </script>
-<!--          						S C R I P T S  -  R A F I A  - EDICAO   			-->
-
 
 <!--          						S C R I P T S  -  R A F I A           				-->
 <script>
@@ -1326,8 +1319,34 @@
 		});
 	}
 	
-	
-	
+	$("#confirmModalProdutoRafia").click(function () {
+		var formulario = document.getElementById("formProdutoRafia");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			var checkbox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
+
+			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto já existente") {
+				document.querySelector(`input[id="inputProdutoRafia"]`).required = true;
+				if (!formulario.checkValidity()) {
+				}
+				else {
+					document.getElementById("modalSelectTipoItemRafia").style.filter = "unset";
+					document.getElementById("orcamentoRafia").style.filter = "unset";
+					$("#modalSelectTipoItemRafia").modal('hide');
+				}
+			}
+			else {
+				document.getElementById("formProdutoRafia").style.filter = "unset";
+				document.getElementById("orcamentoRafia").style.filter = "unset";
+				$("#modalSelectTipoItemRafia").modal('hide');
+			}
+
+		}
+	});
 
 	function removerElemento(elementoClicado, i) {
 		linhasRafia.splice(i, 1);
@@ -1469,7 +1488,6 @@
 
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
 <script>
-
 	window.addEventListener("load", function listarProdutosSerafina() {
 
 		var produtosExistentesHTML = "";
@@ -1507,9 +1525,7 @@
 			}
 		});
 	}, false);
-</script>
 
-<script>
 	$("#addItensSerafina").click(function () {
 		var formulario = document.getElementById("formSerafina");
 		if (!formulario.checkValidity()) {
@@ -1559,10 +1575,7 @@
 		document.getElementById("orcamentoSerafina").style.filter = "unset";
 		$("#modalSelectTipoItemSerafina").modal('hide');
 	});
-</script>
 
-
-<script>
 	function enableInputSerafina() {
 		document.querySelector(`input[id="inputProdutoSerafina"]`).disabled = false;
 	}
