@@ -549,6 +549,7 @@
 	var linhasRafia = [];
 	var linhasSerafina = [];
 	var linhasMatriz = [];
+	var jsonFormatado;
 
 	
 	window.addEventListener("load", function listaItensBaseClic(){
@@ -644,7 +645,6 @@
 		});
 	}, false);
 
-
 	window.addEventListener("load", function filtroVendedores() {
 
 		var vendedoresExistentesHTML = "";
@@ -714,6 +714,79 @@
 		});
 	}, false);
 	
+	window.addEventListener("load", function listarProdutosSerafina() {
+
+var produtosExistentesHTML = "";
+
+var parametros = {
+	idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+	numreg: 750,
+	pRotina: "listaProdutosMatrizMock"
+};
+
+$.ajax({
+	url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+	type: "POST",
+	data: JSON.stringify(parametros),
+	success: function (response) {
+		
+		console.log("listaProdutosMatrizMock");
+		console.log(response);
+
+		var objRetorno = JSON.parse(response);
+
+		objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
+
+		document.getElementById("produtosSerafina").innerHTML = produtosExistentesHTML;
+
+	},
+	beforeSend: function () {
+		$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
+	},
+	complete: function () {
+		$("#loadingModal").modal('hide');
+	},
+	error: function (response) {
+		alert(response);
+	}
+});
+}, false);
+
+	window.addEventListener("load", function listarProdutosSerafina() {
+
+var produtosExistentesHTML = "";
+
+var parametros = {
+	idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+	numreg: 750,
+	pRotina: "listaProdutosMatrizMock"
+};
+
+$.ajax({
+	url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+	type: "POST",
+	data: JSON.stringify(parametros),
+	success: function (response) {
+
+		var objRetorno = JSON.parse(response);
+
+		objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosMatriz">${item}</option>`);
+
+		document.getElementById("produtosMatriz").innerHTML = produtosExistentesHTML;
+
+	},
+	beforeSend: function () {
+		$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
+	},
+	complete: function () {
+		$("#loadingModal").modal('hide');
+	},
+	error: function (response) {
+		alert(response);
+	}
+});
+}, false);
+
 	$("#abreModal").click(function () {
 		$("#modalSelectUnidade").modal('show');
 	});
@@ -743,7 +816,6 @@
 	function limparLinhasEdicao(){
 		linhasTableEdicao = "";
 	}
-	
 	
 	function abrirModalEdicao(_id, _unidade) {
 	
@@ -910,7 +982,6 @@
 		document.getElementById("modalEdicao").style.filter = "unset";
 		$("#modalSelectTipoItemRafiaEdicao").modal('hide');
 	});
-	
 	
 	function enableInputRafiaEdicao() {
 		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = false;
@@ -1285,7 +1356,7 @@
 			pRotina: "listaProdutosMock"
 		};
 
-	$.ajax({
+		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
@@ -1311,8 +1382,6 @@
 
 					linhasRafia.push({ "disabled": true, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
-				
-
 				atualizarTabelaRafia();
 
 			}
@@ -1353,8 +1422,6 @@
 		atualizarTabelaRafia();
 	}
 	
-	var jsonFormatado;
-	
 	function montaJsonRafia(){
 	
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
@@ -1369,37 +1436,6 @@
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDI플O" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasRafia};
 		
 	}	
-	
-	function montaJsonSerafina(){
-	
-		var unidadeSel = document.getElementById("unidadeSelecionada").value;
-		 
-		var clienteSel = document.getElementById("filtroClienteSerafina").value;
-		
-		var orcamentoSel = document.getElementById("inputOrcamentoSerafina").value;
-		
-		var vendedorSel = document.getElementById("filtroVendedorSerafina").value;
-		
-	
-		jsonFormatado = {"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDI플O" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasSerafina};
-				
-	}
-	
-	function montaJsonMatriz(){
-	
-		var unidadeSel = document.getElementById("unidadeSelecionada").value;
-		 
-		var clienteSel = document.getElementById("filtroClienteMatriz").value;
-		
-		var orcamentoSel = document.getElementById("inputOrcamentoMatriz").value;
-		
-		var vendedorSel = document.getElementById("filtroVendedorMatriz").value;
-		
-	
-		jsonFormatado = {"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDI플O",  "unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasMatriz};
-				
-	}
-	
 	
 	function salvaItensBaseClicRafia(){
 	
@@ -1427,104 +1463,11 @@
 			}
 		});
 	}	
-
-	function salvaItensBaseClicSerafina(){
 	
-		montaJsonSerafina();
-		
-		var parametros = {
-			"cnpj":  {
-				"id": parent.dadosUserLogado().cId
-			} ,
-			"jsonDocs": JSON.stringify(jsonFormatado)
-		};
-		
-		$.ajax({
-			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-				$("#orcamentoSerafina").modal('hide');
-				$('#formSerafina').each (function(){
-					this.reset();
-				});
-				linhasSerafina= [];
-				atualizarTabelaSerafina();
-				document.location.reload();
-			}
-		});
-		
-	}	
-	
-	function salvaItensBaseClicMatriz(){
-	
-		montaJsonMatriz();
-		
-		var parametros = {
-			"cnpj":  {
-				"id": parent.dadosUserLogado().cId
-			} ,
-			"jsonDocs": JSON.stringify(jsonFormatado)
-		};
-		
-		$.ajax({
-			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-			$("#orcamentoMatriz").modal('hide');
-				$('#formMatriz').each (function(){
-					this.reset();
-				});
-				linhasMatriz= [];
-				atualizarTabelaMatriz();
-				document.location.reload();
-			}
-		});
-		
-	}	
-
 </script>
 
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
 <script>
-	window.addEventListener("load", function listarProdutosSerafina() {
-
-		var produtosExistentesHTML = "";
-
-		var parametros = {
-			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 750,
-			pRotina: "listaProdutosMatrizMock"
-		};
-
-		$.ajax({
-			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-				
-				console.log("listaProdutosMatrizMock");
-				console.log(response);
-
-				var objRetorno = JSON.parse(response);
-
-				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
-
-				document.getElementById("produtosSerafina").innerHTML = produtosExistentesHTML;
-
-			},
-			beforeSend: function () {
-				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
-			},
-			complete: function () {
-				$("#loadingModal").modal('hide');
-			},
-			error: function (response) {
-				alert(response);
-			}
-		});
-	}, false);
 
 	$("#addItensSerafina").click(function () {
 		var formulario = document.getElementById("formSerafina");
@@ -1635,7 +1578,6 @@
 		item[prop] = value;
 	}
 
-
 	function atualizarTabelaSerafina() {
 	document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
 		return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
@@ -1721,49 +1663,58 @@
 	}).join("");
 }
 	
+	function montaJsonSerafina(){
+	
+	var unidadeSel = document.getElementById("unidadeSelecionada").value;
+	 
+	var clienteSel = document.getElementById("filtroClienteSerafina").value;
+	
+	var orcamentoSel = document.getElementById("inputOrcamentoSerafina").value;
+	
+	var vendedorSel = document.getElementById("filtroVendedorSerafina").value;
+	
+
+	jsonFormatado = {"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDI플O" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasSerafina};
+			
+}	
+
 	function removerElementoSerafina(elementoClicado, i) {
 		linhasSerafina.splice(i, 1);
 		atualizarTabelaSerafina();
 	}
+
+	function salvaItensBaseClicSerafina(){
+	
+	montaJsonSerafina();
+	
+	var parametros = {
+		"cnpj":  {
+			"id": parent.dadosUserLogado().cId
+		} ,
+		"jsonDocs": JSON.stringify(jsonFormatado)
+	};
+	
+	$.ajax({
+		url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
+		type: "POST",
+		data: JSON.stringify(parametros),
+		success: function (response) {
+			$("#orcamentoSerafina").modal('hide');
+			$('#formSerafina').each (function(){
+				this.reset();
+			});
+			linhasSerafina= [];
+			atualizarTabelaSerafina();
+			document.location.reload();
+		}
+	});
+	
+}	
+
 </script>
 
 <!--          						S C R I P T S  -	M A T R I Z         					-->
 <script>
-	window.addEventListener("load", function listarProdutosSerafina() {
-
-		var produtosExistentesHTML = "";
-
-		var parametros = {
-			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 750,
-			pRotina: "listaProdutosMatrizMock"
-		};
-
-		$.ajax({
-			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-
-				var objRetorno = JSON.parse(response);
-
-				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosMatriz">${item}</option>`);
-
-				document.getElementById("produtosMatriz").innerHTML = produtosExistentesHTML;
-
-			},
-			beforeSend: function () {
-				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
-			},
-			complete: function () {
-				$("#loadingModal").modal('hide');
-			},
-			error: function (response) {
-				alert(response);
-			}
-		});
-	}, false);
-
 
 	$("#addItensMatriz").click(function () {
 		var formulario = document.getElementById("formMatriz");
@@ -1814,8 +1765,6 @@
 		document.getElementById("orcamentoMatriz").style.filter = "unset";
 		$("#modalSelectTipoItemMatriz").modal('hide');
 	});
-
-
 
 	function enableInputMatriz() {
 		document.querySelector(`input[id="inputProdutoMatriz"]`).disabled = false;
@@ -1874,7 +1823,6 @@
 		var item = linhasMatriz[i];
 		item[prop] = value;
 	}
-
 
 	function atualizarTabelaMatriz() {
 	document.querySelector('#linhaTableMatriz').innerHTML = linhasMatriz.map(function (prod, indice) {
@@ -1965,4 +1913,48 @@
 		linhasMatriz.splice(i, 1);
 		atualizarTabelaMatriz();
 	}
+
+	function montaJsonMatriz(){
+	
+	var unidadeSel = document.getElementById("unidadeSelecionada").value;
+	 
+	var clienteSel = document.getElementById("filtroClienteMatriz").value;
+	
+	var orcamentoSel = document.getElementById("inputOrcamentoMatriz").value;
+	
+	var vendedorSel = document.getElementById("filtroVendedorMatriz").value;
+	
+
+	jsonFormatado = {"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDI플O",  "unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasMatriz};
+			
+}
+
+	function salvaItensBaseClicMatriz(){
+	
+		montaJsonMatriz();
+		
+		var parametros = {
+			"cnpj":  {
+				"id": parent.dadosUserLogado().cId
+			} ,
+			"jsonDocs": JSON.stringify(jsonFormatado)
+		};
+		
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+			$("#orcamentoMatriz").modal('hide');
+				$('#formMatriz').each (function(){
+					this.reset();
+				});
+				linhasMatriz= [];
+				atualizarTabelaMatriz();
+				document.location.reload();
+			}
+		});
+		
+	}	
+
 </script>
