@@ -1507,7 +1507,7 @@ $.ajax({
 	
 	function montaJsonRafiaEdicao(){
 		
-		var unidadeSel = document.getElementById("unidadeSelecionada").value;
+		var unidadeSel = "Rafia"
 
 		var clienteSel = document.getElementById("filtroCliente").value;
 
@@ -1516,7 +1516,7 @@ $.ajax({
 		var vendedorSel = document.getElementById("filtroVendedor").value;	
 
 	
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDIÇÃO" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasRafia};
+		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDIÇÃO" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasRafiaEdicao};
 		
 	}	
 	
