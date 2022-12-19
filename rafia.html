@@ -151,7 +151,7 @@
 		</div>
 	</div>
 </form>
-<!-- MODAL Rafia -->
+
 
 <!-- MODAL Rafia Produto -->
 <form id="formProdutoRafia">
@@ -196,7 +196,7 @@
 		</div>
 	</div>
 </form>
-<!-- MODAL Rafia Produto -->
+
 
 <!-- MODAL Serafina -->
 <form id="formSerafina">
@@ -276,7 +276,6 @@
 		</div>
 	</div>
 </form>
-<!-- MODAL Serafina -->
 
 <!-- MODAL Produto Serafina-->
 <form id="formProdutoSerafina">
@@ -325,7 +324,6 @@
 		</div>
 	</div>
 </form>
-<!-- MODAL Produto Serafina-->
 
 <!-- MODAL Matriz -->
 <form id="formMatriz">
@@ -405,7 +403,6 @@
 		</div>
 	</div>
 </form>
-<!-- MODAL Matriz -->
 
 <!-- MODAL Matriz Produto -->
 <form id="formProdutoMatriz">
@@ -450,7 +447,6 @@
 		</div>
 	</div>
 </form>
-<!-- MODAL Matriz Produto -->
 
 <!-- MODAL EDIÇÃO -->
 <div id="modalEdicao" class="modal" tabindex="-1">
@@ -512,7 +508,6 @@
 		</div>|
 	</div>
 </div>
-<!-- MODAL EDIÇÃO -->
 
 <!-- MODAL EDIÇÃO PRODUTOS RAFIA -->
 <form id="formProdutoRafiaEdicao">
@@ -562,22 +557,134 @@
 		</div>
 	</div>
 </form>
-<!-- MODAL EDIÇÃO PRODUTOS RAFIA -->
+
+<!-- MODAL EDIÇÃO SERAFINA-->
+<div id="modalEdicaoSerafina" class="modal" tabindex="-1">
+	<div class="modal-dialog modal-fullscreen">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edição Orçamento</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div id="corpoModalEdicaoSerafina" class="modal-body">
+				<div style="overflow-x: scroll">
+					<table id="tableEdicaoSerafina" class="table table-bordered border-dark" style="font-size: small">
+						<thead>
+							<tr style="text-align: center;vertical-align: middle;">
+								<th scope="col"></th>
+								<th scope="col">Item</th>
+								<th scope="col">Largura(cm)</th>
+								<th scope="col">Altura(cm)</th>
+								<th scope="col">Espessura(mm)</th>
+								<th scope="col">Unid. Medida</th>
+								<th scope="col">Quantidade</th>
+								<th scope="col">Tipo Embalagem</th>
+								<th scope="col">Monocamada / Laminado / Bilaminado</th>
+								<th scope="col">Tipo Material</th>
+								<th scope="col">Pigmentado / Transparente</th>
+								<th scope="col">Liso / Impresso</th>
+								<th scope="col">Quantidade Cores</th>
+								<th scope="col">Tipo de Solda</th>
+								<th scope="col">Prazo Entrega</th>
+								<th scope="col">Obs</th>
+								<th scope="col">Preço</th>
+								<th scope="col">Total</th>
+							</tr>
+						</thead>
+						<tbody id="linhaTableSerafinaEdicao">
+							<div style="margin-bottom: 10px">
+								<br>
+								<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark"
+									onclick="mostraModalProdutosSerafina()">Adicionar Item</button>
+								<br>
+							</div>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+					onclick="limparLinhasEdicaoSerafina()">Fechar</button>
+				<button type="button" class="btn btn-primary" onclick="atualizarItensBaseClicSerafina()">Salvar</button>
+				<button type="button" class="btn btn-success">Enviar</button>
+			</div>
+		</div>|
+	</div>
+</div>
+
+<!-- MODAL EDIÇÃO PRODUTOS SERAFINA -->
+<form id="formProdutSerafinaEdicao">
+	<div id="modalSelectTipoItemSerafinaEdicao" class="modal fade" data-bs-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Selecione a Opção</h5>
+				</div>
+				<div class="modal-body">
+					<label for="inputProdutoSerafinaEdicao" class="form-label">Produto</label>
+					<input class="form-control" type="text" list="produtos" id="inputProdutoSerafinaEdicao" disabled />
+					<datalist id="produtos"></datalist>
+					<br>
+					<div class="container">
+						<div class="row ">
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioSerafinaEdicao" type="radio"
+									id="inputBrancoSerafinaEdicao" value="Novo Produto - Branco"
+									onclick="disableInputSerafinaEdicao()" required>
+								<label class="form-check-label" for="inputBrancoSerafinaEdicao">Novo Produto -
+									Branco</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioSerafinaEdicao" type="radio"
+									id="inputCopiaSerafinaEdicao" value="Novo Produto - Copiar"
+									onclick="enableInputSerafinaEdicao()" required>
+								<label class="form-check-label" for="inputCopiaSerafinaEdicao">Novo Produto -
+									Copiar</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioSerafinaEdicao" type="radio"
+									id="inputExistenteSerafinaEdicao" value="Produto já existente"
+									onclick="enableInputSerafinaEdicao()" required>
+								<label class="form-check-label" for="inputExistenteSerafinaEdicao">Produto já
+									existente</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelModalProdutoSerafinaEdicao" type="button"
+						class="btn btn-secondary">Cancelar</button>
+					<button id="confirmModalProdutoSerafinaEdicao" type="submit" class="btn btn-primary"
+						onclick="addLinhasSerafinaEdicao()">Confirmar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
 
 </html>
 
 <!--          						S C R I P T S - LOAD           						-->
 <script>
+	var linhasRafia = [];
+	var linhasRafiaEdicao;
+	var linhasTableRafiaEdicao = "";
+
+	var jsonFormatado;
 	var linhaOrcamentosClic = "";
 	var orcamentosClicJson = [];
-	var linhasTableEdicao = "";
-	var linhasRafiaEdicao;
-	var preencheTabela = "";
-	var linhasRafia = [];
-	var linhasSerafina = [];
-	var linhasMatriz = [];
-	var jsonFormatado;
+	var clienteSel;
+	var orcamentoSel;
+	var vendedorSel;
+	var idSel;
 
+	var linhasSerafina = [];
+	var linhasSerafinaEdicao = "";
+	var linhasTableSerafinaEdicao = [];
+
+	var linhasMatriz = [];
+	var linhasMatrizEdicao = "";
+	var linhasTableMatrizEdicao = [];
 
 	window.addEventListener("load", function listaItensBaseClic() {
 
@@ -834,25 +941,19 @@
 
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
 <script>
-
-	var clienteSel;
-	var orcamentoSel;
-	var vendedorSel;
-	var idSel;
-
 	function mostraModalProdutos() {
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 	}
 
 	function limparLinhasEdicao() {
-		linhasTableEdicao = "";
+		linhasTableRafiaEdicao = "";
 	}
 
 	function abrirModalEdicao(_id, _unidade) {
 
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 
-		console.log("orcamento",orcamento);
+		console.log("orcamento", orcamento);
 
 		linhasRafiaEdicao = [...orcamento.itens];
 
@@ -863,7 +964,7 @@
 
 		if (_unidade == "Rafia") {
 			orcamento.itens.map((prod, indice) => {
-				linhasTableEdicao += `
+				linhasTableRafiaEdicao += `
 								<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 								<th scope="row">
 								<span type="button">
@@ -999,8 +1100,92 @@
 							</tr>`;
 			}).join("");
 
-			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableEdicao;
+			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
 			$("#modalEdicao").modal('show');
+		}
+		else {
+			orcamento.itens.map((prod, indice) => {
+				linhasTableSerafinaEdicao += `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+					<th scope="row">
+						<span type="button">
+						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoSerafina(event.target, ${indice})"></i>
+						</span>
+					</th>
+					<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorSerafina('item',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorSerafina('largura',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorSerafina('altura',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorSerafina('espessura',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorSerafina('unidMed',${indice},this.value)"></input></td>
+					<td><input value= "${prod.quantidade}" onkeyup="escreverValorSerafina('quantidade',${indice},this.value)"></input></td>
+					<td>
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.tipoEmbalagem}"</option>
+									<option value="1">Saco</option>
+									<option value="2">Filme</option>
+						</select>
+					</td>
+					<td>
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.tipoLaminado}"</option>
+									<option value="1">Monocamada</option>
+									<option value="2">Laminado</option>
+									<option value="2">Bilaminado</option>
+						</select>
+					</td>
+					<td>
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.tipoMaterial}"</option>
+									<option value="1">tipoMaterial-1</option>
+									<option value="2">tipoMaterial-2</option>
+									<option value="3">tipoMaterial-3</option>
+									<option value="4">tipoMaterial-4</option>
+						</select>
+					</td>
+					<td>
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
+									<option value="1">Azul</option>
+									<option value="3">Verde</option>
+									<option value="2">Amarelo</option>
+									<option value="4">Vermelho</option>
+									<option value="5">Preto</option>
+									<option value="6">Transparente</option>
+						</select>
+					</td>
+					<td>
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.lisoImpresso}"</option>
+									<option value="1">Liso</option>
+									<option value="2">Impresso</option>	
+						</select>
+					</td>
+					<td>
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('qtdCores',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.qtdCores}"</option>
+									<option value="1">1C</option>
+									<option value="2">2C</option>
+									<option value="3">3C</option>
+									<option value="4">4C</option>
+									<option value="5">5C</option>
+									<option value="6">6C</option>
+									<option value="7">7C</option>
+									<option value="8">8C</option>
+						</select>
+					</td>
+					<td>
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.tipoSolda}"</option>
+									<option value="1">Solda Lateral Simples</option>
+									<option value="2">Solda Lateral Bainha</option>
+									<option value="3">Solda Pouch</option>
+						</select>
+					</td>
+					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorSerafina('prazoEntrega',${indice},this.value)"></td>
+					<td><input value= "${prod.obs}" onkeyup="escreverValorSerafina('obs',${indice},this.value)"></td>
+					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
+					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
+				</tr>`;
+			}).join("");;
 		}
 	}
 
@@ -1032,27 +1217,27 @@
 						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoEdicao(event.target, ${indice})"></i>
 						</span>
 						</th>
-						<td><input ${ prod.tipoItem != "Branco"  && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
-						<td><input ${ prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
 						<td><input value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
-						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar")  && "disabled"} value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
-						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar")  && "disabled"} value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
 						<td>
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.tipoEmbalagem}"</option>
 							  <option value="1">Saco</option>
 							  <option value="2">Tecido</option> 
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.convencionalLaminado}"</option>
 							  <option value="1">Convencional</option>
 							  <option value="2">Laminado</option>
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
 							  <option value="1">Azul</option>
 							  <option value="3">Verde</option>
@@ -1063,14 +1248,14 @@
 							</select>
 						</td>
 						<td>
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lisoImpresso}"</option>
 							  <option value="1">Liso</option>
 							  <option value="2">Impresso</option>	
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
 								<option selected disabled>"${prod.qtdCoresFrente}"</option>
 								<option value="1">1C</option>
 								<option value="2">2C</option>
@@ -1083,7 +1268,7 @@
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
 							 <option selected disabled>"${prod.qtdCoresVerso}"</option>
 							 <option value="1">1C</option>
 							 <option value="2">2C</option>
@@ -1096,7 +1281,7 @@
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.gramaturaLaminado}"</option>
 							  <option value="1">59</option>
 							  <option value="2">63</option>
@@ -1113,17 +1298,17 @@
 							  <option value="3">62</option>
 							</select>
 						</td>
-						<td><input ${prod.tipoItem === "Existente"  && "disabled"} value="${prod.corTrama}" onkeyup="escreverValorEdicao('corTrama',${indice},this.value)"></input></td>
-						<td><input ${prod.tipoItem === "Existente"  && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValorEdicao('corUrdume',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corTrama}" onkeyup="escreverValorEdicao('corTrama',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValorEdicao('corUrdume',${indice},this.value)"></input></td>
 						<td>
-							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('sanfona',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('sanfona',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.sanfona}"</option>
 							  <option value="1">Sim</option>
 							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td >
-							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.medidaSanfona}"</option>
 							  <option value="1">5</option>
 							  <option value="2">6</option>
@@ -1132,7 +1317,7 @@
 							 </select>
 						</td>
 						<td>
-							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('valvula',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('valvula',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.valvula}"</option>
 							  <option value="1">Sim</option>
 							  <option value="2">Não</option>
@@ -1148,7 +1333,7 @@
 							</select>
 						</td>
 						<td>
-							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('lyner',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('lyner',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lyner}"</option>
 							  <option value="1">Sim</option>
 							  <option value="2">Não</option>
@@ -1326,27 +1511,27 @@
 						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoEdicao(event.target, ${indice})"></i>
 						</span>
 						</th>
-						<td><input ${ prod.tipoItem != "Branco"  && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
-						<td><input ${ prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
 						<td><input value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
-						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar")  && "disabled"} value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
-						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar")  && "disabled"} value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
 						<td>
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.tipoEmbalagem}"</option>
 							  <option value="1">Saco</option>
 							  <option value="2">Tecido</option> 
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.convencionalLaminado}"</option>
 							  <option value="1">Convencional</option>
 							  <option value="2">Laminado</option>
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
 							  <option value="1">Azul</option>
 							  <option value="3">Verde</option>
@@ -1357,14 +1542,14 @@
 							</select>
 						</td>
 						<td>
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lisoImpresso}"</option>
 							  <option value="1">Liso</option>
 							  <option value="2">Impresso</option>	
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
 								<option selected disabled>"${prod.qtdCoresFrente}"</option>
 								<option value="1">1C</option>
 								<option value="2">2C</option>
@@ -1377,7 +1562,7 @@
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
 							 <option selected disabled>"${prod.qtdCoresVerso}"</option>
 							 <option value="1">1C</option>
 							 <option value="2">2C</option>
@@ -1390,7 +1575,7 @@
 							</select>
 						</td>
 						<td >
-							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.gramaturaLaminado}"</option>
 							  <option value="1">59</option>
 							  <option value="2">63</option>
@@ -1407,17 +1592,17 @@
 							  <option value="3">62</option>
 							</select>
 						</td>
-						<td><input ${prod.tipoItem === "Existente"  && "disabled"} value="${prod.corTrama}" onkeyup="escreverValorEdicao('corTrama',${indice},this.value)"></input></td>
-						<td><input ${prod.tipoItem === "Existente"  && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValorEdicao('corUrdume',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corTrama}" onkeyup="escreverValorEdicao('corTrama',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValorEdicao('corUrdume',${indice},this.value)"></input></td>
 						<td>
-							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('sanfona',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('sanfona',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.sanfona}"</option>
 							  <option value="1">Sim</option>
 							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td >
-							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.medidaSanfona}"</option>
 							  <option value="1">5</option>
 							  <option value="2">6</option>
@@ -1426,7 +1611,7 @@
 							 </select>
 						</td>
 						<td>
-							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('valvula',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('valvula',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.valvula}"</option>
 							  <option value="1">Sim</option>
 							  <option value="2">Não</option>
@@ -1442,7 +1627,7 @@
 							</select>
 						</td>
 						<td>
-							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('lyner',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('lyner',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lyner}"</option>
 							  <option value="1">Sim</option>
 							  <option value="2">Não</option>
@@ -1572,6 +1757,21 @@
 
 </script>
 
+<!--          						S C R I P T S  -  S E R A F I N A - EDICAO					-->
+<script>
+	function mostraModalProdutosSerafina() {
+		$("#modalSelectTipoItemSerafinaEdicao").modal('show');
+	}
+
+	function limparLinhasEdicaoSerafina() {
+		linhasTableSerafinaEdicao = "";
+	}
+
+
+
+</script>
+
+
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
 <script>
 
@@ -1666,15 +1866,6 @@
 
 				atualizarTabelaSerafina();
 
-			},
-			beforeSend: function () {
-				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
-			},
-			complete: function () {
-				$("#loadingModal").modal('hide');
-			},
-			error: function (response) {
-				alert(response);
 			}
 		});
 	}
