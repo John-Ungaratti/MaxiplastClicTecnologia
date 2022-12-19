@@ -1323,30 +1323,30 @@
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
 						<span type="button">
-						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElemento(event.target, ${indice})"></i>
+						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoEdicao(event.target, ${indice})"></i>
 						</span>
 						</th>
-						<td><input ${prod.disabled && "disabled"} value= "${prod.item}" onkeyup="escreverValor('item',${indice},this.value)"></input></td>
-						<td><input ${prod.disabled && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValor('unidMed',${indice},this.value)"></input></td>
-						<td><input ${prod.disabled && "disabled"} value="${prod.quantidade}" onkeyup="escreverValor('quantidade',${indice},this.value)"></input></td>
-						<td><input ${prod.disabled && "disabled"} value="${prod.preco}" onkeyup="escreverValor('preco',${indice},this.value)"></input></td>
-						<td><input ${prod.disabled && "disabled"} value="${prod.total}" onkeyup="escreverValor('total',${indice},this.value)"></input></td>
+						<td><input ${ prod.tipoItem != "Branco"  && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
+						<td><input ${ prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
+						<td><input value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar")  && "disabled"} value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar")  && "disabled"} value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
 						<td>
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.tipoEmbalagem}"</option>
 							  <option value="1">Saco</option>
 							  <option value="2">Tecido</option> 
 							</select>
 						</td>
 						<td >
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
+							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.convencionalLaminado}"</option>
 							  <option value="1">Convencional</option>
 							  <option value="2">Laminado</option>
 							</select>
 						</td>
 						<td >
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+							<select ${ prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
 							  <option value="1">Azul</option>
 							  <option value="3">Verde</option>
@@ -1357,14 +1357,14 @@
 							</select>
 						</td>
 						<td>
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lisoImpresso}"</option>
 							  <option value="1">Liso</option>
 							  <option value="2">Impresso</option>	
 							</select>
 						</td>
 						<td >
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
+							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
 								<option selected disabled>"${prod.qtdCoresFrente}"</option>
 								<option value="1">1C</option>
 								<option value="2">2C</option>
@@ -1377,7 +1377,7 @@
 							</select>
 						</td>
 						<td >
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
+							<select ${ prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
 							 <option selected disabled>"${prod.qtdCoresVerso}"</option>
 							 <option value="1">1C</option>
 							 <option value="2">2C</option>
@@ -1390,7 +1390,7 @@
 							</select>
 						</td>
 						<td >
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
+							<select ${ prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.gramaturaLaminado}"</option>
 							  <option value="1">59</option>
 							  <option value="2">63</option>
@@ -1400,24 +1400,24 @@
 							</select>
 						</td>
 						<td >
-							<select  ${prod.disabled && "disabled"} onchange="escreverValor('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
+							<select  ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.gramaturaConvencional}"</option>
 							  <option value="1">54</option>
 							  <option value="2">58</option>
 							  <option value="3">62</option>
 							</select>
 						</td>
-						<td><input ${prod.disabled && "disabled"} value="${prod.corTrama}" onkeyup="escreverValor('corTrama',${indice},this.value)"></input></td>
-						<td><input ${prod.disabled && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValor('corUrdume',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente"  && "disabled"} value="${prod.corTrama}" onkeyup="escreverValorEdicao('corTrama',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente"  && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValorEdicao('corUrdume',${indice},this.value)"></input></td>
 						<td>
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('sanfona',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('sanfona',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.sanfona}"</option>
 							  <option value="1">Sim</option>
 							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td >
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.medidaSanfona}"</option>
 							  <option value="1">5</option>
 							  <option value="2">6</option>
@@ -1426,14 +1426,14 @@
 							 </select>
 						</td>
 						<td>
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('valvula',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('valvula',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.valvula}"</option>
 							  <option value="1">Sim</option>
 							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td >
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('medidaValvula',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('medidaValvula',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.medidaValvula}"</option>
 							  <option value="1">5</option>
 							  <option value="2">6</option>
@@ -1442,16 +1442,16 @@
 							</select>
 						</td>
 						<td>
-							<select ${prod.disabled && "disabled"} onchange="escreverValor('lyner',${indice},this.options[this.selectedIndex].text)">
+							<select ${prod.tipoItem === "Existente"  && "disabled"} onchange="escreverValorEdicao('lyner',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lyner}"</option>
 							  <option value="1">Sim</option>
 							  <option value="2">Não</option>
 							</select>
 						</td>
-						<td><input ${prod.disabled && "disabled"} value="${prod.largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
-						<td><input ${prod.disabled && "disabled"} value="${prod.comprimento}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
-						<td><input ${prod.disabled && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
-						<td><input ${prod.disabled && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento}" onkeyup="escreverValorEdicao('comprimento',${indice},this.value)" ></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValorEdicao('estadoDestino',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
 		}).join("");
 	}
@@ -1475,19 +1475,16 @@
 
 				var checkBox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
 
-
 				if (checkBox == "Novo Produto - Branco") {
-					linhasRafia.push({ "disabled": false, "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
+					linhasRafia.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-
-					linhasRafia.push({ "disabled": false, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+					linhasRafia.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-
-					linhasRafia.push({ "disabled": true, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+					linhasRafia.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				console.log(linhasRafia);
 				atualizarTabelaRafia();
