@@ -1673,7 +1673,7 @@ $.ajax({
 			</span>
 		</th>
 		<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorSerafina('item',${indice},this.value)"></input></td>
-		<td><input ${prod.disabled && "disabled"} value= "${prod.largura}" onkeyup="escreverValorSerafina('largura',${indice},this.value)"></input></td>
+		<td><input ${prod.tipoItem != "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorSerafina('largura',${indice},this.value)"></input></td>
 		<td><input ${prod.disabled && "disabled"} value= "${prod.altura}" onkeyup="escreverValorSerafina('altura',${indice},this.value)"></input></td>
 		<td><input ${prod.disabled && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorSerafina('espessura',${indice},this.value)"></input></td>
 		<td><input ${prod.disabled && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorSerafina('unidMed',${indice},this.value)"></input></td>
