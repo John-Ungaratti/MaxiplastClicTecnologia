@@ -1741,10 +1741,10 @@ $.ajax({
 						 <option value="3">Solda Pouch</option>
 			</select>
 		</td>
-		<td><input ${prod.disabled && "disabled"} value= "${prod.prazoEntrega}" onkeyup="escreverValorSerafina('prazoEntrega',${indice},this.value)"></td>
+		<td><input ${prod.disabled && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorSerafina('prazoEntrega',${indice},this.value)"></td>
 		<td><input value= "${prod.obs}" onkeyup="escreverValorSerafina('obs',${indice},this.value)"></td>
-		<td><input ${prod.disabled && "disabled"} value= "${prod.preco}" onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
-		<td><input ${prod.disabled && "disabled"} value= "${prod.total}" onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
+		<td><input ${prod.disabled && "disabled"} value="${prod.preco}" onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
+		<td><input ${prod.disabled && "disabled"} value="${prod.total}" onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
 	</tr>`;
 	}).join("");
 }
