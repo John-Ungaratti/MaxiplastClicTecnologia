@@ -1633,7 +1633,7 @@ $.ajax({
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
 
 				if (checkBox == "Novo Produto - Branco") {
-					linhasSerafina.push({ "disabled": true, "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "" , "obs":""});
+					linhasSerafina.push({ "disabled": false, "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "" , "obs":""});
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
