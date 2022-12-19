@@ -1743,8 +1743,8 @@ $.ajax({
 		</td>
 		<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorSerafina('prazoEntrega',${indice},this.value)"></td>
 		<td><input value= "${prod.obs}" onkeyup="escreverValorSerafina('obs',${indice},this.value)"></td>
-		<td><input ${prod.tipoItem === "Existente" && prod.tipoItem === "Branco" && prod.tipoItem === "Copiar" && "disabled"} onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
-		<td><input ${prod.tipoItem === "Existente" && prod.tipoItem === "Branco" && prod.tipoItem === "Copiar" && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
+		<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
+		<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
 	</tr>`;
 	}).join("");
 }
