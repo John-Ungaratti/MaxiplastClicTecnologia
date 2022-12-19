@@ -1641,7 +1641,7 @@ $.ajax({
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafina.push({ "disabled": true, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": prod[0].prazoEntrega, "obs":""});
+				linhasSerafina.push({ "disabled": true, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs":""});
 				}
 
 				atualizarTabelaSerafina();
@@ -1677,7 +1677,7 @@ $.ajax({
 		<td><input ${prod.disabled && "disabled"} value= "${prod.altura}" onkeyup="escreverValorSerafina('altura',${indice},this.value)"></input></td>
 		<td><input ${prod.disabled && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorSerafina('espessura',${indice},this.value)"></input></td>
 		<td><input ${prod.disabled && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorSerafina('unidMed',${indice},this.value)"></input></td>
-		<td><input ${prod.disabled && "disabled"} value= "${prod.quantidade}" onkeyup="escreverValorSerafina('quantidade',${indice},this.value)"></input></td>
+		<td><input value= "${prod.quantidade}" onkeyup="escreverValorSerafina('quantidade',${indice},this.value)"></input></td>
 		<td>
 			<select ${prod.disabled && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 						  <option selected disabled>"${prod.tipoEmbalagem}"</option>
@@ -1742,7 +1742,7 @@ $.ajax({
 			</select>
 		</td>
 		<td><input ${prod.disabled && "disabled"} value= "${prod.prazoEntrega}" onkeyup="escreverValorSerafina('prazoEntrega',${indice},this.value)"></td>
-		<td><input ${prod.disabled && "disabled"} value= "${prod.obs}" onkeyup="escreverValorSerafina('obs',${indice},this.value)"></td>
+		<td><input value= "${prod.obs}" onkeyup="escreverValorSerafina('obs',${indice},this.value)"></td>
 		<td><input ${prod.disabled && "disabled"} value= "${prod.preco}" onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
 		<td><input ${prod.disabled && "disabled"} value= "${prod.total}" onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
 	</tr>`;
@@ -2010,7 +2010,6 @@ $.ajax({
 	
 	var vendedorSel = document.getElementById("filtroVendedorMatriz").value;
 	
-
 	jsonFormatado = {"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDIÇÃO",  "unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasMatriz};
 			
 }
