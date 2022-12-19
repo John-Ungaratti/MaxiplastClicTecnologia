@@ -613,7 +613,6 @@
 			
 	}, false);
 	
-	
 	window.addEventListener("load", function filtroClientes() {
 
 		var clientesExistentesHTML = "";
@@ -1222,21 +1221,41 @@ $.ajax({
 		linhasRafiaEdicao.splice(i, 1);
 		atualizarTabelaRafiaEdicao();
 	}
-
+	
 	function montaJsonRafiaEdicao(){
 	
 	var unidadeSel = "Rafia";
-	 
-	var clienteSel = document.getElementById("filtroCliente").value;
-	
-	var orcamentoSel = document.getElementById("inputOrcamento").value;
-	
-	var vendedorSel = document.getElementById("filtroVendedor").value;
-	
 
 	jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao":"EM EDIÇÃO" ,"unidade": unidadeSel, "cliente": clienteSel, "orcamento":orcamentoSel ,"vendedor": vendedorSel, "itens": linhasRafiaEdicao};
 	
 }	
+
+	function atualizarItensBaseClicRafia(){
+		
+		montaJsonRafiaEdicao();
+		
+		var parametros = {
+			"cnpj":  {
+				"id": parent.dadosUserLogado().cId
+			} ,
+			"jsonDocs": JSON.stringify(jsonFormatado)
+		};
+		
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				$("#modalEdicao").modal('hide');
+				$('#formRafia').each (function(){
+					this.reset();
+				});
+				linhasRafiaEdicao = [];
+				atualizarTabelaRafiaEdicao();
+				document.location.reload();
+			}
+		});
+	}	
 </script>
 
 <!--          						S C R I P T S  -  R A F I A           				-->
@@ -1504,16 +1523,16 @@ $.ajax({
 		};
 		
 		$.ajax({
-			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				$("#modalEdicao").modal('hide');
-				$('#formRafiaEdicao').each (function(){
+				$("#orcamentoRafia").modal('hide');
+				$('#formRafia').each (function(){
 					this.reset();
 				});
-				linhasRafiaEdicao = [];
-				atualizarTabelaRafiaEdicao();
+				linhasRafia = [];
+				atualizarTabelaRafia();
 				document.location.reload();
 			}
 		});
