@@ -591,11 +591,10 @@
 								<th scope="col">Total</th>
 							</tr>
 						</thead>
-						<tbody id="linhasTableSerafinaEdicao">
+						<tbody id="linhaTableSerafinaEdicao">
 							<div style="margin-bottom: 10px">
 								<br>
-								<button id="addItensSerafinaEdicao" type="submit" class="btn btn-outline-dark"
-									onclick="mostraModalProdutosSerafina()">Adicionar Item</button>
+								<button id="addItensSerafinaEdicao" type="submit" class="btn btn-outline-dark" onclick="mostraModalProdutosSerafina()">Adicionar Item</button>
 								<br>
 							</div>
 						</tbody>
@@ -680,7 +679,7 @@
 
 	var linhasSerafina = [];
 	var linhasSerafinaEdicao;
-	var linhasTableSerafinaEdicao = [];
+	var linhasTableSerafinaEdicao = "";
 
 	var linhasMatriz = [];
 	var linhasMatrizEdicao = "";
@@ -1792,7 +1791,7 @@
 	}
 
 	function atualizarTabelaSerafinaEdicao() {
-		document.querySelector('#linhasTableSerafinaEdicao').innerHTML = linhasSerafinaEdicao.map(function (prod, indice) {
+		document.querySelector('#linhaTableSerafinaEdicao').innerHTML = linhasSerafinaEdicao.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 					<th scope="row">
 						<span type="button">
