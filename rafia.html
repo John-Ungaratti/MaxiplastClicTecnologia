@@ -621,8 +621,8 @@
 				</div>
 				<div class="modal-body">
 					<label for="inputProdutoSerafinaEdicao" class="form-label">Produto</label>
-					<input class="form-control" type="text" list="produtos" id="inputProdutoSerafinaEdicao" disabled />
-					<datalist id="produtos"></datalist>
+					<input class="form-control" type="text" list="produtosSerafina" id="inputProdutoSerafinaEdicao" disabled />
+					<datalist id="produtosSerafina"></datalist>
 					<br>
 					<div class="container">
 						<div class="row ">
@@ -871,15 +871,6 @@
 
 				document.getElementById("produtosSerafina").innerHTML = produtosExistentesHTML;
 
-			},
-			beforeSend: function () {
-				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
-			},
-			complete: function () {
-				$("#loadingModal").modal('hide');
-			},
-			error: function (response) {
-				alert(response);
 			}
 		});
 	}, false);
@@ -906,15 +897,6 @@
 
 				document.getElementById("produtosMatriz").innerHTML = produtosExistentesHTML;
 
-			},
-			beforeSend: function () {
-				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
-			},
-			complete: function () {
-				$("#loadingModal").modal('hide');
-			},
-			error: function (response) {
-				alert(response);
 			}
 		});
 	}, false);
