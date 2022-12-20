@@ -2533,24 +2533,24 @@
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 					<th scope="row">
 						<span type="button">
-						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoSerafinaEdicao(event.target, ${indice})"></i>
+						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoMatriz(event.target, ${indice})"></i>
 						</span>
 					</th>
-					<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoSerafina('item',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoSerafina('largura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoSerafina('altura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoSerafina('espessura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoSerafina('unidMed',${indice},this.value)"></input></td>
-					<td><input value= "${prod.quantidade}" onkeyup="escreverValorEdicaoSerafina('quantidade',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorMatriz('item',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorMatriz('largura',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorMatriz('altura',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorMatriz('espessura',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorMatriz('unidMed',${indice},this.value)"></input></td>
+					<td><input value= "${prod.quantidade}" onkeyup="escreverValorMatriz('quantidade',${indice},this.value)"></input></td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
 									<option value="1">Saco</option>
 									<option value="2">Filme</option>
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoLaminado}"</option>
 									<option value="1">Monocamada</option>
 									<option value="2">Laminado</option>
@@ -2558,7 +2558,7 @@
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoMaterial}"</option>
 									<option value="1">tipoMaterial-1</option>
 									<option value="2">tipoMaterial-2</option>
@@ -2567,7 +2567,7 @@
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
 									<option value="1">Azul</option>
 									<option value="3">Verde</option>
@@ -2578,14 +2578,14 @@
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.lisoImpresso}"</option>
 									<option value="1">Liso</option>
 									<option value="2">Impresso</option>	
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('qtdCores',${indice},this.options[this.selectedIndex].text)">
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('qtdCores',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.qtdCores}"</option>
 									<option value="1">1C</option>
 									<option value="2">2C</option>
@@ -2598,17 +2598,17 @@
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoSolda',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoSolda}"</option>
 									<option value="1">Solda Lateral Simples</option>
 									<option value="2">Solda Lateral Bainha</option>
 									<option value="3">Solda Pouch</option>
 						</select>
 					</td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorEdicaoSerafina('prazoEntrega',${indice},this.value)"></td>
-					<td><input value= "${prod.obs}" onkeyup="escreverValorEdicaoSerafina('obs',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('preco',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('total',${indice},this.value)"></td>
+					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorMatriz('prazoEntrega',${indice},this.value)"></td>
+					<td><input value= "${prod.obs}" onkeyup="escreverValorMatriz('obs',${indice},this.value)"></td>
+					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorMatriz('preco',${indice},this.value)"></td>
+					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorMatriz('total',${indice},this.value)"></td>
 				</tr>`;
 		}).join("");
 	}
