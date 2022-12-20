@@ -931,6 +931,8 @@
 			linhasSerafinaEdicao = [...orcamento.itens];
 		}
 
+		console.log("linhasSerafinaEdicao", linhasSerafinaEdicao);
+
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
 		vendedorSel = orcamento.vendedor;
@@ -1656,7 +1658,6 @@
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasRafia.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
-				console.log(linhasRafia);
 				atualizarTabelaRafia();
 			}
 		});
@@ -1872,7 +1873,7 @@
 
 				var objRetorno = JSON.parse(response);
 
-				var produtoSel = document.getElementById("inputProdutoSerafina").value;
+				var produtoSel = document.getElementById("inputProdutoSerafinaEdicao").value;
 
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
 
@@ -1969,7 +1970,6 @@
 			}
 		});
 	}
-
 </script>
 
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
@@ -2034,6 +2034,7 @@
 	}
 
 	function addLinhasSerafina() {
+		
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
