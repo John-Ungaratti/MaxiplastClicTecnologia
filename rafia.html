@@ -856,9 +856,6 @@
 											 </td>
 											</tr>`;
 					}
-
-					
-
 				});
 
 				document.getElementById("tbodyOrcamentosClic").innerHTML = linhaOrcamentosClic;
@@ -868,7 +865,6 @@
 		});
 
 	}, false);
-
 	window.addEventListener("load", function filtroClientes() {
 
 		var clientesExistentesHTML = "";
@@ -901,7 +897,6 @@
 			}
 		});
 	}, false);
-
 	window.addEventListener("load", function filtroVendedores() {
 
 		var vendedoresExistentesHTML = "";
@@ -935,7 +930,6 @@
 			}
 		});
 	}, false);
-
 	window.addEventListener("load", function listarProdutosRafia() {
 
 		var produtosExistentesHTML = "";
@@ -970,10 +964,9 @@
 			}
 		});
 	}, false);
-
 	window.addEventListener("load", function listarProdutosSerafina() {
 
-		var produtosExistentesHTML = "";
+	var produtosExistentesHTML = "";
 
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -996,7 +989,6 @@
 			}
 		});
 	}, false);
-
 	window.addEventListener("load", function listarProdutosMatriz() {
 
 		var produtosExistentesHTML = "";
@@ -1022,11 +1014,9 @@
 			}
 		});
 	}, false);
-
 	$("#abreModal").click(function () {
 		$("#modalSelectUnidade").modal('show');
 	});
-
 	$("#botaoSelUnidade").click(function () {
 		if (document.getElementById("unidadeSelecionada").value == "Rafia") {
 			$("#modalSelectUnidade").modal('hide');
@@ -1039,7 +1029,6 @@
 			$("#orcamentoMatriz").modal('show');
 		}
 	});
-
 	function abrirModalEdicao(_id, _unidade) {
 
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
@@ -1372,7 +1361,6 @@
 			$("#modalEdicaoMatriz").modal('show');
 		}
 	}
-
 	function cancelaOrcamentoBaseClic(_id){
 		var orcamento = orcamentosClicJson.find(({id})=> id == _id);
 
@@ -1402,8 +1390,6 @@
 
 		
 	}
-
-
 </script>
 
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
@@ -1411,31 +1397,25 @@
 	function mostraModalProdutos() {
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 	}
-
 	function limparLinhasEdicao() {
 		linhasTableRafiaEdicao = "";
 	}
-
 	$("#addItensRafiaEdicao").click(function () {
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicao").style.filter = "blur(2px)";
 	});
-
 	$("#cancelModalProdutoRafiaEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "unset";
 		document.getElementById("modalEdicao").style.filter = "unset";
 		$("#modalSelectTipoItemRafiaEdicao").modal('hide');
 	});
-
 	function enableInputRafiaEdicao() {
 		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = false;
 	}
-
 	function disableInputRafiaEdicao() {
 		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = true;
 	}
-
 	function atualizarTabelaRafiaEdicao() {
 		document.querySelector('#linhaTableRafiaEdicao').innerHTML = linhasRafiaEdicao.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
@@ -1573,7 +1553,6 @@
 					</tr>`;
 		}).join("");
 	}
-
 	function addLinhasEdicao() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -1610,7 +1589,6 @@
 			}
 		});
 	}
-
 	$("#confirmModalProdutoRafiaEdicao").click(function () {
 		var formulario = document.getElementById("formProdutoRafiaEdicao");
 		if (!formulario.checkValidity()) {
@@ -1639,17 +1617,14 @@
 
 		}
 	});
-
 	function escreverValorEdicao(prop, i, value) {
 		var item = linhasRafiaEdicao[i];
 		item[prop] = value;
 	}
-
 	function removerElementoEdicao(elementoClicado, i) {
 		linhasRafiaEdicao.splice(i, 1);
 		atualizarTabelaRafiaEdicao();
 	}
-
 	function montaJsonRafiaEdicao() {
 
 		var unidadeSel = "Rafia";
@@ -1657,7 +1632,6 @@
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
 
 	}
-
 	function atualizarItensBaseClicRafia() {
 
 		montaJsonRafiaEdicao();
@@ -1688,7 +1662,6 @@
 
 <!--          						S C R I P T S  -  R A F I A           				-->
 <script>
-
 	$("#addItensRafia").click(function () {
 		var formulario = document.getElementById("formRafia");
 		if (!formulario.checkValidity()) {
@@ -1703,26 +1676,21 @@
 		}
 
 	});
-
 	$("#cancelModalProdutoRafia").click(function () {
 		document.getElementById("modalSelectTipoItemRafia").style.filter = "unset";
 		document.getElementById("orcamentoRafia").style.filter = "unset";
 		$("#modalSelectTipoItemRafia").modal('hide');
 	});
-
 	function enableInputRafia() {
 		document.querySelector(`input[id="inputProdutoRafia"]`).disabled = false;
 	}
-
 	function disableInputRafia() {
 		document.querySelector(`input[id="inputProdutoRafia"]`).disabled = true;
 	}
-
 	function escreverValor(prop, i, value) {
 		var item = linhasRafia[i];
 		item[prop] = value;
 	}
-
 	function atualizarTabelaRafia() {
 		document.querySelector('#linhaTableRafia').innerHTML = linhasRafia.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
@@ -1860,7 +1828,6 @@
 					</tr>`;
 		}).join("");
 	}
-
 	function addLinhas() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -1895,7 +1862,6 @@
 			}
 		});
 	}
-
 	$("#confirmModalProdutoRafia").click(function () {
 		var formulario = document.getElementById("formProdutoRafia");
 		if (!formulario.checkValidity()) {
@@ -1924,12 +1890,10 @@
 
 		}
 	});
-
 	function removerElemento(elementoClicado, i) {
 		linhasRafia.splice(i, 1);
 		atualizarTabelaRafia();
 	}
-
 	function montaJsonRafia() {
 
 		var unidadeSel = "Rafia"
@@ -1944,7 +1908,6 @@
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafia };
 
 	}
-
 	function salvaItensBaseClicRafia() {
 
 		montaJsonRafia();
@@ -1971,7 +1934,6 @@
 			}
 		});
 	}
-
 </script>
 
 <!--          						S C R I P T S  -  S E R A F I N A - EDICAO					-->
@@ -1979,31 +1941,25 @@
 	function mostraModalProdutosSerafina() {
 		$("#modalSelectTipoItemSerafinaEdicao").modal('show');
 	}
-
 	function limparLinhasEdicaoSerafina() {
 		linhasTableSerafinaEdicao = "";
 	}
-
 	$("#addItensSerafinaEdicao").click(function () {
 		$("#modalSelectTipoItemSerafinaEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemSerafinaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicaoSerafina").style.filter = "blur(2px)";
 	});
-
 	$("#cancelModalProdutoSerafinaEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemSerafinaEdicao").style.filter = "unset";
 		document.getElementById("modalEdicaoSerafina").style.filter = "unset";
 		$("#modalSelectTipoItemSerafinaEdicao").modal('hide');
 	});
-
 	function enableInputSerafinaEdicao() {
 		document.querySelector(`input[id="inputProdutoSerafinaEdicao"]`).disabled = false;
 	}
-
 	function disableInputSerafinaEdicao() {
 		document.querySelector(`input[id="inputProdutoSerafinaEdicao"]`).disabled = true;
 	}
-
 	function atualizarTabelaSerafinaEdicao() {
 		document.querySelector('#linhaTableSerafinaEdicao').innerHTML = linhasSerafinaEdicao.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
@@ -2088,7 +2044,6 @@
 				</tr>`;
 		}).join("");
 	}
-
 	function addLinhasSerafinaEdicao() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -2125,7 +2080,6 @@
 			}
 		});
 	}
-
 	$("#confirmModalProdutoSerafinaEdicao").click(function () {
 		var formulario = document.getElementById("formProdutoSerafinaEdicao");
 		if (!formulario.checkValidity()) {
@@ -2154,24 +2108,20 @@
 
 		}
 	});
-
 	function escreverValorEdicaoSerafina(prop, i, value) {
 		var item = linhasSerafinaEdicao[i];
 
 		item[prop] = value;
 	}
-
 	function montaJsonSerafinaEdicao() {
 
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Serafina", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafinaEdicao };
 
 	}
-
 	function removerElementoSerafinaEdicao(elementoClicado, i) {
 		linhasSerafinaEdicao.splice(i, 1);
 		atualizarTabelaSerafinaEdicao();
 	}
-
 	function atualizarItensBaseClicSerafina() {
 
 		montaJsonSerafinaEdicao();
@@ -2203,7 +2153,6 @@
 
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
 <script>
-
 	$("#addItensSerafina").click(function () {
 		var formulario = document.getElementById("formSerafina");
 		if (!formulario.checkValidity()) {
@@ -2218,7 +2167,6 @@
 		}
 
 	});
-
 	$("#confirmModalProdutoSerafina").click(function () {
 		var formulario = document.getElementById("formProdutoSerafina");
 		if (!formulario.checkValidity()) {
@@ -2247,21 +2195,17 @@
 
 		}
 	});
-
 	$("#cancelModalProdutoSerafina").click(function () {
 		document.getElementById("modalSelectTipoItemSerafina").style.filter = "unset";
 		document.getElementById("orcamentoSerafina").style.filter = "unset";
 		$("#modalSelectTipoItemSerafina").modal('hide');
 	});
-
 	function enableInputSerafina() {
 		document.querySelector(`input[id="inputProdutoSerafina"]`).disabled = false;
 	}
-
 	function disableInputSerafina() {
 		document.querySelector(`input[id="inputProdutoSerafina"]`).disabled = true;
 	}
-
 	function addLinhasSerafina() {
 		
 		var parametros = {
@@ -2291,7 +2235,7 @@
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafina.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasSerafina.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 
 				atualizarTabelaSerafina();
@@ -2299,12 +2243,10 @@
 			}
 		});
 	}
-
 	function escreverValorSerafina(prop, i, value) {
 		var item = linhasSerafina[i];
 		item[prop] = value;
 	}
-
 	function atualizarTabelaSerafina() {
 		document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
@@ -2389,7 +2331,6 @@
 				</tr>`;
 		}).join("");
 	}
-
 	function montaJsonSerafina() {
 
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
@@ -2404,12 +2345,10 @@
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafina };
 
 	}
-
 	function removerElementoSerafina(elementoClicado, i) {
 		linhasSerafina.splice(i, 1);
 		atualizarTabelaSerafina();
 	}
-
 	function salvaItensBaseClicSerafina() {
 
 		montaJsonSerafina();
@@ -2437,7 +2376,6 @@
 		});
 
 	}
-
 </script>
 
 <!--          						S C R I P T S  -  M A T R I Z - EDICAO					-->
@@ -2445,31 +2383,25 @@
 	function mostraModalProdutosMatriz() {
 		$("#modalSelectTipoItemMatrizEdicao").modal('show');
 	}
-
 	function limparLinhasEdicaoMatriz() {
 		linhasTableMatrizEdicao = "";
 	}
-
 	$("#addItensMatrizEdicao").click(function () {
 		$("#modalSelectTipoItemMatrizEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicaoMatriz").style.filter = "blur(2px)";
 	});
-
 	$("#cancelModalProdutoMatrizEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "unset";
 		document.getElementById("modalEdicaoMatriz").style.filter = "unset";
 		$("#modalSelectTipoItemMatrizEdicao").modal('hide');
 	});
-
 	function enableInputMatrizEdicao() {
 		document.querySelector(`input[id="inputProdutoMatrizEdicao"]`).disabled = false;
 	}
-
 	function disableInputMatrizEdicao() {
 		document.querySelector(`input[id="inputProdutoMatrizEdicao"]`).disabled = true;
 	}
-
 	function atualizarTabelaMatrizEdicao() {
 		document.querySelector('#linhaTableMatrizEdicao').innerHTML = linhasMatrizEdicao.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
@@ -2554,7 +2486,6 @@
 				</tr>`;
 		}).join("");
 	}
-
 	function addLinhasMatrizEdicao() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -2591,7 +2522,6 @@
 			}
 		});
 	}
-
 	$("#confirmModalProdutoMatrizEdicao").click(function () {
 		var formulario = document.getElementById("formProdutoMatrizEdicao");
 		if (!formulario.checkValidity()) {
@@ -2620,23 +2550,18 @@
 
 		}
 	});
-
 	function escreverValorEdicaoMatriz(prop, i, value) {
 		var item = linhasMatrizEdicao[i];
 		item[prop] = value;
 	}
-
 	function montaJsonMatrizEdicao() {
-
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
 
 	}
-
 	function removerElementoMatrizEdicao(elementoClicado, i) {
 		linhasMatrizEdicao.splice(i, 1);
 		atualizarTabelaMatrizEdicao();
 	}
-
 	function atualizarItensBaseClicMatriz() {
 		
 		montaJsonMatrizEdicao();
@@ -2669,7 +2594,6 @@
 
 <!--          						S C R I P T S  -	M A T R I Z         					-->
 <script>
-
 	$("#addItensMatriz").click(function () {
 		var formulario = document.getElementById("formMatriz");
 		if (!formulario.checkValidity()) {
@@ -2684,7 +2608,6 @@
 		}
 
 	});
-
 	$("#confirmModalProdutoMatriz").click(function () {
 		var formulario = document.getElementById("formProdutoMatriz");
 		if (!formulario.checkValidity()) {
@@ -2713,21 +2636,17 @@
 
 		}
 	});
-
 	$("#cancelModalProdutoMatriz").click(function () {
 		document.getElementById("modalSelectTipoItemMatriz").style.filter = "unset";
 		document.getElementById("orcamentoMatriz").style.filter = "unset";
 		$("#modalSelectTipoItemMatriz").modal('hide');
 	});
-
 	function enableInputMatriz() {
 		document.querySelector(`input[id="inputProdutoMatriz"]`).disabled = false;
 	}
-
 	function disableInputMatriz() {
 		document.querySelector(`input[id="inputProdutoMatriz"]`).disabled = true;
 	}
-
 	function addLinhasMatriz() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -2756,19 +2675,17 @@
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasMatriz.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasMatriz.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": prod[0].qtdCores, "tipoSolda": prod[0].tipoSolda, "largura":"", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 
 				atualizarTabelaMatriz();
 			}
 		});
 	}
-
 	function escreverValorMatriz(prop, i, value) {
 		var item = linhasMatriz[i];
 		item[prop] = value;
 	}
-
 	function atualizarTabelaMatriz() {
 		document.querySelector('#linhaTableMatriz').innerHTML = linhasMatriz.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
@@ -2853,12 +2770,10 @@
 				</tr>`;
 		}).join("");
 	}
-
 	function removerElementoMatriz(elementoClicado, i) {
 		linhasMatriz.splice(i, 1);
 		atualizarTabelaMatriz();
 	}
-
 	function montaJsonMatriz() {
 
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
@@ -2872,7 +2787,6 @@
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatriz };
 
 	}
-
 	function salvaItensBaseClicMatriz() {
 
 		montaJsonMatriz();
@@ -2900,5 +2814,4 @@
 		});
 
 	}
-
 </script>
