@@ -1071,7 +1071,6 @@
 								<td><input value="${prod.gramatura}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
 							</tr>`;
 			}).join("");
-
 			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
 			$("#modalEdicao").modal('show');
 		}
@@ -1158,7 +1157,6 @@
 					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('total',${indice},this.value)"></td>
 				</tr>`;
 			}).join("");
-
 			document.getElementById("linhaTableSerafinaEdicao").innerHTML = linhasTableSerafinaEdicao;
 			$("#modalEdicaoSerafina").modal('show');
 		}
@@ -1245,7 +1243,6 @@
 					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoMatriz('total',${indice},this.value)"></td>
 				</tr>`
 			}).join("");
-		
 			document.getElementById("linhaTableMatrizEdicao").innerHTML = linhasTableMatrizEdicao;
 			$("#modalEdicaoMatriz").modal('show');
 		}
@@ -2469,6 +2466,8 @@
 
 	function escreverValorEdicaoMatriz(prop, i, value) {
 		var item = linhasMatrizEdicao[i];
+
+		console.log(item);
 
 		item[prop] = value;
 	}
