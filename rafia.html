@@ -1359,17 +1359,9 @@
 
 		idSel = _id;
 
-		var parametros = {
-			"cnpj": {
-				"id": parent.dadosUserLogado().cId
-			}
-		};
-
-
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/deleta/' + idSel,
 			type: "DELETE",
-			data: JSON.stringify(parametros),
 			success: function (response) {
 				console.log("excluiu a linha cujo id é igual a:", idSel);
 				document.location.reload();
