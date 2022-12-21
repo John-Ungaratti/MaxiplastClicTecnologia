@@ -1376,7 +1376,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				$("editar"+idSel).css("pointer-events", "none");
+				document.querySelector(`span[id="editar${idSel}"]`).disable = true
 				document.location.reload();
 			}
 		});
