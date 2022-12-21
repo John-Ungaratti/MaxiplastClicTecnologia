@@ -1370,14 +1370,14 @@
 			"jsonDocs": JSON.stringify(jsonFormatadoAtualizado)
 		};
 
+		document.querySelector(`span[id="editar${idSel}"]`).style.visibility = "hidden"
+		document.querySelector(`span[id="excluir${idSel}"]`).style.visibility = "hidden"
 
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				document.querySelector(`span[id="editar${idSel}"]`).style.visibility = "hidden"
-				document.querySelector(`span[id="excluir${idSel}"]`).style.visibility = "hidden"
 				document.location.reload();
 			}
 		});
