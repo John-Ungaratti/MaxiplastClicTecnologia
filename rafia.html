@@ -993,12 +993,8 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
-				console.log(response);
 				
-				var objRetorno = JSON.parse(response);
-				
-				console.log(objRetorno);
+				var objRetorno = JSON.parse(response);		
 
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosMatriz">${item}</option>`);
 
