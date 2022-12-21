@@ -558,6 +558,109 @@
 	</div>
 </form>
 
+<!-- MODAL EDIÇÃO SERAFINA-->
+<div id="modalEdicaoSerafina" class="modal" tabindex="-1">
+	<div class="modal-dialog modal-fullscreen">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edição Orçamento</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div id="corpoModalEdicaoSerafina" class="modal-body">
+				<div style="overflow-x: scroll">
+					<table id="tableEdicaoSerafina" class="table table-bordered border-dark" style="font-size: small">
+						<thead>
+							<tr style="text-align: center;vertical-align: middle;">
+								<th scope="col"></th>
+								<th scope="col">Item</th>
+								<th scope="col">Largura(cm)</th>
+								<th scope="col">Altura(cm)</th>
+								<th scope="col">Espessura(mm)</th>
+								<th scope="col">Unid. Medida</th>
+								<th scope="col">Quantidade</th>
+								<th scope="col">Tipo Embalagem</th>
+								<th scope="col">Monocamada / Laminado / Bilaminado</th>
+								<th scope="col">Tipo Material</th>
+								<th scope="col">Pigmentado / Transparente</th>
+								<th scope="col">Liso / Impresso</th>
+								<th scope="col">Quantidade Cores</th>
+								<th scope="col">Tipo de Solda</th>
+								<th scope="col">Prazo Entrega</th>
+								<th scope="col">Obs</th>
+								<th scope="col">Preço</th>
+								<th scope="col">Total</th>
+							</tr>
+						</thead>
+						<tbody id="linhaTableSerafinaEdicao">
+							<div style="margin-bottom: 10px">
+								<br>
+								<button id="addItensSerafinaEdicao" type="submit" class="btn btn-outline-dark" onclick="mostraModalProdutosSerafina()">Adicionar Item</button>
+								<br>
+							</div>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+					onclick="limparLinhasEdicaoSerafina()">Fechar</button>
+				<button type="button" class="btn btn-primary" onclick="atualizarItensBaseClicSerafina()">Salvar</button>
+				<button type="button" class="btn btn-success">Enviar</button>
+			</div>
+		</div>|
+	</div>
+</div>
+
+<!-- MODAL EDIÇÃO PRODUTOS SERAFINA -->
+<form id="formProdutoSerafinaEdicao">
+	<div id="modalSelectTipoItemSerafinaEdicao" class="modal fade" data-bs-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Selecione a Opção</h5>
+				</div>
+				<div class="modal-body">
+					<label for="inputProdutoSerafinaEdicao" class="form-label">Produto</label>
+					<input class="form-control" type="text" list="produtosSerafina" id="inputProdutoSerafinaEdicao" disabled />
+					<datalist id="produtosSerafina"></datalist>
+					<br>
+					<div class="container">
+						<div class="row ">
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioSerafinaEdicao" type="radio"
+									id="inputBrancoSerafinaEdicao" value="Novo Produto - Branco"
+									onclick="disableInputSerafinaEdicao()" required>
+								<label class="form-check-label" for="inputBrancoSerafinaEdicao">Novo Produto -
+									Branco</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioSerafinaEdicao" type="radio"
+									id="inputCopiaSerafinaEdicao" value="Novo Produto - Copiar"
+									onclick="enableInputSerafinaEdicao()" required>
+								<label class="form-check-label" for="inputCopiaSerafinaEdicao">Novo Produto -
+									Copiar</label>
+							</div>
+							<div class="form-check col">
+								<input class="form-check-input" name="flexRadioSerafinaEdicao" type="radio"
+									id="inputExistenteSerafinaEdicao" value="Produto já existente"
+									onclick="enableInputSerafinaEdicao()" required>
+								<label class="form-check-label" for="inputExistenteSerafinaEdicao">Produto já
+									existente</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelModalProdutoSerafinaEdicao" type="button"
+						class="btn btn-secondary">Cancelar</button>
+					<button id="confirmModalProdutoSerafinaEdicao" type="submit" class="btn btn-primary"
+						onclick="addLinhasSerafinaEdicao()">Confirmar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
 <!-- MODAL EDIÇÃO Matriz-->
 <div id="modalEdicaoMatriz" class="modal" tabindex="-1">
 	<div class="modal-dialog modal-fullscreen">
