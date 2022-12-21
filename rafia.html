@@ -835,7 +835,7 @@
 													<i class="bi bi-pencil-square" style="color: grey" onclick="abrirModalEdicao(${id}, '${json.unidade}')"></i>
 												</span>
 												<span type="button" title="Excluir">
-													<i class="bi bi-trash" style="color: red" onclick="deletaOrcamentoBaseClic(${id})"></i>
+													<i class="bi bi-trash" style="color: red" onclick= cancelaOrcamentoBaseClic(${id})"></i>
 												</span>
 											 </td>
 											</tr>`;
@@ -1358,8 +1358,10 @@
 		}
 	}
 
-	function deletaOrcamentoBaseClic(_id){
+	function cancelaOrcamentoBaseClic(_id){
 		var orcamento = orcamentosClicJson.find(({id})=> id == _id);
+
+		console.log(orcamento);
 
 		idSel = _id;
 
