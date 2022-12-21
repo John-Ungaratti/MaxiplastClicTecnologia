@@ -1376,7 +1376,8 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				document.querySelector(`span[id="editar${idSel}"]`).disable = true
+				document.querySelector(`span[id="editar${idSel}"]`).style.visibility = "hidden"
+				document.querySelector(`span[id="excluir${idSel}"]`).style.visibility = "hidden"
 				document.location.reload();
 			}
 		});
