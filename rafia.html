@@ -1914,15 +1914,14 @@
 	function salvaItensBaseClicRafia() {
 
 		montaJsonRafia();
+	
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
 			},
 			"jsonDocs": JSON.stringify(jsonFormatado)
 		};
-
-		console.log("parametros", parametros);
-
+	
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
 			type: "POST",
@@ -2590,9 +2589,6 @@
 
 	function escreverValorEdicaoMatriz(prop, i, value) {
 		var item = linhasMatrizEdicao[i];
-
-		console.log(item);
-
 		item[prop] = value;
 	}
 
