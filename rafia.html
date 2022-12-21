@@ -831,10 +831,10 @@
 											 <td class="col-md-1">${dataAlteracao}</td>
 											 <td class="col-md-2">${json.vendedor}</td>
 											 <td style="font-size: 18px">
-												<span type="button" title="Editar" >
+												<span id="editar${id}" type="button" title="Editar" >
 													<i class="bi bi-pencil-square" style="color: grey" onclick="abrirModalEdicao(${id}, '${json.unidade}')"></i>
 												</span>
-												<span type="button" title="Excluir">
+												<span id="excluir${id}" type="button" title="Excluir">
 													<i class="bi bi-trash" style="color: red" onclick="cancelaOrcamentoBaseClic(${id})"></i>
 												</span>
 											 </td>
@@ -1361,7 +1361,24 @@
 
 		idSel = _id;
 
+		var jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": [] };
 
+		var parametros = {
+			"cnpj": {
+				"id": parent.dadosUserLogado().cId
+			},
+			"jsonDocs": JSON.stringify(jsonFormatadoAtualizado)
+		};
+
+
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				document.location.reload();
+			}
+		});
 
 
 		
