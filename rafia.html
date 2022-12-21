@@ -835,7 +835,7 @@
 													<i class="bi bi-pencil-square" style="color: grey" onclick="abrirModalEdicao(${id}, '${json.unidade}')"></i>
 												</span>
 												<span type="button" title="Excluir">
-													<i class="bi bi-trash" style="color: red"></i>
+													<i class="bi bi-trash" style="color: red" onclick="deletaOrcamentoBaseClic(${id})"></i>
 												</span>
 											 </td>
 											</tr>`;
@@ -1353,6 +1353,32 @@
 			$("#modalEdicaoMatriz").modal('show');
 		}
 	}
+
+	function deletaOrcamentoBaseClic(_id){
+		var orcamento = orcamentosClicJson.find(({id})=> id == _id);
+
+		idSel = _id;
+
+		var parametros = {
+			"cnpj": {
+				"id": parent.dadosUserLogado().cId
+			},
+			"jsonDocs": JSON.stringify(jsonFormatado)
+		};
+
+
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/deleta/' + idSel,
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("excluiu a linha cujo id é igual a:", idSel);
+				document.location.reload();
+			}
+		});
+
+	}
+
 
 </script>
 
