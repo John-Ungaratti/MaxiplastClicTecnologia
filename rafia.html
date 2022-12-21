@@ -821,7 +821,23 @@
 
 					orcamentosClicJson.push({ id, ...json });
 
-					linhaOrcamentosClic += `<tr style="text-align: center">
+					if(json.situacao === "CANCELADO"){
+						linhaOrcamentosClic += `<tr style="text-align: center">
+											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
+											 <td class="col-md-1">${json.situacao}</td>
+											 <td class="col-md-2">${json.numOrcamentoERP}</td>
+											 <td class="col-md-1">${json.numPedidoERP}</td>
+											 <td class="col-md-1">${json.unidade}</td>
+											 <td class="col-md-2">${json.cliente}</td>
+											 <td class="col-md-1">${dataAlteracao}</td>
+											 <td class="col-md-2">${json.vendedor}</td>
+											 <td style="font-size: 18px">
+												
+											 </td>
+											</tr>`;
+					}
+					else{
+						linhaOrcamentosClic += `<tr style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
 											 <td class="col-md-1">${json.situacao}</td>
 											 <td class="col-md-2">${json.numOrcamentoERP}</td>
@@ -839,6 +855,9 @@
 												</span>
 											 </td>
 											</tr>`;
+					}
+
+					
 
 				});
 
@@ -1376,8 +1395,6 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				document.location.reload();
-				document.querySelector(`span[id="editar${idSel}"]`).style.visibility = "hidden"
-				document.querySelector(`span[id="excluir${idSel}"]`).style.visibility = "hidden"
 
 			}
 		});
