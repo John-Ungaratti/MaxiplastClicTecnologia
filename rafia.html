@@ -978,7 +978,9 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 
-				var objRetorno = JSON.parse(response);
+				var objRetorno = JSON.parse(response); 
+
+				console.log(objRetorno);
 
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
 
