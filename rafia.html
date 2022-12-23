@@ -985,7 +985,9 @@
 
 				document.getElementById("produtosSerafina").innerHTML = produtosExistentesHTML;
 
-				console.log("teste", objRetorno[0].lisoImpresso);
+				var lisoImpresoOps;
+
+				objRetorno[0].lisoImpresso.map(( option ) => console.log(option));
 
 			}
 		});
