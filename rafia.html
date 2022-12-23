@@ -987,9 +987,9 @@
 
 				var lisoImpresoOps;
 
-				objRetorno[0].lisoImpresso.map(( option ) => lisoImpresoOps += `<option name="lisoImpresoSerafina"> option </option>`);
+				objRetorno[0].lisoImpresso.map(( option ) => document.querySelector("select[id='lisoImpresoSerafina']").appendChild(option));
 
-				document.getElementById("lisoImpresoSerafina").innerHTML = lisoImpresoOps;
+				
 			}
 		});
 	}, false);
@@ -1975,7 +1975,7 @@
 					<td><input value= "${prod.quantidade}" onkeyup="escreverValorEdicaoSerafina('quantidade',${indice},this.value)"></input></td>
 					<td>
 						<select id="lisoImpresoSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoEmbalagem}"</option>
+						
 						</select>
 					</td>
 					<td>
