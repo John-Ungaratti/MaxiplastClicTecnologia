@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
 	<meta charset="utf-8" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -10,16 +9,14 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-
 <html style="font-size: small">
-
 <div class="container-fluid">
 	<div class="btn-group" role="group" aria-label="Default button group">
-		<button id="abreModal" type="button" class="btn btn-outline-dark">Nova Cota��o</button>
+		<button id="abreModal" type="button" class="btn btn-outline-dark">Nova Cotação</button>
 		&nbsp;
-		<button type="button" class="btn btn-outline-dark">Cancelar Cota��o / Or�amento</button>
+		<button type="button" class="btn btn-outline-dark">Cancelar Cotação / Orçamento</button>
 		&nbsp;
-		<button type="button" class="btn btn-outline-dark">Imprimir Or�amento / Pedido</button>
+		<button type="button" class="btn btn-outline-dark">Imprimir Orçamento / Pedido</button>
 	</div>
 </div>
 <br>
@@ -27,13 +24,13 @@
 	<table id="orcamentosClic" class="table table-hover" style="font-size:90%">
 		<thead>
 			<tr style="text-align: center">
-				<th scope="col">N� Cota��o Clic</th>
-				<th scope="col">Situa��o</th>
-				<th scope="col">N� Or�amento ERP</th>
-				<th scope="col">N� Pedido ERP</th>
+				<th scope="col">N° Cotação Clic</th>
+				<th scope="col">Situação</th>
+				<th scope="col">N° Orçamento ERP</th>
+				<th scope="col">N° Pedido ERP</th>
 				<th scope="col">Unidade</th>
 				<th scope="col">Cliente</th>
-				<th scope="col">Data de Gera��o</th>
+				<th scope="col">Data de Geração</th>
 				<th scope="col">Vendedor</th>
 				<th scope="col"></th>
 			</tr>
@@ -54,8 +51,8 @@
 					aria-label="Floating label select example">
 					<option selected disabled>Escolha uma unidade</option>
 					<option value="Rafia">Rafia</option>
-					<option value="Serafina">Flex�vel - Serafina</option>
-					<option value="Matriz"> Flex�vel - Matriz</option>
+					<option value="Serafina">Flexível - Serafina</option>
+					<option value="Matriz"> Flexível - Matriz</option>
 				</select>
 			</div>
 			<div class="modal-footer">
@@ -65,14 +62,13 @@
 		</div>
 	</div>
 </div>
-
 <!-- MODAL Rafia -->
 <form id="formRafia">
 	<div id="orcamentoRafia" class="modal" tabindex="-1" data-bs-backdrop="static">
 		<div class="modal-dialog modal-fullscreen">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Edi��o de or�amento - Rafia</h5>
+					<h5 class="modal-title">Edição de orçamento - Rafia</h5>
 				</div>
 				<div class="modal-body">
 					<div class="mb-3">
@@ -82,8 +78,8 @@
 						<datalist id="clientes"></datalist>
 					</div>
 					<div class="mb-3">
-						<label for="inputOrcamento" class="form-label">Or�amento</label>
-						<input class="form-control" id="inputOrcamento" placeholder="Informe o tipo de or�amento"
+						<label for="inputOrcamento" class="form-label">Orçamento</label>
+						<input class="form-control" id="inputOrcamento" placeholder="Informe o tipo de orçamento"
 							list="orcamento" required>
 						<datalist id="orcamento">
 							<option name="orcamento">1x Sem juros</option>
@@ -112,7 +108,7 @@
 									<th scope="col">Item</th>
 									<th scope="col">Unid. Medida</th>
 									<th scope="col">Quantidade</th>
-									<th scope="col">Pre�o</th>
+									<th scope="col">Preço</th>
 									<th scope="col">Total</th>
 									<th scope="col">Tipo Embalagem</th>
 									<th scope="col">Convencional / Laminado</th>
@@ -126,8 +122,8 @@
 									<th scope="col">Cor Urdame</th>
 									<th scope="col">Sanfona</th>
 									<th scope="col">Medida Sanfona</th>
-									<th scope="col">V�lvula</th>
-									<th scope="col">Medida V�lvula</th>
+									<th scope="col">Válvula</th>
+									<th scope="col">Medida Válvula</th>
 									<th scope="col">Lyner</th>
 									<th scope="col">largura</th>
 									<th scope="col">comprimento</th>
@@ -151,15 +147,13 @@
 		</div>
 	</div>
 </form>
-
-
 <!-- MODAL Rafia Produto -->
 <form id="formProdutoRafia">
 	<div id="modalSelectTipoItemRafia" class="modal fade" data-bs-backdrop="static">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Selecione a Op��o</h5>
+					<h5 class="modal-title">Selecione a Opção</h5>
 				</div>
 				<div class="modal-body">
 					<label for="inputProdutoRafia" class="form-label">Produto</label>
@@ -180,9 +174,9 @@
 							</div>
 							<div class="form-check col">
 								<input class="form-check-input" name="flexRadioRafia" type="radio"
-									id="inputExistenteRafia" value="Produto j� existente" onclick="enableInputRafia()"
+									id="inputExistenteRafia" value="Produto já existente" onclick="enableInputRafia()"
 									required>
-								<label class="form-check-label" for="inputExistenteRafia">Produto j� existente</label>
+								<label class="form-check-label" for="inputExistenteRafia">Produto já existente</label>
 							</div>
 						</div>
 					</div>
@@ -196,15 +190,13 @@
 		</div>
 	</div>
 </form>
-
-
 <!-- MODAL Serafina -->
 <form id="formSerafina">
 	<div id="orcamentoSerafina" class="modal" tabindex="-1" data-bs-backdrop="static">
 		<div class="modal-dialog modal-fullscreen">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Edi��o de or�amento - Flex�vel - Serafina</h5>
+					<h5 class="modal-title">Edição de orçamento - Flexível - Serafina</h5>
 				</div>
 				<div class="modal-body">
 					<div class="mb-3">
@@ -214,9 +206,9 @@
 						<datalist id="clientes"></datalist>
 					</div>
 					<div class="mb-3">
-						<label for="inputOrcamentoSerafina" class="form-label">Or�amento</label>
+						<label for="inputOrcamentoSerafina" class="form-label">Orçamento</label>
 						<input class="form-control" id="inputOrcamentoSerafina"
-							placeholder="Informe o tipo de or�amento" list="orcamento" required>
+							placeholder="Informe o tipo de orçamento" list="orcamento" required>
 						<datalist id="orcamento">
 							<option name="orcamento">1x Sem juros</option>
 							<option name="orcamento">2x Sem juros</option>
@@ -256,7 +248,7 @@
 									<th scope="col">Tipo de Solda</th>
 									<th scope="col">Prazo Entrega</th>
 									<th scope="col">Obs</th>
-									<th scope="col">Pre�o</th>
+									<th scope="col">Preço</th>
 									<th scope="col">Total</th>
 								</tr>
 							</thead>
@@ -276,14 +268,13 @@
 		</div>
 	</div>
 </form>
-
 <!-- MODAL Produto Serafina-->
 <form id="formProdutoSerafina">
 	<div id="modalSelectTipoItemSerafina" class="modal fade" tabindex="-1" data-bs-backdrop="static">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Selecione a Op��o</h5>
+					<h5 class="modal-title">Selecione a Opção</h5>
 				</div>
 				<div class="modal-body">
 					<label for="inputProdutoSerafina" class="form-label">Produto</label>
@@ -307,9 +298,9 @@
 							</div>
 							<div class="form-check col">
 								<input class="form-check-input" name="flexRadioSerafina" type="radio"
-									id="inputExistenteSerafina" value="Produto j� existente"
+									id="inputExistenteSerafina" value="Produto já existente"
 									onclick="enableInputSerafina()" required>
-								<label class="form-check-label" for="inputExistenteSerafina">Produto j�
+								<label class="form-check-label" for="inputExistenteSerafina">Produto já
 									existente</label>
 							</div>
 						</div>
@@ -324,14 +315,13 @@
 		</div>
 	</div>
 </form>
-
 <!-- MODAL Matriz -->
 <form id="formMatriz">
 	<div id="orcamentoMatriz" class="modal" tabindex="-1" data-bs-backdrop="static">
 		<div class="modal-dialog modal-fullscreen">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Edi��o de or�amento - Flex�vel - Matriz</h5>
+					<h5 class="modal-title">Edição de orçamento - Flexível - Matriz</h5>
 				</div>
 				<div class="modal-body">
 					<div class="mb-3">
@@ -341,8 +331,8 @@
 						<datalist id="clientes"></datalist>
 					</div>
 					<div class="mb-3">
-						<label for="inputOrcamentoMatriz" class="form-label">Or�amento</label>
-						<input class="form-control" id="inputOrcamentoMatriz" placeholder="Informe o tipo de or�amento"
+						<label for="inputOrcamentoMatriz" class="form-label">Orçamento</label>
+						<input class="form-control" id="inputOrcamentoMatriz" placeholder="Informe o tipo de orçamento"
 							list="orcamento" required>
 						<datalist id="orcamento">
 							<option name="orcamento">1x Sem juros</option>
@@ -383,7 +373,7 @@
 									<th scope="col">Tipo de Solda</th>
 									<th scope="col">Prazo Entrega</th>
 									<th scope="col">Obs</th>
-									<th scope="col">Pre�o</th>
+									<th scope="col">Preço</th>
 									<th scope="col">Total</th>
 								</tr>
 							</thead>
@@ -403,14 +393,13 @@
 		</div>
 	</div>
 </form>
-
 <!-- MODAL Matriz Produto -->
 <form id="formProdutoMatriz">
 	<div id="modalSelectTipoItemMatriz" class="modal fade" tabindex="-1" data-bs-backdrop="static">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Selecione a Op��o</h5>
+					<h5 class="modal-title">Selecione a Opção</h5>
 				</div>
 				<div class="modal-body">
 					<label for="inputProdutoMatriz" class="form-label">Produto</label>
@@ -431,9 +420,9 @@
 							</div>
 							<div class="form-check col">
 								<input class="form-check-input" type="radio" name="flexRadioMatriz"
-									id="inputExistenteMatriz" value="Produto j� existente"
+									id="inputExistenteMatriz" value="Produto já existente"
 									onclick="enableInputMatriz()">
-								<label class="form-check-label" for="inputExistenteMatriz">Produto j� existente</label>
+								<label class="form-check-label" for="inputExistenteMatriz">Produto já existente</label>
 							</div>
 						</div>
 					</div>
@@ -447,13 +436,12 @@
 		</div>
 	</div>
 </form>
-
-<!-- MODAL EDI��O -->
+<!-- MODAL EDIÇÃO -->
 <div id="modalEdicao" class="modal" tabindex="-1">
 	<div class="modal-dialog modal-fullscreen">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Edi��o Or�amento</h5>
+				<h5 class="modal-title">Edição Orçamento</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div id="corpoModalEdicao" class="modal-body">
@@ -465,7 +453,7 @@
 								<th scope="col">Item</th>
 								<th scope="col">Unid. Medida</th>
 								<th scope="col">Quantidade</th>
-								<th scope="col">Pre�o</th>
+								<th scope="col">Preço</th>
 								<th scope="col">Total</th>
 								<th scope="col">Tipo Embalagem</th>
 								<th scope="col">Convencional / Laminado</th>
@@ -479,8 +467,8 @@
 								<th scope="col">Cor Urdame</th>
 								<th scope="col">Sanfona</th>
 								<th scope="col">Medida Sanfona</th>
-								<th scope="col">V�lvula</th>
-								<th scope="col">Medida V�lvula</th>
+								<th scope="col">Válvula</th>
+								<th scope="col">Medida Válvula</th>
 								<th scope="col">Lyner</th>
 								<th scope="col">largura</th>
 								<th scope="col">comprimento</th>
@@ -508,14 +496,13 @@
 		</div>|
 	</div>
 </div>
-
-<!-- MODAL EDI��O PRODUTOS RAFIA -->
+<!-- MODAL EDIÇÃO PRODUTOS RAFIA -->
 <form id="formProdutoRafiaEdicao">
 	<div id="modalSelectTipoItemRafiaEdicao" class="modal fade" data-bs-backdrop="static">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Selecione a Op��o</h5>
+					<h5 class="modal-title">Selecione a Opção</h5>
 				</div>
 				<div class="modal-body">
 					<label for="inputProdutoRafiaEdicao" class="form-label">Produto</label>
@@ -540,9 +527,9 @@
 							</div>
 							<div class="form-check col">
 								<input class="form-check-input" name="flexRadioRafiaEdicao" type="radio"
-									id="inputExistenteRafiaEdicao" value="Produto j� existente"
+									id="inputExistenteRafiaEdicao" value="Produto já existente"
 									onclick="enableInputRafiaEdicao()" required>
-								<label class="form-check-label" for="inputExistenteRafiaEdicao">Produto j�
+								<label class="form-check-label" for="inputExistenteRafiaEdicao">Produto já
 									existente</label>
 							</div>
 						</div>
@@ -557,13 +544,12 @@
 		</div>
 	</div>
 </form>
-
-<!-- MODAL EDI��O SERAFINA-->
+<!-- MODAL EDIÇÃO SERAFINA-->
 <div id="modalEdicaoSerafina" class="modal" tabindex="-1">
 	<div class="modal-dialog modal-fullscreen">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Edi��o Or�amento</h5>
+				<h5 class="modal-title">Edição Orçamento</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div id="corpoModalEdicaoSerafina" class="modal-body">
@@ -587,7 +573,7 @@
 								<th scope="col">Tipo de Solda</th>
 								<th scope="col">Prazo Entrega</th>
 								<th scope="col">Obs</th>
-								<th scope="col">Pre�o</th>
+								<th scope="col">Preço</th>
 								<th scope="col">Total</th>
 							</tr>
 						</thead>
@@ -610,14 +596,13 @@
 		</div>|
 	</div>
 </div>
-
-<!-- MODAL EDI��O PRODUTOS SERAFINA -->
+<!-- MODAL EDIÇÃO PRODUTOS SERAFINA -->
 <form id="formProdutoSerafinaEdicao">
 	<div id="modalSelectTipoItemSerafinaEdicao" class="modal fade" data-bs-backdrop="static">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Selecione a Op��o</h5>
+					<h5 class="modal-title">Selecione a Opção</h5>
 				</div>
 				<div class="modal-body">
 					<label for="inputProdutoSerafinaEdicao" class="form-label">Produto</label>
@@ -642,9 +627,9 @@
 							</div>
 							<div class="form-check col">
 								<input class="form-check-input" name="flexRadioSerafinaEdicao" type="radio"
-									id="inputExistenteSerafinaEdicao" value="Produto j� existente"
+									id="inputExistenteSerafinaEdicao" value="Produto já existente"
 									onclick="enableInputSerafinaEdicao()" required>
-								<label class="form-check-label" for="inputExistenteSerafinaEdicao">Produto j�
+								<label class="form-check-label" for="inputExistenteSerafinaEdicao">Produto já
 									existente</label>
 							</div>
 						</div>
@@ -660,13 +645,12 @@
 		</div>
 	</div>
 </form>
-
-<!-- MODAL EDI��O Matriz-->
+<!-- MODAL EDIÇÃO Matriz-->
 <div id="modalEdicaoMatriz" class="modal" tabindex="-1">
 	<div class="modal-dialog modal-fullscreen">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Edi��o Or�amento</h5>
+				<h5 class="modal-title">Edição Orçamento</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div id="corpoModalEdicaoMatriz" class="modal-body">
@@ -690,7 +674,7 @@
 								<th scope="col">Tipo de Solda</th>
 								<th scope="col">Prazo Entrega</th>
 								<th scope="col">Obs</th>
-								<th scope="col">Pre�o</th>
+								<th scope="col">Preço</th>
 								<th scope="col">Total</th>
 							</tr>
 						</thead>
@@ -713,14 +697,13 @@
 		</div>|
 	</div>
 </div>
-
-<!-- MODAL EDI��O PRODUTOS Matriz -->
+<!-- MODAL EDIÇÃO PRODUTOS Matriz -->
 <form id="formProdutoMatrizEdicao">
 	<div id="modalSelectTipoItemMatrizEdicao" class="modal fade" data-bs-backdrop="static">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Selecione a Op��o</h5>
+					<h5 class="modal-title">Selecione a Opção</h5>
 				</div>
 				<div class="modal-body">
 					<label for="inputProdutoMatrizEdicao" class="form-label">Produto</label>
@@ -745,9 +728,9 @@
 							</div>
 							<div class="form-check col">
 								<input class="form-check-input" name="flexRadioMatrizEdicao" type="radio"
-									id="inputExistenteMatrizEdicao" value="Produto j� existente"
+									id="inputExistenteMatrizEdicao" value="Produto já existente"
 									onclick="enableInputMatrizEdicao()" required>
-								<label class="form-check-label" for="inputExistenteMatrizEdicao">Produto j�
+								<label class="form-check-label" for="inputExistenteMatrizEdicao">Produto já
 									existente</label>
 							</div>
 						</div>
@@ -763,15 +746,12 @@
 		</div>
 	</div>
 </form>
-
 </html>
-
 <!--          						S C R I P T S - LOAD           						-->
 <script>
 	var linhasRafia = [];
 	var linhasRafiaEdicao;
 	var linhasTableRafiaEdicao = "";
-
 	var jsonFormatado;
 	var linhaOrcamentosClic = "";
 	var orcamentosClicJson = [];
@@ -779,17 +759,13 @@
 	var orcamentoSel;
 	var vendedorSel;
 	var idSel;
-
 	var linhasSerafina = [];
 	var linhasSerafinaEdicao;
 	var linhasTableSerafinaEdicao = "";
-
 	var linhasMatriz = [];
 	var linhasMatrizEdicao;
 	var linhasTableMatrizEdicao = "";
-
 	window.addEventListener("load", function listaItensBaseClic() {
-
 		var parametros = {
 			"param": {
 				"idCvTccnpj": parent.dadosUserLogado().cId
@@ -799,25 +775,17 @@
 				]
 			}
 		};
-
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/lista',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				var array = response.data;
-
 				array.map(({ id, jsonDocs, dataAlteracao }) => {
-
 					var dataAlteracao = new Date();
-
 					dataAlteracao = dataAlteracao.toLocaleDateString();
-
 					var json = JSON.parse(jsonDocs);
-
 					orcamentosClicJson.push({ id, ...json });
-
 					if(json.situacao === "CANCELADO"){
 						linhaOrcamentosClic += `<tr style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
@@ -852,32 +820,23 @@
 											</tr>`;
 					}
 				});
-
 				document.getElementById("tbodyOrcamentosClic").innerHTML = linhaOrcamentosClic;
-
 			}
-
 		});
-
 	}, false);
 	window.addEventListener("load", function filtroClientes() {
-
 		var clientesExistentesHTML = "";
-
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
 			pRotina: "listaClienteMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				var objRetorno = JSON.parse(response);
-
 				objRetorno.map(({ id, nome }) => clientesExistentesHTML += `<option id="${id}" name="clientes">${nome}</option>`);
 				document.getElementById("clientes").innerHTML = clientesExistentesHTML;
 			},
@@ -893,26 +852,20 @@
 		});
 	}, false);
 	window.addEventListener("load", function filtroVendedores() {
-
 		var vendedoresExistentesHTML = "";
-
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
 			pRotina: "listaVendedorMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-
 				objRetorno.map(({ id, nome }) => vendedoresExistentesHTML += `<option id="${id}" name="vendedores">${nome}</option>`);
-
 				document.getElementById("vendedores").innerHTML = vendedoresExistentesHTML;
-
 			},
 			beforeSend: function () {
 				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
@@ -926,27 +879,20 @@
 		});
 	}, false);
 	window.addEventListener("load", function listarProdutosRafia() {
-
 		var produtosExistentesHTML = "";
-
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
 			pRotina: "listaProdutosMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				var objRetorno = JSON.parse(response);
-
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtos">${item}</option>`);
-
 				document.getElementById("produtos").innerHTML = produtosExistentesHTML;
-
 			},
 			beforeSend: function () {
 				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
@@ -960,49 +906,39 @@
 		});
 	}, false);
 	window.addEventListener("load", function listarProdutosSerafina() {
-
 	var produtosExistentesHTML = "";
-
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
 			pRotina: "listaProdutosMatrizMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				console.log("response",response);
-
 				var objRetorno = JSON.parse(response); 
-
 				console.log(objRetorno);
-
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
-
 				document.getElementById("produtosSerafina").innerHTML = produtosExistentesHTML;
 
 				var lisoImpresoOps = "";
 
-				objRetorno[0].lisoImpresso.map(( option ) => lisoImpresoOps += `<option name="produtosSerafina">${option}</option>`);
+				objRetorno[0].lisoImpresso.map(( option ) => console.log("Options",option), lisoImpresoOps += `<option>${option}</option>`);
+				objRetorno[0].lisoImpresso.map(( option ) => console.log("Options", option), lisoImpresoOps += `<option>${option}</option>`);
 
-				console.log(lisoImpresoOps);
+				document.getElementById("lisoImpresoSerafina").innerHTML = produtosExistentesHTML;
 			}
 		});
 	}, false);
 	window.addEventListener("load", function listarProdutosMatriz() {
-
 		var produtosExistentesHTML = "";
-
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
 			pRotina: "listaProdutosMatrizMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
@@ -1010,11 +946,8 @@
 			success: function (response) {
 				
 				var objRetorno = JSON.parse(response);		
-
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosMatriz">${item}</option>`);
-
 				document.getElementById("produtosMatriz").innerHTML = produtosExistentesHTML;
-
 			}
 		});
 	}, false);
@@ -1034,9 +967,7 @@
 		}
 	});
 	function abrirModalEdicao(_id, _unidade) {
-
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
-
 		if (_unidade == "Rafia") {
 			linhasRafiaEdicao = [...orcamento.itens];
 		}
@@ -1046,12 +977,10 @@
 		else if(_unidade == "Matriz"){
 			linhasMatrizEdicao = [...orcamento.itens];
 		}
-
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
 		vendedorSel = orcamento.vendedor;
 		idSel = _id;
-
 		if (_unidade == "Rafia") {
 			orcamento.itens.map((prod, indice) => {
 				linhasTableRafiaEdicao += `
@@ -1148,7 +1077,7 @@
 									<select onchange="escreverValorEdicao('sanfona',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.sanfona}"</option>
 									<option value="1">Sim</option>
-									<option value="2">N�o</option>
+									<option value="2">Não</option>
 									</select>
 								</td>
 								<td >
@@ -1164,7 +1093,7 @@
 									<select onchange="escreverValorEdicao('valvula',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.valvula}"</option>
 									<option value="1">Sim</option>
-									<option value="2">N�o</option>
+									<option value="2">Não</option>
 									</select>
 								</td>
 								<td >
@@ -1180,7 +1109,7 @@
 									<select onchange="escreverValorEdicao('lyner',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.lyner}"</option>
 									<option value="1">Sim</option>
-									<option value="2">N�o</option>
+									<option value="2">Não</option>
 									</select>
 								</td>
 								<td><input value="${prod.largura}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
@@ -1367,30 +1296,24 @@
 	}
 	function cancelaOrcamentoBaseClic(_id){
 		var orcamento = orcamentosClicJson.find(({id})=> id == _id);
-
 		idSel = _id;
-
 		var jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": [] };
-
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
 			},
 			"jsonDocs": JSON.stringify(jsonFormatadoAtualizado)
 		};
-
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				document.location.reload();
-
 			}
 		});
 	}
 </script>
-
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
 <script>
 	function mostraModalProdutos() {
@@ -1510,7 +1433,7 @@
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('sanfona',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.sanfona}"</option>
 							  <option value="1">Sim</option>
-							  <option value="2">N�o</option>
+							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td >
@@ -1526,7 +1449,7 @@
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('valvula',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.valvula}"</option>
 							  <option value="1">Sim</option>
-							  <option value="2">N�o</option>
+							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td >
@@ -1542,7 +1465,7 @@
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('lyner',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lyner}"</option>
 							  <option value="1">Sim</option>
-							  <option value="2">N�o</option>
+							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
@@ -1558,19 +1481,14 @@
 			numreg: 750,
 			pRotina: "listaProdutosMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				var objRetorno = JSON.parse(response);
-
 				var produtoSel = document.getElementById("inputProdutoRafiaEdicao").value;
-
 				var checkBox = document.querySelector(`input[name="flexRadioRafiaEdicao"]:checked`).value;
-
 				if (checkBox == "Novo Produto - Branco") {
 					linhasRafiaEdicao.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
 				}
@@ -1578,13 +1496,11 @@
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasRafiaEdicao.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
-				else if (checkBox == "Produto j� existente") {
+				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasRafiaEdicao.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
-
 				atualizarTabelaRafiaEdicao();
-
 			}
 		});
 	}
@@ -1597,8 +1513,7 @@
 				e.preventDefault();
 			});
 			var checkbox = document.querySelector(`input[name="flexRadioRafiaEdicao"]:checked`).value;
-
-			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto j� existente") {
+			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto já existente") {
 				document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).required = true;
 				if (!formulario.checkValidity()) {
 				}
@@ -1613,7 +1528,6 @@
 				document.getElementById("modalEdicao").style.filter = "unset";
 				$("#modalSelectTipoItemRafiaEdicao").modal('hide');
 			}
-
 		}
 	});
 	function escreverValorEdicao(prop, i, value) {
@@ -1625,23 +1539,17 @@
 		atualizarTabelaRafiaEdicao();
 	}
 	function montaJsonRafiaEdicao() {
-
 		var unidadeSel = "Rafia";
-
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDI��O", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
-
+		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
 	}
 	function atualizarItensBaseClicRafia() {
-
 		montaJsonRafiaEdicao();
-
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
 			},
 			"jsonDocs": JSON.stringify(jsonFormatado)
 		};
-
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
 			type: "POST",
@@ -1658,7 +1566,6 @@
 		});
 	}	
 </script>
-
 <!--          						S C R I P T S  -  R A F I A           				-->
 <script>
 	$("#addItensRafia").click(function () {
@@ -1673,7 +1580,6 @@
 			document.getElementById("modalSelectTipoItemRafia").style.filter = "drop-shadow(2px 4px 6px black)";
 			document.getElementById("orcamentoRafia").style.filter = "blur(2px)";
 		}
-
 	});
 	$("#cancelModalProdutoRafia").click(function () {
 		document.getElementById("modalSelectTipoItemRafia").style.filter = "unset";
@@ -1785,7 +1691,7 @@
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('sanfona',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.sanfona}"</option>
 							  <option value="1">Sim</option>
-							  <option value="2">N�o</option>
+							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td >
@@ -1801,7 +1707,7 @@
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('valvula',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.valvula}"</option>
 							  <option value="1">Sim</option>
-							  <option value="2">N�o</option>
+							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td >
@@ -1817,7 +1723,7 @@
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('lyner',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lyner}"</option>
 							  <option value="1">Sim</option>
-							  <option value="2">N�o</option>
+							  <option value="2">Não</option>
 							</select>
 						</td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
@@ -1833,19 +1739,14 @@
 			numreg: 750,
 			pRotina: "listaProdutosMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				var objRetorno = JSON.parse(response);
-
 				var produtoSel = document.getElementById("inputProdutoRafia").value;
-
 				var checkBox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
-
 				if (checkBox == "Novo Produto - Branco") {
 					linhasRafia.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
 				}
@@ -1853,7 +1754,7 @@
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasRafia.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
-				else if (checkBox == "Produto j� existente") {
+				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasRafia.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
@@ -1870,8 +1771,7 @@
 				e.preventDefault();
 			});
 			var checkbox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
-
-			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto j� existente") {
+			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto já existente") {
 				document.querySelector(`input[id="inputProdutoRafia"]`).required = true;
 				if (!formulario.checkValidity()) {
 				}
@@ -1886,7 +1786,6 @@
 				document.getElementById("orcamentoRafia").style.filter = "unset";
 				$("#modalSelectTipoItemRafia").modal('hide');
 			}
-
 		}
 	});
 	function removerElemento(elementoClicado, i) {
@@ -1894,21 +1793,13 @@
 		atualizarTabelaRafia();
 	}
 	function montaJsonRafia() {
-
 		var unidadeSel = "Rafia"
-
 		var clienteSel = document.getElementById("filtroCliente").value;
-
 		var orcamentoSel = document.getElementById("inputOrcamento").value;
-
 		var vendedorSel = document.getElementById("filtroVendedor").value;
-
-
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDI��O", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafia };
-
+		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafia };
 	}
 	function salvaItensBaseClicRafia() {
-
 		montaJsonRafia();
 	
 		var parametros = {
@@ -1934,7 +1825,6 @@
 		});
 	}
 </script>
-
 <!--          						S C R I P T S  -  S E R A F I N A - EDICAO					-->
 <script>
 	function mostraModalProdutosSerafina() {
@@ -2047,19 +1937,14 @@
 			numreg: 750,
 			pRotina: "listaProdutosMatrizMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				var objRetorno = JSON.parse(response);
-
 				var produtoSel = document.getElementById("inputProdutoSerafinaEdicao").value;
-
 				var checkBox = document.querySelector(`input[name="flexRadioSerafinaEdicao"]:checked`).value;
-
 				if (checkBox == "Novo Produto - Branco") {
 					linhasSerafinaEdicao.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
@@ -2067,13 +1952,11 @@
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasSerafinaEdicao.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
-				else if (checkBox == "Produto j� existente") {
+				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasSerafinaEdicao.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura":"", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
-
 				atualizarTabelaSerafinaEdicao();
-
 			}
 		});
 	}
@@ -2086,8 +1969,7 @@
 				e.preventDefault();
 			});
 			var checkbox = document.querySelector(`input[name="flexRadioSerafinaEdicao"]:checked`).value;
-
-			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto j� existente") {
+			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto já existente") {
 				document.querySelector(`input[id="inputProdutoSerafinaEdicao"]`).required = true;
 				if (!formulario.checkValidity()) {
 				}
@@ -2102,35 +1984,27 @@
 				document.getElementById("modalEdicaoSerafina").style.filter = "unset";
 				$("#modalSelectTipoItemSerafinaEdicao").modal('hide');
 			}
-
 		}
 	});
 	function escreverValorEdicaoSerafina(prop, i, value) {
 		var item = linhasSerafinaEdicao[i];
-
 		item[prop] = value;
 	}
 	function montaJsonSerafinaEdicao() {
-
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDI��O", "unidade": "Serafina", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafinaEdicao };
-
+		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Serafina", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafinaEdicao };
 	}
 	function removerElementoSerafinaEdicao(elementoClicado, i) {
 		linhasSerafinaEdicao.splice(i, 1);
 		atualizarTabelaSerafinaEdicao();
 	}
 	function atualizarItensBaseClicSerafina() {
-
 		montaJsonSerafinaEdicao();
-
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
 			},
 			"jsonDocs": JSON.stringify(jsonFormatado)
 		};
-
-
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
 			type: "POST",
@@ -2147,7 +2021,6 @@
 		});
 	}
 </script>
-
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
 <script>
 	$("#addItensSerafina").click(function () {
@@ -2162,7 +2035,6 @@
 			document.getElementById("modalSelectTipoItemSerafina").style.filter = "drop-shadow(2px 4px 6px black)";
 			document.getElementById("orcamentoSerafina").style.filter = "blur(2px)";
 		}
-
 	});
 	$("#confirmModalProdutoSerafina").click(function () {
 		var formulario = document.getElementById("formProdutoSerafina");
@@ -2173,8 +2045,7 @@
 				e.preventDefault();
 			});
 			var checkbox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
-
-			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto j� existente") {
+			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto já existente") {
 				document.querySelector(`input[id="inputProdutoSerafina"]`).required = true;
 				if (!formulario.checkValidity()) {
 				}
@@ -2189,7 +2060,6 @@
 				document.getElementById("orcamentoSerafina").style.filter = "unset";
 				$("#modalSelectTipoItemSerafina").modal('hide');
 			}
-
 		}
 	});
 	$("#cancelModalProdutoSerafina").click(function () {
@@ -2210,19 +2080,14 @@
 			numreg: 750,
 			pRotina: "listaProdutosMatrizMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				var objRetorno = JSON.parse(response);
-
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
-
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
-
 				if (checkBox == "Novo Produto - Branco") {
 					linhasSerafina.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
@@ -2230,13 +2095,11 @@
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasSerafina.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores":"", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
-				else if (checkBox == "Produto j� existente") {
+				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasSerafina.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores":"", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
-
 				atualizarTabelaSerafina();
-
 			}
 		});
 	}
@@ -2329,34 +2192,24 @@
 		}).join("");
 	}
 	function montaJsonSerafina() {
-
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
-
 		var clienteSel = document.getElementById("filtroClienteSerafina").value;
-
 		var orcamentoSel = document.getElementById("inputOrcamentoSerafina").value;
-
 		var vendedorSel = document.getElementById("filtroVendedorSerafina").value;
-
-
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDI��O", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafina };
-
+		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafina };
 	}
 	function removerElementoSerafina(elementoClicado, i) {
 		linhasSerafina.splice(i, 1);
 		atualizarTabelaSerafina();
 	}
 	function salvaItensBaseClicSerafina() {
-
 		montaJsonSerafina();
-
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
 			},
 			"jsonDocs": JSON.stringify(jsonFormatado)
 		};
-
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
 			type: "POST",
@@ -2371,10 +2224,8 @@
 				document.location.reload();
 			}
 		});
-
 	}
 </script>
-
 <!--          						S C R I P T S  -  M A T R I Z - EDICAO					-->
 <script>
 	function mostraModalProdutosMatriz() {
@@ -2489,19 +2340,14 @@
 			numreg: 750,
 			pRotina: "listaProdutosMatrizMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				var objRetorno = JSON.parse(response);
-
 				var produtoSel = document.getElementById("inputProdutoMatrizEdicao").value;
-
 				var checkBox = document.querySelector(`input[name="flexRadioMatrizEdicao"]:checked`).value;
-
 				if (checkBox == "Novo Produto - Branco") {
 					linhasMatrizEdicao.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
@@ -2509,13 +2355,11 @@
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasMatrizEdicao.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
-				else if (checkBox == "Produto j� existente") {
+				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasMatrizEdicao.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura":"", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
-
 				atualizarTabelaMatrizEdicao();
-
 			}
 		});
 	}
@@ -2528,8 +2372,7 @@
 				e.preventDefault();
 			});
 			var checkbox = document.querySelector(`input[name="flexRadioMatrizEdicao"]:checked`).value;
-
-			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto j� existente") {
+			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto já existente") {
 				document.querySelector(`input[id="inputProdutoMatrizEdicao"]`).required = true;
 				if (!formulario.checkValidity()) {
 				}
@@ -2544,7 +2387,6 @@
 				document.getElementById("modalEdicaoMatriz").style.filter = "unset";
 				$("#modalSelectTipoItemMatrizEdicao").modal('hide');
 			}
-
 		}
 	});
 	function escreverValorEdicaoMatriz(prop, i, value) {
@@ -2552,8 +2394,7 @@
 		item[prop] = value;
 	}
 	function montaJsonMatrizEdicao() {
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDI��O", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
-
+		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
 	}
 	function removerElementoMatrizEdicao(elementoClicado, i) {
 		linhasMatrizEdicao.splice(i, 1);
@@ -2562,15 +2403,12 @@
 	function atualizarItensBaseClicMatriz() {
 		
 		montaJsonMatrizEdicao();
-
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
 			},
 			"jsonDocs": JSON.stringify(jsonFormatado)
 		};
-
-
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
 			type: "POST",
@@ -2585,10 +2423,8 @@
 				document.location.reload();
 			}
 		});
-
 	}
 </script>
-
 <!--          						S C R I P T S  -	M A T R I Z         					-->
 <script>
 	$("#addItensMatriz").click(function () {
@@ -2603,7 +2439,6 @@
 			document.getElementById("modalSelectTipoItemMatriz").style.filter = "drop-shadow(2px 4px 6px black)";
 			document.getElementById("orcamentoMatriz").style.filter = "blur(2px)";
 		}
-
 	});
 	$("#confirmModalProdutoMatriz").click(function () {
 		var formulario = document.getElementById("formProdutoMatriz");
@@ -2614,8 +2449,7 @@
 				e.preventDefault();
 			});
 			var checkbox = document.querySelector(`input[name="flexRadioMatriz"]:checked`).value;
-
-			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto j� existente") {
+			if (checkbox == "Novo Produto - Copiar" || checkbox == "Produto já existente") {
 				document.querySelector(`input[id="inputProdutoMatriz"]`).required = true;
 				if (!formulario.checkValidity()) {
 				}
@@ -2630,7 +2464,6 @@
 				document.getElementById("orcamentoMatriz").style.filter = "unset";
 				$("#modalSelectTipoItemMatriz").modal('hide');
 			}
-
 		}
 	});
 	$("#cancelModalProdutoMatriz").click(function () {
@@ -2650,19 +2483,14 @@
 			numreg: 750,
 			pRotina: "listaProdutosMatrizMock"
 		};
-
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
 				var objRetorno = JSON.parse(response);
-
 				var produtoSel = document.getElementById("inputProdutoMatriz").value;
-
 				var checkBox = document.querySelector(`input[name="flexRadioMatriz"]:checked`).value;
-
 				if (checkBox == "Novo Produto - Branco") {
 					linhasMatriz.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
@@ -2670,11 +2498,10 @@
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasMatriz.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
-				else if (checkBox == "Produto j� existente") {
+				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasMatriz.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura":"", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
-
 				atualizarTabelaMatriz();
 			}
 		});
@@ -2772,29 +2599,20 @@
 		atualizarTabelaMatriz();
 	}
 	function montaJsonMatriz() {
-
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
-
 		var clienteSel = document.getElementById("filtroClienteMatriz").value;
-
 		var orcamentoSel = document.getElementById("inputOrcamentoMatriz").value;
-
 		var vendedorSel = document.getElementById("filtroVendedorMatriz").value;
-
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDI��O", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatriz };
-
+		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatriz };
 	}
 	function salvaItensBaseClicMatriz() {
-
 		montaJsonMatriz();
-
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
 			},
 			"jsonDocs": JSON.stringify(jsonFormatado)
 		};
-
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
 			type: "POST",
@@ -2809,6 +2627,5 @@
 				document.location.reload();
 			}
 		});
-
 	}
 </script>
