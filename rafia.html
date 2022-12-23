@@ -764,9 +764,6 @@
 	</div>
 </form>
 
-
-
-
 </html>
 
 <!--          						S C R I P T S - LOAD           						-->
@@ -987,6 +984,8 @@
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
 
 				document.getElementById("produtosSerafina").innerHTML = produtosExistentesHTML;
+
+				console.log("teste",objRetorno.lisoImpresso);
 
 			}
 		});
