@@ -987,7 +987,9 @@
 
 				var lisoImpresoOps = "";
 
-				objRetorno[0].lisoImpresso.map(( option ) => lisoImpresoOps += `<option name="produtosSerafina">option</option>`);
+				objRetorno[0].lisoImpresso.map(( option ) => lisoImpresoOps += `<option name="produtosSerafina">${option}</option>`,
+				document.getElementById("lisoImpresoSerafina").innerHTML = lisoImpresoOps
+				);
 
 				console.log(lisoImpresoOps);
 			}
