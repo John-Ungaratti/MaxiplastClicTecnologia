@@ -2262,12 +2262,14 @@
 				objRetorno[0].tipoEmbalagem.map((option) => {
 					console.log(option);
 
-					let options = document.createElement('option');
-				 	options = document.createElement('option');
+					let optionsEmbalagem = document.createElement('option');
+				 	optionsEmbalagem = document.createElement('option');
 
-					options.innerHTML = option;
+					optionsEmbalagem.innerHTML = option;
 
-					document.getElementById('tipoEmbalagemSerafina').appendChild(options);
+					document.getElementById('tipoEmbalagemSerafina').appendChild(optionsEmbalagem);
+
+
 				});
 
 				var objRetorno = JSON.parse(response.responseText);
@@ -2275,12 +2277,12 @@
 				objRetorno[0].tipoLaminado.map((option) => {
 					console.log(option);
 
-					let options = document.createElement('option');
-				 	options = document.createElement('option');
+					let optionsLaminado = document.createElement('option');
+				 	optionsLaminado = document.createElement('option');
 
-					options.innerHTML = option;
+					optionsLaminado.innerHTML = option;
 
-					document.getElementById('tipoLaminadoSerafina').appendChild(options);
+					document.getElementById('tipoLaminadoSerafina').appendChild(optionsLaminado);
 				});
 
 			},
