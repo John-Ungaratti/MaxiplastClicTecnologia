@@ -923,12 +923,6 @@
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
 				document.getElementById("produtosSerafina").innerHTML = produtosExistentesHTML;
 
-				var lisoImpresoOps = "";
-
-				objRetorno[0].lisoImpresso.map(( option ) => console.log("Options",option), lisoImpresoOps += `<option>${option}</option>`);
-				objRetorno[0].lisoImpresso.map(( option ) => console.log("Options", option), lisoImpresoOps += `<option>${option}</option>`);
-
-				document.getElementById("lisoImpresoSerafina").innerHTML = produtosExistentesHTML;
 			}
 		});
 	}, false);
@@ -944,7 +938,6 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				
 				var objRetorno = JSON.parse(response);		
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosMatriz">${item}</option>`);
 				document.getElementById("produtosMatriz").innerHTML = produtosExistentesHTML;
