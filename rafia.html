@@ -949,24 +949,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				console.log("Serafina");
-
 				var objRetorno = JSON.parse(response);
-
-				console.log("objRetorno", objRetorno[0].tipoEmbalagem);
-
-				objRetorno[0].tipoEmbalagem.map((option) => {
-					console.log(option);
-
-				 	options = document.createElement('option');
-
-					options.innerHTML = option;
-
-					console.log(options);
-
-					document.getElementById('tipoEmbalagemSerafina').appendChild(options);
-
-				});
-
 				objRetorno.map(({ id, item }) =>
 
 					produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
@@ -2179,88 +2162,117 @@
 	}
 	
 	function atualizarTabelaSerafina() {
-		document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
 
-			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
-					<th scope="row">
-						<span type="button">
-						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoSerafina(event.target, ${indice})"></i>
-						</span>
-					</th>
-					<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorSerafina('item',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorSerafina('largura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorSerafina('altura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorSerafina('espessura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorSerafina('unidMed',${indice},this.value)"></input></td>
-					<td><input value= "${prod.quantidade}" onkeyup="escreverValorSerafina('quantidade',${indice},this.value)"></input></td>
-					<td>
-						<select id="tipoEmbalagemSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoEmbalagem}"</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoLaminado}"</option>
-									<option value="1">Monocamada</option>
-									<option value="2">Laminado</option>
-									<option value="2">Bilaminado</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoMaterial}"</option>
-									<option value="1">tipoMaterial-1</option>
-									<option value="2">tipoMaterial-2</option>
-									<option value="3">tipoMaterial-3</option>
-									<option value="4">tipoMaterial-4</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
-									<option value="1">Azul</option>
-									<option value="3">Verde</option>
-									<option value="2">Amarelo</option>
-									<option value="4">Vermelho</option>
-									<option value="5">Preto</option>
-									<option value="6">Transparente</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.lisoImpresso}"</option>
-									<option value="1">Liso</option>
-									<option value="2">Impresso</option>	
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('qtdCores',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.qtdCores}"</option>
-									<option value="1">1C</option>
-									<option value="2">2C</option>
-									<option value="3">3C</option>
-									<option value="4">4C</option>
-									<option value="5">5C</option>
-									<option value="6">6C</option>
-									<option value="7">7C</option>
-									<option value="8">8C</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoSolda}"</option>
-									<option value="1">Solda Lateral Simples</option>
-									<option value="2">Solda Lateral Bainha</option>
-									<option value="3">Solda Pouch</option>
-						</select>
-					</td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorSerafina('prazoEntrega',${indice},this.value)"></td>
-					<td><input value= "${prod.obs}" onkeyup="escreverValorSerafina('obs',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
-				</tr>`;
-		}).join("");
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMatrizMock"
+		};
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno[0].tipoEmbalagem.map((option) => {
+					console.log(option);
+
+					let options = document.createElement('option');
+				 	options = document.createElement('option');
+
+					options.innerHTML = option;
+
+					document.getElementById('tipoEmbalagemSerafina').appendChild(options);
+				});
+
+				document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
+				return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+						<th scope="row">
+							<span type="button">
+							<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoSerafina(event.target, ${indice})"></i>
+							</span>
+						</th>
+						<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorSerafina('item',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorSerafina('largura',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorSerafina('altura',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorSerafina('espessura',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorSerafina('unidMed',${indice},this.value)"></input></td>
+						<td><input value= "${prod.quantidade}" onkeyup="escreverValorSerafina('quantidade',${indice},this.value)"></input></td>
+						<td>
+							<select id="tipoEmbalagemSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.tipoEmbalagem}"</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.tipoLaminado}"</option>
+										<option value="1">Monocamada</option>
+										<option value="2">Laminado</option>
+										<option value="2">Bilaminado</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.tipoMaterial}"</option>
+										<option value="1">tipoMaterial-1</option>
+										<option value="2">tipoMaterial-2</option>
+										<option value="3">tipoMaterial-3</option>
+										<option value="4">tipoMaterial-4</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.pigmentadoTransparente}"</option>
+										<option value="1">Azul</option>
+										<option value="3">Verde</option>
+										<option value="2">Amarelo</option>
+										<option value="4">Vermelho</option>
+										<option value="5">Preto</option>
+										<option value="6">Transparente</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.lisoImpresso}"</option>
+										<option value="1">Liso</option>
+										<option value="2">Impresso</option>	
+							</select>
+						</td>
+						<td>
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('qtdCores',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.qtdCores}"</option>
+										<option value="1">1C</option>
+										<option value="2">2C</option>
+										<option value="3">3C</option>
+										<option value="4">4C</option>
+										<option value="5">5C</option>
+										<option value="6">6C</option>
+										<option value="7">7C</option>
+										<option value="8">8C</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.tipoSolda}"</option>
+										<option value="1">Solda Lateral Simples</option>
+										<option value="2">Solda Lateral Bainha</option>
+										<option value="3">Solda Pouch</option>
+							</select>
+						</td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorSerafina('prazoEntrega',${indice},this.value)"></td>
+						<td><input value= "${prod.obs}" onkeyup="escreverValorSerafina('obs',${indice},this.value)"></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
+					</tr>`;
+				}).join("");
+								
+			}
+		});
 	}
+
+
+	
 	
 	function montaJsonSerafina() {
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
