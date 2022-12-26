@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
 	<meta charset="utf-8" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -595,7 +596,8 @@
 						<tbody id="linhaTableSerafinaEdicao">
 							<div style="margin-bottom: 10px">
 								<br>
-								<button id="addItensSerafinaEdicao" type="submit" class="btn btn-outline-dark" onclick="mostraModalProdutosSerafina()">Adicionar Item</button>
+								<button id="addItensSerafinaEdicao" type="submit" class="btn btn-outline-dark"
+									onclick="mostraModalProdutosSerafina()">Adicionar Item</button>
 								<br>
 							</div>
 						</tbody>
@@ -622,7 +624,8 @@
 				</div>
 				<div class="modal-body">
 					<label for="inputProdutoSerafinaEdicao" class="form-label">Produto</label>
-					<input class="form-control" type="text" list="produtosSerafina" id="inputProdutoSerafinaEdicao" disabled />
+					<input class="form-control" type="text" list="produtosSerafina" id="inputProdutoSerafinaEdicao"
+						disabled />
 					<datalist id="produtosSerafina"></datalist>
 					<br>
 					<div class="container">
@@ -698,7 +701,8 @@
 						<tbody id="linhaTableMatrizEdicao">
 							<div style="margin-bottom: 10px">
 								<br>
-								<button id="addItensMatrizEdicao" type="submit" class="btn btn-outline-dark" onclick="mostraModalProdutosMatriz()">Adicionar Item</button>
+								<button id="addItensMatrizEdicao" type="submit" class="btn btn-outline-dark"
+									onclick="mostraModalProdutosMatriz()">Adicionar Item</button>
 								<br>
 							</div>
 						</tbody>
@@ -725,7 +729,8 @@
 				</div>
 				<div class="modal-body">
 					<label for="inputProdutoMatrizEdicao" class="form-label">Produto</label>
-					<input class="form-control" type="text" list="produtosMatriz" id="inputProdutoMatrizEdicao" disabled />
+					<input class="form-control" type="text" list="produtosMatriz" id="inputProdutoMatrizEdicao"
+						disabled />
 					<datalist id="produtosMatriz"></datalist>
 					<br>
 					<div class="container">
@@ -784,6 +789,7 @@
 	var linhasMatriz = [];
 	var linhasMatrizEdicao;
 	var linhasTableMatrizEdicao = "";
+	
 	window.addEventListener("load", function listaItensBaseClic() {
 		var parametros = {
 			"param": {
@@ -805,7 +811,7 @@
 					dataAlteracao = dataAlteracao.toLocaleDateString();
 					var json = JSON.parse(jsonDocs);
 					orcamentosClicJson.push({ id, ...json });
-					if(json.situacao === "CANCELADO"){
+					if (json.situacao === "CANCELADO") {
 						linhaOrcamentosClic += `<tr style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
 											 <td class="col-md-1">${json.situacao}</td>
@@ -818,7 +824,7 @@
 											 <td style="font-size: 18px"></td>
 											</tr>`;
 					}
-					else{
+					else {
 						linhaOrcamentosClic += `<tr style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
 											 <td class="col-md-1">${json.situacao}</td>
@@ -843,6 +849,7 @@
 			}
 		});
 	}, false);
+	
 	window.addEventListener("load", function filtroClientes() {
 		var clientesExistentesHTML = "";
 		var parametros = {
@@ -870,6 +877,7 @@
 			}
 		});
 	}, false);
+	
 	window.addEventListener("load", function filtroVendedores() {
 		var vendedoresExistentesHTML = "";
 		var parametros = {
@@ -897,6 +905,7 @@
 			}
 		});
 	}, false);
+
 	window.addEventListener("load", function listarProdutosRafia() {
 		var produtosExistentesHTML = "";
 		var parametros = {
@@ -924,8 +933,9 @@
 			}
 		});
 	}, false);
+	
 	window.addEventListener("load", function listarProdutosSerafina() {
-	var produtosExistentesHTML = "";
+		var produtosExistentesHTML = "";
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -936,15 +946,21 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("response",response);
-				var objRetorno = JSON.parse(response); 
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
 				console.log(objRetorno);
-				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
+
+				objRetorno.map(({ id, item }) =>
+
+					produtosExistentesHTML += `<option id="${id}" name="produtosSerafina">${item}</option>`);
 				document.getElementById("produtosSerafina").innerHTML = produtosExistentesHTML;
 
 			}
 		});
+
+
 	}, false);
+	
 	window.addEventListener("load", function listarProdutosMatriz() {
 		var produtosExistentesHTML = "";
 		var parametros = {
@@ -957,15 +973,17 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				var objRetorno = JSON.parse(response);		
+				var objRetorno = JSON.parse(response);
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosMatriz">${item}</option>`);
 				document.getElementById("produtosMatriz").innerHTML = produtosExistentesHTML;
 			}
 		});
 	}, false);
+	
 	$("#abreModal").click(function () {
 		$("#modalSelectUnidade").modal('show');
 	});
+	
 	$("#botaoSelUnidade").click(function () {
 		if (document.getElementById("unidadeSelecionada").value == "Rafia") {
 			$("#modalSelectUnidade").modal('hide');
@@ -978,6 +996,7 @@
 			$("#orcamentoMatriz").modal('show');
 		}
 	});
+
 	function abrirModalEdicao(_id, _unidade) {
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 		if (_unidade == "Rafia") {
@@ -986,7 +1005,7 @@
 		else if (_unidade == "Serafina") {
 			linhasSerafinaEdicao = [...orcamento.itens];
 		}
-		else if(_unidade == "Matriz"){
+		else if (_unidade == "Matriz") {
 			linhasMatrizEdicao = [...orcamento.itens];
 		}
 		clienteSel = orcamento.cliente;
@@ -1133,7 +1152,7 @@
 			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
 			$("#modalEdicao").modal('show');
 		}
-		else if(_unidade == "Serafina"){
+		else if (_unidade == "Serafina") {
 			orcamento.itens.map((prod, indice) => {
 				linhasTableSerafinaEdicao += `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 					<th scope="row">
@@ -1219,7 +1238,7 @@
 			document.getElementById("linhaTableSerafinaEdicao").innerHTML = linhasTableSerafinaEdicao;
 			$("#modalEdicaoSerafina").modal('show');
 		}
-		else if(_unidade == "Matriz"){
+		else if (_unidade == "Matriz") {
 			orcamento.itens.map((prod, indice) => {
 				linhasTableMatrizEdicao += `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 					<th scope="row">
@@ -1306,8 +1325,9 @@
 			$("#modalEdicaoMatriz").modal('show');
 		}
 	}
-	function cancelaOrcamentoBaseClic(_id){
-		var orcamento = orcamentosClicJson.find(({id})=> id == _id);
+	
+	function cancelaOrcamentoBaseClic(_id) {
+		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 		idSel = _id;
 		var jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": [] };
 		var parametros = {
@@ -1331,25 +1351,31 @@
 	function mostraModalProdutos() {
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 	}
+	
 	function limparLinhasEdicao() {
 		linhasTableRafiaEdicao = "";
 	}
+	
 	$("#addItensRafiaEdicao").click(function () {
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicao").style.filter = "blur(2px)";
 	});
+	
 	$("#cancelModalProdutoRafiaEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "unset";
 		document.getElementById("modalEdicao").style.filter = "unset";
 		$("#modalSelectTipoItemRafiaEdicao").modal('hide');
 	});
+	
 	function enableInputRafiaEdicao() {
 		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = false;
 	}
+	
 	function disableInputRafiaEdicao() {
 		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = true;
 	}
+	
 	function atualizarTabelaRafiaEdicao() {
 		document.querySelector('#linhaTableRafiaEdicao').innerHTML = linhasRafiaEdicao.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
@@ -1487,6 +1513,7 @@
 					</tr>`;
 		}).join("");
 	}
+	
 	function addLinhasEdicao() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -1516,6 +1543,7 @@
 			}
 		});
 	}
+	
 	$("#confirmModalProdutoRafiaEdicao").click(function () {
 		var formulario = document.getElementById("formProdutoRafiaEdicao");
 		if (!formulario.checkValidity()) {
@@ -1542,18 +1570,22 @@
 			}
 		}
 	});
+	
 	function escreverValorEdicao(prop, i, value) {
 		var item = linhasRafiaEdicao[i];
 		item[prop] = value;
 	}
+	
 	function removerElementoEdicao(elementoClicado, i) {
 		linhasRafiaEdicao.splice(i, 1);
 		atualizarTabelaRafiaEdicao();
 	}
+	
 	function montaJsonRafiaEdicao() {
 		var unidadeSel = "Rafia";
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
 	}
+
 	function atualizarItensBaseClicRafia() {
 		montaJsonRafiaEdicao();
 		var parametros = {
@@ -1813,14 +1845,14 @@
 	}
 	function salvaItensBaseClicRafia() {
 		montaJsonRafia();
-	
+
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
 			},
 			"jsonDocs": JSON.stringify(jsonFormatado)
 		};
-	
+
 		$.ajax({
 			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar',
 			type: "POST",
@@ -1966,7 +1998,7 @@
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafinaEdicao.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura":"", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasSerafinaEdicao.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				atualizarTabelaSerafinaEdicao();
 			}
@@ -2009,6 +2041,7 @@
 		linhasSerafinaEdicao.splice(i, 1);
 		atualizarTabelaSerafinaEdicao();
 	}
+
 	function atualizarItensBaseClicSerafina() {
 		montaJsonSerafinaEdicao();
 		var parametros = {
@@ -2048,6 +2081,7 @@
 			document.getElementById("orcamentoSerafina").style.filter = "blur(2px)";
 		}
 	});
+	
 	$("#confirmModalProdutoSerafina").click(function () {
 		var formulario = document.getElementById("formProdutoSerafina");
 		if (!formulario.checkValidity()) {
@@ -2074,19 +2108,23 @@
 			}
 		}
 	});
+
 	$("#cancelModalProdutoSerafina").click(function () {
 		document.getElementById("modalSelectTipoItemSerafina").style.filter = "unset";
 		document.getElementById("orcamentoSerafina").style.filter = "unset";
 		$("#modalSelectTipoItemSerafina").modal('hide');
 	});
+	
 	function enableInputSerafina() {
 		document.querySelector(`input[id="inputProdutoSerafina"]`).disabled = false;
 	}
+	
 	function disableInputSerafina() {
 		document.querySelector(`input[id="inputProdutoSerafina"]`).disabled = true;
 	}
+	
 	function addLinhasSerafina() {
-		
+
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -2105,22 +2143,27 @@
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafina.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores":"", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasSerafina.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafina.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores":"", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasSerafina.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				atualizarTabelaSerafina();
 			}
 		});
 	}
+	
 	function escreverValorSerafina(prop, i, value) {
 		var item = linhasSerafina[i];
 		item[prop] = value;
 	}
+	
 	function atualizarTabelaSerafina() {
 		document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
+
+			console.log(prod);
+
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 					<th scope="row">
 						<span type="button">
@@ -2203,6 +2246,7 @@
 				</tr>`;
 		}).join("");
 	}
+	
 	function montaJsonSerafina() {
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
 		var clienteSel = document.getElementById("filtroClienteSerafina").value;
@@ -2210,10 +2254,12 @@
 		var vendedorSel = document.getElementById("filtroVendedorSerafina").value;
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafina };
 	}
+	
 	function removerElementoSerafina(elementoClicado, i) {
 		linhasSerafina.splice(i, 1);
 		atualizarTabelaSerafina();
 	}
+	
 	function salvaItensBaseClicSerafina() {
 		montaJsonSerafina();
 		var parametros = {
@@ -2369,7 +2415,7 @@
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasMatrizEdicao.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura":"", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasMatrizEdicao.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				atualizarTabelaMatrizEdicao();
 			}
@@ -2413,7 +2459,7 @@
 		atualizarTabelaMatrizEdicao();
 	}
 	function atualizarItensBaseClicMatriz() {
-		
+
 		montaJsonMatrizEdicao();
 		var parametros = {
 			"cnpj": {
@@ -2512,7 +2558,7 @@
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasMatriz.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura":"", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasMatriz.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				atualizarTabelaMatriz();
 			}
@@ -2636,9 +2682,8 @@
 				});
 				linhasMatriz = [];
 				atualizarTabelaMatriz();
-				document.location.reload(); 
+				document.location.reload();
 			}
 		});
 	}
 </script>
- 
