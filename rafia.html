@@ -2139,6 +2139,15 @@
 
 				console.log("objRetorno", objRetorno[0].tipoEmbalagem);
 
+				objRetorno[0].tipoEmbalagem.map((option) => {
+					let selectMenu = document.querySelector('tipoEmbalagemSerafina');
+					let options = document.createElement('option');
+
+					options.innerHTML = option;
+
+					selectMenu.appendChild(options);
+				});
+
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
 
@@ -2181,7 +2190,7 @@
 					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorSerafina('unidMed',${indice},this.value)"></input></td>
 					<td><input value= "${prod.quantidade}" onkeyup="escreverValorSerafina('quantidade',${indice},this.value)"></input></td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+						<select id="tipoEmbalagemSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
 									<option value="1">Saco</option>
 									<option value="2">Filme</option>
