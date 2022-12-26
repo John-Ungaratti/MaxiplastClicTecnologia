@@ -2258,8 +2258,10 @@
 			},
 			complete: function (response) {
 
+				console.log("response complete", response);
+
 				var objRetorno = JSON.parse(response);
-				
+
 				objRetorno[0].tipoEmbalagem.map((option) => {
 					console.log(option);
 
