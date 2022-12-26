@@ -2258,9 +2258,9 @@
 			},
 			complete: function (response) {
 
-				console.log("response complete", response);
+				console.log("response complete", response.responseText);
 
-				var objRetorno = JSON.parse(response);
+				var objRetorno = JSON.parse(response.responseText);
 
 				objRetorno[0].tipoEmbalagem.map((option) => {
 					console.log(option);
