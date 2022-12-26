@@ -790,6 +790,8 @@
 	var linhasMatrizEdicao;
 	var linhasTableMatrizEdicao = "";
 	
+	var options;
+
 	window.addEventListener("load", function listaItensBaseClic() {
 		var parametros = {
 			"param": {
@@ -955,7 +957,7 @@
 				objRetorno[0].tipoEmbalagem.map((option) => {
 					console.log(option);
 
-					let options = document.createElement('option');
+				 	options = document.createElement('option');
 
 					options.innerHTML = option;
 
@@ -2194,8 +2196,6 @@
 					<td>
 						<select id="tipoEmbalagemSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
-									<option value="1">Saco</option>
-									<option value="2">Filme</option>
 						</select>
 					</td>
 					<td>
