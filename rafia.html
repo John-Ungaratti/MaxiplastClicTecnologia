@@ -948,7 +948,20 @@
 			success: function (response) {
 				
 				var objRetorno = JSON.parse(response);
-			
+
+				console.log("objRetorno", objRetorno[0].tipoEmbalagem);
+
+				objRetorno[0].tipoEmbalagem.map((option) => {
+					console.log(option);
+
+					let options = document.createElement('option');
+
+					options.innerHTML = option;
+
+					console.log(options);
+
+					document.querySelector('tipoEmbalagemSerafina').appendChild(options);
+				});
 
 				objRetorno.map(({ id, item }) =>
 
@@ -2137,25 +2150,8 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
-				console.log("objRetorno", objRetorno[0].tipoEmbalagem);
-
-				objRetorno[0].tipoEmbalagem.map((option) => {
-					console.log(option);
-
-					let selectMenu = document.querySelector('tipoEmbalagemSerafina');
-					let options = document.createElement('option');
-
-					options.innerHTML = option;
-
-					console.log(options);
-
-					selectMenu.appendChild(options);
-				});
-
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
-
-
 
 				if (checkBox == "Novo Produto - Branco") {
 					linhasSerafina.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
