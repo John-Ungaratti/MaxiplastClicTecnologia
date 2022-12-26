@@ -2140,10 +2140,14 @@
 				console.log("objRetorno", objRetorno[0].tipoEmbalagem);
 
 				objRetorno[0].tipoEmbalagem.map((option) => {
+					console.log(option);
+
 					let selectMenu = document.querySelector('tipoEmbalagemSerafina');
 					let options = document.createElement('option');
 
 					options.innerHTML = option;
+
+					console.log(options);
 
 					selectMenu.appendChild(options);
 				});
