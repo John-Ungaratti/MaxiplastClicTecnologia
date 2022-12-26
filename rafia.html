@@ -2255,6 +2255,10 @@
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
 					</tr>`;
 				}).join("");
+			},
+			complete: function (response) {
+
+				var objRetorno = JSON.parse(response);
 				
 				objRetorno[0].tipoEmbalagem.map((option) => {
 					console.log(option);
@@ -2266,7 +2270,7 @@
 
 					document.getElementById('tipoEmbalagemSerafina').appendChild(options);
 				});
-			}
+			},
 		});
 	}
 
