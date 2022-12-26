@@ -946,9 +946,9 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("response", response);
+				
 				var objRetorno = JSON.parse(response);
-				console.log(objRetorno);
+			
 
 				objRetorno.map(({ id, item }) =>
 
@@ -2137,7 +2137,7 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
-				console.log(response);
+				console.log("objRetorno", objRetorno);
 
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
@@ -2167,8 +2167,6 @@
 	
 	function atualizarTabelaSerafina() {
 		document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
-
-			console.log(prod);
 
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 					<th scope="row">
