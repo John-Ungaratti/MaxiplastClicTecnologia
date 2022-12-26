@@ -946,7 +946,8 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				
+				console.log("Serafina");
+
 				var objRetorno = JSON.parse(response);
 
 				console.log("objRetorno", objRetorno[0].tipoEmbalagem);
@@ -961,7 +962,7 @@
 					console.log(options);
 
 					document.querySelector('tipoEmbalagemSerafina').appendChild(options);
-					
+
 				});
 
 				objRetorno.map(({ id, item }) =>
