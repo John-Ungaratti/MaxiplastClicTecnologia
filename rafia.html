@@ -2175,17 +2175,6 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
-				objRetorno[0].tipoEmbalagem.map((option) => {
-					console.log(option);
-
-					let options = document.createElement('option');
-				 	options = document.createElement('option');
-
-					options.innerHTML = option;
-
-					document.getElementById('tipoEmbalagemSerafina').appendChild(options);
-				});
-
 				document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
 				return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
@@ -2266,7 +2255,17 @@
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
 					</tr>`;
 				}).join("");
-								
+				
+				objRetorno[0].tipoEmbalagem.map((option) => {
+					console.log(option);
+
+					let options = document.createElement('option');
+				 	options = document.createElement('option');
+
+					options.innerHTML = option;
+
+					document.getElementById('tipoEmbalagemSerafina').appendChild(options);
+				});
 			}
 		});
 	}
