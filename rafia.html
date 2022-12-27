@@ -2199,30 +2199,17 @@
 							</select>
 						</td>
 						<td>
-							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+							<select id="tipoMaterialSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.tipoMaterial}"</option>
-										<option value="1">tipoMaterial-1</option>
-										<option value="2">tipoMaterial-2</option>
-										<option value="3">tipoMaterial-3</option>
-										<option value="4">tipoMaterial-4</option>
-							</select>
 						</td>
 						<td>
-							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+							<select id="pigmentadoTransparenteSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.pigmentadoTransparente}"</option>
-										<option value="1">Azul</option>
-										<option value="3">Verde</option>
-										<option value="2">Amarelo</option>
-										<option value="4">Vermelho</option>
-										<option value="5">Preto</option>
-										<option value="6">Transparente</option>
 							</select>
 						</td>
 						<td>
-							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+							<select  id="lisoImpressoSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.lisoImpresso}"</option>
-										<option value="1">Liso</option>
-										<option value="2">Impresso</option>	
 							</select>
 						</td>
 						<td>
@@ -2239,11 +2226,8 @@
 							</select>
 						</td>
 						<td>
-							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+							<select id="tipoSoldaSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.tipoSolda}"</option>
-										<option value="1">Solda Lateral Simples</option>
-										<option value="2">Solda Lateral Bainha</option>
-										<option value="3">Solda Pouch</option>
 							</select>
 						</td>
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorSerafina('prazoEntrega',${indice},this.value)"></td>
@@ -2272,8 +2256,6 @@
 
 				});
 
-				var objRetorno = JSON.parse(response.responseText);
-
 				objRetorno[0].tipoLaminado.map((option) => {
 					console.log(option);
 
@@ -2283,6 +2265,50 @@
 					optionsLaminado.innerHTML = option;
 
 					document.getElementById('tipoLaminadoSerafina').appendChild(optionsLaminado);
+				});
+
+				objRetorno[0].tipoMaterial.map((option) => {
+					console.log(option);
+
+					let optionsTipoMaterial = document.createElement('option');
+				 	optionsTipoMaterial = document.createElement('option');
+
+					optionsTipoMaterial.innerHTML = option;
+
+					document.getElementById('tipoMaterialSerafina').appendChild(optionsTipoMaterial);
+				});
+
+				objRetorno[0].pigmentadoTransparente.map((option) => {
+					console.log(option);
+
+					let optionsPigmentadoTransparente = document.createElement('option');
+				 	optionsPigmentadoTransparente = document.createElement('option');
+
+					optionsPigmentadoTransparente.innerHTML = option;
+
+					document.getElementById('pigmentadoTransparenteSerafina').appendChild(optionsPigmentadoTransparente);
+				});
+
+				objRetorno[0].tipoSolda.map((option) => {
+					console.log(option);
+
+					let optionsTipoSolda = document.createElement('option');
+				 	optionsTipoSolda = document.createElement('option');
+
+					optionsTipoSolda.innerHTML = option;
+
+					document.getElementById('tipoSoldaSerafina').appendChild(optionsTipoSolda);
+				});
+
+				objRetorno[0].lisoImpresso.map((option) => {
+					console.log(option);
+
+					let optionsLisoImpresso = document.createElement('option');
+				 	optionsLisoImpresso = document.createElement('option');
+
+					optionsLisoImpresso.innerHTML = option;
+
+					document.getElementById('lisoImpressoSerafina').appendChild(optionsLisoImpresso);
 				});
 
 			},
