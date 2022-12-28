@@ -948,7 +948,6 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("Serafina");
 				var objRetorno = JSON.parse(response);
 				objRetorno.map(({ id, item }) =>
 
@@ -2081,14 +2080,14 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("response", response);
 				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
 				console.log("idx", idx);
 
 				objRetorno.map((option) => {
 					let optionsTipoEmb = document.createElement('option');
 					optionsTipoEmb.innerHTML = option;
+
+					console.log(optionsTipoEmb);
 
 					document.getElementById('tipoMaterialSerafina' + idx).appendChild(optionsTipoEmb);
 				});
@@ -2109,9 +2108,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("response", response);
 				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
 			}
 		});
 	}; 
@@ -2128,9 +2125,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("response", response);
 				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
 			}
 		});
 	}; 
@@ -2147,9 +2142,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("response", response);
 				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
 			}
 		});
 	}; 
@@ -2166,9 +2159,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("response", response);
 				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
 			}
 		});
 	}; 
@@ -2185,9 +2176,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("response", response);
 				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
 			}
 		});
 	}; 
@@ -2260,9 +2249,6 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-
-				console.log("objRetorno - addLinhasSerafina", objRetorno);
-
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
 
