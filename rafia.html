@@ -2246,8 +2246,8 @@
 
 				var objRetorno = JSON.parse(response.responseText);
 
-				objRetorno[0].tipoEmbalagem.map((option) => {
-					 
+				objRetorno[0].tipoEmbalagem.map((option, indice) => {
+					 console.log('indice', indice);
 					let optionsEmbalagem = document.createElement('option');
 				 	optionsEmbalagem = document.createElement('option');
 
