@@ -2069,7 +2069,7 @@
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
 <script>
 
-	function listaTipoEmbalagemFlexivel() {
+	function listaTipoEmbalagemFlexivel(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -2084,10 +2084,9 @@
 				console.log("response", response);
 				var objRetorno = JSON.parse(response);
 				console.log("objRetorno", objRetorno);
+				console.log("idx", idx);
 
-			    objRetorno.map((option, idx) =>{
-					console.log(idx);
-				});
+			    
 			}
 		});
 	}; 
@@ -2265,13 +2264,14 @@
 					linhasSerafina.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
-					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);  
 					linhasSerafina.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": prod[0].largura, "altura": "", "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasSerafina.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": "", "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
+				
 				atualizarTabelaSerafina();
 			}
 		});
@@ -2297,6 +2297,7 @@
 				var objRetorno = JSON.parse(response);
 
 				document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
+				listaTipoEmbalagemFlexivel(indice);	
 				return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
 							<span type="button">
