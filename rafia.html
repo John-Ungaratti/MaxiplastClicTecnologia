@@ -2242,7 +2242,6 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-
 				document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
 				return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
@@ -2303,11 +2302,11 @@
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
 					</tr>`;
-					populaSelectSerafina(indice);
 				}).join("");
-
-				
 			},
+			complete: function(id){
+				populaSelectSerafina(id);
+			} 
 
 						});
 					}
