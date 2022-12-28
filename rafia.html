@@ -792,6 +792,26 @@
 	
 	var options;
 
+	window.addEventListener("load", function listaTipoEmbalagemFlexivel() {
+		var paramentros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoEmbalagemFlexivel"
+		}
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+
+	}, false);
+
 	window.addEventListener("load", function listaItensBaseClic() {
 		var parametros = {
 			"param": {
@@ -2160,6 +2180,7 @@
 		var item = linhasSerafina[i];
 		item[prop] = value;
 	}
+	
 	
 
 
