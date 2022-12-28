@@ -2145,7 +2145,7 @@
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafina.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasSerafina.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente":"", "lisoImpresso": "", "qtdCores": "", "tipoSolda":"", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
@@ -2225,7 +2225,7 @@
 										<option value="8">8C</option>
 							</select>
 						</td>
-						<td>
+	''					<td>
 							<select id="tipoSoldaSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.tipoSolda}"</option>
 							</select>
@@ -2308,9 +2308,6 @@
 			},
 		});
 	}
-
-
-
 
 	function montaJsonSerafina() {
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
