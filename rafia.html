@@ -2256,6 +2256,8 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
+				console.log("objRetorno - addLinhasSerafina", objRetorno);
+
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
 
