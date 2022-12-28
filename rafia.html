@@ -319,7 +319,8 @@
 				</div>
 				<div class="modal-footer">
 					<button id="cancelModalProdutoSerafina" type="button" class="btn btn-secondary">Cancelar</button>
-					<button id="confirmModalProdutoSerafina" type="submit" class="btn btn-primary"	onclick="addLinhasSerafina()">Confirmar</button>
+					<button id="confirmModalProdutoSerafina" type="submit" class="btn btn-primary"
+						onclick="addLinhasSerafina()">Confirmar</button>
 				</div>
 			</div>
 		</div>
@@ -2160,75 +2161,7 @@
 		item[prop] = value;
 	}
 	
-	function populaSelectSerafina(response, idx){
 
-		console.log("indice",idx);
-		
-		var objRetorno = JSON.parse(response.responseText);
-
-		objRetorno[0].tipoEmbalagem.map((option) => {
-			
-			let optionsEmbalagem = document.createElement('option');
-			optionsEmbalagem = document.createElement('option');
-
-			optionsEmbalagem.innerHTML = option;
-
-			document.getElementById('tipoEmbalagemSerafina' + '${idx}').appendChild(optionsEmbalagem);
-
-
-		});
-
-		objRetorno[0].tipoLaminado.map((option) => {
-			
-			let optionsLaminado = document.createElement('option');
-			optionsLaminado = document.createElement('option');
-
-			optionsLaminado.innerHTML = option;
-
-			document.getElementById('tipoLaminadoSerafina' + '${idx}').appendChild(optionsLaminado);
-		});
-
-		objRetorno[0].tipoMaterial.map((option) => {
-
-		let optionsTipoMaterial = document.createElement('option');
-		optionsTipoMaterial = document.createElement('option');
-
-		optionsTipoMaterial.innerHTML = option;
-
-		document.getElementById('tipoMaterialSerafina' + '${idx}').appendChild(optionsTipoMaterial);
-		});
-
-		objRetorno[0].pigmentadoTransparente.map((option) => {
-
-		let optionsPigmentadoTransparente = document.createElement('option');
-		optionsPigmentadoTransparente = document.createElement('option');
-
-		optionsPigmentadoTransparente.innerHTML = option;
-
-		document.getElementById('pigmentadoTransparenteSerafina' + '${idx}').appendChild(optionsPigmentadoTransparente);
-		});
-
-		objRetorno[0].tipoSolda.map((option) => {
-
-		let optionsTipoSolda = document.createElement('option');
-		optionsTipoSolda = document.createElement('option');
-
-		optionsTipoSolda.innerHTML = option;
-
-		document.getElementById('tipoSoldaSerafina' + '${idx}').appendChild(optionsTipoSolda);
-		});
-
-		objRetorno[0].lisoImpresso.map((option) => {
-
-		let optionsLisoImpresso = document.createElement('option');
-		optionsLisoImpresso = document.createElement('option');
-
-		optionsLisoImpresso.innerHTML = option;
-
-		document.getElementById('lisoImpressoSerafina' + '${idx}').appendChild(optionsLisoImpresso);
-		});
-		
-	}
 
 
 	function atualizarTabelaSerafina() {
@@ -2244,6 +2177,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
+
 				document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
 				return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
@@ -2306,10 +2240,75 @@
 					</tr>`;
 				}).join("");
 			},
-			complete: function(response, id){
-				populaSelectSerafina(response, id);
-			} 
+			complete: function (response) {
 
+				console.log("response complete teste", response);
+
+				var objRetorno = JSON.parse(response.responseText);
+
+				objRetorno[0].tipoEmbalagem.map((option) => {
+					 
+					let optionsEmbalagem = document.createElement('option');
+				 	optionsEmbalagem = document.createElement('option');
+
+					optionsEmbalagem.innerHTML = option;
+
+					document.getElementById('tipoEmbalagemSerafina').appendChild(optionsEmbalagem);
+
+
+				});
+
+				objRetorno[0].tipoLaminado.map((option) => {
+					 
+					let optionsLaminado = document.createElement('option');
+				 	optionsLaminado = document.createElement('option');
+
+					optionsLaminado.innerHTML = option;
+
+					document.getElementById('tipoLaminadoSerafina').appendChild(optionsLaminado);
+				});
+
+				objRetorno[0].tipoMaterial.map((option) => {
+ 
+				let optionsTipoMaterial = document.createElement('option');
+				optionsTipoMaterial = document.createElement('option');
+
+				optionsTipoMaterial.innerHTML = option;
+
+				document.getElementById('tipoMaterialSerafina').appendChild(optionsTipoMaterial);
+				});
+
+				objRetorno[0].pigmentadoTransparente.map((option) => {
+				
+				let optionsPigmentadoTransparente = document.createElement('option');
+				optionsPigmentadoTransparente = document.createElement('option');
+
+				optionsPigmentadoTransparente.innerHTML = option;
+
+				document.getElementById('pigmentadoTransparenteSerafina').appendChild(optionsPigmentadoTransparente);
+				});
+
+				objRetorno[0].tipoSolda.map((option) => {
+				
+				let optionsTipoSolda = document.createElement('option');
+				optionsTipoSolda = document.createElement('option');
+
+				optionsTipoSolda.innerHTML = option;
+
+				document.getElementById('tipoSoldaSerafina').appendChild(optionsTipoSolda);
+				});
+
+				objRetorno[0].lisoImpresso.map((option) => {
+				
+				let optionsLisoImpresso = document.createElement('option');
+				optionsLisoImpresso = document.createElement('option');
+
+				optionsLisoImpresso.innerHTML = option;
+
+				document.getElementById('lisoImpressoSerafina').appendChild(optionsLisoImpresso);
+				});
+
+							},
 						});
 					}
 
