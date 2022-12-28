@@ -2160,7 +2160,7 @@
 		item[prop] = value;
 	}
 	
-	function populaSelectSerafina(idx){
+	function populaSelectSerafina(response, idx){
 		
 		var objRetorno = JSON.parse(response.responseText);
 
@@ -2305,7 +2305,7 @@
 				}).join("");
 			},
 			complete: function(response, id){
-				populaSelectSerafina(id);
+				populaSelectSerafina(response, id);
 			} 
 
 						});
