@@ -811,6 +811,101 @@
 		});
 	}, false); 
 
+	window.addEventListener("load", function listaTipoLaminadoFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoLaminadoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}, false); 
+
+	window.addEventListener("load", function listaTipoMaterialFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoMaterialFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}, false); 
+
+	window.addEventListener("load", function listaPigmentosFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaPigmentosFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}, false); 
+
+	window.addEventListener("load", function lisoImpressoFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "lisoImpressoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}, false); 
+
+	window.addEventListener("load", function listaTipoSoldaFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoSoldaFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}, false); 
+
 	window.addEventListener("load", function listaItensBaseClic() {
 		var parametros = {
 			"param": {
