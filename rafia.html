@@ -2086,6 +2086,12 @@
 				console.log("objRetorno", objRetorno);
 				console.log("idx", idx);
 
+				objRetorno.map((option) => {
+					let optionsTipoEmb = document.createElement('option');
+					optionsTipoEmb.innerHTML = option;
+
+					document.getElementById('tipoMaterialSerafina' + idx).appendChild(optionsTipoEmb);
+				});
 			    
 			}
 		});
