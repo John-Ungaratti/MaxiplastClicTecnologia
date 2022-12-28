@@ -2092,8 +2092,6 @@
 
 					document.getElementById('tipoMaterialSerafina${idx}').appendChild(optionsTipoEmb);
 				});
-
-				console.log(document.getElementById('tipoMaterialSerafina${idx}'));
 			    
 			}
 		});
@@ -2292,7 +2290,6 @@
 				var objRetorno = JSON.parse(response);
 
 				document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
-				listaTipoEmbalagemFlexivel(indice);	
 				return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
 							<span type="button">
@@ -2352,6 +2349,7 @@
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
 					</tr>`;
+					listaTipoEmbalagemFlexivel(indice);	
 				}).join("");
 			}
 						});
