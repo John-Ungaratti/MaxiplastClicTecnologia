@@ -2145,7 +2145,7 @@
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafina.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasSerafina.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
@@ -2267,51 +2267,49 @@
 
 				objRetorno[0].tipoMaterial.map((option) => {
  
-let optionsTipoMaterial = document.createElement('option');
-optionsTipoMaterial = document.createElement('option');
+				let optionsTipoMaterial = document.createElement('option');
+				optionsTipoMaterial = document.createElement('option');
 
-optionsTipoMaterial.innerHTML = option;
+				optionsTipoMaterial.innerHTML = option;
 
-document.getElementById('tipoMaterialSerafina').appendChild(optionsTipoMaterial);
-});
+				document.getElementById('tipoMaterialSerafina').appendChild(optionsTipoMaterial);
+				});
 
-objRetorno[0].pigmentadoTransparente.map((option) => {
- 
-let optionsPigmentadoTransparente = document.createElement('option');
-optionsPigmentadoTransparente = document.createElement('option');
+				objRetorno[0].pigmentadoTransparente.map((option) => {
+				
+				let optionsPigmentadoTransparente = document.createElement('option');
+				optionsPigmentadoTransparente = document.createElement('option');
 
-optionsPigmentadoTransparente.innerHTML = option;
+				optionsPigmentadoTransparente.innerHTML = option;
 
-document.getElementById('pigmentadoTransparenteSerafina').appendChild(optionsPigmentadoTransparente);
-});
+				document.getElementById('pigmentadoTransparenteSerafina').appendChild(optionsPigmentadoTransparente);
+				});
 
-objRetorno[0].tipoSolda.map((option) => {
- 
-let optionsTipoSolda = document.createElement('option');
-optionsTipoSolda = document.createElement('option');
+				objRetorno[0].tipoSolda.map((option) => {
+				
+				let optionsTipoSolda = document.createElement('option');
+				optionsTipoSolda = document.createElement('option');
 
-optionsTipoSolda.innerHTML = option;
+				optionsTipoSolda.innerHTML = option;
 
-document.getElementById('tipoSoldaSerafina').appendChild(optionsTipoSolda);
-});
+				document.getElementById('tipoSoldaSerafina').appendChild(optionsTipoSolda);
+				});
 
-objRetorno[0].lisoImpresso.map((option) => {
- 
-let optionsLisoImpresso = document.createElement('option');
-optionsLisoImpresso = document.createElement('option');
+				objRetorno[0].lisoImpresso.map((option) => {
+				
+				let optionsLisoImpresso = document.createElement('option');
+				optionsLisoImpresso = document.createElement('option');
 
-optionsLisoImpresso.innerHTML = option;
+				optionsLisoImpresso.innerHTML = option;
 
-document.getElementById('lisoImpressoSerafina').appendChild(optionsLisoImpresso);
-});
+				document.getElementById('lisoImpressoSerafina').appendChild(optionsLisoImpresso);
+				});
 
-			},
-		});
-	}
+							},
+						});
+					}
 
 
-	
-	
 	function montaJsonSerafina() {
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
 		var clienteSel = document.getElementById("filtroClienteSerafina").value;
