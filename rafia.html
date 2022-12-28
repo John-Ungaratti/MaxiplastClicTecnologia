@@ -2161,6 +2161,9 @@
 		item[prop] = value;
 	}
 	
+
+
+
 	function atualizarTabelaSerafina() {
 
 		var parametros = {
@@ -2189,26 +2192,26 @@
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorSerafina('unidMed',${indice},this.value)"></input></td>
 						<td><input value= "${prod.quantidade}" onkeyup="escreverValorSerafina('quantidade',${indice},this.value)"></input></td>
 						<td>
-							<select id="tipoEmbalagemSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+							<select id="tipoEmbalagemSerafina${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.tipoEmbalagem}"</option>
 							</select>
 						</td>
 						<td>
-							<select  id="tipoLaminadoSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+							<select  id="tipoLaminadoSerafina${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.tipoLaminado}"</option>
 							</select>
 						</td>
 						<td>
-							<select id="tipoMaterialSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+							<select id="tipoMaterialSerafina${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.tipoMaterial}"</option>
 						</td>
 						<td>
-							<select id="pigmentadoTransparenteSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+							<select id="pigmentadoTransparenteSerafina${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.pigmentadoTransparente}"</option>
 							</select>
 						</td>
 						<td>
-							<select  id="lisoImpressoSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+							<select  id="lisoImpressoSerafina${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.lisoImpresso}"</option>
 							</select>
 						</td>
