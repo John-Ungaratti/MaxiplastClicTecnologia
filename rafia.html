@@ -2083,7 +2083,6 @@
 				var objRetorno = JSON.parse(response);
 				
 								console.log("objRetorno", objRetorno);
-				console.log("idx", idx);
 
 				objRetorno.tipoEmbalagem.map((option) => {
 					let optionsTipoEmb = document.createElement('option');
@@ -2091,8 +2090,10 @@
 
 					console.log(optionsTipoEmb);
 
-					document.getElementById('tipoMaterialSerafina' + idx).appendChild(optionsTipoEmb);
+					document.getElementById('tipoMaterialSerafina${idx}').appendChild(optionsTipoEmb);
 				});
+
+				console.log(document.getElementById('tipoMaterialSerafina${idx}').appendChild(optionsTipoEmb));
 			    
 			}
 		});
