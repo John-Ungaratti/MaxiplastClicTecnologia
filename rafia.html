@@ -792,120 +792,6 @@
 	
 	var options;
 
-	window.addEventListener("load", function listaTipoEmbalagemFlexivel() {
-		var parametros = {
-			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 750,
-			pRotina: "listaTipoEmbalagemFlexivel"
-		};
-
-		$.ajax({
-			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-				console.log("response", response);
-				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
-			}
-		});
-	}, false); 
-
-	window.addEventListener("load", function listaTipoLaminadoFlexivel() {
-		var parametros = {
-			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 750,
-			pRotina: "listaTipoLaminadoFlexivel"
-		};
-
-		$.ajax({
-			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-				console.log("response", response);
-				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
-			}
-		});
-	}, false); 
-
-	window.addEventListener("load", function listaTipoMaterialFlexivel() {
-		var parametros = {
-			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 750,
-			pRotina: "listaTipoMaterialFlexivel"
-		};
-
-		$.ajax({
-			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-				console.log("response", response);
-				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
-			}
-		});
-	}, false); 
-
-	window.addEventListener("load", function listaPigmentosFlexivel() {
-		var parametros = {
-			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 750,
-			pRotina: "listaPigmentosFlexivel"
-		};
-
-		$.ajax({
-			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-				console.log("response", response);
-				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
-			}
-		});
-	}, false); 
-
-	window.addEventListener("load", function lisoImpressoFlexivel() {
-		var parametros = {
-			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 750,
-			pRotina: "lisoImpressoFlexivel"
-		};
-
-		$.ajax({
-			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-				console.log("response", response);
-				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
-			}
-		});
-	}, false); 
-
-	window.addEventListener("load", function listaTipoSoldaFlexivel() {
-		var parametros = {
-			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 750,
-			pRotina: "listaTipoSoldaFlexivel"
-		};
-
-		$.ajax({
-			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-				console.log("response", response);
-				var objRetorno = JSON.parse(response);
-				console.log("objRetorno", objRetorno);
-			}
-		});
-	}, false); 
-
 	window.addEventListener("load", function listaItensBaseClic() {
 		var parametros = {
 			"param": {
@@ -2182,6 +2068,125 @@
 </script>
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
 <script>
+
+	function listaTipoEmbalagemFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoEmbalagemFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+
+			    objRetorno.map((option, idx) =>{
+					console.log(idx);
+				});
+			}
+		});
+	}; 
+
+	function listaTipoLaminadoFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoLaminadoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}; 
+
+	function listaTipoMaterialFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoMaterialFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}; 
+
+	function listaPigmentosFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaPigmentosFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}; 
+
+	function lisoImpressoFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "lisoImpressoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}; 
+
+	function listaTipoSoldaFlexivel() {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoSoldaFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("response", response);
+				var objRetorno = JSON.parse(response);
+				console.log("objRetorno", objRetorno);
+			}
+		});
+	}; 
+
 	$("#addItensSerafina").click(function () {
 		var formulario = document.getElementById("formSerafina");
 		if (!formulario.checkValidity()) {
@@ -2275,10 +2280,6 @@
 		item[prop] = value;
 	}
 	
-	
-
-
-
 	function atualizarTabelaSerafina() {
 
 		var parametros = {
@@ -2354,79 +2355,9 @@
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
 					</tr>`;
 				}).join("");
-			},
-			complete: function (response) {
-
-				console.log("response complete teste", response);
-
-				var objRetorno = JSON.parse(response.responseText);
-
-				objRetorno[0].tipoEmbalagem.map((option, indice) => {
-					 console.log('indice', indice);
-					let optionsEmbalagem = document.createElement('option');
-				 	optionsEmbalagem = document.createElement('option');
-
-					optionsEmbalagem.innerHTML = option;
-
-					document.getElementById('tipoEmbalagemSerafina' +  indice).appendChild(optionsEmbalagem);
-
-
-				});
-
-				objRetorno[0].tipoLaminado.map((option) => {
-					 
-					let optionsLaminado = document.createElement('option');
-				 	optionsLaminado = document.createElement('option');
-
-					optionsLaminado.innerHTML = option;
-
-					document.getElementById('tipoLaminadoSerafina').appendChild(optionsLaminado);
-				});
-
-				objRetorno[0].tipoMaterial.map((option) => {
- 
-				let optionsTipoMaterial = document.createElement('option');
-				optionsTipoMaterial = document.createElement('option');
-
-				optionsTipoMaterial.innerHTML = option;
-
-				document.getElementById('tipoMaterialSerafina').appendChild(optionsTipoMaterial);
-				});
-
-				objRetorno[0].pigmentadoTransparente.map((option) => {
-				
-				let optionsPigmentadoTransparente = document.createElement('option');
-				optionsPigmentadoTransparente = document.createElement('option');
-
-				optionsPigmentadoTransparente.innerHTML = option;
-
-				document.getElementById('pigmentadoTransparenteSerafina').appendChild(optionsPigmentadoTransparente);
-				});
-
-				objRetorno[0].tipoSolda.map((option) => {
-				
-				let optionsTipoSolda = document.createElement('option');
-				optionsTipoSolda = document.createElement('option');
-
-				optionsTipoSolda.innerHTML = option;
-
-				document.getElementById('tipoSoldaSerafina').appendChild(optionsTipoSolda);
-				});
-
-				objRetorno[0].lisoImpresso.map((option) => {
-				
-				let optionsLisoImpresso = document.createElement('option');
-				optionsLisoImpresso = document.createElement('option');
-
-				optionsLisoImpresso.innerHTML = option;
-
-				document.getElementById('lisoImpressoSerafina').appendChild(optionsLisoImpresso);
-				});
-
-							},
+			}
 						});
 					}
-
 
 	function montaJsonSerafina() {
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
