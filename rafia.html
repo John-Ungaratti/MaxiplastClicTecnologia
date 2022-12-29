@@ -2100,7 +2100,7 @@
 						</select>
 					</td>
 					<td>
-						<select id="lisoImpressoSerafinaEdicao" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+						<select id="lisoImpressoSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.lisoImpresso}"</option>
 						</select>
 					</td>
@@ -2907,7 +2907,7 @@
 		item[prop] = value;
 	}
 	function atualizarTabelaMatriz() {
-		
+
 		document.querySelector('#linhaTableMatriz').innerHTML = linhasMatriz.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 					<th scope="row">
