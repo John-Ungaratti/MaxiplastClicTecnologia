@@ -2097,7 +2097,7 @@
 		});
 	}; 
 
-	function listaTipoLaminadoFlexivel() {
+	function listaTipoLaminadoFlexivel(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -2110,11 +2110,22 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
+				
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.tipoLaminado.map((option) => {
+					let optionsTipoLam = document.createElement('option');
+					optionsTipoLam.innerHTML = option;
+
+					console.log(optionsTipoLam);
+
+					document.getElementById('tipoLaminadoSerafina' + idx).appendChild(optionsTipoLam);
+				});
 			}
 		});
 	}; 
 
-	function listaTipoMaterialFlexivel() {
+	function listaTipoMaterialFlexivel(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -2127,11 +2138,20 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoMaterial.map((option) => {
+					let optionstipoMat = document.createElement('option');
+					optionstipoMat.innerHTML = option;
+
+					console.log(optionstipoMat);
+
+					document.getElementById('tipoMaterialSerafina' + idx).appendChild(optionstipoMat);
+				});				
 			}
 		});
 	}; 
 
-	function listaPigmentosFlexivel() {
+	function listaPigmentosFlexivel(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -2144,11 +2164,22 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
+				
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.pigmentadoTransparente.map((option) => {
+					let optionsPigmentoTransp = document.createElement('option');
+					optionsPigmentoTransp.innerHTML = option;
+
+					console.log(optionsPigmentoTransp);
+
+					document.getElementById('pigmentadoTransparenteSerafina' + idx).appendChild(optionsPigmentoTransp);
+				});				
 			}
 		});
 	}; 
 
-	function lisoImpressoFlexivel() {
+	function lisoImpressoFlexivel(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -2161,11 +2192,20 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
+
+				objRetorno.lisoImpresso.map((option) => {
+					let optionsLisoImpresso = document.createElement('option');
+					optionsLisoImpresso.innerHTML = option;
+
+					console.log(optionsLisoImpresso);
+
+					document.getElementById('lisoImpressoSerafina' + idx).appendChild(optionsLisoImpresso);
+				});				
 			}
 		});
 	}; 
 
-	function listaTipoSoldaFlexivel() {
+	function listaTipoSoldaFlexivel(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -2178,6 +2218,15 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoSolda.map((option) => {
+					let optionsTipoSolda = document.createElement('option');
+					optionsTipoSolda.innerHTML = option;
+
+					console.log(optionsTipoSolda);
+
+					document.getElementById('tipoSoldaSerafina' + idx).appendChild(optionsTipoSolda);
+				});				
 			}
 		});
 	}; 
@@ -2356,6 +2405,11 @@
 			}, 
 			complete: function(){
 				listaTipoEmbalagemFlexivel(index);
+				listaTipoLaminadoFlexivel(index);
+				listaTipoMaterialFlexivel(index);
+				listaPigmentosFlexivel(index);
+				lisoImpressoFlexivel(index);
+				listaTipoSoldaFlexivel(index);
 			}
 						});
 					}
