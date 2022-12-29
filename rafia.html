@@ -789,7 +789,7 @@
 	var linhasMatriz = [];
 	var linhasMatrizEdicao;
 	var linhasTableMatrizEdicao = "";
-	
+
 	var options;
 
 	window.addEventListener("load", function listaItensBaseClic() {
@@ -851,7 +851,7 @@
 			}
 		});
 	}, false);
-	
+
 	window.addEventListener("load", function filtroClientes() {
 		var clientesExistentesHTML = "";
 		var parametros = {
@@ -879,7 +879,7 @@
 			}
 		});
 	}, false);
-	
+
 	window.addEventListener("load", function filtroVendedores() {
 		var vendedoresExistentesHTML = "";
 		var parametros = {
@@ -935,7 +935,7 @@
 			}
 		});
 	}, false);
-	
+
 	window.addEventListener("load", function listarProdutosSerafina() {
 		var produtosExistentesHTML = "";
 		var parametros = {
@@ -959,7 +959,7 @@
 
 
 	}, false);
-	
+
 	window.addEventListener("load", function listarProdutosMatriz() {
 		var produtosExistentesHTML = "";
 		var parametros = {
@@ -978,11 +978,11 @@
 			}
 		});
 	}, false);
-	
+
 	$("#abreModal").click(function () {
 		$("#modalSelectUnidade").modal('show');
 	});
-	
+
 	$("#botaoSelUnidade").click(function () {
 		if (document.getElementById("unidadeSelecionada").value == "Rafia") {
 			$("#modalSelectUnidade").modal('hide');
@@ -1324,7 +1324,7 @@
 			$("#modalEdicaoMatriz").modal('show');
 		}
 	}
-	
+
 	function cancelaOrcamentoBaseClic(_id) {
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 		idSel = _id;
@@ -1350,31 +1350,31 @@
 	function mostraModalProdutos() {
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 	}
-	
+
 	function limparLinhasEdicao() {
 		linhasTableRafiaEdicao = "";
 	}
-	
+
 	$("#addItensRafiaEdicao").click(function () {
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicao").style.filter = "blur(2px)";
 	});
-	
+
 	$("#cancelModalProdutoRafiaEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "unset";
 		document.getElementById("modalEdicao").style.filter = "unset";
 		$("#modalSelectTipoItemRafiaEdicao").modal('hide');
 	});
-	
+
 	function enableInputRafiaEdicao() {
 		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = false;
 	}
-	
+
 	function disableInputRafiaEdicao() {
 		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = true;
 	}
-	
+
 	function atualizarTabelaRafiaEdicao() {
 		document.querySelector('#linhaTableRafiaEdicao').innerHTML = linhasRafiaEdicao.map(function (prod, indice) {
 			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
@@ -1512,7 +1512,7 @@
 					</tr>`;
 		}).join("");
 	}
-	
+
 	function addLinhasEdicao() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -1542,7 +1542,7 @@
 			}
 		});
 	}
-	
+
 	$("#confirmModalProdutoRafiaEdicao").click(function () {
 		var formulario = document.getElementById("formProdutoRafiaEdicao");
 		if (!formulario.checkValidity()) {
@@ -1569,17 +1569,17 @@
 			}
 		}
 	});
-	
+
 	function escreverValorEdicao(prop, i, value) {
 		var item = linhasRafiaEdicao[i];
 		item[prop] = value;
 	}
-	
+
 	function removerElementoEdicao(elementoClicado, i) {
 		linhasRafiaEdicao.splice(i, 1);
 		atualizarTabelaRafiaEdicao();
 	}
-	
+
 	function montaJsonRafiaEdicao() {
 		var unidadeSel = "Rafia";
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
@@ -1870,31 +1870,215 @@
 </script>
 <!--          						S C R I P T S  -  S E R A F I N A - EDICAO					-->
 <script>
+	function listaTipoEmbalagemFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoEmbalagemFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.tipoEmbalagem.map((option) => {
+					let optionsTipoEmb = document.createElement('option');
+					optionsTipoEmb.innerHTML = option;
+
+					console.log(optionsTipoEmb);
+
+					document.getElementById('tipoEmbalagemSerafinaEdicao' + idx).appendChild(optionsTipoEmb);
+				});
+
+			}
+		});
+	};
+
+	function listaTipoLaminadoFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoLaminadoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.tipoLaminado.map((option) => {
+					let optionsTipoLam = document.createElement('option');
+					optionsTipoLam.innerHTML = option;
+
+					console.log(optionsTipoLam);
+
+					document.getElementById('tipoLaminadoSerafinaEdicao' + idx).appendChild(optionsTipoLam);
+				});
+			}
+		});
+	};
+
+	function listaTipoMaterialFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoMaterialFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoMaterial.map((option) => {
+					let optionstipoMat = document.createElement('option');
+					optionstipoMat.innerHTML = option;
+
+					console.log(optionstipoMat);
+
+					document.getElementById('tipoMaterialSerafinaEdicao' + idx).appendChild(optionstipoMat);
+				});
+			}
+		});
+	};
+
+	function listaPigmentosFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaPigmentosFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.pigmentadoTransparente.map((option) => {
+					let optionsPigmentoTransp = document.createElement('option');
+					optionsPigmentoTransp.innerHTML = option;
+
+					console.log(optionsPigmentoTransp);
+
+					document.getElementById('pigmentadoTransparenteSerafinaEdicao' + idx).appendChild(optionsPigmentoTransp);
+				});
+			}
+		});
+	};
+
+	function lisoImpressoFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "lisoImpressoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.lisoImpresso.map((option) => {
+					let optionsLisoImpresso = document.createElement('option');
+					optionsLisoImpresso.innerHTML = option;
+
+					console.log(optionsLisoImpresso);
+
+					document.getElementById('lisoImpressoSerafinaEdicao' + idx).appendChild(optionsLisoImpresso);
+				});
+			}
+		});
+	};
+
+	function listaTipoSoldaFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoSoldaFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoSolda.map((option) => {
+					let optionsTipoSolda = document.createElement('option');
+					optionsTipoSolda.innerHTML = option;
+
+					console.log(optionsTipoSolda);
+
+					document.getElementById('tipoSoldaSerafinaEdicao' + idx).appendChild(optionsTipoSolda);
+				});
+			}
+		});
+	};
+
 	function mostraModalProdutosSerafina() {
 		$("#modalSelectTipoItemSerafinaEdicao").modal('show');
 	}
+
 	function limparLinhasEdicaoSerafina() {
 		linhasTableSerafinaEdicao = "";
 	}
+
 	$("#addItensSerafinaEdicao").click(function () {
 		$("#modalSelectTipoItemSerafinaEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemSerafinaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicaoSerafina").style.filter = "blur(2px)";
 	});
+
 	$("#cancelModalProdutoSerafinaEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemSerafinaEdicao").style.filter = "unset";
 		document.getElementById("modalEdicaoSerafina").style.filter = "unset";
 		$("#modalSelectTipoItemSerafinaEdicao").modal('hide');
 	});
+
 	function enableInputSerafinaEdicao() {
 		document.querySelector(`input[id="inputProdutoSerafinaEdicao"]`).disabled = false;
 	}
+
 	function disableInputSerafinaEdicao() {
 		document.querySelector(`input[id="inputProdutoSerafinaEdicao"]`).disabled = true;
 	}
+
 	function atualizarTabelaSerafinaEdicao() {
-		document.querySelector('#linhaTableSerafinaEdicao').innerHTML = linhasSerafinaEdicao.map(function (prod, indice) {
-			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+
+		var index;
+
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMatrizMock"
+		};
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+				document.querySelector('#linhaTableSerafinaEdicao').innerHTML = linhasSerafinaEdicao.map(function (prod, indice) {
+					index = indice;
+					return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 					<th scope="row">
 						<span type="button">
 						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoSerafinaEdicao(event.target, ${indice})"></i>
@@ -1907,43 +2091,28 @@
 					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoSerafina('unidMed',${indice},this.value)"></input></td>
 					<td><input value= "${prod.quantidade}" onkeyup="escreverValorEdicaoSerafina('quantidade',${indice},this.value)"></input></td>
 					<td>
-						<select id="lisoImpresoSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+						<select id="tipoEmbalagemSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+						<select id="tipoLaminadoSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoLaminado}"</option>
-									<option value="1">Monocamada</option>
-									<option value="2">Laminado</option>
-									<option value="2">Bilaminado</option>
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+						<select id="tipoMaterialSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoMaterial}"</option>
-									<option value="1">tipoMaterial-1</option>
-									<option value="2">tipoMaterial-2</option>
-									<option value="3">tipoMaterial-3</option>
-									<option value="4">tipoMaterial-4</option>
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+						<select id="pigmentadoTransparenteSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
-									<option value="1">Azul</option>
-									<option value="3">Verde</option>
-									<option value="2">Amarelo</option>
-									<option value="4">Vermelho</option>
-									<option value="5">Preto</option>
-									<option value="6">Transparente</option>
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+						<select id="lisoImpressoSerafinaEdicao" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.lisoImpresso}"</option>
-									<option value="1">Liso</option>
-									<option value="2">Impresso</option>	
 						</select>
 					</td>
 					<td>
@@ -1960,11 +2129,8 @@
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+						<select id="tipoSoldaSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoSolda}"</option>
-									<option value="1">Solda Lateral Simples</option>
-									<option value="2">Solda Lateral Bainha</option>
-									<option value="3">Solda Pouch</option>
 						</select>
 					</td>
 					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorEdicaoSerafina('prazoEntrega',${indice},this.value)"></td>
@@ -1972,8 +2138,19 @@
 					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('preco',${indice},this.value)"></td>
 					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('total',${indice},this.value)"></td>
 				</tr>`;
-		}).join("");
+				}).join("");
+			},
+			complete: function(){
+				listaTipoEmbalagemFlexivelEdicao(index);
+				listaTipoLaminadoFlexivelEdicao(index);
+				listaTipoMaterialFlexivelEdicao(index);
+				listaPigmentosFlexivelEdicao(index);
+				lisoImpressoFlexivelEdicao(index);
+				listaTipoSoldaFlexivelEdicao(index);				
+			}
+		});
 	}
+
 	function addLinhasSerafinaEdicao() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -1993,7 +2170,7 @@
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafinaEdicao.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasSerafinaEdicao.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
@@ -2003,6 +2180,7 @@
 			}
 		});
 	}
+
 	$("#confirmModalProdutoSerafinaEdicao").click(function () {
 		var formulario = document.getElementById("formProdutoSerafinaEdicao");
 		if (!formulario.checkValidity()) {
@@ -2029,13 +2207,16 @@
 			}
 		}
 	});
+
 	function escreverValorEdicaoSerafina(prop, i, value) {
 		var item = linhasSerafinaEdicao[i];
 		item[prop] = value;
 	}
+
 	function montaJsonSerafinaEdicao() {
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Serafina", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafinaEdicao };
 	}
+
 	function removerElementoSerafinaEdicao(elementoClicado, i) {
 		linhasSerafinaEdicao.splice(i, 1);
 		atualizarTabelaSerafinaEdicao();
@@ -2081,8 +2262,8 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-				
-								console.log("objRetorno", objRetorno);
+
+				console.log("objRetorno", objRetorno);
 
 				objRetorno.tipoEmbalagem.map((option) => {
 					let optionsTipoEmb = document.createElement('option');
@@ -2092,10 +2273,10 @@
 
 					document.getElementById('tipoEmbalagemSerafina' + idx).appendChild(optionsTipoEmb);
 				});
-			    
+
 			}
 		});
-	}; 
+	};
 
 	function listaTipoLaminadoFlexivel(idx) {
 		var parametros = {
@@ -2110,7 +2291,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-				
+
 				console.log("objRetorno", objRetorno);
 
 				objRetorno.tipoLaminado.map((option) => {
@@ -2123,7 +2304,7 @@
 				});
 			}
 		});
-	}; 
+	};
 
 	function listaTipoMaterialFlexivel(idx) {
 		var parametros = {
@@ -2146,10 +2327,10 @@
 					console.log(optionstipoMat);
 
 					document.getElementById('tipoMaterialSerafina' + idx).appendChild(optionstipoMat);
-				});				
+				});
 			}
 		});
-	}; 
+	};
 
 	function listaPigmentosFlexivel(idx) {
 		var parametros = {
@@ -2164,7 +2345,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-				
+
 				console.log("objRetorno", objRetorno);
 
 				objRetorno.pigmentadoTransparente.map((option) => {
@@ -2174,10 +2355,10 @@
 					console.log(optionsPigmentoTransp);
 
 					document.getElementById('pigmentadoTransparenteSerafina' + idx).appendChild(optionsPigmentoTransp);
-				});				
+				});
 			}
 		});
-	}; 
+	};
 
 	function lisoImpressoFlexivel(idx) {
 		var parametros = {
@@ -2200,10 +2381,10 @@
 					console.log(optionsLisoImpresso);
 
 					document.getElementById('lisoImpressoSerafina' + idx).appendChild(optionsLisoImpresso);
-				});				
+				});
 			}
 		});
-	}; 
+	};
 
 	function listaTipoSoldaFlexivel(idx) {
 		var parametros = {
@@ -2226,10 +2407,10 @@
 					console.log(optionsTipoSolda);
 
 					document.getElementById('tipoSoldaSerafina' + idx).appendChild(optionsTipoSolda);
-				});				
+				});
 			}
 		});
-	}; 
+	};
 
 	$("#addItensSerafina").click(function () {
 		var formulario = document.getElementById("formSerafina");
@@ -2244,7 +2425,7 @@
 			document.getElementById("orcamentoSerafina").style.filter = "blur(2px)";
 		}
 	});
-	
+
 	$("#confirmModalProdutoSerafina").click(function () {
 		var formulario = document.getElementById("formProdutoSerafina");
 		if (!formulario.checkValidity()) {
@@ -2277,15 +2458,15 @@
 		document.getElementById("orcamentoSerafina").style.filter = "unset";
 		$("#modalSelectTipoItemSerafina").modal('hide');
 	});
-	
+
 	function enableInputSerafina() {
 		document.querySelector(`input[id="inputProdutoSerafina"]`).disabled = false;
 	}
-	
+
 	function disableInputSerafina() {
 		document.querySelector(`input[id="inputProdutoSerafina"]`).disabled = true;
 	}
-	
+
 	function addLinhasSerafina() {
 
 		var parametros = {
@@ -2306,24 +2487,24 @@
 					linhasSerafina.push({ "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
-					var prod = objRetorno.filter(({ item }) => item == produtoSel);  
+					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasSerafina.push({ "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": prod[0].largura, "altura": "", "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
 					linhasSerafina.push({ "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": "", "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
-				
+
 				atualizarTabelaSerafina();
 			}
 		});
 	}
-	
+
 	function escreverValorSerafina(prop, i, value) {
 		var item = linhasSerafina[i];
 		item[prop] = value;
 	}
-	
+
 	function atualizarTabelaSerafina() {
 
 		var index;
@@ -2340,8 +2521,8 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 				document.querySelector('#linhaTableSerafina').innerHTML = linhasSerafina.map(function (prod, indice) {
-				index = indice;
-				return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+					index = indice;
+					return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
 							<span type="button">
 							<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoSerafina(event.target, ${indice})"></i>
@@ -2400,10 +2581,10 @@
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('preco',${indice},this.value)"></td>
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorSerafina('total',${indice},this.value)"></td>
 					</tr>`;
-					
+
 				}).join("");
-			}, 
-			complete: function(){
+			},
+			complete: function () {
 				listaTipoEmbalagemFlexivel(index);
 				listaTipoLaminadoFlexivel(index);
 				listaTipoMaterialFlexivel(index);
@@ -2411,8 +2592,8 @@
 				lisoImpressoFlexivel(index);
 				listaTipoSoldaFlexivel(index);
 			}
-						});
-					}
+		});
+	}
 
 	function montaJsonSerafina() {
 		var unidadeSel = document.getElementById("unidadeSelecionada").value;
@@ -2421,12 +2602,12 @@
 		var vendedorSel = document.getElementById("filtroVendedorSerafina").value;
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafina };
 	}
-	
+
 	function removerElementoSerafina(elementoClicado, i) {
 		linhasSerafina.splice(i, 1);
 		atualizarTabelaSerafina();
 	}
-	
+
 	function salvaItensBaseClicSerafina() {
 		montaJsonSerafina();
 		var parametros = {
