@@ -1152,7 +1152,9 @@
 			$("#modalEdicao").modal('show');
 		}
 		else if (_unidade == "Serafina") {
+			var index;
 			orcamento.itens.map((prod, indice) => {
+				idex = indice;
 				linhasTableSerafinaEdicao += `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 					<th scope="row">
 						<span type="button">
@@ -1168,43 +1170,26 @@
 					<td>
 						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
-									<option value="1">Saco</option>
-									<option value="2">Filme</option>
 						</select>
 					</td>
 					<td>
 						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoLaminado}"</option>
-									<option value="1">Monocamada</option>
-									<option value="2">Laminado</option>
-									<option value="2">Bilaminado</option>
 						</select>
 					</td>
 					<td>
 						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoMaterial}"</option>
-									<option value="1">tipoMaterial-1</option>
-									<option value="2">tipoMaterial-2</option>
-									<option value="3">tipoMaterial-3</option>
-									<option value="4">tipoMaterial-4</option>
 						</select>
 					</td>
 					<td>
 						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
-									<option value="1">Azul</option>
-									<option value="3">Verde</option>
-									<option value="2">Amarelo</option>
-									<option value="4">Vermelho</option>
-									<option value="5">Preto</option>
-									<option value="6">Transparente</option>
 						</select>
 					</td>
 					<td>
 						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.lisoImpresso}"</option>
-									<option value="1">Liso</option>
-									<option value="2">Impresso</option>	
 						</select>
 					</td>
 					<td>
@@ -1222,10 +1207,6 @@
 					</td>
 					<td>
 						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoSolda}"</option>
-									<option value="1">Solda Lateral Simples</option>
-									<option value="2">Solda Lateral Bainha</option>
-									<option value="3">Solda Pouch</option>
 						</select>
 					</td>
 					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorEdicaoSerafina('prazoEntrega',${indice},this.value)"></td>
@@ -1235,7 +1216,14 @@
 				</tr>`;
 			}).join("");
 			document.getElementById("linhaTableSerafinaEdicao").innerHTML = linhasTableSerafinaEdicao;
+			listaTipoEmbalagemFlexivelEdicao(index);
+			listaTipoLaminadoFlexivelEdicao(index);
+			listaTipoMaterialFlexivelEdicao(index);
+			listaPigmentosFlexivelEdicao(index);
+			lisoImpressoFlexivelEdicao(index);
+			listaTipoSoldaFlexivelEdicao(index);				
 			$("#modalEdicaoSerafina").modal('show');
+			
 		}
 		else if (_unidade == "Matriz") {
 			orcamento.itens.map((prod, indice) => {
