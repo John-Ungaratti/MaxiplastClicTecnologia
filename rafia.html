@@ -2574,12 +2574,12 @@
 				}).join("");
 			},
 			complete: function () {
-				listaTipoEmbalagemFlexivel(index);
-				listaTipoLaminadoFlexivel(index);
-				listaTipoMaterialFlexivel(index);
-				listaPigmentosFlexivel(index);
-				lisoImpressoFlexivel(index);
-				listaTipoSoldaFlexivel(index);
+				listaTipoEmbalagemMatriz(index);
+				listaTipoLaminadoMatriz(index);
+				listaTipoMaterialMatriz(index);
+				listaPigmentosMatriz(index);
+				lisoImpressoMatriz(index);
+				listaTipoSoldaMatriz(index);
 			}
 		});
 	}
@@ -2623,6 +2623,169 @@
 </script>
 <!--          						S C R I P T S  -  M A T R I Z - EDICAO					-->
 <script>
+	function listaTipoEmbalagemMatrizEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoEmbalagemFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.tipoEmbalagem.map((option) => {
+					let optionsTipoEmb = document.createElement('option');
+					optionsTipoEmb.innerHTML = option;
+
+					console.log(optionsTipoEmb);
+
+					document.getElementById('tipoEmbalagemMatrizEdicao' + idx).appendChild(optionsTipoEmb);
+				});
+
+			}
+		});
+	};
+
+	function listaTipoLaminadoMatrizEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoLaminadoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.tipoLaminado.map((option) => {
+					let optionsTipoLam = document.createElement('option');
+					optionsTipoLam.innerHTML = option;
+
+					console.log(optionsTipoLam);
+
+					document.getElementById('tipoLaminadoMatrizEdicao' + idx).appendChild(optionsTipoLam);
+				});
+			}
+		});
+	};
+
+	function listaTipoMaterialMatrizEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoMaterialFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoMaterial.map((option) => {
+					let optionstipoMat = document.createElement('option');
+					optionstipoMat.innerHTML = option;
+
+					console.log(optionstipoMat);
+
+					document.getElementById('tipoMaterialMatrizEdicao' + idx).appendChild(optionstipoMat);
+				});
+			}
+		});
+	};
+
+	function listaPigmentosMatrizEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaPigmentosFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.pigmentadoTransparente.map((option) => {
+					let optionsPigmentoTransp = document.createElement('option');
+					optionsPigmentoTransp.innerHTML = option;
+
+					console.log(optionsPigmentoTransp);
+
+					document.getElementById('pigmentadoTransparenteMatrizEdicao' + idx).appendChild(optionsPigmentoTransp);
+				});
+			}
+		});
+	};
+
+	function lisoImpressoMatrizEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "lisoImpressoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.lisoImpresso.map((option) => {
+					let optionsLisoImpresso = document.createElement('option');
+					optionsLisoImpresso.innerHTML = option;
+
+					console.log(optionsLisoImpresso);
+
+					document.getElementById('lisoImpressoMatrizEdicao' + idx).appendChild(optionsLisoImpresso);
+				});
+			}
+		});
+	};
+
+	function listaTipoSoldaMatrizEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoSoldaFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoSolda.map((option) => {
+					let optionsTipoSolda = document.createElement('option');
+					optionsTipoSolda.innerHTML = option;
+
+					console.log(optionsTipoSolda);
+
+					document.getElementById('tipoSoldaMatrizEdicao' + idx).appendChild(optionsTipoSolda);
+				});
+			}
+		});
+	};
+
 	function mostraModalProdutosMatriz() {
 		$("#modalSelectTipoItemMatrizEdicao").modal('show');
 	}
@@ -2647,88 +2810,92 @@
 	}
 
 	function atualizarTabelaMatrizEdicao() {
-		document.querySelector('#linhaTableMatrizEdicao').innerHTML = linhasMatrizEdicao.map(function (prod, indice) {
-			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
-					<th scope="row">
-						<span type="button">
-						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoMatrizEdicao(event.target, ${indice})"></i>
-						</span>
-					</th>
-					<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoMatriz('item',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoMatriz('largura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoMatriz('altura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoMatriz('espessura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoMatriz('unidMed',${indice},this.value)"></input></td>
-					<td><input value= "${prod.quantidade}" onkeyup="escreverValorEdicaoMatriz('quantidade',${indice},this.value)"></input></td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoEmbalagem}"</option>
-									<option value="1">Saco</option>
-									<option value="2">Filme</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoLaminado}"</option>
-									<option value="1">Monocamada</option>
-									<option value="2">Laminado</option>
-									<option value="2">Bilaminado</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoMaterial}"</option>
-									<option value="1">tipoMaterial-1</option>
-									<option value="2">tipoMaterial-2</option>
-									<option value="3">tipoMaterial-3</option>
-									<option value="4">tipoMaterial-4</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
-									<option value="1">Azul</option>
-									<option value="3">Verde</option>
-									<option value="2">Amarelo</option>
-									<option value="4">Vermelho</option>
-									<option value="5">Preto</option>
-									<option value="6">Transparente</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.lisoImpresso}"</option>
-									<option value="1">Liso</option>
-									<option value="2">Impresso</option>	
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('qtdCores',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.qtdCores}"</option>
-									<option value="1">1C</option>
-									<option value="2">2C</option>
-									<option value="3">3C</option>
-									<option value="4">4C</option>
-									<option value="5">5C</option>
-									<option value="6">6C</option>
-									<option value="7">7C</option>
-									<option value="8">8C</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('tipoSolda',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoSolda}"</option>
-									<option value="1">Solda Lateral Simples</option>
-									<option value="2">Solda Lateral Bainha</option>
-									<option value="3">Solda Pouch</option>
-						</select>
-					</td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorEdicaoMatriz('prazoEntrega',${indice},this.value)"></td>
-					<td><input value= "${prod.obs}" onkeyup="escreverValorEdicaoMatriz('obs',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoMatriz('preco',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoMatriz('total',${indice},this.value)"></td>
-				</tr>`;
-		}).join("");
+		var index;
+
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMatrizMock"
+		};
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				document.querySelector('#linhaTableMatrizEdicao').innerHTML = linhasMatrizEdicao.map(function (prod, indice) {
+					return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+							<th scope="row">
+								<span type="button">
+								<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoMatrizEdicao(event.target, ${indice})"></i>
+								</span>
+							</th>
+							<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoMatriz('item',${indice},this.value)"></input></td>
+							<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoMatriz('largura',${indice},this.value)"></input></td>
+							<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoMatriz('altura',${indice},this.value)"></input></td>
+							<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoMatriz('espessura',${indice},this.value)"></input></td>
+							<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoMatriz('unidMed',${indice},this.value)"></input></td>
+							<td><input value= "${prod.quantidade}" onkeyup="escreverValorEdicaoMatriz('quantidade',${indice},this.value)"></input></td>
+							<td>
+								<select id="tipoEmbalagemMatrizEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+											<option selected disabled>"${prod.tipoEmbalagem}"</option>
+								</select>
+							</td>
+							<td>
+								<select id="tipoLaminadoMatrizEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+											<option selected disabled>"${prod.tipoLaminado}"</option>
+								</select>
+							</td>
+							<td>
+								<select id="tipoMaterialMatrizEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+											<option selected disabled>"${prod.tipoMaterial}"</option>
+								</select>
+							</td>
+							<td>
+								<select id="pigmentadoTransparenteMatriz${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+											<option selected disabled>"${prod.pigmentadoTransparente}"</option>
+								</select>
+							</td>
+							<td>
+								<select id="lisoImpressoMatrizEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+											<option selected disabled>"${prod.lisoImpresso}"</option>
+								</select>
+							</td>
+							<td>
+								<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('qtdCores',${indice},this.options[this.selectedIndex].text)">
+											<option selected disabled>"${prod.qtdCores}"</option>
+											<option value="1">1C</option>
+											<option value="2">2C</option>
+											<option value="3">3C</option>
+											<option value="4">4C</option>
+											<option value="5">5C</option>
+											<option value="6">6C</option>
+											<option value="7">7C</option>
+											<option value="8">8C</option>
+								</select>
+							</td>
+							<td>
+								<select id="tipoSoldaMatrizEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+											<option selected disabled>"${prod.tipoSolda}"</option>
+								</select>
+							</td>
+							<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorEdicaoMatriz('prazoEntrega',${indice},this.value)"></td>
+							<td><input value= "${prod.obs}" onkeyup="escreverValorEdicaoMatriz('obs',${indice},this.value)"></td>
+							<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoMatriz('preco',${indice},this.value)"></td>
+							<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoMatriz('total',${indice},this.value)"></td>
+						</tr>`;
+				}).join("");
+			},
+			complete: function(){
+				listaTipoEmbalagemMatrizEdicao(index);
+				listaTipoLaminadoMatrizEdicao(index);
+				listaTipoMaterialMatrizEdicao(index);
+				listaPigmentosMatrizEdicao(index);
+				lisoImpressoMatrizEdicao(index);
+				listaTipoSoldaMatrizEdicao(index);
+			}
+		});
 	}
 	function addLinhasMatrizEdicao() {
 		var parametros = {
@@ -2823,6 +2990,169 @@
 </script>
 <!--          						S C R I P T S  -	M A T R I Z         					-->
 <script>
+	function listaTipoEmbalagemMatriz(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoEmbalagemFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.tipoEmbalagem.map((option) => {
+					let optionsTipoEmb = document.createElement('option');
+					optionsTipoEmb.innerHTML = option;
+
+					console.log(optionsTipoEmb);
+
+					document.getElementById('tipoEmbalagemMatriz' + idx).appendChild(optionsTipoEmb);
+				});
+
+			}
+		});
+	};
+
+	function listaTipoLaminadoMatriz(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoLaminadoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.tipoLaminado.map((option) => {
+					let optionsTipoLam = document.createElement('option');
+					optionsTipoLam.innerHTML = option;
+
+					console.log(optionsTipoLam);
+
+					document.getElementById('tipoLaminadoMatriz' + idx).appendChild(optionsTipoLam);
+				});
+			}
+		});
+	};
+
+	function listaTipoMaterialMatriz(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoMaterialFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoMaterial.map((option) => {
+					let optionstipoMat = document.createElement('option');
+					optionstipoMat.innerHTML = option;
+
+					console.log(optionstipoMat);
+
+					document.getElementById('tipoMaterialMatriz' + idx).appendChild(optionstipoMat);
+				});
+			}
+		});
+	};
+
+	function listaPigmentosMatriz(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaPigmentosFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				console.log("objRetorno", objRetorno);
+
+				objRetorno.pigmentadoTransparente.map((option) => {
+					let optionsPigmentoTransp = document.createElement('option');
+					optionsPigmentoTransp.innerHTML = option;
+
+					console.log(optionsPigmentoTransp);
+
+					document.getElementById('pigmentadoTransparenteMatriz' + idx).appendChild(optionsPigmentoTransp);
+				});
+			}
+		});
+	};
+
+	function lisoImpressoMatriz(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "lisoImpressoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.lisoImpresso.map((option) => {
+					let optionsLisoImpresso = document.createElement('option');
+					optionsLisoImpresso.innerHTML = option;
+
+					console.log(optionsLisoImpresso);
+
+					document.getElementById('lisoImpressoMatriz' + idx).appendChild(optionsLisoImpresso);
+				});
+			}
+		});
+	};
+
+	function listaTipoSoldaMatriz(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoSoldaFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoSolda.map((option) => {
+					let optionsTipoSolda = document.createElement('option');
+					optionsTipoSolda.innerHTML = option;
+
+					console.log(optionsTipoSolda);
+
+					document.getElementById('tipoSoldaMatriz' + idx).appendChild(optionsTipoSolda);
+				});
+			}
+		});
+	};
+	
 	$("#addItensMatriz").click(function () {
 		var formulario = document.getElementById("formMatriz");
 		if (!formulario.checkValidity()) {
@@ -2908,88 +3238,90 @@
 	}
 	function atualizarTabelaMatriz() {
 
-		document.querySelector('#linhaTableMatriz').innerHTML = linhasMatriz.map(function (prod, indice) {
-			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
-					<th scope="row">
-						<span type="button">
-						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoMatriz(event.target, ${indice})"></i>
-						</span>
-					</th>
-					<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorMatriz('item',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorMatriz('largura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorMatriz('altura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorMatriz('espessura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorMatriz('unidMed',${indice},this.value)"></input></td>
-					<td><input value= "${prod.quantidade}" onkeyup="escreverValorMatriz('quantidade',${indice},this.value)"></input></td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoEmbalagem}"</option>
-									<option value="1">Saco</option>
-									<option value="2">Filme</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoLaminado}"</option>
-									<option value="1">Monocamada</option>
-									<option value="2">Laminado</option>
-									<option value="2">Bilaminado</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoMaterial}"</option>
-									<option value="1">tipoMaterial-1</option>
-									<option value="2">tipoMaterial-2</option>
-									<option value="3">tipoMaterial-3</option>
-									<option value="4">tipoMaterial-4</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
-									<option value="1">Azul</option>
-									<option value="3">Verde</option>
-									<option value="2">Amarelo</option>
-									<option value="4">Vermelho</option>
-									<option value="5">Preto</option>
-									<option value="6">Transparente</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.lisoImpresso}"</option>
-									<option value="1">Liso</option>
-									<option value="2">Impresso</option>	
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('qtdCores',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.qtdCores}"</option>
-									<option value="1">1C</option>
-									<option value="2">2C</option>
-									<option value="3">3C</option>
-									<option value="4">4C</option>
-									<option value="5">5C</option>
-									<option value="6">6C</option>
-									<option value="7">7C</option>
-									<option value="8">8C</option>
-						</select>
-					</td>
-					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoSolda',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.tipoSolda}"</option>
-									<option value="1">Solda Lateral Simples</option>
-									<option value="2">Solda Lateral Bainha</option>
-									<option value="3">Solda Pouch</option>
-						</select>
-					</td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorMatriz('prazoEntrega',${indice},this.value)"></td>
-					<td><input value= "${prod.obs}" onkeyup="escreverValorMatriz('obs',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorMatriz('preco',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorMatriz('total',${indice},this.value)"></td>
-				</tr>`;
-		}).join("");
+		var index;
+
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMatrizMock"
+		};
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				document.querySelector('#linhaTableMatriz').innerHTML = linhasMatriz.map(function (prod, indice) {
+					return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+						<th scope="row">
+							<span type="button">
+							<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoMatriz(event.target, ${indice})"></i>
+							</span>
+						</th>
+						<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorMatriz('item',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorMatriz('largura',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorMatriz('altura',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorMatriz('espessura',${indice},this.value)"></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorMatriz('unidMed',${indice},this.value)"></input></td>
+						<td><input value="${prod.quantidade}" onkeyup="escreverValorMatriz('quantidade',${indice},this.value)"></input></td>
+						<td>
+							<select id="tipoEmbalagemMatriz${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.tipoEmbalagem}"</option>
+							</select>
+						</td>
+						<td>
+							<select id="tipoLaminadoMatriz${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.tipoLaminado}"</option>
+							</select>
+						</td>
+						<td>
+							<select id="tipoMaterialMatriz${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.tipoMaterial}"</option>
+							</select>
+						</td>
+						<td>
+							<select  id="pigmentadoTransparenteMatriz${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.pigmentadoTransparente}"</option>
+							</select>
+						</td>
+						<td>
+							<select id="lisoImpressoMatriz${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.lisoImpresso}"</option>
+							</select>
+						</td>
+						<td>
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('qtdCores',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.qtdCores}"</option>
+										<option value="1">1C</option>
+										<option value="2">2C</option>
+										<option value="3">3C</option>
+										<option value="4">4C</option>
+										<option value="5">5C</option>
+										<option value="6">6C</option>
+										<option value="7">7C</option>
+										<option value="8">8C</option>
+							</select>
+						</td>
+						<td>
+							<select id="tipoSoldaMatriz${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorMatriz('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.tipoSolda}"</option>
+							</select>
+						</td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorMatriz('prazoEntrega',${indice},this.value)"></td>
+						<td><input value= "${prod.obs}" onkeyup="escreverValorMatriz('obs',${indice},this.value)"></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorMatriz('preco',${indice},this.value)"></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorMatriz('total',${indice},this.value)"></td>
+					</tr>`;
+				}).join("");
+			},
+			complete: function(){
+				listaTipoEmbalagemMatriz(index);
+				listaTipoLaminadoMatriz(index);
+				listaTipoMaterialMatriz(index);
+				listaPigmentosMatriz(index);
+				lisoImpressoMatriz(index);
+				listaTipoSoldaMatriz(index);
+			}
+		});
 	}
 	function removerElementoMatriz(elementoClicado, i) {
 		linhasMatriz.splice(i, 1);
