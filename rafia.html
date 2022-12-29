@@ -1168,27 +1168,27 @@
 					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoSerafina('unidMed',${indice},this.value)"></input></td>
 					<td><input value= "${prod.quantidade}" onkeyup="escreverValorEdicaoSerafina('quantidade',${indice},this.value)"></input></td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+						<select id="tipoEmbalagemSerafinaEdicao" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+						<select id="tipoLaminadoSerafinaEdicao" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoLaminado}"</option>
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+						<select id="tipoMaterialSerafinaEdicao" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoMaterial}"</option>
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+						<select id="pigmentadoTransparenteSerafinaEdicao" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+						<select id="lisoImpressoSerafinaEdicao" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.lisoImpresso}"</option>
 						</select>
 					</td>
@@ -1206,7 +1206,8 @@
 						</select>
 					</td>
 					<td>
-						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+						<select id="tipoSoldaSerafinaEdicao" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+							<option selected disabled>${prod.tipoSolda}</option>
 						</select>
 					</td>
 					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorEdicaoSerafina('prazoEntrega',${indice},this.value)"></td>
