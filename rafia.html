@@ -2391,7 +2391,7 @@
 							</select>
 						</td>
 						<td>
-							<select id="tipoSoldaSerafina" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+							<select id="tipoSoldaSerafina${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
 										<option selected disabled>"${prod.tipoSolda}"</option>
 							</select>
 						</td>
