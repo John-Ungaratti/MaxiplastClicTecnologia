@@ -1861,13 +1861,9 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
-				console.log("objRetorno", objRetorno);
-
 				objRetorno.tipoEmbalagem.map((option) => {
 					let optionsTipoEmb = document.createElement('option');
 					optionsTipoEmb.innerHTML = option;
-
-					console.log(optionsTipoEmb);
 
 					document.getElementById('tipoEmbalagemSerafinaEdicao' + idx).appendChild(optionsTipoEmb);
 				});
@@ -1890,13 +1886,9 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
-				console.log("objRetorno", objRetorno);
-
 				objRetorno.tipoLaminado.map((option) => {
 					let optionsTipoLam = document.createElement('option');
 					optionsTipoLam.innerHTML = option;
-
-					console.log(optionsTipoLam);
 
 					document.getElementById('tipoLaminadoSerafinaEdicao' + idx).appendChild(optionsTipoLam);
 				});
@@ -1922,8 +1914,6 @@
 					let optionstipoMat = document.createElement('option');
 					optionstipoMat.innerHTML = option;
 
-					console.log(optionstipoMat);
-
 					document.getElementById('tipoMaterialSerafinaEdicao' + idx).appendChild(optionstipoMat);
 				});
 			}
@@ -1944,13 +1934,9 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
-				console.log("objRetorno", objRetorno);
-
 				objRetorno.pigmentadoTransparente.map((option) => {
 					let optionsPigmentoTransp = document.createElement('option');
 					optionsPigmentoTransp.innerHTML = option;
-
-					console.log(optionsPigmentoTransp);
 
 					document.getElementById('pigmentadoTransparenteSerafinaEdicao' + idx).appendChild(optionsPigmentoTransp);
 				});
@@ -1976,8 +1962,6 @@
 					let optionsLisoImpresso = document.createElement('option');
 					optionsLisoImpresso.innerHTML = option;
 
-					console.log(optionsLisoImpresso);
-
 					document.getElementById('lisoImpressoSerafinaEdicao' + idx).appendChild(optionsLisoImpresso);
 				});
 			}
@@ -2001,9 +1985,6 @@
 				objRetorno.tipoSolda.map((option) => {
 					let optionsTipoSolda = document.createElement('option');
 					optionsTipoSolda.innerHTML = option;
-
-					console.log(optionsTipoSolda);
-
 					document.getElementById('tipoSoldaSerafinaEdicao' + idx).appendChild(optionsTipoSolda);
 				});
 			}
@@ -2240,13 +2221,9 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
-				console.log("objRetorno", objRetorno);
-
 				objRetorno.tipoEmbalagem.map((option) => {
 					let optionsTipoEmb = document.createElement('option');
 					optionsTipoEmb.innerHTML = option;
-
-					console.log(optionsTipoEmb);
 
 					document.getElementById('tipoEmbalagemSerafina' + idx).appendChild(optionsTipoEmb);
 				});
@@ -2268,15 +2245,9 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-
-				console.log("objRetorno", objRetorno);
-
 				objRetorno.tipoLaminado.map((option) => {
 					let optionsTipoLam = document.createElement('option');
 					optionsTipoLam.innerHTML = option;
-
-					console.log(optionsTipoLam);
-
 					document.getElementById('tipoLaminadoSerafina' + idx).appendChild(optionsTipoLam);
 				});
 			}
@@ -2301,8 +2272,6 @@
 					let optionstipoMat = document.createElement('option');
 					optionstipoMat.innerHTML = option;
 
-					console.log(optionstipoMat);
-
 					document.getElementById('tipoMaterialSerafina' + idx).appendChild(optionstipoMat);
 				});
 			}
@@ -2323,13 +2292,9 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
-				console.log("objRetorno", objRetorno);
-
 				objRetorno.pigmentadoTransparente.map((option) => {
 					let optionsPigmentoTransp = document.createElement('option');
 					optionsPigmentoTransp.innerHTML = option;
-
-					console.log(optionsPigmentoTransp);
 
 					document.getElementById('pigmentadoTransparenteSerafina' + idx).appendChild(optionsPigmentoTransp);
 				});
@@ -2355,8 +2320,6 @@
 					let optionsLisoImpresso = document.createElement('option');
 					optionsLisoImpresso.innerHTML = option;
 
-					console.log(optionsLisoImpresso);
-
 					document.getElementById('lisoImpressoSerafina' + idx).appendChild(optionsLisoImpresso);
 				});
 			}
@@ -2376,13 +2339,9 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-
 				objRetorno.tipoSolda.map((option) => {
 					let optionsTipoSolda = document.createElement('option');
 					optionsTipoSolda.innerHTML = option;
-
-					console.log(optionsTipoSolda);
-
 					document.getElementById('tipoSoldaSerafina' + idx).appendChild(optionsTipoSolda);
 				});
 			}
