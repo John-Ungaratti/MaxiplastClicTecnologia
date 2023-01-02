@@ -713,7 +713,7 @@
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
 					onclick="limparLinhasEdicaoMatriz()">Fechar</button>
 				<button type="button" class="btn btn-primary" onclick="atualizarItensBaseClicMatriz()">Atualizar</button>
-				<button type="button" class="btn btn-success">Enviar</button>
+				<button type="button" class="btn btn-success" onclick="enviarWebServiceMaxiplastMatriz()">Enviar</button>
 			</div>
 		</div>|
 	</div>
@@ -2915,6 +2915,10 @@
 			}
 		});
 	}
+
+	function enviarWebServiceMaxiplastMatriz(){
+		console.log(linhasMatrizEdicao);
+	}
 </script>
 <!--          						S C R I P T S  -	M A T R I Z         					-->
 <script>
@@ -3265,4 +3269,5 @@
 			}
 		});
 	}
+
 </script>
