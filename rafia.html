@@ -3246,6 +3246,7 @@
 		var clienteSel = document.getElementById("filtroClienteMatriz").value;
 		var orcamentoSel = document.getElementById("inputOrcamentoMatriz").value;
 		var vendedorSel = document.getElementById("filtroVendedorMatriz").value;
+		linhasMatriz["unidade"] = "Matriz";
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatriz };
 	}
 	function salvaItensBaseClicMatriz() {
