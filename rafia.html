@@ -133,8 +133,8 @@
 									<th scope="col">Válvula</th>
 									<th scope="col">Medida Válvula</th>
 									<th scope="col">Lyner</th>
-									<th scope="col">largura</th>
-									<th scope="col">comprimento</th>
+									<th scope="col">Largura</th>
+									<th scope="col">Comprimento</th>
 									<th scope="col">Estado Destino</th>
 									<th scope="col">Gramatura</th>
 								</tr>
@@ -1746,10 +1746,10 @@
 							  <option value="2">Não</option>
 							</select>
 						</td>
-						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
-						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
+						<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
+						<td><input type="number"${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
-						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+						<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
 		}).join("");
 	}
