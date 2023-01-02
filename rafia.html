@@ -1022,9 +1022,9 @@
 								</th>
 								<td><input value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
 								<td><input value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
-								<td><input value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
-								<td><input value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
-								<td><input value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
+								<td><input type="number" value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
+								<td><input type="number" value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
+								<td><input type="number" value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
 								<td>
 									<select onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
@@ -1142,10 +1142,10 @@
 									<option value="2">Não</option>
 									</select>
 								</td>
-								<td><input value="${prod.largura}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
-								<td><input value="${prod.comprimento}" onkeyup="escreverValorEdicao('comprimento',${indice},this.value)" ></input></td>
+								<td><input type="number" value="${prod.largura}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
+								<td><input type="number" value="${prod.comprimento}" onkeyup="escreverValorEdicao('comprimento',${indice},this.value)" ></input></td>
 								<td><input value="${prod.estadoDestino}" onkeyup="escreverValorEdicao('estadoDestino',${indice},this.value)"></input></td>
-								<td><input value="${prod.gramatura}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
+								<td><input type="number" value="${prod.gramatura}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
 							</tr>`;
 			}).join("");
 			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
@@ -1162,11 +1162,11 @@
 						</span>
 					</th>
 					<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoSerafina('item',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoSerafina('largura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoSerafina('altura',${indice},this.value)"></input></td>
-					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoSerafina('espessura',${indice},this.value)"></input></td>
+					<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoSerafina('largura',${indice},this.value)"></input></td>
+					<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoSerafina('altura',${indice},this.value)"></input></td>
+					<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoSerafina('espessura',${indice},this.value)"></input></td>
 					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoSerafina('unidMed',${indice},this.value)"></input></td>
-					<td><input value= "${prod.quantidade}" onkeyup="escreverValorEdicaoSerafina('quantidade',${indice},this.value)"></input></td>
+					<td><input type="number" value= "${prod.quantidade}" onkeyup="escreverValorEdicaoSerafina('quantidade',${indice},this.value)"></input></td>
 					<td>
 						<select id="tipoEmbalagemSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
@@ -1212,8 +1212,8 @@
 					</td>
 					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorEdicaoSerafina('prazoEntrega',${indice},this.value)"></td>
 					<td><input value= "${prod.obs}" onkeyup="escreverValorEdicaoSerafina('obs',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('preco',${indice},this.value)"></td>
-					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('total',${indice},this.value)"></td>
+					<td><input type="number" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('preco',${indice},this.value)"></td>
+					<td><input type="number" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('total',${indice},this.value)"></td>
 				</tr>`;
 			}).join("");
 			document.getElementById("linhaTableSerafinaEdicao").innerHTML = linhasTableSerafinaEdicao;
@@ -1237,11 +1237,11 @@
 								</span>
 							</th>
 							<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoMatriz('item',${indice},this.value)"></input></td>
-							<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoMatriz('largura',${indice},this.value)"></input></td>
-							<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoMatriz('altura',${indice},this.value)"></input></td>
-							<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoMatriz('espessura',${indice},this.value)"></input></td>
+							<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoMatriz('largura',${indice},this.value)"></input></td>
+							<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoMatriz('altura',${indice},this.value)"></input></td>
+							<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoMatriz('espessura',${indice},this.value)"></input></td>
 							<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoMatriz('unidMed',${indice},this.value)"></input></td>
-							<td><input value= "${prod.quantidade}" onkeyup="escreverValorEdicaoMatriz('quantidade',${indice},this.value)"></input></td>
+							<td><input type="number" value="${prod.quantidade}" onkeyup="escreverValorEdicaoMatriz('quantidade',${indice},this.value)"></input></td>
 							<td>
 								<select id="tipoEmbalagemMatrizEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoMatriz('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 											<option selected disabled>"${prod.tipoEmbalagem}"</option>
@@ -1286,9 +1286,9 @@
 								</select>
 							</td>
 							<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorEdicaoMatriz('prazoEntrega',${indice},this.value)"></td>
-							<td><input value= "${prod.obs}" onkeyup="escreverValorEdicaoMatriz('obs',${indice},this.value)"></td>
-							<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoMatriz('preco',${indice},this.value)"></td>
-							<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoMatriz('total',${indice},this.value)"></td>
+							<td><input value="${prod.obs}" onkeyup="escreverValorEdicaoMatriz('obs',${indice},this.value)"></td>
+							<td><input type="number" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoMatriz('preco',${indice},this.value)"></td>
+							<td><input type="number" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoMatriz('total',${indice},this.value)"></td>
 						</tr>`
 			}).join("");
 			document.getElementById("linhaTableMatrizEdicao").innerHTML = linhasTableMatrizEdicao;
