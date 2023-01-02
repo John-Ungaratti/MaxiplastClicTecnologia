@@ -2722,16 +2722,19 @@
 	function limparLinhasEdicaoMatriz() {
 		linhasTableMatrizEdicao = "";
 	}
+
 	$("#addItensMatrizEdicao").click(function () {
 		$("#modalSelectTipoItemMatrizEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicaoMatriz").style.filter = "blur(2px)";
 	});
+	
 	$("#cancelModalProdutoMatrizEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "unset";
 		document.getElementById("modalEdicaoMatriz").style.filter = "unset";
 		$("#modalSelectTipoItemMatrizEdicao").modal('hide');
 	});
+
 	function enableInputMatrizEdicao() {
 		document.querySelector(`input[id="inputProdutoMatrizEdicao"]`).disabled = false;
 	}
@@ -2829,6 +2832,7 @@
 			}
 		});
 	}
+	
 	function addLinhasMatrizEdicao() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -2885,18 +2889,22 @@
 			}
 		}
 	});
+	
 	function escreverValorEdicaoMatriz(prop, i, value) {
 		var item = linhasMatrizEdicao[i];
 		item[prop] = value;
 	}
+	
 	function montaJsonMatrizEdicao() {
 		console.log("linhasMatrizEdicao", linhasMatrizEdicao);
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
 	}
+
 	function removerElementoMatrizEdicao(elementoClicado, i) {
 		linhasMatrizEdicao.splice(i, 1);
 		atualizarTabelaMatrizEdicao();
 	}
+	
 	function atualizarItensBaseClicMatriz() {
 
 		montaJsonMatrizEdicao();
