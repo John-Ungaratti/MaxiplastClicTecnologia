@@ -1006,7 +1006,6 @@
 		}
 		else if (_unidade == "Matriz") {
 			linhasMatrizEdicao = [...orcamento.itens];
-			console.log("LinhasMatrizEdicao", linhasMatrizEdicao);
 		}
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
@@ -2417,7 +2416,6 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-				console.log(objRetorno);
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
 
@@ -2932,6 +2930,7 @@
 
 	function enviarWebServiceMaxiplastMatriz(){
 		var jsonOrcamento = {"orcamento":linhasMatrizEdicao};
+		console.log(jsonOrcamento);
 	}
 </script>
 <!--          						S C R I P T S  -	M A T R I Z         					-->
