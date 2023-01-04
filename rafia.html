@@ -2657,11 +2657,11 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
-				 console.log(objRetorno);
-
 				objRetorno.pigmentadoTransparente.map((option) => {
 					let optionsPigmentoTransp = document.createElement('option');
 					optionsPigmentoTransp.innerHTML = option;
+
+					console.log(optionsPigmentoTransp);
 
 					document.getElementById('pigmentadoTransparenteMatrizEdicao' + idx).appendChild(optionsPigmentoTransp);
 				});
