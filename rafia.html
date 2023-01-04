@@ -2657,6 +2657,8 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 
+				 console.log(objRetorno);
+
 				objRetorno.pigmentadoTransparente.map((option) => {
 					let optionsPigmentoTransp = document.createElement('option');
 					optionsPigmentoTransp.innerHTML = option;
