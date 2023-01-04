@@ -2426,7 +2426,6 @@
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					console.log("prod[0].codPro", prod[0].codPro);
 					linhasSerafina.push({ "empresa": "2", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
@@ -2932,6 +2931,7 @@
 	}
 
 	function enviarWebServiceMaxiplastMatriz(){
+		console.log(linhasMatrizEdicao);
 		var jsonOrcamento = {"orcamento":linhasMatrizEdicao};
 		console.log(jsonOrcamento);
 	}
