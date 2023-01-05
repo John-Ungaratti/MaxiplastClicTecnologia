@@ -973,7 +973,6 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-				console.log(objRetorno);
 				objRetorno.map(({ id, item }) => produtosExistentesHTML += `<option id="${id}" name="produtosMatriz">${item}</option>`);
 				document.getElementById("produtosMatriz").innerHTML = produtosExistentesHTML;
 			}
@@ -1032,7 +1031,6 @@
 					item.id = idSel;
 				}
 			});
-			console.log("linhasMatrizEdicao pós map", linhasMatrizEdicao);
 		}
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
@@ -2957,8 +2955,6 @@
 	}
 
 	function enviarWebServiceMaxiplastMatriz(){
-		console.log(linhasMatrizEdicao);
-
 		var jsonOrcamento = {"orcamento":linhasMatrizEdicao};
 		console.log(jsonOrcamento);
 	}
