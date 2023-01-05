@@ -2535,7 +2535,7 @@
 	}unidadeSel
 
 	function montaJsonSerafina() {
-		var unidadeSel = document.getElementById("unidadeSelecionada").value;
+		var unidadeSel = "Serafina";
 		var clienteSel = document.getElementById("filtroClienteSerafina").value;
 		var orcamentoSel = document.getElementById("inputOrcamentoSerafina").value;
 		var vendedorSel = document.getElementById("filtroVendedorSerafina").value;
@@ -3148,15 +3148,15 @@
 				var produtoSel = document.getElementById("inputProdutoMatriz").value;
 				var checkBox = document.querySelector(`input[name="flexRadioMatriz"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
-					linhasMatriz.push({"numOrc":"", "empresa": "3", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasMatriz.push({"empresa": "3", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasMatriz.push({"numOrc":"", "empresa": "3", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasMatriz.push({"empresa": "3", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasMatriz.push({"numOrc":"", "empresa": "3", "tipoItem": "Existente","id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasMatriz.push({"empresa": "3", "tipoItem": "Existente","id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 				atualizarTabelaMatriz();
 			}
@@ -3258,7 +3258,7 @@
 		atualizarTabelaMatriz();
 	}
 	function montaJsonMatriz() {
-		var unidadeSel = document.getElementById("unidadeSelecionada").value;
+		var unidadeSel = "Matriz";
 		var clienteSel = document.getElementById("filtroClienteMatriz").value;
 		var orcamentoSel = document.getElementById("inputOrcamentoMatriz").value;
 		var vendedorSel = document.getElementById("filtroVendedorMatriz").value;
