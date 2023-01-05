@@ -1002,18 +1002,35 @@
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 		if (_unidade == "Rafia") {
 			linhasRafiaEdicao = [...orcamento.itens];
+			linhasRafiaEdicao.map((item) => {
+				if(!item.numOrc){
+					item.numOrc = idSel;
+				};
+				if(!item.id){
+					item.id = idSel;
+				}
+			});
 		}
 		else if (_unidade == "Serafina") {
 			linhasSerafinaEdicao = [...orcamento.itens];
+			linhasSerafinaEdicao.map((item) => {
+				if(!item.numOrc){
+					item.numOrc = idSel;
+				};
+				if(!item.id){
+					item.id = idSel;
+				}
+			});
 		}
 		else if (_unidade == "Matriz") {
 			linhasMatrizEdicao = [...orcamento.itens];
-			console.log("linhasMatrizEdicao pré map", linhasMatrizEdicao);
-			
 			linhasMatrizEdicao.map((item) => {
 				if(!item.numOrc){
 					item.numOrc = idSel;
 				};
+				if(!item.id){
+					item.id = idSel;
+				}
 			});
 			console.log("linhasMatrizEdicao pós map", linhasMatrizEdicao);
 		}
