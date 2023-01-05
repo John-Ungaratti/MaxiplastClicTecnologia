@@ -998,6 +998,7 @@
 	});
 
 	function abrirModalEdicao(_id, _unidade) {
+		idSel = _id;
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 		if (_unidade == "Rafia") {
 			linhasRafiaEdicao = [...orcamento.itens];
@@ -1007,12 +1008,18 @@
 		}
 		else if (_unidade == "Matriz") {
 			linhasMatrizEdicao = [...orcamento.itens];
+
+			linhasMatrizEdicao.map((item) => {
+				if(!item.numOrc){
+					item.numOrc = idSel;
+				};
+			});
 			console.log("linhasMatrizEdicao", linhasMatrizEdicao);
 		}
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
 		vendedorSel = orcamento.vendedor;
-		idSel = _id;
+		
 		if (_unidade == "Rafia") {
 			orcamento.itens.map((prod, indice) => {
 				linhasTableRafiaEdicao += `
