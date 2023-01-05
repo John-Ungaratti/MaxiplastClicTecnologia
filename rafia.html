@@ -1008,13 +1008,14 @@
 		}
 		else if (_unidade == "Matriz") {
 			linhasMatrizEdicao = [...orcamento.itens];
-
+			console.log("linhasMatrizEdicao pré map", linhasMatrizEdicao);
+			
 			linhasMatrizEdicao.map((item) => {
 				if(!item.numOrc){
 					item.numOrc = idSel;
 				};
 			});
-			console.log("linhasMatrizEdicao", linhasMatrizEdicao);
+			console.log("linhasMatrizEdicao pós map", linhasMatrizEdicao);
 		}
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
