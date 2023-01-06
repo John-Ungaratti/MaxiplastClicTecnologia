@@ -98,8 +98,11 @@
 					<div class="mb-3">
 						<label for="vendedorInput" class="form-label">Vendedor</label>
 						<input id="filtroVendedor" type="text" class="form-control" placeholder="Buscar vendedor"
-							list="vendedores" required>
-						<datalist id="vendedores"></datalist>
+							list="vendedores1" required>
+						<datalist id="vendedores1">
+							<option name="orcamento">${parent.DadosUserLogado().rNome}</option>
+						</datalist>
+						
 					</div>
 					<div>
 						<label>Itens</label>
@@ -2914,7 +2917,7 @@
 		}
 	});
 	
-	function escreverValorEdicaoMatriz(prop, i, value) {
+	function escreverValorEdicaoMatriz(prop, i, value) {s 
 		var item = linhasMatrizEdicao[i];
 		item[prop] = value;
 	}
@@ -2956,6 +2959,15 @@
 
 	function enviarWebServiceMaxiplastMatriz(){
 		montaJsonMatrizEdicao();
+
+		var parametros = {	idCvtccnpj	: dadosUserLogado().cId, 
+						numreg: 750, 
+						pRotina: "solicitarProgramacao", 
+						pCodCli: parent.dadosUserLogadoPersonalizado().rId,
+						pJson: jsonProg
+					};
+
+						
 		var jsonOrcamento = {"orcamento":linhasMatrizEdicao};
 		console.log(jsonOrcamento);
 		console.log(jsonFormatado);
