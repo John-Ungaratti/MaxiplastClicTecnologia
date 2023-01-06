@@ -2872,7 +2872,7 @@
 				var produtoSel = document.getElementById("inputProdutoMatrizEdicao").value;
 				var checkBox = document.querySelector(`input[name="flexRadioMatrizEdicao"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
-					linhasMatrizEdicao.push({"numOrc":idSel.toString(), "empresa": "3", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasMatrizEdicao.push({"numOrc":idSel.toString(), "empresa": "3", "tipoItem": "Branco", "id": idSel.toString(), "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
