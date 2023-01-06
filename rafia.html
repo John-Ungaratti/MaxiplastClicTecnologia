@@ -100,7 +100,7 @@
 						<input id="filtroVendedor" type="text" class="form-control" placeholder="Buscar vendedor"
 							list="vendedores1" required>
 						<datalist id="vendedores1">
-							<option name="orcamento">parent.DadosUserLogado().rNome</option>
+							<option name="orcamento">${VENDEDOR}</option>
 						</datalist>
 						
 					</div>
@@ -792,6 +792,8 @@
 	var linhasMatriz = [];
 	var linhasMatrizEdicao;
 	var linhasTableMatrizEdicao = "";
+
+	var vendedor= parent.DadosUserLogado().rNome;
 
 	var options;
 
