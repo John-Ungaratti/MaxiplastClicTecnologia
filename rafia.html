@@ -98,9 +98,8 @@
 					<div class="mb-3">
 						<label for="vendedorInput" class="form-label">Vendedor</label>
 						<input id="filtroVendedor" type="text" class="form-control" placeholder="Buscar vendedor"
-							list="vendedores1" required>
-						<datalist id="vendedores1">
-							<option name="orcamento">${vendedor}</option>
+							list="vendedores" required>
+						<datalist id="vendedores">
 						</datalist>
 						
 					</div>
@@ -887,7 +886,9 @@
 		});
 	}, false);
 
-	window.addEventListener("load", function filtroVendedores() {
+
+
+ 	window.addEventListener("load", function filtroVendedores() {
 		var vendedoresExistentesHTML = "";
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -914,6 +915,15 @@
 			}
 		});
 	}, false);
+
+ /*	window.addEventListener("load", function listaVendedor(){
+		var vendedorHtml = "";
+
+		vendedorHtml = `<option name="vendedores"></option>`;
+
+		document.getElementById("vendedores").innerHTML = vendedorHtml;
+	}, false); */
+
 
 	window.addEventListener("load", function listarProdutosRafia() {
 		var produtosExistentesHTML = "";
