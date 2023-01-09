@@ -794,6 +794,16 @@
 
 	var options;
 
+	window.addEventListener("load", function preencheVendedor(){
+		console.log("preencheVendedor");
+		var vendedor = parent.DadosUserLogado().rNome;
+
+		let optionVendedor = document.createElement('option');
+		optionVendedor.innerHTML = vendedor;
+		document.getElementById('selectVendedor').appendChild(optionVendedor);
+
+	}, false);
+
 	window.addEventListener("load", function listaItensBaseClic() {
 		var parametros = {
 			"param": {
@@ -882,8 +892,6 @@
 		});
 	}, false);
 
-
-
  	window.addEventListener("load", function filtroVendedores() {
 		var vendedoresExistentesHTML = "";
 		var parametros = {
@@ -911,7 +919,6 @@
 			}
 		});
 	}, false);
-
 
 	window.addEventListener("load", function listarProdutosRafia() {
 		var produtosExistentesHTML = "";
