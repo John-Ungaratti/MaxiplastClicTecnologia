@@ -1163,7 +1163,7 @@
 							</tr>`;
 			}).join("");
 			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
-			listaTipoEmbalagemRadiaEdicao(index);
+			listaTipoEmbalagemRafiaEdicao(index);
 			$("#modalEdicao").modal('show');
 		}
 		else if (_unidade == "Serafina") {
@@ -1601,10 +1601,11 @@
 			}
 		});
 	}	
+
 </script>
 <!--          						S C R I P T S  -  R A F I A           				-->
 <script>
-	function listaTipoEmbalagemRadiaEdicao(idx) {
+	function listaTipoEmbalagemRafiaEdicao(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -1793,6 +1794,7 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 				document.querySelector('#linhaTableRafia').innerHTML = linhasRafia.map(function (prod, indice) {
+					index = indice;
 					return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
 						<span type="button">
@@ -1929,7 +1931,7 @@
 				}).join("");
 			},
 			complete: function () {
-				listaTipoEmbalagemRadiaEdicao(index);
+				listaTipoEmbalagemRafiaEdicao(index);
 			}
 		});
 	}
@@ -2749,6 +2751,7 @@
 	}
 </script>
 <!--          						S C R I P T S  -  M A T R I Z - EDICAO					-->
+
 <script>
 	function listaTipoEmbalagemMatrizEdicao(idx) {
 		var parametros = {
