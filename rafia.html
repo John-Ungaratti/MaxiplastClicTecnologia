@@ -227,7 +227,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="filtroVendedorSerafina" class="form-label">Vendedor</label>
-						<select name="vendedorInput" class="form-select" id="selectVendedor"></select>
+						<select name="filtroVendedorSerafina" class="form-select" id="selectVendedorSerafina"></select>
 					</div>
 					<div>
 						<label>Itens</label>
@@ -351,7 +351,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="filtroVendedorMatriz" class="form-label">Vendedor</label>
-						<select name="vendedorInput" class="form-select" id="selectVendedor"></select>
+						<select name="filtroVendedorMatriz" class="form-select" id="selectVendedorMatriz"></select>
 					</div>
 					<div>
 						<label>Itens</label>
@@ -790,13 +790,33 @@
 
 	var options;
 
-	window.addEventListener("load", function preencheVendedor(){
+	window.addEventListener("load", function preencheVendedorRafia(){
 		console.log("preencheVendedor");
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
 
 		let optionVendedor = document.createElement('option');
 		optionVendedor.innerHTML = vendedor;
 		document.getElementById('selectVendedor').appendChild(optionVendedor);
+
+	}, false);
+
+	window.addEventListener("load", function preencheVendedorSerafina(){
+		console.log("preencheVendedor");
+		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
+
+		let optionVendedor = document.createElement('option');
+		optionVendedor.innerHTML = vendedor;
+		document.getElementById('selectVendedorSerafina').appendChild(optionVendedor);
+
+	}, false);
+
+	window.addEventListener("load", function preencheVendedorMatriz(){
+		console.log("preencheVendedor");
+		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
+
+		let optionVendedor = document.createElement('option');
+		optionVendedor.innerHTML = vendedor;
+		document.getElementById('selectVendedorMatriz').appendChild(optionVendedor);
 
 	}, false);
 
