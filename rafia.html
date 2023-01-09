@@ -1163,7 +1163,10 @@
 							</tr>`;
 			}).join("");
 			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
-			listaTipoEmbalagemRafiaEdicao(index);
+			listaTipoEmbalagemRafia(index);
+			listaTipoLaminadoRafia(index);
+			listaPigmentosRafia(index);
+			lisoImpressoRafia(index);
 			$("#modalEdicao").modal('show');
 		}
 		else if (_unidade == "Serafina") {
@@ -1605,7 +1608,7 @@
 </script>
 <!--          						S C R I P T S  -  R A F I A           				-->
 <script>
-	function listaTipoEmbalagemRafiaEdicao(idx) {
+	function listaTipoEmbalagemRafia(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -1629,7 +1632,7 @@
 			}
 		});
 	};
-	function listaTipoLaminadoRafiaEdicao(idx) {
+	function listaTipoLaminadoRafia(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -1652,7 +1655,7 @@
 			}
 		});
 	};
-	function listaTipoMaterialFlexivelEdicao(idx) {
+	function listaTipoMaterialRafia(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -1670,12 +1673,12 @@
 					let optionstipoMat = document.createElement('option');
 					optionstipoMat.innerHTML = option;
 
-					document.getElementById('tipoMaterialSerafinaEdicao' + idx).appendChild(optionstipoMat);
+					document.getElementById('tipoMaterialRafia' + idx).appendChild(optionstipoMat);
 				});
 			}
 		});
 	};
-	function listaPigmentosFlexivelEdicao(idx) {
+	function listaPigmentosRafia(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -1693,12 +1696,12 @@
 					let optionsPigmentoTransp = document.createElement('option');
 					optionsPigmentoTransp.innerHTML = option;
 
-					document.getElementById('pigmentadoTransparenteSerafinaEdicao' + idx).appendChild(optionsPigmentoTransp);
+					document.getElementById('pigmentadoTransparenteRafia' + idx).appendChild(optionsPigmentoTransp);
 				});
 			}
 		});
 	};
-	function lisoImpressoFlexivelEdicao(idx) {
+	function lisoImpressoRafia(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -1716,7 +1719,7 @@
 					let optionsLisoImpresso = document.createElement('option');
 					optionsLisoImpresso.innerHTML = option;
 
-					document.getElementById('lisoImpressoSerafinaEdicao' + idx).appendChild(optionsLisoImpresso);
+					document.getElementById('lisoImpressoRafia' + idx).appendChild(optionsLisoImpresso);
 				});
 			}
 		});
@@ -1811,13 +1814,13 @@
 							</select>
 						</td>
 						<td >
-							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+							<select id="pigmentadoTransparenteRafia${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
 
 							</select>
 						</td>
 						<td>
-							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+							<select id="lisoImpressoRafia${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lisoImpresso}"</option>
 							</select>
 						</td>
@@ -1890,7 +1893,10 @@
 				}).join("");
 			},
 			complete: function () {
-				listaTipoEmbalagemRafiaEdicao(index);
+				listaTipoEmbalagemRafia(index);
+				listaTipoLaminadoRafia(index);
+				listaPigmentosRafia(index);
+				lisoImpressoRafia(index);
 			}
 		});
 	}
