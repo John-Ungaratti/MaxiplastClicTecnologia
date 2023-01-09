@@ -1992,6 +1992,7 @@
 		});
 	}
 </script>
+
 <!--          						S C R I P T S  -  S E R A F I N A - EDICAO					-->
 <script>
 	function listaTipoEmbalagemFlexivelEdicao(idx) {
@@ -2175,6 +2176,7 @@
 			numreg: 750,
 			pRotina: "listaProdutosMatrizMock"
 		};
+	
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
@@ -2351,6 +2353,7 @@
 		});
 	}
 </script>
+
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
 <script>
 	function listaTipoEmbalagemFlexivel(idx) {
@@ -2596,6 +2599,7 @@
 			numreg: 750,
 			pRotina: "listaProdutosMatrizMock"
 		};
+	
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
@@ -2714,8 +2718,8 @@
 		});
 	}
 </script>
-<!--          						S C R I P T S  -  M A T R I Z - EDICAO					-->
 
+<!--          						S C R I P T S  -  M A T R I Z - EDICAO					-->
 <script>
 	function listaTipoEmbalagemMatrizEdicao(idx) {
 		var parametros = {
@@ -2837,6 +2841,7 @@
 	};
 
 	function listaTipoSoldaMatrizEdicao(idx) {
+		
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -2858,7 +2863,7 @@
 				});
 			}
 		});
-	};
+	}
 
 	function mostraModalProdutosMatriz() {
 		$("#modalSelectTipoItemMatrizEdicao").modal('show');
@@ -3433,5 +3438,4 @@
 			}
 		});
 	}
-	blur
 </script>
