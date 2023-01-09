@@ -592,7 +592,8 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
 					onclick="limparLinhasEdicaoSerafina()">Fechar</button>
-				<button type="button" class="btn btn-primary" onclick="atualizarItensBaseClicSerafina()">Atualizar</button>
+				<button type="button" class="btn btn-primary"
+					onclick="atualizarItensBaseClicSerafina()">Atualizar</button>
 				<button type="button" class="btn btn-success">Enviar</button>
 			</div>
 		</div>|
@@ -697,8 +698,10 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
 					onclick="limparLinhasEdicaoMatriz()">Fechar</button>
-				<button type="button" class="btn btn-primary" onclick="atualizarItensBaseClicMatriz()">Atualizar</button>
-				<button type="button" class="btn btn-success" onclick="enviarWebServiceMaxiplastMatriz()">Enviar</button>
+				<button type="button" class="btn btn-primary"
+					onclick="atualizarItensBaseClicMatriz()">Atualizar</button>
+				<button type="button" class="btn btn-success"
+					onclick="enviarWebServiceMaxiplastMatriz()">Enviar</button>
 			</div>
 		</div>|
 	</div>
@@ -777,7 +780,7 @@
 
 	var options;
 
-	window.addEventListener("load", function preencheVendedorRafia(){
+	window.addEventListener("load", function preencheVendedorRafia() {
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
 
 		let optionVendedor = document.createElement('option');
@@ -786,7 +789,7 @@
 
 	}, false);
 
-	window.addEventListener("load", function preencheVendedorSerafina(){
+	window.addEventListener("load", function preencheVendedorSerafina() {
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
 
 		let optionVendedor = document.createElement('option');
@@ -795,7 +798,7 @@
 
 	}, false);
 
-	window.addEventListener("load", function preencheVendedorMatriz(){
+	window.addEventListener("load", function preencheVendedorMatriz() {
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
 
 		let optionVendedor = document.createElement('option');
@@ -986,10 +989,10 @@
 		if (_unidade == "Rafia") {
 			linhasRafiaEdicao = [...orcamento.itens];
 			linhasRafiaEdicao.map((item) => {
-				if(!item.numOrc){
+				if (!item.numOrc) {
 					item.numOrc = idSel.toString();
 				};
-				if(!item.id){
+				if (!item.id) {
 					item.id = idSel.toString();
 				}
 			});
@@ -997,10 +1000,10 @@
 		else if (_unidade == "Serafina") {
 			linhasSerafinaEdicao = [...orcamento.itens];
 			linhasSerafinaEdicao.map((item) => {
-				if(!item.numOrc){
+				if (!item.numOrc) {
 					item.numOrc = idSel.toString();
 				};
-				if(!item.id){
+				if (!item.id) {
 					item.id = idSel.toString();
 				}
 			});
@@ -1008,10 +1011,10 @@
 		else if (_unidade == "Matriz") {
 			linhasMatrizEdicao = [...orcamento.itens];
 			linhasMatrizEdicao.map((item) => {
-				if(!item.numOrc){
+				if (!item.numOrc) {
 					item.numOrc = idSel.toString();
 				};
-				if(!item.id){
+				if (!item.id) {
 					item.id = idSel.toString();
 				}
 			});
@@ -1019,9 +1022,11 @@
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
 		vendedorSel = orcamento.vendedor;
-		
+
 		if (_unidade == "Rafia") {
+			var index;
 			orcamento.itens.map((prod, indice) => {
+				index = indice;
 				linhasTableRafiaEdicao += `
 								<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 								<th scope="row">
@@ -1158,6 +1163,7 @@
 							</tr>`;
 			}).join("");
 			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
+			listaTipoEmbalagemRadiaEdicao(index);
 			$("#modalEdicao").modal('show');
 		}
 		else if (_unidade == "Serafina") {
@@ -1232,9 +1238,9 @@
 			listaTipoMaterialFlexivelEdicao(index);
 			listaPigmentosFlexivelEdicao(index);
 			lisoImpressoFlexivelEdicao(index);
-			listaTipoSoldaFlexivelEdicao(index);				
+			listaTipoSoldaFlexivelEdicao(index);
 			$("#modalEdicaoSerafina").modal('show');
-			
+
 		}
 		else if (_unidade == "Matriz") {
 			var index;
@@ -1307,7 +1313,7 @@
 			listaTipoMaterialMatrizEdicao(index);
 			listaPigmentosMatrizEdicao(index);
 			lisoImpressoMatrizEdicao(index);
-			listaTipoSoldaMatrizEdicao(index);	
+			listaTipoSoldaMatrizEdicao(index);
 			$("#modalEdicaoMatriz").modal('show');
 		}
 	}
@@ -1515,15 +1521,15 @@
 				var produtoSel = document.getElementById("inputProdutoRafiaEdicao").value;
 				var checkBox = document.querySelector(`input[name="flexRadioRafiaEdicao"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
-					linhasRafiaEdicao.push({"numOrc":idSel.toString(), "empresa": "1", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
+					linhasRafiaEdicao.push({ "numOrc": idSel.toString(), "empresa": "1", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasRafiaEdicao.push({"numOrc":idSel.toString(), "empresa": "1", "tipoItem": "Copiar", "id": "", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+					linhasRafiaEdicao.push({ "numOrc": idSel.toString(), "empresa": "1", "tipoItem": "Copiar", "id": "", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasRafiaEdicao.push({"numOrc":idSel.toString(), "empresa": "1", "tipoItem": "Existente","id": "", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+					linhasRafiaEdicao.push({ "numOrc": idSel.toString(), "empresa": "1", "tipoItem": "Existente", "id": "", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				atualizarTabelaRafiaEdicao();
 			}
@@ -1598,6 +1604,151 @@
 </script>
 <!--          						S C R I P T S  -  R A F I A           				-->
 <script>
+	function listaTipoEmbalagemRadiaEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoEmbalagemFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoEmbalagem.map((option) => {
+					let optionsTipoEmb = document.createElement('option');
+					optionsTipoEmb.innerHTML = option;
+
+					document.getElementById('tipoEmbalagemRafia' + idx).appendChild(optionsTipoEmb);
+				});
+
+			}
+		});
+	};
+
+	function listaTipoLaminadoFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoLaminadoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoLaminado.map((option) => {
+					let optionsTipoLam = document.createElement('option');
+					optionsTipoLam.innerHTML = option;
+
+					document.getElementById('tipoLaminadoSerafinaEdicao' + idx).appendChild(optionsTipoLam);
+				});
+			}
+		});
+	};
+
+	function listaTipoMaterialFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoMaterialFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoMaterial.map((option) => {
+					let optionstipoMat = document.createElement('option');
+					optionstipoMat.innerHTML = option;
+
+					document.getElementById('tipoMaterialSerafinaEdicao' + idx).appendChild(optionstipoMat);
+				});
+			}
+		});
+	};
+
+	function listaPigmentosFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaPigmentosFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.pigmentadoTransparente.map((option) => {
+					let optionsPigmentoTransp = document.createElement('option');
+					optionsPigmentoTransp.innerHTML = option;
+
+					document.getElementById('pigmentadoTransparenteSerafinaEdicao' + idx).appendChild(optionsPigmentoTransp);
+				});
+			}
+		});
+	};
+
+	function lisoImpressoFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "lisoImpressoFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.lisoImpresso.map((option) => {
+					let optionsLisoImpresso = document.createElement('option');
+					optionsLisoImpresso.innerHTML = option;
+
+					document.getElementById('lisoImpressoSerafinaEdicao' + idx).appendChild(optionsLisoImpresso);
+				});
+			}
+		});
+	};
+
+	function listaTipoSoldaFlexivelEdicao(idx) {
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaTipoSoldaFlexivel"
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+
+				objRetorno.tipoSolda.map((option) => {
+					let optionsTipoSolda = document.createElement('option');
+					optionsTipoSolda.innerHTML = option;
+					document.getElementById('tipoSoldaSerafinaEdicao' + idx).appendChild(optionsTipoSolda);
+				});
+			}
+		});
+	};
+
+
 	$("#addItensRafia").click(function () {
 		var formulario = document.getElementById("formRafia");
 		if (!formulario.checkValidity()) {
@@ -1627,8 +1778,22 @@
 		item[prop] = value;
 	}
 	function atualizarTabelaRafia() {
-		document.querySelector('#linhaTableRafia').innerHTML = linhasRafia.map(function (prod, indice) {
-			return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+
+		var index;
+
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 750,
+			pRotina: "listaProdutosMatrizMock"
+		};
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				var objRetorno = JSON.parse(response);
+				document.querySelector('#linhaTableRafia').innerHTML = linhasRafia.map(function (prod, indice) {
+					return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
 						<span type="button">
 						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElemento(event.target, ${indice})"></i>
@@ -1640,7 +1805,7 @@
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.preco}" onkeyup="escreverValor('preco',${indice},this.value)"></input></td>
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.total}" onkeyup="escreverValor('total',${indice},this.value)"></input></td>
 						<td>
-							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+							<select id="tipoEmbalagemRafia${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.tipoEmbalagem}"</option>
 							  <option value="1">Saco</option>
 							  <option value="2">Tecido</option> 
@@ -1761,8 +1926,14 @@
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
 						<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
-		}).join("");
+				}).join("");
+			},
+			complete: function () {
+				listaTipoEmbalagemRadiaEdicao(index);
+			}
+		});
 	}
+
 	function addLinhas() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -1778,15 +1949,15 @@
 				var produtoSel = document.getElementById("inputProdutoRafia").value;
 				var checkBox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
-					linhasRafia.push({"numOrc":"", "empresa":"1", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
+					linhasRafia.push({ "numOrc": "", "empresa": "1", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "convencionalLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasRafia.push({"numOrc":"",  "empresa":"1", "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+					linhasRafia.push({ "numOrc": "", "empresa": "1", "tipoItem": "Copiar", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasRafia.push({"numOrc":"",  "empresa":"1", "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+					linhasRafia.push({ "numOrc": "", "empresa": "1", "tipoItem": "Existente", "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": prod[0].preco, "total": prod[0].total, "tipoEmbalagem": prod[0].tipoEmbalagem, "convencionalLaminado": prod[0].convencionalLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": prod[0].estadoDestino, "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				atualizarTabelaRafia();
 			}
@@ -1856,7 +2027,7 @@
 	}
 </script>
 <!--          						S C R I P T S  -  S E R A F I N A - EDICAO					-->
-<script>  			
+<script>
 	function listaTipoEmbalagemFlexivelEdicao(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -2108,13 +2279,13 @@
 				</tr>`;
 				}).join("");
 			},
-			complete: function(){
+			complete: function () {
 				listaTipoEmbalagemFlexivelEdicao(index);
 				listaTipoLaminadoFlexivelEdicao(index);
 				listaTipoMaterialFlexivelEdicao(index);
 				listaPigmentosFlexivelEdicao(index);
 				lisoImpressoFlexivelEdicao(index);
-				listaTipoSoldaFlexivelEdicao(index);				
+				listaTipoSoldaFlexivelEdicao(index);
 			}
 		});
 	}
@@ -2134,15 +2305,15 @@
 				var produtoSel = document.getElementById("inputProdutoSerafinaEdicao").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafinaEdicao"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
-					linhasSerafinaEdicao.push({ "numOrc":idSel.toString(), "empresa": "2", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasSerafinaEdicao.push({ "numOrc": idSel.toString(), "empresa": "2", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafinaEdicao.push({ "numOrc":idSel.toString(), "empresa": "2", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura":prod[0].largura, "altura": prod[0].altura, "espessura":  prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasSerafinaEdicao.push({ "numOrc": idSel.toString(), "empresa": "2", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafinaEdicao.push({ "numOrc":idSel.toString(), "empresa": "2", "tipoItem": "Existente", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura":prod[0].largura, "altura": prod[0].altura, "espessura":  prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasSerafinaEdicao.push({ "numOrc": idSel.toString(), "empresa": "2", "tipoItem": "Existente", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 				atualizarTabelaSerafinaEdicao();
 			}
@@ -2216,7 +2387,6 @@
 </script>
 <!--          						S C R I P T S  -  S E R A F I N A          					-->
 <script>
-
 	function listaTipoEmbalagemFlexivel(idx) {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -2430,15 +2600,15 @@
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
 
 				if (checkBox == "Novo Produto - Branco") {
-					linhasSerafina.push({ "numOrc":"",  "empresa": "2", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasSerafina.push({ "numOrc": "", "empresa": "2", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafina.push({ "numOrc":"",  "empresa": "2", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente":  prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasSerafina.push({ "numOrc": "", "empresa": "2", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasSerafina.push({ "numOrc":"", "empresa": "2", "tipoItem": "Existente","id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasSerafina.push({ "numOrc": "", "empresa": "2", "tipoItem": "Existente", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 
 				atualizarTabelaSerafina();
@@ -2736,7 +2906,7 @@
 		document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicaoMatriz").style.filter = "blur(2px)";
 	});
-	
+
 	$("#cancelModalProdutoMatrizEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "unset";
 		document.getElementById("modalEdicaoMatriz").style.filter = "unset";
@@ -2746,11 +2916,11 @@
 	function enableInputMatrizEdicao() {
 		document.querySelector(`input[id="inputProdutoMatrizEdicao"]`).disabled = false;
 	}
-	
+
 	function disableInputMatrizEdicao() {
 		document.querySelector(`input[id="inputProdutoMatrizEdicao"]`).disabled = true;
 	}
-	
+
 	function atualizarTabelaMatrizEdicao() {
 		var index;
 
@@ -2830,7 +3000,7 @@
 						</tr>`;
 				}).join("");
 			},
-			complete: function(){
+			complete: function () {
 				listaTipoEmbalagemMatrizEdicao(index);
 				listaTipoLaminadoMatrizEdicao(index);
 				listaTipoMaterialMatrizEdicao(index);
@@ -2840,7 +3010,7 @@
 			}
 		});
 	}
-	
+
 	function addLinhasMatrizEdicao() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -2856,21 +3026,21 @@
 				var produtoSel = document.getElementById("inputProdutoMatrizEdicao").value;
 				var checkBox = document.querySelector(`input[name="flexRadioMatrizEdicao"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
-					linhasMatrizEdicao.push({"numOrc":idSel.toString(), "empresa": "3", "tipoItem": "Branco", "id": idSel.toString(), "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasMatrizEdicao.push({ "numOrc": idSel.toString(), "empresa": "3", "tipoItem": "Branco", "id": idSel.toString(), "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasMatrizEdicao.push({"numOrc":idSel.toString(), "empresa": "3", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso":  prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasMatrizEdicao.push({ "numOrc": idSel.toString(), "empresa": "3", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasMatrizEdicao.push({"numOrc":idSel.toString(), "empresa": "3", "tipoItem": "Existente", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasMatrizEdicao.push({ "numOrc": idSel.toString(), "empresa": "3", "tipoItem": "Existente", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 				atualizarTabelaMatrizEdicao();
 			}
 		});
 	}
-	
+
 	$("#confirmModalProdutoMatrizEdicao").click(function () {
 		var formulario = document.getElementById("formProdutoMatrizEdicao");
 		if (!formulario.checkValidity()) {
@@ -2897,12 +3067,12 @@
 			}
 		}
 	});
-	
+
 	function escreverValorEdicaoMatriz(prop, i, value) {
 		var item = linhasMatrizEdicao[i];
 		item[prop] = value;
 	}
-	
+
 	function montaJsonMatrizEdicao() {
 		jsonFormatado = { "numOrcamentoERP": idSel.toString(), "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
 	}
@@ -2911,11 +3081,11 @@
 		linhasMatrizEdicao.splice(i, 1);
 		atualizarTabelaMatrizEdicao();
 	}
-	
+
 	function atualizarItensBaseClicMatriz() {
 
 		montaJsonMatrizEdicao();
-		 
+
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
@@ -2938,14 +3108,14 @@
 		});
 	}
 
-	function enviarWebServiceMaxiplastMatriz(){
+	function enviarWebServiceMaxiplastMatriz() {
 		montaJsonMatrizEdicao();
-						
-		var jsonOrcamento = {"orcamento":linhasMatrizEdicao};
+
+		var jsonOrcamento = { "orcamento": linhasMatrizEdicao };
 		console.log(jsonOrcamento);
 		console.log(jsonFormatado);
-
 	}
+
 </script>
 <!--          						S C R I P T S  -	M A T R I Z         					-->
 <script>
@@ -3091,7 +3261,7 @@
 			}
 		});
 	};
-	
+
 	$("#addItensMatriz").click(function () {
 		var formulario = document.getElementById("formMatriz");
 		if (!formulario.checkValidity()) {
@@ -3157,15 +3327,15 @@
 				var produtoSel = document.getElementById("inputProdutoMatriz").value;
 				var checkBox = document.querySelector(`input[name="flexRadioMatriz"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
-					linhasMatriz.push({ "numOrc":"","empresa": "3", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
+					linhasMatriz.push({ "numOrc": "", "empresa": "3", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasMatriz.push({"numOrc":"", "empresa": "3", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
-				}		
+					linhasMatriz.push({ "numOrc": "", "empresa": "3", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
+				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasMatriz.push({"numOrc":"", "empresa": "3", "tipoItem": "Existente","id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
+					linhasMatriz.push({ "numOrc": "", "empresa": "3", "tipoItem": "Existente", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "tipoMaterial": prod[0].tipoMaterial, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCores": "", "tipoSolda": prod[0].tipoSolda, "largura": prod[0].largura, "altura": prod[0].altura, "espessura": prod[0].espessura, "prazoEntrega": "", "obs": "" });
 				}
 				atualizarTabelaMatriz();
 			}
@@ -3252,7 +3422,7 @@
 					</tr>`;
 				}).join("");
 			},
-			complete: function(){
+			complete: function () {
 				listaTipoEmbalagemMatriz(index);
 				listaTipoLaminadoMatriz(index);
 				listaTipoMaterialMatriz(index);
@@ -3296,5 +3466,5 @@
 			}
 		});
 	}
-blur
+	blur
 </script>
