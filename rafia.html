@@ -888,7 +888,7 @@
 
 
 
- 	/*window.addEventListener("load", function filtroVendedores() {
+ 	window.addEventListener("load", function filtroVendedores() {
 		var vendedoresExistentesHTML = "";
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -914,7 +914,7 @@
 				alert(response);
 			}
 		});
-	}, false);*/
+	}, false);
 
 
 	window.addEventListener("load", function listarProdutosRafia() {
@@ -2929,7 +2929,7 @@
 	}
 	
 	function montaJsonMatrizEdicao() {
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
+		jsonFormatado = { "numOrcamentoERP": idSel.toString(), "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
 	}
 
 	function removerElementoMatrizEdicao(elementoClicado, i) {
@@ -2965,9 +2965,6 @@
 
 	function enviarWebServiceMaxiplastMatriz(){
 		montaJsonMatrizEdicao();
-
-		
-
 						
 		var jsonOrcamento = {"orcamento":linhasMatrizEdicao};
 		console.log(jsonOrcamento);
@@ -3324,5 +3321,5 @@
 			}
 		});
 	}
-
+blur
 </script>
