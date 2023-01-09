@@ -1809,77 +1809,42 @@
 						<td>
 							<select id="tipoEmbalagemRafia${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.tipoEmbalagem}"</option>
-							  <option value="1">Saco</option>
-							  <option value="2">Tecido</option> 
 							</select>
 						</td>
 						<td >
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('convencionalLaminado',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.convencionalLaminado}"</option>
-							  <option value="1">Convencional</option>
-							  <option value="2">Laminado</option>
 							</select>
 						</td>
 						<td >
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.pigmentadoTransparente}"</option>
-							  <option value="1">Azul</option>
-							  <option value="3">Verde</option>
-							  <option value="2">Amarelo</option>
-							  <option value="4">Vermelho</option>
-							  <option value="5">Preto</option>
-							  <option value="6">Transparente</option>
+
 							</select>
 						</td>
 						<td>
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.lisoImpresso}"</option>
-							  <option value="1">Liso</option>
-							  <option value="2">Impresso</option>	
 							</select>
 						</td>
 						<td >
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
 								<option selected disabled>"${prod.qtdCoresFrente}"</option>
-								<option value="1">1C</option>
-								<option value="2">2C</option>
-								<option value="3">3C</option>
-								<option value="4">4C</option>
-								<option value="5">5C</option>
-								<option value="6">6C</option>
-								<option value="7">7C</option>
-								<option value="8">8C</option>
 							</select>
 						</td>
 						<td >
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
 							 <option selected disabled>"${prod.qtdCoresVerso}"</option>
-							 <option value="1">1C</option>
-							 <option value="2">2C</option>
-							 <option value="3">3C</option>
-							 <option value="4">4C</option>
-							 <option value="5">5C</option>
-							 <option value="6">6C</option>
-							 <option value="7">7C</option>
-							 <option value="8">8C</option>
 							</select>
 						</td>
 						<td >
 							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.gramaturaLaminado}"</option>
-							  <option value="1">59</option>
-							  <option value="2">63</option>
-							  <option value="3">66</option>
-							  <option value="4">69</option>
-							  <option value="5">72</option>
 							</select>
 						</td>
 						<td >
 							<select  ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
 							  <option selected disabled>"${prod.gramaturaConvencional}"</option>
-							  <option value="1">54</option>
-							  <option value="2">58</option>
-							  <option value="3">62</option>
 							</select>
 						</td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corTrama}" onkeyup="escreverValor('corTrama',${indice},this.value)"></input></td>
