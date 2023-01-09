@@ -784,10 +784,6 @@
 	var linhasMatrizEdicao;
 	var linhasTableMatrizEdicao = "";
 
-	var vendedor= parent.dadosUserLogadoPersonalizado().rNome;
-
-	console.log(vendedor);
-
 	var options;
 
 	window.addEventListener("load", function preencheVendedorRafia(){
@@ -895,34 +891,6 @@
 				var objRetorno = JSON.parse(response);
 				objRetorno.map(({ id, nome }) => clientesExistentesHTML += `<option id="${id}" name="clientes">${nome}</option>`);
 				document.getElementById("clientes").innerHTML = clientesExistentesHTML;
-			},
-			beforeSend: function () {
-				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
-			},
-			complete: function () {
-				$("#loadingModal").modal('hide');
-			},
-			error: function (response) {
-				alert(response);
-			}
-		});
-	}, false);
-
- 	window.addEventListener("load", function filtroVendedores() {
-		var vendedoresExistentesHTML = "";
-		var parametros = {
-			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 750,
-			pRotina: "listaVendedorMock"
-		};
-		$.ajax({
-			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-			type: "POST",
-			data: JSON.stringify(parametros),
-			success: function (response) {
-				var objRetorno = JSON.parse(response);
-				objRetorno.map(({ id, nome }) => vendedoresExistentesHTML += `<option id="${id}" name="vendedores">${nome}</option>`);
-				document.getElementById("vendedores").innerHTML = vendedoresExistentesHTML;
 			},
 			beforeSend: function () {
 				$("#loadingModal").modal({ backdrop: 'static', keyboard: false });
