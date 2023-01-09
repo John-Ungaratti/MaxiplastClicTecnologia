@@ -87,19 +87,10 @@
 					</div>
 					<div class="mb-3">
 						<label for="inputOrcamento" class="form-label">Orçamento</label>
-						<input class="form-control" id="inputOrcamento" placeholder="Informe o tipo de orçamento"
-							list="orcamento" required>
-						<datalist id="orcamento">
-							<option name="orcamento">1x Sem juros</option>
-							<option name="orcamento">2x Sem juros</option>
-							<option name="orcamento">3x Com juros</option>
-						</datalist>
+						<input class="form-control" id="inputOrcamento" placeholder="Informe o tipo de orçamento">
 					</div>
 					<div class="mb-3">
 						<label for="vendedorInput" class="form-label">Vendedor</label>
-						<!-- <input id="filtroVendedor" type="text" class="form-control" placeholder="Buscar vendedor"
-							list="vendedores" required></input>
-						<datalist id="vendedores"></datalist> -->
 						<select name="vendedorInput" class="form-select" id="selectVendedor"></select>
 					</div>
 					<div>
@@ -909,7 +900,7 @@
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
-			pRotina: "listaProdutosMock"
+			pRotina: "listaProdutosMatrizMock"
 		};
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
