@@ -1422,7 +1422,7 @@ function listaTipoEmbalagemRafiaEdicao(idx) {
 					let optionsLisoImpresso = document.createElement('option');
 					optionsLisoImpresso.innerHTML = option;
 
-					document.getElementById('lisoImpressoRafia' + idx).appendChild(optionsLisoImpresso);
+					document.getElementById('lisoImpressoRafiaEdicao' + idx).appendChild(optionsLisoImpresso);
 				});
 			}
 		});
@@ -1770,12 +1770,11 @@ function listaTipoEmbalagemRafiaEdicao(idx) {
 					let optionsLisoImpresso = document.createElement('option');
 					optionsLisoImpresso.innerHTML = option;
 
-					document.getElementById('lisoImpressoRafiaEdicao' + idx).appendChild(optionsLisoImpresso);
+					document.getElementById('lisoImpressoRafia' + idx).appendChild(optionsLisoImpresso);
 				});
 			}
 		});
 	};
-
 	$("#addItensRafia").click(function () {
 		var formulario = document.getElementById("formRafia");
 		if (!formulario.checkValidity()) {
