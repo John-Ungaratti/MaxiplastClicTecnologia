@@ -1041,35 +1041,23 @@
 								<td><input type="number" value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
 								<td><input type="number" value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
 								<td>
-									<select onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+									<select id="tipoEmbalagemRafiaEdicao${indice}" onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
-									<option value="1">Saco</option>
-									<option value="2">Tecido</option> 
 									</select>
 								</td>
 								<td >
-									<select onchange="escreverValorEdicao('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+									<select id="tipoLaminadoRafiaEdicao${indice}" onchange="escreverValorEdicao('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoLaminado}"</option>
-									<option value="1">Convencional</option>
-									<option value="2">Laminado</option>
 									</select>
 								</td>
 								<td >
-									<select onchange="escreverValorEdicao('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+									<select id="pigmentadoTransparenteRafiaEdicao${indice}" onchange="escreverValorEdicao('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
-									<option value="1">Azul</option>
-									<option value="3">Verde</option>
-									<option value="2">Amarelo</option>
-									<option value="4">Vermelho</option>
-									<option value="5">Preto</option>
-									<option value="6">Transparente</option>
 									</select>
 								</td>
 								<td>
-									<select onchange="escreverValorEdicao('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+									<select id="lisoImpressoRafiaEdicao${indice}" onchange="escreverValorEdicao('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.lisoImpresso}"</option>
-									<option value="1">Liso</option>
-									<option value="2">Impresso</option>	
 									</select>
 								</td>
 								<td >
@@ -1164,10 +1152,10 @@
 							</tr>`;
 			}).join("");
 			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
-			listaTipoEmbalagemRafia(index);
-			listaTipoLaminadoRafia(index);
-			listaPigmentosRafia(index);
-			lisoImpressoRafia(index);
+			listaTipoEmbalagemRafiaEdicao(index);
+			listaTipoLaminadoRafiaEdicao(index);
+			listaPigmentosRafiaEdicao(index);
+			lisoImpressoRafiaEdicao(index);
 			$("#modalEdicao").modal('show');
 		}
 		else if (_unidade == "Serafina") {
@@ -1623,7 +1611,6 @@ function listaTipoEmbalagemRafiaEdicao(idx) {
 			}
 		});
 	}
-
 
 	$("#confirmModalProdutoRafiaEdicao").click(function () {
 		var formulario = document.getElementById("formProdutoRafiaEdicao");
