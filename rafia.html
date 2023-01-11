@@ -1026,8 +1026,8 @@
 								<td><input value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
 								<td><input value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
 								<td><input type="number" value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
-								<td><input type="number" value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
-								<td><input type="number" value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
+								<td><input type="number" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
+								<td><input type="number" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
 								<td>
 									<select id="tipoEmbalagemRafiaEdicao${indice}" onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
 									<option selected disabled>"${prod.tipoEmbalagem}"</option>
