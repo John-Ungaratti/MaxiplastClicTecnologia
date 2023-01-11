@@ -1887,7 +1887,7 @@
 							 <option value="5">5</option>
 							 <option value="6">6</option>
 							 <option value="7">7</option>
-							 <option value="8">8/option>
+							 <option value="8">8</option>
 							</select>
 						</td>
 						<td >
@@ -1951,7 +1951,7 @@
 						</td>
 						<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
 						<td><input type="number"${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
-						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
+						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
 						<td><input type="number" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
 				}).join("");
