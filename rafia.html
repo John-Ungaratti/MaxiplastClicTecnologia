@@ -1604,7 +1604,7 @@
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					console.log(prod[0].codPro);
+					console.log("prod",prod[0].codPro);
 					linhasRafiaEdicao.push({ "empresa": "1", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": "", "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				else if (checkBox == "Produto já existente") {
