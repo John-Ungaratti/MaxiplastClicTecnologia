@@ -1414,35 +1414,28 @@
 			}
 		});
 	};
-
 	function mostraModalProdutos() {
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 	}
-
 	function limparLinhasEdicao() {
 		linhasTableRafiaEdicao = "";
 	}
-
 	$("#addItensRafiaEdicao").click(function () {
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicao").style.filter = "blur(2px)";
 	});
-
 	$("#cancelModalProdutoRafiaEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "unset";
 		document.getElementById("modalEdicao").style.filter = "unset";
 		$("#modalSelectTipoItemRafiaEdicao").modal('hide');
 	});
-
 	function enableInputRafiaEdicao() {
 		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = false;
 	}
-
 	function disableInputRafiaEdicao() {
 		document.querySelector(`input[id="inputProdutoRafiaEdicao"]`).disabled = true;
 	}
-
 	function atualizarTabelaRafiaEdicao() {
 		var index;
 
@@ -1592,7 +1585,6 @@
 			}
 		});
 	}
-
 	function addLinhasEdicao() {
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
@@ -1622,7 +1614,6 @@
 			}
 		});
 	}
-
 	$("#confirmModalProdutoRafiaEdicao").click(function () {
 		var formulario = document.getElementById("formProdutoRafiaEdicao");
 		if (!formulario.checkValidity()) {
@@ -1649,22 +1640,18 @@
 			}
 		}
 	});
-
 	function escreverValorEdicao(prop, i, value) {
 		var item = linhasRafiaEdicao[i];
 		item[prop] = value;
 	}
-
 	function removerElementoEdicao(elementoClicado, i) {
 		linhasRafiaEdicao.splice(i, 1);
 		atualizarTabelaRafiaEdicao();
 	}
-
 	function montaJsonRafiaEdicao() {
 		var unidadeSel = "Rafia";
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
 	}
-
 	function atualizarItensBaseClicRafia() {
 		montaJsonRafiaEdicao();
 		var parametros = {
@@ -1688,7 +1675,6 @@
 			}
 		});
 	}
-
 </script>
 
 <!--          						S C R I P T S  -  R A F I A           				-->
@@ -1983,6 +1969,7 @@
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
+					console.log(prod[0].codPro);
 					linhasRafia.push({ "empresa": "1", "tipoItem": "Copiar", "id": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": "", "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				else if (checkBox == "Produto já existente") {
