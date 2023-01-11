@@ -2753,6 +2753,8 @@
 		var orcamentoSel = document.getElementById("inputOrcamentoSerafina").value;
 		var vendedorSel = document.getElementById("selectVendedorSerafina").value;
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafina };
+
+		console.log("jsonFormatado", jsonFormatado);
 	}
 
 	function removerElementoSerafina(elementoClicado, i) {
@@ -2761,7 +2763,9 @@
 	}
 
 	function salvaItensBaseClicSerafina() {
+
 		montaJsonSerafina();
+
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
