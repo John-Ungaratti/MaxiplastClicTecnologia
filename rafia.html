@@ -2618,7 +2618,6 @@
 				var objRetorno = JSON.parse(response);
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
-
 				if (checkBox == "Novo Produto - Branco") {
 					linhasSerafina.push({ "empresa": "2", "tipoItem": "Branco", "id": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": "", "tipoLaminado": "", "tipoMaterial": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCores": "", "tipoSolda": "", "largura": "", "altura": "", "espessura": "", "prazoEntrega": "", "obs": "" });
 				}
@@ -3468,12 +3467,14 @@
 		atualizarTabelaMatriz();
 	}
 	function montaJsonMatriz() {
+		console.log("linhhasMatriz - montaJsonMatriz", linhhasMatriz);
 		var unidadeSel = "Matriz";
 		var clienteSel = document.getElementById("filtroClienteMatriz").value;
 		var orcamentoSel = document.getElementById("inputOrcamentoMatriz").value;
 		var vendedorSel = document.getElementById("selectVendedorMatriz").value;
 		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatriz };
 	}
+
 	function salvaItensBaseClicMatriz() {
 		montaJsonMatriz();
 		var parametros = {
