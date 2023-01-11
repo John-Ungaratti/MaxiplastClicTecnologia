@@ -1451,7 +1451,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-				document.querySelector('#linhaTableRafiaEdicao').innerHTML = linhasRafia.map(function (prod, indice) {
+				document.querySelector('#linhaTableRafiaEdicao').innerHTML = linhasRafiaEdicao.map(function (prod, indice) {
 					index = indice;
 					return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
