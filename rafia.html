@@ -781,18 +781,20 @@
 
 	window.addEventListener("load", function preencheVendedorSerafina() {
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
+		var vendedorId = parent.dadosUserLogadoPersonalizado().rId;
 
 		let optionVendedor = document.createElement('option');
-		optionVendedor.innerHTML = vendedor;
+		optionVendedor.innerHTML = vendedorId + "&nbsp-&nbsp " + vendedor; 
 		document.getElementById('selectVendedorSerafina').appendChild(optionVendedor);
 
 	}, false);
 
 	window.addEventListener("load", function preencheVendedorMatriz() {
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
+		var vendedorId = parent.dadosUserLogadoPersonalizado().rId;
 
 		let optionVendedor = document.createElement('option');
-		optionVendedor.innerHTML = vendedor;
+		optionVendedor.innerHTML = vendedorId + "&nbsp-&nbsp " + vendedor; 
 		document.getElementById('selectVendedorMatriz').appendChild(optionVendedor);
 
 	}, false);
