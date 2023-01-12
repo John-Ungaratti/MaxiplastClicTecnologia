@@ -771,9 +771,10 @@
 
 	window.addEventListener("load", function preencheVendedorRafia() {
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
+		var vendedorId = parent.dadosUserLogadoPersonalizado().rId;
 
 		let optionVendedor = document.createElement('option');
-		optionVendedor.innerHTML = vendedor;
+		optionVendedor.innerHTML = vendedorId + vendedor;
 		document.getElementById('selectVendedor').appendChild(optionVendedor);
 
 	}, false);
