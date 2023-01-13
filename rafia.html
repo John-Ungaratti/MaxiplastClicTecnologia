@@ -824,7 +824,7 @@
 					dataAlteracao = dataAlteracao.toLocaleDateString();
 					var json = JSON.parse(jsonDocs);
 					orcamentosClicJson.push({ id, ...json });
-					if (json.situacao === "CANCELADO" || json.situacao === "EM ORÇAMENTO") {
+					if (json.situacao === "CANCELADO" ) {
 						linhaOrcamentosClic += `<tr style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
 											 <td class="col-md-1">${json.situacao}</td>
@@ -834,6 +834,21 @@
 											 <td class="col-md-2">${json.cliente}</td>
 											 <td class="col-md-1">${dataAlteracao}</td>
 											 <td class="col-md-2">${json.vendedor}</td>
+											 <td style="font-size: 18px"></td>
+											 <td style="font-size: 18px"></td>
+											</tr>`;
+					}
+					else if(json.situacao === "EM ORÇAMENTO"){
+						linhaOrcamentosClic += `<tr style="text-align: center">
+											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
+											 <td class="col-md-1">${json.situacao}</td>
+											 <td class="col-md-2">${json.numOrcamentoERP}</td>
+											 <td class="col-md-1">${json.numPedidoERP}</td>
+											 <td class="col-md-1">${json.unidade}</td>
+											 <td class="col-md-2">${json.cliente}</td>
+											 <td class="col-md-1">${dataAlteracao}</td>
+											 <td class="col-md-2">${json.vendedor}</td>
+											 <td style="font-size: 18px"><i style="font-size: 18px"  class="bi bi-check-square-fill""></i></td>
 											 <td style="font-size: 18px"></td>
 											</tr>`;
 					}
@@ -847,7 +862,7 @@
 											 <td class="col-md-2">${json.cliente}</td>
 											 <td class="col-md-1">${dataAlteracao}</td>
 											 <td class="col-md-2">${json.vendedor}</td>
-											 <td><i style="font-size: 18px" class="bi bi-shield-check"></i></td>
+											 <td><i style="font-size: 18px"  class="bi bi-check-square-fill""></i></td>
 											 <td style="font-size: 18px">
 												<span id="editar${id}" type="button" title="Editar" >
 													<i class="bi bi-pencil-square" style="color: grey" onclick="abrirModalEdicao(${id}, '${json.unidade}')"></i>
