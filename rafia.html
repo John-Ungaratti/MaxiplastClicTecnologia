@@ -3093,9 +3093,24 @@
 	function enviarWebServiceMaxiplastMatriz() {
 		montaJsonMatrizEdicao();
 
-		var jsonOrcamento = { "orcamento": linhasMatrizEdicao };
-		console.log(jsonOrcamento);
-		console.log(jsonFormatado);
+		var parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 996,
+			pRotina: "enviarOrcRafia",
+			pItem: jsonFormatado
+		};
+
+		
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				console.log("eviou");
+			}
+		});
+
+
 	}
 </script>
 <!--          						S C R I P T S  -	M A T R I Z         					-->
