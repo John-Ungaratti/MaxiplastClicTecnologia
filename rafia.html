@@ -1346,6 +1346,14 @@
 			listaOrcMatriz = [...orcamento.itens];
 			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
 		}
+		else if (_unidade == "Serafina") {
+			listaOrcSerafina = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
+		}
+		else if (_unidade == "Rafia") {
+			listaOrcRafia = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
+		}
 
 		var parametros = {
 			"cnpj": {
