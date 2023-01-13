@@ -3159,7 +3159,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				console.log("enviou");
-				enviarOrcSucesso(jsonFormatado.unidade, jsonFormatado.numOrcamentoERP);
+				enviarOrcSucesso(jsonFormatado.numOrcamentoERP, jsonFormatado.unidade);
 			},
 			beforeSend: function () {
 				
