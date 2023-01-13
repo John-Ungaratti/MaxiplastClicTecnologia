@@ -3111,9 +3111,12 @@
 	}
 	
 	function enviarWebServiceMaxiplastMatriz() {
+
 		montaJsonMatrizEdicao();
 
-		var parametros = {
+		console.log(jsonFormatado);
+
+		/*var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 996,
 			pRotina: "enviarOrcRafia",
@@ -3127,8 +3130,17 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				console.log("enviou");
+			},
+			beforeSend: function () {
+				
+			},
+			complete: function () {
+				
+			},
+			error: function () {
+				
 			}
-		});
+		});*/
 
 
 	}
@@ -3457,6 +3469,7 @@
 	}
 	function salvaItensBaseClicMatriz() {
 		montaJsonMatriz();
+		
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
@@ -3475,7 +3488,9 @@
 				linhasMatriz = [];
 				atualizarTabelaMatriz();
 				document.location.reload();
-			}
+			},
+
+
 		});
 	}
 
