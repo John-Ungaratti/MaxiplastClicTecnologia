@@ -1708,9 +1708,7 @@
 		atualizarTabelaRafiaEdicao();
 	}
 	function montaJsonRafiaEdicao() {
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDI플O", "unidade": "Rafia", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
-
-		console.log(jsonFormatado);
+		jsonFormatado = { "numOrcamentoERP": idSel.toString(), "numPedidoERP": 0, "situacao": "EM EDI플O", "unidade": "Rafia", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
 	}
 	function atualizarItensBaseClicRafia() {
 		montaJsonRafiaEdicao();
@@ -2449,7 +2447,7 @@
 		item[prop] = value;
 	}
 	function montaJsonSerafinaEdicao() {
-		jsonFormatado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDI플O", "unidade": "Serafina", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafinaEdicao };
+		jsonFormatado = { "numOrcamentoERP": idSel.toString(), "numPedidoERP": 0, "situacao": "EM EDI플O", "unidade": "Serafina", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafinaEdicao };
 	}
 	function removerElementoSerafinaEdicao(elementoClicado, i) {
 		linhasSerafinaEdicao.splice(i, 1);
