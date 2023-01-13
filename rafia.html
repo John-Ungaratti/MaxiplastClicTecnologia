@@ -1343,15 +1343,15 @@
 		idSel = _id;
 
 		if (_unidade == "Matriz") {
-			listaOrcMatriz = [...orcamento.itens];
+			var listaOrcMatriz = [...orcamento.itens];
 			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
 		}
 		else if (_unidade == "Serafina") {
-			listaOrcSerafina = [...orcamento.itens];
+			var listaOrcSerafina = [...orcamento.itens];
 			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
 		}
 		else if (_unidade == "Rafia") {
-			listaOrcRafia = [...orcamento.itens];
+			var listaOrcRafia = [...orcamento.itens];
 			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
 		}
 
