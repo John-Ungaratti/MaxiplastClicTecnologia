@@ -848,7 +848,7 @@
 													<i class="bi bi-pencil-square" style="color: grey" onclick="abrirModalEdicao(${id}, '${json.unidade}')"></i>
 												</span>
 												<span id="excluir${id}" type="button" title="Excluir">
-													<i class="bi bi-trash" style="color: red" onclick="cancelaOrcamentoBaseClic(${id})"></i>
+													<i class="bi bi-trash" style="color: red" onclick="cancelaOrcamentoBaseClic(${id}, '${json.unidade}')"></i>
 												</span>
 											 </td>
 											</tr>`;
@@ -978,6 +978,7 @@
 	function abrirModalEdicao(_id, _unidade) {
 		idSel = _id;
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
+
 		if (_unidade == "Rafia") {
 			linhasRafiaEdicao = [...orcamento.itens];
 			linhasRafiaEdicao.map((item) => {
@@ -1301,10 +1302,29 @@
 		}
 	}
 
-	function cancelaOrcamentoBaseClic(_id) {
+	function cancelaOrcamentoBaseClic(_id, _unidade) {
+
+		var listaOrcRafia;
+		var listaOrcSerafina;
+		var listaOrcMatriz;
+		var jsonFormatadoAtualizado;
+
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 		idSel = _id;
-		var jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": [] };
+
+		if(_unidade == "Rafia"){
+			listaOrcRafia = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
+		}
+		else if(_unidade == "Serafina"){
+			listaOrcSerafina = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
+		}
+		else if(_unidade == "Matriz"){
+			listaOrcMatriz = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz};
+		}
+
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
@@ -1319,7 +1339,7 @@
 				document.location.reload();
 			}
 		});
-	}
+	} 
 </script>
 
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
@@ -3458,4 +3478,5 @@
 			}
 		});
 	}
+
 </script>
