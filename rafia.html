@@ -1342,8 +1342,6 @@
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 		idSel = _id;
 
-		console.log("orcamento.itens", orcamento.itens);
-
 		if (_unidade == "Matriz") {
 			var listaOrcMatriz = [...orcamento.itens];
 			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
@@ -1354,7 +1352,6 @@
 		}
 		else if (_unidade == "Rafia") {
 			var listaOrcRafia = [...orcamento.itens];
-			console.log("listaOrcRafia", listaOrcRafia);
 			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
 		}
 
@@ -1738,8 +1735,6 @@
 	function enviarWebServiceMaxiplastRafia() {
 
 		montaJsonRafiaEdicao();
-
-		console.log(jsonFormatado);
 
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
