@@ -780,7 +780,7 @@
 		  Deseja excluir este orçamento?
 		</div>
 		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary">Não</button>
+		  <button type="button" class="btn btn-secondary" onclick="fecharModalExcluir()">Não</button>
 		  <button type="button" class="btn btn-primary">Sim</button>
 		</div>
 	  </div>
@@ -1496,6 +1496,10 @@
 
 	function abrirModalExcluir(_id){
 		$("#modalExcluir2").modal('show');
+	}
+
+	function fecharModalExcluir(){
+		$("#modalExcluir2").modal('hide');
 	}
 </script>
 
