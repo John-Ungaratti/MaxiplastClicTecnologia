@@ -781,7 +781,7 @@
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" onclick="fecharModalExcluir()">Não</button>
-		  <button type="button" class="btn btn-primary" onclick="">Sim</button>
+		  <button type="button" class="btn btn-primary" onclick="cancelaOrcamentoBaseClic(idCancelado, unidadeCancelado)">Sim</button>
 		</div>
 	  </div>
 	</div>
@@ -807,6 +807,9 @@
 	var linhasMatriz = [];
 	var linhasMatrizEdicao;
 	var linhasTableMatrizEdicao = "";
+
+	var idCancelado;
+	var unidadeCancelado;
 
 	var options;
 
@@ -1500,8 +1503,11 @@
 
 	}
 
-	function abrirModalExcluir(_id){
+	function abrirModalExcluir(_id, _unidade){
 		$("#modalExcluir2").modal('show');
+
+		idCancelado = _id;
+		unidadeCancelado = _unidade;
 	}
 
 	function fecharModalExcluir(){
