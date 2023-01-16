@@ -852,7 +852,7 @@
 											 <td style="font-size: 18px"></td>
 											</tr>`;
 					}
-					else if(json.situacao === "EM EDIÇÃO ") {
+					else {
 						linhaOrcamentosClic += `<tr style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
 											 <td class="col-md-1">${json.situacao}</td>
@@ -1389,7 +1389,7 @@
 	}
 
 	function enviarOrcErro(){
-		document.location.reload();	
+
 	}
 </script>
 
