@@ -825,7 +825,7 @@
 					var json = JSON.parse(jsonDocs);
 					orcamentosClicJson.push({ id, ...json });
 					if (json.situacao === "CANCELADO" ) {
-						linhaOrcamentosClic += `<tr style="text-align: center">
+						linhaOrcamentosClic += `<tr id="linha${id}" style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
 											 <td class="col-md-1">${json.situacao}</td>
 											 <td class="col-md-2">${json.numOrcamentoERP}</td>
