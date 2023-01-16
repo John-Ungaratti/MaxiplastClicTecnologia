@@ -1419,13 +1419,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				document.location.reload();
-			},
-			beforeSend: function (req, settings) {
-				console.log("req", req);
-				console.log("settings", settings);
-
-				return req.abort();
-			},
+			}
 		});
 	}
 
