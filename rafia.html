@@ -1388,6 +1388,9 @@
 		});
 	}
 
+	function enviarOrcErro(){
+
+	}
 </script>
 
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
@@ -3233,18 +3236,12 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				if(response.substring(0,4) == "ERRO"){
-					console.log("opa deu erro");
-				}
-			},
-			beforeSend: function () {
 
 			},
-			complete: function () {
-
-			},
+			beforeSend: function () {},
+			complete: function () {},
 			error: function () {
-
+				console.log("opa deu erro");
 			}
 		});
 
