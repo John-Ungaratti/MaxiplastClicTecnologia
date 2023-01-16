@@ -3236,12 +3236,14 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-
+				if(response.substring(0,4) == "ERRO"){
+					console.log("opa deu erro");
+				}
 			},
 			beforeSend: function () {},
 			complete: function () {},
 			error: function () {
-				console.log("opa deu erro");
+				
 			}
 		});
 
