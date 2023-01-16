@@ -877,7 +877,6 @@
 											</tr>`;
 						}
 						else{
-
 							linhaOrcamentosClic += `<tr style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
 											 <td class="col-md-1">${json.situacao}</td>
@@ -1439,7 +1438,20 @@
 			jsonFormatadoAtualizado = { "erro": _erro,"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
 		}
 
-		
+		var parametros = {
+			"cnpj": {
+				"id": parent.dadosUserLogado().cId
+			},
+			"jsonDocs": JSON.stringify(jsonFormatadoAtualizado)
+		};
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				document.location.reload();
+			}
+		});
 
 	}
 </script>
