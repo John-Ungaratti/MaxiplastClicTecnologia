@@ -853,7 +853,8 @@
 											</tr>`;
 					}
 					else  {
-						linhaOrcamentosClic += `<tr style="text-align: center">
+						if(json.erro){
+							linhaOrcamentosClic += `<tr style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
 											 <td class="col-md-1">${json.situacao}</td>
 											 <td class="col-md-2">${json.numOrcamentoERP}</td>
@@ -862,7 +863,9 @@
 											 <td class="col-md-2">${json.cliente}</td>
 											 <td class="col-md-1">${dataAlteracao}</td>
 											 <td class="col-md-2">${json.vendedor}</td>
-											 <td><i style="color: grey; font-size: 18px;" class="bi bi-file-check-fill"></i></td>
+											 <td>
+												<i style="color: yellow; font-size: 18px;" class="bi bi-file-check-fill"></i>
+											</td>
 											 <td style="font-size: 18px">
 												<span id="editar${id}" type="button" title="Editar" >
 													<i class="bi bi-pencil-square" style="color: grey" onclick="abrirModalEdicao(${id}, '${json.unidade}')"></i>
@@ -872,6 +875,33 @@
 												</span>
 											 </td>
 											</tr>`;
+						}
+						else{
+
+							linhaOrcamentosClic += `<tr style="text-align: center">
+											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
+											 <td class="col-md-1">${json.situacao}</td>
+											 <td class="col-md-2">${json.numOrcamentoERP}</td>
+											 <td class="col-md-1">${json.numPedidoERP}</td>
+											 <td class="col-md-1">${json.unidade}</td>
+											 <td class="col-md-2">${json.cliente}</td>
+											 <td class="col-md-1">${dataAlteracao}</td>
+											 <td class="col-md-2">${json.vendedor}</td>
+											 <td>
+												<i style="color: grey; font-size: 18px;" class="bi bi-file-check-fill"></i>
+											</td>
+											 <td style="font-size: 18px">
+												<span id="editar${id}" type="button" title="Editar" >
+													<i class="bi bi-pencil-square" style="color: grey" onclick="abrirModalEdicao(${id}, '${json.unidade}')"></i>
+												</span>
+												<span id="excluir${id}" type="button" title="Excluir">
+													<i class="bi bi-trash" style="color: red" onclick="cancelaOrcamentoBaseClic(${id}, '${json.unidade}')"></i>
+												</span>
+											 </td>
+											</tr>`;
+						
+						}
+
 					}
 				});
 				document.getElementById("tbodyOrcamentosClic").innerHTML = linhaOrcamentosClic;
@@ -1388,11 +1418,28 @@
 		});
 	}
 
-	function enviarOrcErro(_id, unidade){
+	function enviarOrcErro(_id, _unidade, _erro){
 
 		var jsonFormatadoAtualizado;
 
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
+		idSel = _id;
+
+		
+		if (_unidade == "Matriz") {
+			var listaOrcMatriz = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "erro": _erro ,"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
+		}
+		else if (_unidade == "Serafina") {
+			var listaOrcSerafina = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "erro": _erro,"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
+		}
+		else if (_unidade == "Rafia") {
+			var listaOrcRafia = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "erro": _erro,"numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
+		}
+
+		
 
 	}
 </script>
@@ -3241,7 +3288,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				if(response.substring(0,4) == "ERRO"){
-					
+					enviarOrcErro(jsonFormatado.numOrcamentoERP, jsonFormatado.unidade, response);
 					console.log(jsonFormatado);
 				}
 			},
