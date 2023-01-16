@@ -3233,7 +3233,9 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log(response);
+				if(response.substring(0,4) == "ERRO"){
+					console.log("opa deu erro");
+				}
 			},
 			beforeSend: function () {
 
