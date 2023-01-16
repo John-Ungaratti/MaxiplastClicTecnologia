@@ -1388,7 +1388,11 @@
 		});
 	}
 
-	function enviarOrcErro(){
+	function enviarOrcErro(_id, unidade){
+
+		var jsonFormatadoAtualizado;
+
+		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 
 	}
 </script>
@@ -3237,14 +3241,13 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				if(response.substring(0,4) == "ERRO"){
-					console.log("opa deu erro");
+					
+					console.log(jsonFormatado);
 				}
 			},
 			beforeSend: function () {},
 			complete: function () {},
-			error: function () {
-				
-			}
+			error: function () {}
 		});
 
 
