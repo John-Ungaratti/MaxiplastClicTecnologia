@@ -3233,7 +3233,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				enviarOrcSucesso(jsonFormatado.numOrcamentoERP, jsonFormatado.unidade);
+				console.log(response);
 			},
 			beforeSend: function () {
 
