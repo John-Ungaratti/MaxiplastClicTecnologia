@@ -3353,6 +3353,9 @@
 				if (response.substring(0, 4) == "ERRO") {
 					enviarOrcErro(jsonFormatado.numOrcamentoERP, jsonFormatado.unidade, response);
 				}
+				else{
+					enviarOrcSucesso(jsonFormatado.numOrcamentoERP, jsonFormatado.unidade);
+				}
 			},
 			beforeSend: function () {},
 			complete: function () {},
