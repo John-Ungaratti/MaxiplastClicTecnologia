@@ -781,7 +781,7 @@
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" onclick="fecharModalExcluir()">Não</button>
-		  <button type="button" class="btn btn-primary">Sim</button>
+		  <button type="button" class="btn btn-primary" onclick="">Sim</button>
 		</div>
 	  </div>
 	</div>
@@ -1416,7 +1416,13 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				document.location.reload();
-			}
+			},
+			beforeSend: function (req, settings) {
+				console.log("req", req);
+				console.log("settings", settings);
+
+				return req.abort();
+			},
 		});
 	}
 
@@ -3350,8 +3356,8 @@
 					console.log(jsonFormatado);
 				}
 			},
-			beforeSend: function () { },
-			complete: function () { },
+			beforeSend: function () {},
+			complete: function () {},
 			error: function () { }
 		});
 
