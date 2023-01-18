@@ -752,24 +752,6 @@
 </form>
 
 <!-- MODAL EXCLUIR ORÇAMENTO -->
-<!-- <div class="modal-dialog modal-sm">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Confirmar Exclusão</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<p>Deseja mesmo excluir esse orçamento</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sim</button>
-				<button type="button" class="btn btn-primary">Não</button>
-			</div>
-		</div>
-	</div>
-</div> -->
-
 <div  id="modalExcluir2" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
@@ -890,6 +872,31 @@
 											 <td class="col-md-2">${json.vendedor}</td>
 											 <td><i style="color: green; font-size: 18px;" class="bi bi-cloud-check-fill"></i></td>
 											 <td style="font-size: 18px"></td>
+											</tr>`;
+					}
+					else if (json.situacao === "ORÇADO"){
+						linhaOrcamentosClic += `<tr style="text-align: center">
+											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
+											 <td class="col-md-1">${json.situacao}</td>
+											 <td class="col-md-2">${json.numOrcamentoERP}</td>
+											 <td class="col-md-1">${json.numPedidoERP}</td>
+											 <td class="col-md-1">${json.unidade}</td>
+											 <td class="col-md-2">${json.cliente}</td>
+											 <td class="col-md-1">${dataAlteracao}</td>
+											 <td class="col-md-2">${json.vendedor}</td>
+											 <td>
+												<span title="${json.erro}">	
+													<i style="color: #d9d907d4; font-size: 18px;"  class="bi bi-exclamation-octagon-fill"></i>
+												</span> 
+											</td>
+											 <td style="font-size: 18px">
+												<span id="editar${id}" type="button" title="Editar" >
+													<i class="bi bi-pencil-square" style="color: grey" onclick="abrirModalEdicao(${id}, '${json.unidade}')"></i>
+												</span>
+												<span id="excluir${id}" type="button" title="Excluir">
+													<i class="bi bi-trash" style="color: red" onclick="abrirModalExcluir(${id}, '${json.unidade}')"></i>
+												</span>
+											 </td>
 											</tr>`;
 					}
 					else {
