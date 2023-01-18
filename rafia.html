@@ -3286,7 +3286,7 @@
 		item[prop] = value;
 	}
 	function montaJsonMatrizEdicao() {
-		jsonFormatado = {"idCvtccnpj":parent.dadosUserLogado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
+		jsonFormatado = {"idCvtccnpj": parent.dadosUserLogado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
 	}
 	function removerElementoMatrizEdicao(elementoClicado, i) {
 		linhasMatrizEdicao.splice(i, 1);
