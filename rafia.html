@@ -845,6 +845,7 @@
 					var dataAlteracao = new Date();
 					dataAlteracao = dataAlteracao.toLocaleDateString();
 					var json = JSON.parse(jsonDocs);
+					json.id = id;
 					console.log("json", json);
 					orcamentosClicJson.push({ id, ...json });
 					if (json.situacao === "CANCELADO") {
