@@ -3354,8 +3354,8 @@
 			pItem: jsonFormatado
 		};
 
-		console.log("json que mando para regra que salva no webservice",jsonFormatado);
-
+		console.log("json", jsonFormatado);
+ 
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
