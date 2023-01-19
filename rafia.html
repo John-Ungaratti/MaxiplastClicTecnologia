@@ -2196,7 +2196,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
-				objRetorno = objRetorno.replace(",", '.');
+				objRetorno = objRetorno.replace(",", ".");
 				var produtoSel = document.getElementById("inputProdutoRafia").value;
 				var checkBox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
