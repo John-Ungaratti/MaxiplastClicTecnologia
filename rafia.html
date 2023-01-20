@@ -1590,6 +1590,135 @@
 			cancelaOrcamentoBaseClic(idRecusado, unidadeRecusado);
 		}
 	});
+
+	function visualizarOrc(_id, _unidade){
+
+		idSel = _id;
+		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
+
+		if (_unidade == "Rafia") {
+			linhasRafiaEdicao = [...orcamento.itens];
+			linhasRafiaEdicao.map((item) => {
+				if (!item.numOrc) {
+					item.numOrc = idSel.toString();
+				};
+			});
+		}
+		else if (_unidade == "Serafina") {
+			linhasSerafinaEdicao = [...orcamento.itens];
+			linhasSerafinaEdicao.map((item) => {
+				if (!item.numOrc) {
+					item.numOrc = idSel.toString();
+				};
+			});
+		}
+		else if (_unidade == "Matriz") {
+			linhasMatrizEdicao = [...orcamento.itens];
+			linhasMatrizEdicao.map((item) => {
+				if (!item.numOrc) {
+					item.numOrc = idSel.toString();
+				};
+			});
+		}
+		clienteSel = orcamento.cliente;
+		orcamentoSel = orcamento.orcamento;
+		vendedorSel = orcamento.vendedor;
+		
+		if (_unidade == "Rafia") {
+			var index;
+			orcamento.itens.map((prod, indice) => {
+				index = indice;
+				linhasTableRafiaEdicao += `
+								<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+								<th scope="row">
+								<span type="button">
+								<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoEdicao(event.target, ${indice})"></i>
+								</span>
+								</th>
+								<td><input disabled value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
+								<td><input disabled value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
+								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
+								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
+								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
+								<td>
+									<select disabled id="tipoEmbalagemRafiaEdicao${indice}" onchange="escreverValorEdicao('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.tipoEmbalagem}"</option>
+									</select>
+								</td>
+								<td >
+									<select disabled id="tipoLaminadoRafiaEdicao${indice}" onchange="escreverValorEdicao('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.tipoLaminado}"</option>
+									</select>
+								</td>
+								<td >
+									<select disabled id="pigmentadoTransparenteRafiaEdicao${indice}" onchange="escreverValorEdicao('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
+									</select>
+								</td>
+								<td>
+									<select disabled id="lisoImpressoRafiaEdicao${indice}" onchange="escreverValorEdicao('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.lisoImpresso}"</option>
+									</select>
+								</td>
+								<td >
+									<select disabled onchange="escreverValorEdicao('qtdCoresFrente',${indice},this.options[this.selectedIndex].text)">
+										<option selected disabled>"${prod.qtdCoresFrente}"</option>
+
+									</select>
+								</td>
+								<td >
+									<select disabled onchange="escreverValorEdicao('qtdCoresVerso',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.qtdCoresVerso}"</option>
+									</select>
+								</td>
+								<td >
+									<select disabled onchange="escreverValorEdicao('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.gramaturaLaminado}"</option>
+									</select>
+								</td>
+								<td >
+									<select disabled onchange="escreverValorEdicao('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.gramaturaConvencional}"</option>
+									</select>
+								</td>
+								<td><input disabled value="${prod.corTrama}" onkeyup="escreverValorEdicao('corTrama',${indice},this.value)"></input></td>
+								<td><input disabled value="${prod.corUrdume}" onkeyup="escreverValorEdicao('corUrdume',${indice},this.value)"></input></td>
+								<td>
+									<select disabled onchange="escreverValorEdicao('sanfona',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.sanfona}"</option>
+									</select>
+								</td>
+								<td >
+									<select disabled onchange="escreverValorEdicao('medidaSanfona',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.medidaSanfona}"</option>
+									</select>
+								</td>
+								<td>
+									<select disabled onchange="escreverValorEdicao('valvula',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.valvula}"</option>
+									</select>
+								</td>
+								<td >
+									<select disabled onchange="escreverValorEdicao('medidaValvula',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.medidaValvula}"</option>
+									</select>
+								</td>
+								<td>
+									<select disabled onchange="escreverValorEdicao('lyner',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.lyner}"</option>
+									</select>
+								</td>
+								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" value="${prod.largura}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
+								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" value="${prod.comprimento}" onkeyup="escreverValorEdicao('comprimento',${indice},this.value)" ></input></td>
+								<td><input disabled${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValorEdicao('estadoDestino',${indice},this.value)"></input></td>
+								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" value="${prod.gramatura}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
+							</tr>`;
+			}).join("");
+			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
+			$("#modalEdicao").modal('show');
+		}
+
+	}
 </script>
 
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
