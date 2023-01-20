@@ -921,19 +921,19 @@
 											 <td class="col-md-2">${json.vendedor}</td>
 											 <td><i style="color: green; font-size: 18px;"  class="bi bi-cloud-check-fill"></i></td>
 											 <td style="font-size: 18px">
-												<span id="recusar${id}" type="button" title="recusar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
-													   <i class="bi bi-x-lg" style="color: red""></i>
-												</span>
-												<span id="aceitar${id}" type="button" title="aceitar">
-													   <i class="bi bi-check2" style="color: green""></i>
-												</span>
 												<span id="imprimir${id}" type="button" title="imprimir" >
-														<i class="bi bi-printer-fill" style="color: grey"></i>
+													<i class="bi bi-printer-fill" style="color: grey"></i>
 												</span>
 												<span id="visualizar${id}" type="button" title="Visualizar">
 													<i class="bi bi-eye"></i>
 												</span>
-											</td>	
+												<span id="recusar${id}" type="button" title="recusar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
+												   <i class="bi bi-x-lg" style="color: red""></i>
+												</span>
+												<span id="aceitar${id}" type="button" title="aceitar">
+												   <i class="bi bi-check2" style="color: green""></i>
+												</span>
+											 </td>	
 											</tr>`;
 					}
 					else {
