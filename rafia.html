@@ -88,8 +88,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="inputOrcamento" class="form-label">Orçamento</label>
-						<input class="form-control" id="inputOrcamento" placeholder="Informe o tipo de orçamento"
-							required>
+						<input class="form-control" id="inputOrcamento" placeholder="Informe o tipo de orçamento">
 					</div>
 					<div class="mb-3">
 						<label for="vendedorInput" class="form-label">Vendedor</label>
@@ -211,7 +210,7 @@
 					<div class="mb-3">
 						<label for="inputOrcamentoSerafina" class="form-label">Orçamento</label>
 						<input class="form-control" id="inputOrcamentoSerafina"
-							placeholder="Informe o tipo de orçamento" required>
+							placeholder="Informe o tipo de orçamento">
 					</div>
 					<div class="mb-3">
 						<label for="filtroVendedorSerafina" class="form-label">Vendedor</label>
@@ -329,8 +328,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="inputOrcamentoMatriz" class="form-label">Orçamento</label>
-						<input class="form-control" id="inputOrcamentoMatriz" placeholder="Informe o tipo de orçamento"
-							required>
+						<input class="form-control" id="inputOrcamentoMatriz" placeholder="Informe o tipo de orçamento">
 					</div>
 					<div class="mb-3">
 						<label for="filtroVendedorMatriz" class="form-label">Vendedor</label>
@@ -768,8 +766,10 @@
 	  </div>
 	</div>
   </div>
+  
 
   <!-- MODAL RECUSAR ORÇAMENTO ORÇADO-->
+<form id="modalRecusa">
 	<div  id="modalRecusaOcamento" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -779,16 +779,17 @@
 			<div class="modal-body">
 				<div class="input-group">
 					<span class="input-group-text">Motivo do cancelamento</span>
-					<textarea id="obsRecusa" class="form-control" aria-label="Motivo do cancelamento"></textarea>
+					<textarea id="obsRecusa" class="form-control" aria-label="Motivo do cancelamento" required></textarea>
 				</div>
 			</div>
 			<div class="modal-footer">
 			<button type="button" class="btn btn-secondary" onclick="">Não</button>
-			<button type="button" class="btn btn-primary" onclick="cancelaOrcamentoBaseClic(idCancelado, unidadeCancelado)">Sim</button>
+			<button id="confirmaRecusa" type="button" class="btn btn-primary" onclick="">Sim</button>
 			</div>
 		</div>
 		</div>
 	</div>
+</form>	
 </html>
 
 <!--          						S C R I P T S - LOAD           						-->
@@ -1420,6 +1421,23 @@
 
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 		idSel = _id;
+		
+		var obs = document.getElementById("obsRecusa").value;
+
+		if(obs){
+			if (_unidade == "Rafia") {
+				listaOrcRafia = [...orcamento.itens];
+				jsonFormatadoAtualizado = {"obs":obs, "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
+			}
+			else if (_unidade == "Serafina") {
+				listaOrcSerafina = [...orcamento.itens];
+				jsonFormatadoAtualizado = {"obs":obs, "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
+			}
+			else if (_unidade == "Matriz") {
+				listaOrcMatriz = [...orcamento.itens];
+				jsonFormatadoAtualizado = {"obs":obs, "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
+			}
+		}
 
 		if (_unidade == "Rafia") {
 			listaOrcRafia = [...orcamento.itens];
@@ -1542,6 +1560,18 @@
 		idRecusado = _id;
 		unidadeRecusado = _unidade;
 	}
+
+	$("#confirmaRecusa").click(function (){
+		var formulario = document.getElementById("modalRecusa");
+		if(!formulario.checkValidity()){
+
+		}else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			cancelaOrcamentoBaseClic(idCancelado, unidadeCancelado);
+		}
+	});
 </script>
 
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
@@ -2303,6 +2333,7 @@
 			}
 		});
 	}
+
 </script>
 
 <!--          						S C R I P T S  -  S E R A F I N A - EDICAO					-->
