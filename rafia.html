@@ -898,7 +898,11 @@
 											 <td class="col-md-1">${dataAlteracao}</td>
 											 <td class="col-md-2">${json.vendedor}</td>
 											 <td><i style="color: green; font-size: 18px;" class="bi bi-cloud-check-fill"></i></td>
-											 <td><i style="font-size: 18px" class="bi bi-eye"></i></td>
+											 <td>
+												<span id="visualizar${id}" type="button" title="Visualizar">
+												<i style="font-size: 18px" class="bi bi-eye"></i>
+												</span>
+											</td>
 											</tr>`;
 					}
 					else if (json.situacao === "ORÇADO"){
@@ -921,6 +925,9 @@
 											 </span>
 											 <span id="aceitar${id}" type="button" title="aceitar">
 													<i class="bi bi-check2" style="color: green""></i>
+											 </span>
+											 <span id="visualizar${id}" type="button" title="Visualizar">
+												<i class="bi bi-eye"></i>
 											 </span>
 											</td>	
 											</tr>`;
