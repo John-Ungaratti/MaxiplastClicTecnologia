@@ -888,7 +888,10 @@
 											 <td class="col-md-1">${dataAlteracao}</td>
 											 <td class="col-md-2">${json.vendedor}</td>
 											 <td><i style="color: red; font-size: 18px;" class="bi bi-x-octagon-fill"></i></td>
-											 <td><i style="font-size: 18px" class="bi bi-eye"></i></td>
+											 <td>
+												<span id="aceitar${id}" type="button" title="aceitar">
+												   <i style="font-size: 18px" class="bi bi-check2" style="color: green""></i>
+												</span></td>
 											</tr>`;
 					}
 					else if (json.situacao === "EM ORÇAMENTO") {
