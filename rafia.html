@@ -846,6 +846,50 @@
 	</div>
 </div>
 
+<!-- MODAL VISUALIZAR ORÇAMENTO SERAFINA -->
+<div id="modalVisualizarSerafina" class="modal" tabindex="-1">
+	<div class="modal-dialog modal-fullscreen">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edição Orçamento</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div id="corpoModalVisualizarSerafina" class="modal-body">
+				<div style="overflow-x: scroll">
+					<table id="tableVisualizarSerafina" class="table table-bordered border-dark" style="font-size: small">
+						<thead>
+							<tr style="text-align: center;vertical-align: middle;">
+								<th scope="col"></th>
+								<th scope="col">Item</th>
+								<th scope="col">Largura(cm)</th>
+								<th scope="col">Altura(cm)</th>
+								<th scope="col">Espessura(mm)</th>
+								<th scope="col">Unid. Medida</th>
+								<th scope="col">Quantidade</th>
+								<th scope="col">Tipo Embalagem</th>
+								<th scope="col">Monocamada / Laminado / Bilaminado</th>
+								<th scope="col">Tipo Material</th>
+								<th scope="col">Pigmentado / Transparente</th>
+								<th scope="col">Liso / Impresso</th>
+								<th scope="col">Quantidade Cores</th>
+								<th scope="col">Tipo de Solda</th>
+								<th scope="col">Prazo Entrega</th>
+								<th scope="col">Obs</th>
+								<th scope="col">Preço</th>
+								<th scope="col">Total</th>
+							</tr>
+						</thead>
+						<tbody id="linhaTableSerafinaVisualizar">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="">Fechar</button>
+			</div>
+		</div>|
+	</div>
+</div>
 
 </html>
 
@@ -875,7 +919,8 @@
 	var unidadeRecusado;
 	
 	var linhasTableRafiaVisualizar = "";
-	var linhasTableRafiaVisualizar;
+
+	var linhasTableSerafinaVisualizar = "";
 
 	var options;
 	
@@ -1659,6 +1704,22 @@
 				};
 			});
 		}
+		else if (_unidade == "Serafina") {
+			linhasSerafinaEdicao = [...orcamento.itens];
+			linhasSerafinaEdicao.map((item) => {
+				if (!item.numOrc) {
+					item.numOrc = idSel.toString();
+				};
+			});
+		}
+		else if (_unidade == "Matriz") {
+			linhasMatrizEdicao = [...orcamento.itens];
+			linhasMatrizEdicao.map((item) => {
+				if (!item.numOrc) {
+					item.numOrc = idSel.toString();
+				};
+			});
+		}
 
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
@@ -1755,6 +1816,75 @@
 			}).join("");
 			document.getElementById("linhaTableRafiaVisualizar").innerHTML = linhasTableRafiaVisualizar;
 			$("#modalVisualizar").modal('show');
+		}
+		else if(_unidada == "Serafina") {
+			var index;
+			orcamento.itens.map((prod, indice) => {
+				index = indice;
+				linhasTableSerafinaVisualizar += `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
+					<th scope="row">
+						<span type="button">
+						<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoSerafinaEdicao(event.target, ${indice})"></i>
+						</span>
+					</th>
+					<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoSerafina('item',${indice},this.value)"></input></td>
+					<td><input type="number" min="0" oninput="validity.valid || (value='');" min"0" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoSerafina('largura',${indice},this.value)"></input></td>
+					<td><input type="number" min="0" oninput="validity.valid || (value='');" min"0" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoSerafina('altura',${indice},this.value)"></input></td>
+					<td><input type="number" min="0" oninput="validity.valid || (value='');" min"0" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoSerafina('espessura',${indice},this.value)"></input></td>
+					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoSerafina('unidMed',${indice},this.value)"></input></td>
+					<td><input type="number" min="0" oninput="validity.valid || (value='');" min"0" value= "${prod.quantidade}" onkeyup="escreverValorEdicaoSerafina('quantidade',${indice},this.value)"></input></td>
+					<td>
+						<select id="tipoEmbalagemSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoEmbalagem',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.tipoEmbalagem}"</option>
+						</select>
+					</td>
+					<td>
+						<select id="tipoLaminadoSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoLaminado',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.tipoLaminado}"</option>
+						</select>
+					</td>
+					<td>
+						<select id="tipoMaterialSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoMaterial',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.tipoMaterial}"</option>
+						</select>
+					</td>
+					<td>
+						<select id="pigmentadoTransparenteSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('pigmentadoTransparente',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.pigmentadoTransparente}"</option>
+						</select>
+					</td>
+					<td>
+						<select id="lisoImpressoSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('lisoImpresso',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.lisoImpresso}"</option>
+						</select>
+					</td>
+					<td>
+						<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('qtdCores',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.qtdCores}"</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+						</select>
+					</td>
+					<td>
+						<select id="tipoSoldaSerafinaEdicao${indice}" ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicaoSerafina('tipoSolda',${indice},this.options[this.selectedIndex].text)">
+							<option selected disabled>${prod.tipoSolda}</option>
+						</select>
+					</td>
+					<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.prazoEntrega}" onkeyup="escreverValorEdicaoSerafina('prazoEntrega',${indice},this.value)"></td>
+					<td><input value= "${prod.obs}" onkeyup="escreverValorEdicaoSerafina('obs',${indice},this.value)"></td>
+					<td><input type="number" min="0" oninput="validity.valid || (value='');" min"0" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('preco',${indice},this.value)"></td>
+					<td><input type="number" min="0" oninput="validity.valid || (value='');" min"0" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} onkeyup="escreverValorEdicaoSerafina('total',${indice},this.value)"></td>
+				</tr>`;
+			}).join("");
+			document.getElementById("linhaTableSerafinaVisualizar").innerHTML = linhasTableSerafinaVisualizar;
+			$("#modalVisualizarSerafina").modal('show');
+
 		}
 
 	}
