@@ -769,7 +769,6 @@
 	</div>
 </div>
 
-
 <!-- MODAL RECUSAR ORÇAMENTO ORÇADO-->
 <form id="modalRecusa">
 	<div id="modalRecusaOcamento" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog"
@@ -795,6 +794,61 @@
 	</div>
 </form>
 
+<!-- MODAL VISUALIZAR ORÇAMENTO RAFIA-->
+<div id="modalVisualizar" class="modal" tabindex="-1">
+	<div class="modal-dialog modal-fullscreen">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edição Orçamento</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div id="corpoModalVisualizar" class="modal-body">
+				<div style="overflow-x: scroll">
+					<table id="tableRafiaVisualizar" class="table table-bordered border-dark" style="font-size: small">
+						<thead>
+							<tr style="text-align: center;vertical-align: middle;">
+								<th></th>
+								<th scope="col">Item</th>
+								<th scope="col">Unid. Medida</th>
+								<th scope="col">Quantidade</th>
+								<th scope="col">Preço</th>
+								<th scope="col">Total</th>
+								<th scope="col">Tipo Embalagem</th>
+								<th scope="col">Convencional / Laminado</th>
+								<th scope="col">Pigmentado / Transparente</th>
+								<th scope="col">Liso / Impresso</th>
+								<th scope="col">Quantidade Cores Frente </th>
+								<th scope="col">Quantidade Cores Verso</th>
+								<th scope="col">Gramatura Laminado</th>
+								<th scope="col">Gramatura Convencional</th>
+								<th scope="col">Cor Trama</th>
+								<th scope="col">Cor Urdame</th>
+								<th scope="col">Sanfona</th>
+								<th scope="col">Medida Sanfona</th>
+								<th scope="col">Válvula</th>
+								<th scope="col">Medida Válvula</th>
+								<th scope="col">Lyner</th>
+								<th scope="col">largura</th>
+								<th scope="col">comprimento</th>
+								<th scope="col">Estado Destino</th>
+								<th scope="col">Gramatura</th>
+							</tr>
+						</thead>
+						<tbody id="linhaTableRafiaVisualizar">
+							<div style="margin-bottom: 10px">
+							</div>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="">Fechar</button>
+			</div>
+		</div>|
+	</div>
+</div>
+
+
 </html>
 
 <!--          						S C R I P T S - LOAD           						-->
@@ -815,15 +869,17 @@
 	var linhasMatriz = [];
 	var linhasMatrizEdicao;
 	var linhasTableMatrizEdicao = "";
-
+	
 	var idCancelado;
 	var unidadeCancelado;
-
+	
 	var idRecusado;
 	var unidadeRecusado;
+	
+	var linhasTableRafiaVisualizar = "";
 
 	var options;
-
+	
 	window.addEventListener("load", function preencheVendedorRafia() {
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
 		var vendedorId = parent.dadosUserLogadoPersonalizado().rId;
@@ -1714,7 +1770,7 @@
 								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" value="${prod.gramatura}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
 							</tr>`;
 			}).join("");
-			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
+			document.getElementById("linhaTableRafiaVisualizar").innerHTML = linhasTableRafiaVisualizar;
 			$("#modalEdicao").modal('show');
 		}
 
