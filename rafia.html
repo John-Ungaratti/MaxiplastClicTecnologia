@@ -40,6 +40,7 @@
 				<th scope="col">Vendedor</th>
 				<th scope="col">Sinc.</th>
 				<th scope="col"></th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody id="tbodyOrcamentosClic">
@@ -884,6 +885,7 @@
 											 <td class="col-md-2">${json.vendedor}</td>
 											 <td><i style="color: red; font-size: 18px;" class="bi bi-x-octagon-fill"></i></td>
 											 <td style="font-size: 18px"></td>
+											 <td><i class="bi bi-eye"></i></td>
 											</tr>`;
 					}
 					else if (json.situacao === "EM ORÇAMENTO") {
@@ -898,6 +900,7 @@
 											 <td class="col-md-2">${json.vendedor}</td>
 											 <td><i style="color: green; font-size: 18px;" class="bi bi-cloud-check-fill"></i></td>
 											 <td style="font-size: 18px"></td>
+											 <td><i class="bi bi-eye"></i></td>
 											</tr>`;
 					}
 					else if (json.situacao === "ORÇADO"){
