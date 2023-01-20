@@ -1649,6 +1649,8 @@
 		idSel = _id;
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 
+		console.log("orcamento", orcamento);
+
 		if (_unidade == "Rafia") {
 			linhasRafiaEdicao = [...orcamento.itens];
 			linhasRafiaEdicao.map((item) => {
