@@ -1142,7 +1142,7 @@
 								</th>
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
-								<td><input type="number" min="0" value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
+								<td><input type="number" min="0" oninput="validity.valid||(value='');" value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
 								<td><input type="number" min="0" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.preco}" onkeyup="escreverValorEdicao('preco',${indice},this.value)"></input></td>
 								<td><input type="number" min="0" ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.total}" onkeyup="escreverValorEdicao('total',${indice},this.value)"></input></td>
 								<td>
