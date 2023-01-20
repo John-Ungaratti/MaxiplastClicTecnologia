@@ -752,7 +752,29 @@
 </form>
 
 <!-- MODAL EXCLUIR ORÇAMENTO -->
-<div  id="modalExcluir2" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div  id="modalRecusaOcamento" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Cancelar Orçamento</h5>
+		</div>
+		<div class="modal-body">
+			<div class="input-group">
+				<span class="input-group-text">With textarea</span>
+				<textarea class="form-control" aria-label="With textarea"></textarea>
+			  </div>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" onclick="">Não</button>
+		  <button type="button" class="btn btn-primary" onclick="">Sim</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+
+<!-- MODAL RECUSAR ORÇAMENTO ORÇADO-->
+  <div  id="modalExcluir2" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
 		<div class="modal-header">
@@ -891,7 +913,7 @@
 											 <span id="imprimir${id}" type="button" title="imprimir" >
 													<i class="bi bi-printer-fill" style="color: grey"></i>
 											 </span>
-											 <span id="recusar${id}" type="button" title="recusar">
+											 <span id="recusar${id}" type="button" title="recusar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
 													<i class="bi bi-x-lg" style="color: red""></i>
 											 </span>
 											 <span id="aceitar${id}" type="button" title="aceitar">
@@ -1514,6 +1536,13 @@
 
 	function fecharModalExcluir(){
 		$("#modalExcluir2").modal('hide');
+	}
+
+	function abrirModalRecusarOrcamentoOrcado(_id, _unidade){
+		$("#modalRecusaOcamento").modal('show');
+
+		idRecusado = _id;
+		unidadeRecusado = _unidade;
 	}
 </script>
 
