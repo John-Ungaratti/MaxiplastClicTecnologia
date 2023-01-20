@@ -1672,7 +1672,6 @@
 								<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 								<th scope="row">
 								<span type="button">
-								<i class="bi bi-x-square-fill" style="color: red" onclick="removerElementoEdicao(event.target, ${indice})"></i>
 								</span>
 								</th>
 								<td><input disabled value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
@@ -1750,7 +1749,7 @@
 								</td>
 								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" value="${prod.largura}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
 								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" value="${prod.comprimento}" onkeyup="escreverValorEdicao('comprimento',${indice},this.value)" ></input></td>
-								<td><input disabled${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValorEdicao('estadoDestino',${indice},this.value)"></input></td>
+								<td><input disabled value="${prod.estadoDestino}" onkeyup="escreverValorEdicao('estadoDestino',${indice},this.value)"></input></td>
 								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" value="${prod.gramatura}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
 							</tr>`;
 			}).join("");
