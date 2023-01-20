@@ -750,46 +750,51 @@
 </form>
 
 <!-- MODAL EXCLUIR ORÇAMENTO -->
-  <div  id="modalExcluir2" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="modalExcluir2" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title" id="exampleModalLabel">Cancelar Orçamento</h5>
-		</div>
-		<div class="modal-body">
-		  Deseja excluir este orçamento?
-		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" onclick="fecharModalExcluir()">Não</button>
-		  <button type="button" class="btn btn-primary" onclick="cancelaOrcamentoBaseClic(idCancelado, unidadeCancelado)">Sim</button>
-		</div>
-	  </div>
-	</div>
-  </div>
-  
-
-  <!-- MODAL RECUSAR ORÇAMENTO ORÇADO-->
-<form id="modalRecusa">
-	<div  id="modalRecusaOcamento" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">Cancelar Orçamento</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Cancelar Orçamento</h5>
 			</div>
 			<div class="modal-body">
-				<div class="input-group">
-					<span class="input-group-text">Motivo do cancelamento</span>
-					<textarea id="obsRecusa" class="form-control" aria-label="Motivo do cancelamento" required></textarea>
-				</div>
+				Deseja excluir este orçamento?
 			</div>
 			<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" onclick="">Não</button>
-			<button id="confirmaRecusa" type="button" class="btn btn-primary" onclick="">Sim</button>
+				<button type="button" class="btn btn-secondary" onclick="fecharModalExcluir()">Não</button>
+				<button type="button" class="btn btn-primary"
+					onclick="cancelaOrcamentoBaseClic(idCancelado, unidadeCancelado)">Sim</button>
 			</div>
 		</div>
+	</div>
+</div>
+
+
+<!-- MODAL RECUSAR ORÇAMENTO ORÇADO-->
+<form id="modalRecusa">
+	<div id="modalRecusaOcamento" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Cancelar Orçamento</h5>
+				</div>
+				<div class="modal-body">
+					<div class="input-group">
+						<span class="input-group-text">Motivo do cancelamento</span>
+						<textarea id="obsRecusa" class="form-control" aria-label="Motivo do cancelamento"
+							required></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" onclick="">Não</button>
+					<button id="confirmaRecusa" type="button" class="btn btn-primary" onclick="">Sim</button>
+				</div>
+			</div>
 		</div>
 	</div>
-</form>	
+</form>
+
 </html>
 
 <!--          						S C R I P T S - LOAD           						-->
@@ -868,9 +873,9 @@
 				array.map(({ id, jsonDocs, dataAlteracao }) => {
 					var dataAlteracao = new Date();
 					dataAlteracao = dataAlteracao.toLocaleDateString();
-					var json = JSON.parse(jsonDocs);	
+					var json = JSON.parse(jsonDocs);
 					json.id = id;
-					console.log("json",json);
+					console.log("json", json);
 					orcamentosClicJson.push({ id, ...json });
 					if (json.situacao === "CANCELADO") {
 						linhaOrcamentosClic += `<tr id="linha${id}" style="text-align: center">
@@ -904,7 +909,7 @@
 											</td>
 											</tr>`;
 					}
-					else if (json.situacao === "ORÇADO"){
+					else if (json.situacao === "ORÇADO") {
 						linhaOrcamentosClic += `<tr style="text-align: center">
 											 <th class="col-md-1" style="font-weight: 400;" scope="row">${id}</th>
 											 <td class="col-md-1">${json.situacao}</td>
@@ -915,19 +920,19 @@
 											 <td class="col-md-1">${dataAlteracao}</td>
 											 <td class="col-md-2">${json.vendedor}</td>
 											 <td><i style="color: green; font-size: 18px;"  class="bi bi-cloud-check-fill"></i></td>
-											 <td style="font-size: 15px">
-											 <span id="imprimir${id}" type="button" title="imprimir" >
-													<i class="bi bi-printer-fill" style="color: grey"></i>
-											 </span>
-											 <span id="recusar${id}" type="button" title="recusar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
-													<i class="bi bi-x-lg" style="color: red""></i>
-											 </span>
-											 <span id="aceitar${id}" type="button" title="aceitar">
-													<i class="bi bi-check2" style="color: green""></i>
-											 </span>
-											 <span id="visualizar${id}" type="button" title="Visualizar">
-												<i class="bi bi-eye"></i>
-											 </span>
+											 <td style="font-size: 18px">
+												<span id="recusar${id}" type="button" title="recusar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
+													   <i class="bi bi-x-lg" style="color: red""></i>
+												</span>
+												<span id="aceitar${id}" type="button" title="aceitar">
+													   <i class="bi bi-check2" style="color: green""></i>
+												</span>
+												<span id="imprimir${id}" type="button" title="imprimir" >
+														<i class="bi bi-printer-fill" style="color: grey"></i>
+												</span>
+												<span id="visualizar${id}" type="button" title="Visualizar">
+													<i class="bi bi-eye"></i>
+												</span>
 											</td>	
 											</tr>`;
 					}
@@ -1431,21 +1436,21 @@
 
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 		idSel = _id;
-		
+
 		var obs = document.getElementById("obsRecusa").value;
 
-		if(obs){
+		if (obs) {
 			if (_unidade == "Rafia") {
 				listaOrcRafia = [...orcamento.itens];
-				jsonFormatadoAtualizado = {"obs":obs, "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
+				jsonFormatadoAtualizado = { "obs": obs, "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
 			}
 			else if (_unidade == "Serafina") {
 				listaOrcSerafina = [...orcamento.itens];
-				jsonFormatadoAtualizado = {"obs":obs, "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
+				jsonFormatadoAtualizado = { "obs": obs, "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
 			}
 			else if (_unidade == "Matriz") {
 				listaOrcMatriz = [...orcamento.itens];
-				jsonFormatadoAtualizado = {"obs":obs, "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
+				jsonFormatadoAtualizado = { "obs": obs, "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "CANCELADO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
 			}
 		}
 
@@ -1487,15 +1492,15 @@
 
 		if (_unidade == "Matriz") {
 			var listaOrcMatriz = [...orcamento.itens];
-			jsonFormatadoAtualizado = {  "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
+			jsonFormatadoAtualizado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
 		}
 		else if (_unidade == "Serafina") {
 			var listaOrcSerafina = [...orcamento.itens];
-			jsonFormatadoAtualizado = {  "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
+			jsonFormatadoAtualizado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
 		}
 		else if (_unidade == "Rafia") {
 			var listaOrcRafia = [...orcamento.itens];
-			jsonFormatadoAtualizado = {  "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
+			jsonFormatadoAtualizado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM ORÇAMENTO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
 		}
 
 		var parametros = {
@@ -1525,15 +1530,15 @@
 
 		if (_unidade == "Matriz") {
 			var listaOrcMatriz = [...orcamento.itens];
-			jsonFormatadoAtualizado = { "erro": _erro,  "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
+			jsonFormatadoAtualizado = { "erro": _erro, "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
 		}
 		else if (_unidade == "Serafina") {
 			var listaOrcSerafina = [...orcamento.itens];
-			jsonFormatadoAtualizado = { "erro": _erro,  "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
+			jsonFormatadoAtualizado = { "erro": _erro, "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
 		}
 		else if (_unidade == "Rafia") {
 			var listaOrcRafia = [...orcamento.itens];
-			jsonFormatadoAtualizado = { "erro": _erro,  "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
+			jsonFormatadoAtualizado = { "erro": _erro, "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
 		}
 
 		var parametros = {
@@ -1553,29 +1558,29 @@
 
 	}
 
-	function abrirModalExcluir(_id, _unidade){
+	function abrirModalExcluir(_id, _unidade) {
 		$("#modalExcluir2").modal('show');
 
 		idCancelado = _id;
 		unidadeCancelado = _unidade;
 	}
 
-	function fecharModalExcluir(){
+	function fecharModalExcluir() {
 		$("#modalExcluir2").modal('hide');
 	}
 
-	function abrirModalRecusarOrcamentoOrcado(_id, _unidade){
+	function abrirModalRecusarOrcamentoOrcado(_id, _unidade) {
 		$("#modalRecusaOcamento").modal('show');
 
 		idRecusado = _id;
 		unidadeRecusado = _unidade;
 	}
 
-	$("#confirmaRecusa").click(function (){
+	$("#confirmaRecusa").click(function () {
 		var formulario = document.getElementById("modalRecusa");
-		if(!formulario.checkValidity()){
+		if (!formulario.checkValidity()) {
 
-		}else {
+		} else {
 			formulario.addEventListener('submit', function (e) {
 				e.preventDefault();
 			});
@@ -1914,7 +1919,7 @@
 		atualizarTabelaRafiaEdicao();
 	}
 	function montaJsonRafiaEdicao() {
-		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Rafia", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
+		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Rafia", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
 	}
 	function atualizarItensBaseClicRafia() {
 		montaJsonRafiaEdicao();
@@ -1961,7 +1966,7 @@
 				if (response.substring(0, 4) == "ERRO") {
 					enviarOrcErro(jsonFormatado.id, jsonFormatado.unidade, response);
 				}
-				else{
+				else {
 					enviarOrcSucesso(jsonFormatado.id, jsonFormatado.unidade);
 				}
 			},
@@ -2316,7 +2321,7 @@
 		var clienteSel = document.getElementById("filtroCliente").value;
 		var orcamentoSel = document.getElementById("inputOrcamento").value;
 		var vendedorSel = document.getElementById("selectVendedor").value;
-		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogado().cId ,"id":"", "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafia };
+		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogado().cId, "id": "", "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafia };
 	}
 	function salvaItensBaseClicRafia() {
 		montaJsonRafia();
@@ -2658,7 +2663,7 @@
 		item[prop] = value;
 	}
 	function montaJsonSerafinaEdicao() {
-		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Serafina", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafinaEdicao };
+		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Serafina", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafinaEdicao };
 	}
 	function removerElementoSerafinaEdicao(elementoClicado, i) {
 		linhasSerafinaEdicao.splice(i, 1);
@@ -2710,7 +2715,7 @@
 				if (response.substring(0, 4) == "ERRO") {
 					enviarOrcErro(jsonFormatado.id, jsonFormatado.unidade, response);
 				}
-				else{
+				else {
 					enviarOrcSucesso(jsonFormatado.id, jsonFormatado.unidade);
 				}
 			},
@@ -3045,7 +3050,7 @@
 		var clienteSel = document.getElementById("filtroClienteSerafina").value;
 		var orcamentoSel = document.getElementById("inputOrcamentoSerafina").value;
 		var vendedorSel = document.getElementById("selectVendedorSerafina").value;
-		jsonFormatado = {  "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":"", "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafina };
+		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": "", "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafina };
 
 	}
 	function removerElementoSerafina(elementoClicado, i) {
@@ -3390,7 +3395,7 @@
 		item[prop] = value;
 	}
 	function montaJsonMatrizEdicao() {
-		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id":idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
+		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
 	}
 	function removerElementoMatrizEdicao(elementoClicado, i) {
 		linhasMatrizEdicao.splice(i, 1);
@@ -3434,7 +3439,7 @@
 		};
 
 		console.log("json", jsonFormatado);
- 
+
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
 			type: "POST",
@@ -3443,7 +3448,7 @@
 				if (response.substring(0, 4) == "ERRO") {
 					enviarOrcErro(jsonFormatado.id, jsonFormatado.unidade, response);
 				}
-				else{
+				else {
 					enviarOrcSucesso(jsonFormatado.id, jsonFormatado.unidade);
 				}
 			}
@@ -3771,7 +3776,7 @@
 		var clienteSel = document.getElementById("filtroClienteMatriz").value;
 		var orcamentoSel = document.getElementById("inputOrcamentoMatriz").value;
 		var vendedorSel = document.getElementById("selectVendedorMatriz").value;
-		jsonFormatado = {"idCvtccnpj": parent.dadosUserLogado().cId ,"id":"", "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatriz };
+		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogado().cId, "id": "", "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": unidadeSel, "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatriz };
 	}
 	function salvaItensBaseClicMatriz() {
 		montaJsonMatriz();
