@@ -835,8 +835,6 @@
 							</tr>
 						</thead>
 						<tbody id="linhaTableRafiaVisualizar">
-							<div style="margin-bottom: 10px">
-							</div>
 						</tbody>
 					</table>
 				</div>
@@ -931,7 +929,6 @@
 					dataAlteracao = dataAlteracao.toLocaleDateString();
 					var json = JSON.parse(jsonDocs);
 					json.id = id;
-					console.log("json", json);
 					orcamentosClicJson.push({ id, ...json });
 					if (json.situacao === "CANCELADO") {
 						linhaOrcamentosClic += `<tr id="linha${id}" style="text-align: center">
@@ -1660,22 +1657,7 @@
 				};
 			});
 		}
-		else if (_unidade == "Serafina") {
-			linhasSerafinaEdicao = [...orcamento.itens];
-			linhasSerafinaEdicao.map((item) => {
-				if (!item.numOrc) {
-					item.numOrc = idSel.toString();
-				};
-			});
-		}
-		else if (_unidade == "Matriz") {
-			linhasMatrizEdicao = [...orcamento.itens];
-			linhasMatrizEdicao.map((item) => {
-				if (!item.numOrc) {
-					item.numOrc = idSel.toString();
-				};
-			});
-		}
+
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
 		vendedorSel = orcamento.vendedor;
@@ -2885,8 +2867,6 @@
 
 		montaJsonMatrizEdicao();
 
-		console.log(jsonFormatado);
-
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 996,
@@ -3625,8 +3605,6 @@
 			pRotina: "enviarOrcRafia",
 			pItem: jsonFormatado
 		};
-
-		console.log("json", jsonFormatado);
 
 		$.ajax({
 			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
