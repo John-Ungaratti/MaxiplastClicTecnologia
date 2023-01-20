@@ -875,6 +875,7 @@
 	var unidadeRecusado;
 	
 	var linhasTableRafiaVisualizar = "";
+	var linhasTableRafiaVisualizar;
 
 	var options;
 	
@@ -1668,7 +1669,7 @@
 			var index;
 			orcamento.itens.map((prod, indice) => {
 				index = indice;
-				linhasTableRafiaEdicao += `
+				linhasTableRafiaVisualizar += `
 								<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 								<th scope="row">
 								<span type="button">
