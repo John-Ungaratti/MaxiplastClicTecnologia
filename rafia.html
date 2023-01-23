@@ -2713,7 +2713,9 @@
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
 						<td><input type="number" min="0" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
-				}).join("");
+				}).join("")
+				console.log(parseFloat(prod.largura.replace(",",".")));
+				console.log(prod);
 			},
 			complete: function () {
 				listaTipoEmbalagemRafia(index);
