@@ -552,61 +552,77 @@
 </form>
 
 <!-- MODAL EDICAO SERAFINA-->
-<div id="modalEdicaoSerafina" class="modal" tabindex="-1">
-	<div class="modal-dialog modal-fullscreen">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Edição Orçamento</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div id="corpoModalEdicaoSerafina" class="modal-body">
-				<div style="overflow-x: scroll">
-					<table id="tableEdicaoSerafina" class="table table-bordered border-dark" style="font-size: small">
-						<thead>
-							<tr style="text-align: center;vertical-align: middle;">
-								<th scope="col"></th>
-								<th scope="col">Item</th>
-								<th scope="col">Largura(cm)</th>
-								<th scope="col">Altura(cm)</th>
-								<th scope="col">Espessura(mm)</th>
-								<th scope="col">Unid. Medida</th>
-								<th scope="col">Quantidade</th>
-								<th scope="col">Tipo Embalagem</th>
-								<th scope="col">Monocamada / Laminado / Bilaminado</th>
-								<th scope="col">Tipo Material</th>
-								<th scope="col">Pigmentado / Transparente</th>
-								<th scope="col">Liso / Impresso</th>
-								<th scope="col">Quantidade Cores</th>
-								<th scope="col">Tipo de Solda</th>
-								<th scope="col">Prazo Entrega</th>
-								<th scope="col">Obs</th>
-								<th scope="col">Preço</th>
-								<th scope="col">Total</th>
-							</tr>
-						</thead>
-						<tbody id="linhaTableSerafinaEdicao">
-							<div style="margin-bottom: 10px">
-								<br>
-								<button id="addItensSerafinaEdicao" type="submit" class="btn btn-outline-dark"
-									onclick="mostraModalProdutosSerafina()">Adicionar Item</button>
-								<br>
-							</div>
-						</tbody>
-					</table>
+<form id="formSerafinaEdicao">
+	<div id="modalEdicaoSerafina" class="modal" tabindex="-1">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edição Orçamento</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-					onclick="limparLinhasEdicaoSerafina()">Fechar</button>
-				<button type="button" class="btn btn-primary"
-					onclick="atualizarItensBaseClicSerafina()">Atualizar</button>
-				<button onclick="enviarWebServiceMaxiplastSerafina()" type="button"
-					class="btn btn-success">Enviar</button>
-			</div>
-		</div>|
+				<div id="corpoModalEdicaoSerafina" class="modal-body">
+					<div class="mb-3">
+						<label for="filtroClienteSerafina" class="form-label">Cliente</label>
+						<input id="filtroClienteSerafina" type="text" class="form-control" placeholder="Buscar cliente"
+							list="clientes" required />
+						<datalist id="clientes"></datalist>
+					</div>
+					<div class="mb-3">
+						<label for="inputOrcamentoSerafina" class="form-label">Orçamento</label>
+						<input class="form-control" id="inputOrcamentoSerafina"
+							placeholder="Informe o tipo de orçamento">
+					</div>
+					<div class="mb-3">
+						<label for="filtroVendedorSerafina" class="form-label">Vendedor</label>
+						<select name="filtroVendedorSerafina" class="form-select" id="selectVendedorSerafina"></select>
+					</div>
+					<div>
+						<br>
+						<button id="addItensSerafinaEdicao" type="submit" class="btn btn-outline-dark" >Adicionar Item</button>
+						<br>
+					</div>
+					<div style="overflow-x: scroll">
+						<table id="tableEdicaoSerafina" class="table table-bordered border-dark" style="font-size: small">
+							<thead>
+								<tr style="text-align: center;vertical-align: middle;">
+									<th scope="col"></th>
+									<th scope="col">Item</th>
+									<th scope="col">Largura(cm)</th>
+									<th scope="col">Altura(cm)</th>
+									<th scope="col">Espessura(mm)</th>
+									<th scope="col">Unid. Medida</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Tipo Embalagem</th>
+									<th scope="col">Monocamada / Laminado / Bilaminado</th>
+									<th scope="col">Tipo Material</th>
+									<th scope="col">Pigmentado / Transparente</th>
+									<th scope="col">Liso / Impresso</th>
+									<th scope="col">Quantidade Cores</th>
+									<th scope="col">Tipo de Solda</th>
+									<th scope="col">Prazo Entrega</th>
+									<th scope="col">Obs</th>
+									<th scope="col">Preço</th>
+									<th scope="col">Total</th>
+								</tr>
+							</thead>
+							<tbody id="linhaTableSerafinaEdicao">
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+						onclick="limparLinhasEdicaoSerafina()">Fechar</button>
+					<button type="button" class="btn btn-primary"
+						onclick="atualizarItensBaseClicSerafina()">Atualizar</button>
+					<button onclick="enviarWebServiceMaxiplastSerafina()" type="button"
+						class="btn btn-success">Enviar</button>
+				</div>
+			</div>|
+		</div>
 	</div>
-</div>
-
+</form>
 <!-- MODAL EDIÇÃO PRODUTOS SERAFINA -->
 <form id="formProdutoSerafinaEdicao">
 	<div id="modalSelectTipoItemSerafinaEdicao" class="modal fade" data-bs-backdrop="static">
@@ -659,60 +675,75 @@
 </form>
 
 <!-- MODAL EDIÇÃO Matriz-->
-<div id="modalEdicaoMatriz" class="modal" tabindex="-1">
-	<div class="modal-dialog modal-fullscreen">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Edição Orçamento</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div id="corpoModalEdicaoMatriz" class="modal-body">
-				<div style="overflow-x: scroll">
-					<table id="tableEdicaoMatriz" class="table table-bordered border-dark" style="font-size: small">
-						<thead>
-							<tr style="text-align: center;vertical-align: middle;">
-								<th scope="col"></th>
-								<th scope="col">Item</th>
-								<th scope="col">Largura(cm)</th>
-								<th scope="col">Altura(cm)</th>
-								<th scope="col">Espessura(mm)</th>
-								<th scope="col">Unid. Medida</th>
-								<th scope="col">Quantidade</th>
-								<th scope="col">Tipo Embalagem</th>
-								<th scope="col">Monocamada / Laminado / Bilaminado</th>
-								<th scope="col">Tipo Material</th>
-								<th scope="col">Pigmentado / Transparente</th>
-								<th scope="col">Liso / Impresso</th>
-								<th scope="col">Quantidade Cores</th>
-								<th scope="col">Tipo de Solda</th>
-								<th scope="col">Prazo Entrega</th>
-								<th scope="col">Obs</th>
-								<th scope="col">Preço</th>
-								<th scope="col">Total</th>
-							</tr>
-						</thead>
-						<tbody id="linhaTableMatrizEdicao">
-							<div style="margin-bottom: 10px">
-								<br>
-								<button id="addItensMatrizEdicao" type="submit" class="btn btn-outline-dark"
-									onclick="mostraModalProdutosMatriz()">Adicionar Item</button>
-								<br>
-							</div>
-						</tbody>
-					</table>
+<form id="formMatrizEdicao">
+	<div id="modalEdicaoMatriz" class="modal" tabindex="-1">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edição Orçamento</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-					onclick="limparLinhasEdicaoMatriz()">Fechar</button>
-				<button type="button" class="btn btn-primary"
-					onclick="atualizarItensBaseClicMatriz()">Atualizar</button>
-				<button type="button" class="btn btn-success"
-					onclick="enviarWebServiceMaxiplastMatriz()">Enviar</button>
-			</div>
-		</div>|
+				<div id="corpoModalEdicaoMatriz" class="modal-body">
+					<div>
+						<div class="mb-3">
+							<label for="filtroClienteMatriz" class="form-label">Cliente</label>
+							<input id="filtroClienteMatriz" type="text" class="form-control" placeholder="Buscar cliente"
+								list="clientes" required />
+							<datalist id="clientes"></datalist>
+						</div>
+						<div class="mb-3">
+							<label for="inputOrcamentoMatriz" class="form-label">Orçamento</label>
+							<input class="form-control" id="inputOrcamentoMatriz" placeholder="Informe o tipo de orçamento">
+						</div>
+						<div class="mb-3">
+							<label for="filtroVendedorMatriz" class="form-label">Vendedor</label>
+							<select name="filtroVendedorMatriz" class="form-select" id="selectVendedorMatriz"></select>
+						</div>
+						<br>
+						<button id="addItensMatrizEdicao" type="submit" class="btn btn-outline-dark">Adicionar Item</button>
+						<br>
+					</div>
+					<div style="overflow-x: scroll">
+						<table id="tableEdicaoMatriz" class="table table-bordered border-dark" style="font-size: small">
+							<thead>
+								<tr style="text-align: center;vertical-align: middle;">
+									<th scope="col"></th>
+									<th scope="col">Item</th>
+									<th scope="col">Largura(cm)</th>
+									<th scope="col">Altura(cm)</th>
+									<th scope="col">Espessura(mm)</th>
+									<th scope="col">Unid. Medida</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Tipo Embalagem</th>
+									<th scope="col">Monocamada / Laminado / Bilaminado</th>
+									<th scope="col">Tipo Material</th>
+									<th scope="col">Pigmentado / Transparente</th>
+									<th scope="col">Liso / Impresso</th>
+									<th scope="col">Quantidade Cores</th>
+									<th scope="col">Tipo de Solda</th>
+									<th scope="col">Prazo Entrega</th>
+									<th scope="col">Obs</th>
+									<th scope="col">Preço</th>
+									<th scope="col">Total</th>
+								</tr>
+							</thead>
+							<tbody id="linhaTableMatrizEdicao">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+						onclick="limparLinhasEdicaoMatriz()">Fechar</button>
+					<button type="button" class="btn btn-primary"
+						onclick="atualizarItensBaseClicMatriz()">Atualizar</button>
+					<button type="button" class="btn btn-success"
+						onclick="enviarWebServiceMaxiplastMatriz()">Enviar</button>
+				</div>
+			</div>|
+		</div>
 	</div>
-</div>
+</form>
 
 <!-- MODAL EDIÇÃO PRODUTOS Matriz -->
 <form id="formProdutoMatrizEdicao">
@@ -2922,16 +2953,21 @@
 			}
 		});
 	};
-	function mostraModalProdutosSerafina() {
-		$("#modalSelectTipoItemSerafinaEdicao").modal('show');
-	}
 	function limparLinhasEdicaoSerafina() {
 		linhasTableSerafinaEdicao = "";
 	}
 	$("#addItensSerafinaEdicao").click(function () {
+		var formulario = document.getElementById("formSerafinaEdicao");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
 		$("#modalSelectTipoItemSerafinaEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemSerafinaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicaoSerafina").style.filter = "blur(2px)";
+		}
 	});
 	$("#cancelModalProdutoSerafinaEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemSerafinaEdicao").style.filter = "unset";
@@ -3653,16 +3689,21 @@
 			}
 		});
 	}
-	function mostraModalProdutosMatriz() {
-		$("#modalSelectTipoItemMatrizEdicao").modal('show');
-	}
 	function limparLinhasEdicaoMatriz() {
 		linhasTableMatrizEdicao = "";
 	}
 	$("#addItensMatrizEdicao").click(function () {
+		var formulario = document.getElementById("formMatrizEdicao");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
 		$("#modalSelectTipoItemMatrizEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicaoMatriz").style.filter = "blur(2px)";
+		}
 	});
 	$("#cancelModalProdutoMatrizEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "unset";
