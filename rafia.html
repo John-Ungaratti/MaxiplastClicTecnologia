@@ -466,6 +466,25 @@
 						</thead>
 						<tbody id="linhaTableRafiaEdicao">
 							<div style="margin-bottom: 10px">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Edição de orçamento - Rafia</h5>
+									</div>
+									<div class="modal-body">
+										<div class="mb-3">
+											<label for="inputCliente" class="form-label">Cliente</label>
+											<input id="filtroCliente" type="text" class="form-control" placeholder="Buscar cliente"
+												list="clientes" required />
+											<datalist id="clientes"></datalist>
+										</div>
+										<div class="mb-3">
+											<label for="inputOrcamento" class="form-label">Orçamento</label>
+											<input class="form-control" id="inputOrcamento" placeholder="Informe o tipo de orçamento">
+										</div>
+										<div class="mb-3">
+											<label for="vendedorInput" class="form-label">Vendedor</label>
+											<select name="vendedorInput" class="form-select" id="selectVendedor"></select>
+										</div>
 								<br>
 								<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark"
 									onclick="mostraModalProdutos()">Adicionar Item</button>
