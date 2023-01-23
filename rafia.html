@@ -105,7 +105,7 @@
 						<table id="tableRafia" class="table table-bordered border-dark" style="font-size: small">
 							<thead>
 								<tr style="text-align: center;vertical-align: middle;">
-									<th></th>
+
 									<th scope="col">Item</th>
 									<th scope="col">Unid. Medida</th>
 									<th scope="col">Quantidade</th>
@@ -438,7 +438,6 @@
 					<table id="tableRafiaEdicao" class="table table-bordered border-dark" style="font-size: small">
 						<thead>
 							<tr style="text-align: center;vertical-align: middle;">
-								<th></th>
 								<th scope="col">Item</th>
 								<th scope="col">Unid. Medida</th>
 								<th scope="col">Quantidade</th>
@@ -806,7 +805,6 @@
 					<table id="tableRafiaVisualizar" class="table table-bordered border-dark" style="font-size: small">
 						<thead>
 							<tr style="text-align: center;vertical-align: middle;">
-								<th></th>
 								<th scope="col">Item</th>
 								<th scope="col">Unid. Medida</th>
 								<th scope="col">Quantidade</th>
@@ -858,7 +856,6 @@
 					<table id="tableVisualizarSerafina" class="table table-bordered border-dark" style="font-size: small">
 						<thead>
 							<tr style="text-align: center;vertical-align: middle;">
-								<th scope="col"></th>
 								<th scope="col">Item</th>
 								<th scope="col">Largura(cm)</th>
 								<th scope="col">Altura(cm)</th>
@@ -903,7 +900,6 @@
 					<table id="tableVisualizarMatriz" class="table table-bordered border-dark" style="font-size: small">
 						<thead>
 							<tr style="text-align: center;vertical-align: middle;">
-								<th scope="col"></th>
 								<th scope="col">Item</th>
 								<th scope="col">Largura(cm)</th>
 								<th scope="col">Altura(cm)</th>
@@ -1864,6 +1860,7 @@
 			}).join("");
 			document.getElementById("linhaTableRafiaVisualizar").innerHTML = linhasTableRafiaVisualizar;
 			$("#modalVisualizar").modal('show');
+			orcamento = [];
 		}
 		else if(_unidade == "Serafina") {
 			var index;
@@ -1929,6 +1926,7 @@
 			}).join("");
 			document.getElementById("linhaTableSerafinaVisualizar").innerHTML = linhasTableSerafinaVisualizar;
 			$("#modalVisualizarSerafina").modal('show');
+			orcamento = [];
 		}
 		else if(_unidade == "Matriz") {
 			var index;
@@ -1994,9 +1992,10 @@
 			}).join("");
 			document.getElementById("linhaTableMatrizVisualizar").innerHTML = linhasTableMatrizVisualizar;
 			$("#modalVisualizarMatriz").modal('show');
+			orcamento = [];
 		}
 
-		orcamento = [];
+		
 	}
 </script>
 
