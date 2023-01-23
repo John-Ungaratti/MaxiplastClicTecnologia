@@ -676,18 +676,14 @@
 				<div id="corpoModalEdicaoMatriz" class="modal-body">
 					<div>
 						<div class="mb-3">
-							<label for="filtroClienteMatriz" class="form-label">Cliente</label>
-							<input id="filtroClienteMatriz" type="text" class="form-control" placeholder="Buscar cliente"
+							<label for="filtroClienteMatrizEdicao" class="form-label">Cliente</label>
+							<input id="filtroClienteMatrizEdicao" type="text" class="form-control" placeholder="Buscar cliente"
 								list="clientes" required />
 							<datalist id="clientes"></datalist>
 						</div>
 						<div class="mb-3">
-							<label for="inputOrcamentoMatriz" class="form-label">Orçamento</label>
-							<input class="form-control" id="inputOrcamentoMatriz" placeholder="Informe o tipo de orçamento">
-						</div>
-						<div class="mb-3">
-							<label for="filtroVendedorMatriz" class="form-label">Vendedor</label>
-							<select name="filtroVendedorMatriz" class="form-select" id="selectVendedorMatriz"></select>
+							<label for="inputOrcamentoMatrizEdicao" class="form-label">Orçamento</label>
+							<input class="form-control" id="inputOrcamentoMatrizEdicao" placeholder="Informe o tipo de orçamento">
 						</div>
 						<br>
 						<button id="addItensMatrizEdicao" type="submit" class="btn btn-outline-dark">Adicionar Item</button>
@@ -724,12 +720,9 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-						onclick="limparLinhasEdicaoMatriz()">Fechar</button>
-					<button type="button" class="btn btn-primary"
-						onclick="atualizarItensBaseClicMatriz()">Atualizar</button>
-					<button type="button" class="btn btn-success"
-						onclick="enviarWebServiceMaxiplastMatriz()">Enviar</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="limparLinhasEdicaoMatriz()">Fechar</button>
+					<button id="atualizaOctBaseClicMatriz" type="button" class="btn btn-primary">Atualizar</button>
+					<button type="button" class="btn btn-success" onclick="enviarWebServiceMaxiplastMatriz()">Enviar</button>
 				</div>
 			</div>|
 		</div>
@@ -3892,12 +3885,27 @@
 		item[prop] = value;
 	}
 	function montaJsonMatrizEdicao() {
+		var clienteSel = document.getElementById("filtroClienteMatrizEdicao").value;
+		var orcamentoSel = document.getElementById("inputOrcamentoMatrizEdicao").value;
 		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Matriz", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasMatrizEdicao };
 	}
 	function removerElementoMatrizEdicao(elementoClicado, i) {
 		linhasMatrizEdicao.splice(i, 1);
 		atualizarTabelaMatrizEdicao();
 	}
+	
+	$("#atualizaOctBaseClicMatriz").click(function () {
+		var formulario = document.getElementById("formMatrizEdicao");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			atualizarItensBaseClicMatriz();
+		}
+	});
+	
 	function atualizarItensBaseClicMatriz() {
 
 		montaJsonMatrizEdicao();
