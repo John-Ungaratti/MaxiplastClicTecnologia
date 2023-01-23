@@ -448,6 +448,12 @@
 					<label for="vendedorInput" class="form-label">Vendedor</label>
 					<select name="vendedorInput" class="form-select" id="selectVendedor"></select>
 				</div>
+				<div style="margin-bottom: 10px">
+					<br>
+					<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark"
+						onclick="mostraModalProdutos()">Adicionar Item</button>
+					<br>
+				</div>
 				<div style="overflow-x: scroll">
 					<table id="tableRafiaEdicao" class="table table-bordered border-dark" style="font-size: small">
 						<thead>
@@ -478,13 +484,7 @@
 								<th scope="col">Gramatura</th>
 							</tr>
 						</thead>
-						<tbody id="linhaTableRafiaEdicao">
-							<div style="margin-bottom: 10px">
-								<br>
-								<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark"
-									onclick="mostraModalProdutos()">Adicionar Item</button>
-								<br>
-							</div>
+						<tbody id="linhaTableRafiaEdicao">						
 						</tbody>
 					</table>
 				</div>
