@@ -2724,6 +2724,9 @@
 		});
 	}
 	function addLinhas() {
+
+		var prod = [];
+
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 750,
@@ -2744,10 +2747,10 @@
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					console.log("copiar");
-					linhasRafia.push({ "empresa": "1", "tipoItem": "Copiar", "idPro": response[0].codPro, "item": response.item, "unidMed": response.unidMed, "quantidade": response.quantidade, "preco": "", "total": "", "tipoEmbalagem": response.tipoEmbalagem, "tipoLaminado": response.tipoLaminado, "pigmentadoTransparente": response.pigmentadoTransparente, "lisoImpresso": response.lisoImpresso, "qtdCoresFrente": response.qtdCoresFrente, "qtdCoresVerso": response.qtdCoresVerso, "gramaturaLaminado": response.gramaturaLaminado, "gramaturaConvencional": response.gramaturaConvencional, "sanfona": response.sanfona, "medidaSanfona": response.medidaSanfona, "valvula": response.valvula, "medidaValvula": response.medidaValvula, "estadoDestino": "", "gramatura": response.gramatura, "corTrama": response.corTrama, "corUrdume": response.corUrdume, "lyner": response.lyner, "largura": response.largura, "comprimento": response.comprimento });
+					prod = response;
+					linhasRafia.push({ "empresa": "1", "tipoItem": "Copiar", "idPro": prod[0].codPro, "item": prod.item, "unidMed": prod.unidMed, "quantidade": prod.quantidade, "preco": "", "total": "", "tipoEmbalagem": prod.tipoEmbalagem, "tipoLaminado": prod.tipoLaminado, "pigmentadoTransparente": prod.pigmentadoTransparente, "lisoImpresso": prod.lisoImpresso, "qtdCoresFrente": prod.qtdCoresFrente, "qtdCoresVerso": prod.qtdCoresVerso, "gramaturaLaminado": prod.gramaturaLaminado, "gramaturaConvencional": prod.gramaturaConvencional, "sanfona": prod.sanfona, "medidaSanfona": prod.medidaSanfona, "valvula": prod.valvula, "medidaValvula": prod.medidaValvula, "estadoDestino": "", "gramatura": prod.gramatura, "corTrama": prod.corTrama, "corUrdume": prod.corUrdume, "lyner": prod.lyner, "largura": prod.largura, "comprimento": prod.comprimento });
 				}
 				else if (checkBox == "Produto já existente") {
-					var prod = response.find(({ item }) => item == produtoSel);
 					linhasRafia.push({ "empresa": "1", "tipoItem": "Existente", "idPro": prod.codPro, "item": prod.item, "unidMed": prod.unidMed, "quantidade": prod.quantidade, "preco": "", "total": "", "tipoEmbalagem": prod.tipoEmbalagem, "tipoLaminado": prod.tipoLaminado, "pigmentadoTransparente": prod.pigmentadoTransparente, "lisoImpresso": prod.lisoImpresso, "qtdCoresFrente": prod.qtdCoresFrente, "qtdCoresVerso": prod.qtdCoresVerso, "gramaturaLaminado": prod.gramaturaLaminado, "gramaturaConvencional": prod.gramaturaConvencional, "sanfona": prod.sanfona, "medidaSanfona": prod.medidaSanfona, "valvula": prod.valvula, "medidaValvula": prod.medidaValvula, "estadoDestino": "", "gramatura": prod.gramatura, "corTrama": prod.corTrama, "corUrdume": prod.corUrdume, "lyner": prod.lyner, "largura": prod.largura, "comprimento": prod.comprimento });
 				}
 				atualizarTabelaRafia();
