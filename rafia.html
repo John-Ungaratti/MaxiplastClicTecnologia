@@ -2734,7 +2734,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				response.replace(",", ".");
+				console.log("response", response);
 				var objRetorno = JSON.parse(response);
 				var produtoSel = document.getElementById("inputProdutoRafia").value;
 				var checkBox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
