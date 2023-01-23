@@ -451,8 +451,7 @@
 				</div>
 				<div>
 					<br>
-					<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark"
-						onclick="mostraModalProdutos()">Adicionar Item</button>
+					<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark">Adicionar Item</button>
 					<br>
 				</div>
 				<br>
@@ -2112,14 +2111,10 @@
 			}
 		});
 	};
-	function mostraModalProdutos() {
-		$("#modalSelectTipoItemRafiaEdicao").modal('show');
-	}
 	function limparLinhasEdicao() {
 		linhasTableRafiaEdicao = "";
 	}
-	$("#addItensRafiaEdicao").click(function () {
-		
+	$("#addItensRafiaEdicao").click(function () {	
 		var formulario = document.getElementById("formRafiaEdicao");
 		if (!formulario.checkValidity()) {
 		}
