@@ -762,8 +762,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" onclick="fecharModalExcluir()">Não</button>
-				<button type="button" class="btn btn-primary"
-					onclick="cancelaOrcamentoBaseClic(idCancelado, unidadeCancelado)">Sim</button>
+				<button type="submit" class="btn btn-primary" onclick="cancelaOrcamentoBaseClic(idCancelado, unidadeCancelado)">Sim</button>
 			</div>
 		</div>
 	</div>
@@ -786,8 +785,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" onclick="">Não</button>
-					<button id="confirmaRecusa" type="submit" class="btn btn-primary" o>Sim</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+					<button id="confirmaRecusa" type="submit" class="btn btn-primary">Sim</button>
 				</div>
 			</div>
 		</div>
@@ -1077,7 +1076,7 @@
 												<span id="visualizar${id}" type="button" title="Visualizar" onclick="visualizarOrc(${id}, '${json.unidade}')">
 													<i class="bi bi-eye"></i>
 												</span>
-												<span id="recusar${id}" type="button" title="Cancelar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
+												<span id="recusar" type="submit" title="Cancelar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
 												   <i class="bi bi-x-lg" style="color: red""></i>
 												</span>
 												<span id="aceitar${id}" type="button" title="Aceitar">
@@ -1720,6 +1719,7 @@
 	}
 
 	function abrirModalRecusarOrcamentoOrcado(_id, _unidade) {
+
 		$("#modalRecusaOcamento").modal('show');
 
 		idRecusado = _id;
