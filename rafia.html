@@ -453,6 +453,7 @@
 					<br>
 					<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark"
 						onclick="mostraModalProdutos()">Adicionar Item</button>
+					<br>
 				</div>
 				<br>
 				<div style="overflow-x: scroll">
@@ -2118,9 +2119,18 @@
 		linhasTableRafiaEdicao = "";
 	}
 	$("#addItensRafiaEdicao").click(function () {
+		
+		var formulario = document.getElementById("formRafiaEdicao");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
 		$("#modalSelectTipoItemRafiaEdicao").modal('show');
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
 		document.getElementById("modalEdicao").style.filter = "blur(2px)";
+		}
 	});
 	$("#cancelModalProdutoRafiaEdicao").click(function () {
 		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "unset";
@@ -2371,7 +2381,6 @@
 			}
 		});
 	}
-
 
 	function enviarWebServiceMaxiplastRafia() {
 
