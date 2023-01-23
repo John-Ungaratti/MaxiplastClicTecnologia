@@ -487,8 +487,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-					onclick="limparLinhasEdicao()">Fechar</button>
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="limparLinhasEdicao()">Fechar</button>
 				<button id="atualizaOctBaseClic" type="submit" class="btn btn-primary">Atualizar</button>
 				<button type="button" class="btn btn-success" onclick="enviarWebServiceMaxiplastRafia()">Enviar</button>
 			</div>
@@ -617,6 +616,7 @@
 		</div>
 	</div>
 </form>
+
 <!-- MODAL EDIÇÃO PRODUTOS SERAFINA -->
 <form id="formProdutoSerafinaEdicao">
 	<div id="modalSelectTipoItemSerafinaEdicao" class="modal fade" data-bs-backdrop="static">
@@ -2395,6 +2395,8 @@
 	});
 
 	function atualizarItensBaseClicRafia() {
+
+		console.log("atualizou");
 
 		montaJsonRafiaEdicao();
 		
