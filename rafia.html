@@ -557,19 +557,15 @@
 				</div>
 				<div id="corpoModalEdicaoSerafina" class="modal-body">
 					<div class="mb-3">
-						<label for="filtroClienteSerafina" class="form-label">Cliente</label>
-						<input id="filtroClienteSerafina" type="text" class="form-control" placeholder="Buscar cliente"
+						<label for="filtroClienteSerafinaEdicao" class="form-label">Cliente</label>
+						<input id="filtroClienteSerafinaEdicao" type="text" class="form-control" placeholder="Buscar cliente"
 							list="clientes" required />
 						<datalist id="clientes"></datalist>
 					</div>
 					<div class="mb-3">
-						<label for="inputOrcamentoSerafina" class="form-label">Orçamento</label>
-						<input class="form-control" id="inputOrcamentoSerafina"
+						<label for="inputOrcamentoSerafinaEdicao" class="form-label">Orçamento</label>
+						<input class="form-control" id="inputOrcamentoSerafinaEdicao"
 							placeholder="Informe o tipo de orçamento">
-					</div>
-					<div class="mb-3">
-						<label for="filtroVendedorSerafina" class="form-label">Vendedor</label>
-						<select name="filtroVendedorSerafina" class="form-select" id="selectVendedorSerafina"></select>
 					</div>
 					<div>
 						<br>
@@ -609,7 +605,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="limparLinhasEdicaoSerafina()">Fechar</button>
-					<button type="button" class="btn btn-primary"onclick="atualizarItensBaseClicSerafina()">Atualizar</button>
+					<button id="atualizaOctBaseClicSerafina" type="button" class="btn btn-primary">Atualizar</button>
 					<button onclick="enviarWebServiceMaxiplastSerafina()" type="button" class="btn btn-success">Enviar</button>
 				</div>
 			</div>|
@@ -3146,12 +3142,27 @@
 		item[prop] = value;
 	}
 	function montaJsonSerafinaEdicao() {
+		var clienteSel = document.getElementById("filtroClienteSerafinaEdicao").value;
+		var orcamentoSel = document.getElementById("inputOrcamentoSerafinaEdicao").value;
 		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Serafina", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasSerafinaEdicao };
 	}
 	function removerElementoSerafinaEdicao(elementoClicado, i) {
 		linhasSerafinaEdicao.splice(i, 1);
 		atualizarTabelaSerafinaEdicao();
 	}
+	
+	$("#atualizaOctBaseClicSerafina").click(function () {
+		var formulario = document.getElementById("formSerafinaEdicao");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			atualizarItensBaseClicSerafina();
+		}
+	});
+
 	function atualizarItensBaseClicSerafina() {
 		montaJsonSerafinaEdicao();
 		var parametros = {
