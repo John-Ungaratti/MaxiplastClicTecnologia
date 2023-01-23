@@ -2287,10 +2287,10 @@
 							  <option value="2">N</option>
 							</select>
 						</td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');"${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
+						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura.replace(",",".")}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" oninput="validity.valid || (value='');"${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
 				}).join("");
 			},
@@ -2590,10 +2590,7 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 				document.querySelector('#linhaTableRafia').innerHTML = linhasRafia.map(function (prod, indice) {
-					console.log('entrouuu')
-					console.log(linhasRafia)
 					index = indice;
-
 					return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
 						<span type="button">
