@@ -427,77 +427,74 @@
 
 <!-- MODAL EDIÇÃO -->
 <form id="formRafiaEdicao">
-	<div id="modalEdicao" class="modal" tabindex="-1" data-bs-backdrop="static">
-		<div class="modal-dialog modal-fullscreen">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Edição Orçamento</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div id="modalEdicao" class="modal" tabindex="-1" data-bs-backdrop="static">
+	<div class="modal-dialog modal-fullscreen">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edição Orçamento</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div id="corpoModalEdicao" class="modal-body">
+				<div class="mb-3">
+					<label for="inputClienteEdicao" class="form-label">Cliente</label>
+					<input id="filtroClienteEdicao" type="text" class="form-control" placeholder="Buscar cliente"
+						list="clientes" required />
+					<datalist id="clientes"></datalist>
 				</div>
-				<div id="corpoModalEdicao" class="modal-body">
-					<div class="mb-3">
-						<label for="inputClienteEdicao" class="form-label">Cliente</label>
-						<input id="filtroClienteEdicao" type="text" class="form-control" placeholder="Buscar cliente"
-							list="clientes" required />
-						<datalist id="clientes"></datalist>
-					</div>
-					<div class="mb-3">
-						<label for="inputOrcamentoEdicao" class="form-label">Orçamento</label>
-						<input class="form-control" id="inputOrcamentoEdicao" placeholder="Informe o tipo de orçamento">
-					</div>
-					<div>
-						<br>
-						<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark">Adicionar
-							Item</button>
-						<br>
-					</div>
+				<div class="mb-3">
+					<label for="inputOrcamentoEdicao" class="form-label">Orçamento</label>
+					<input class="form-control" id="inputOrcamentoEdicao" placeholder="Informe o tipo de orçamento">
+				</div>
+				<div>
 					<br>
-					<div style="overflow-x: scroll">
-						<table id="tableRafiaEdicao" class="table table-bordered border-dark" style="font-size: small">
-							<thead>
-								<tr style="text-align: center;vertical-align: middle;">
-									<th scope="col">Item</th>
-									<th scope="col">Unid. Medida</th>
-									<th scope="col">Quantidade</th>
-									<th scope="col">Preço</th>
-									<th scope="col">Total</th>
-									<th scope="col">Tipo Embalagem</th>
-									<th scope="col">Convencional / Laminado</th>
-									<th scope="col">Pigmentado / Transparente</th>
-									<th scope="col">Liso / Impresso</th>
-									<th scope="col">Quantidade Cores Frente </th>
-									<th scope="col">Quantidade Cores Verso</th>
-									<th scope="col">Gramatura Laminado</th>
-									<th scope="col">Gramatura Convencional</th>
-									<th scope="col">Cor Trama</th>
-									<th scope="col">Cor Urdame</th>
-									<th scope="col">Sanfona</th>
-									<th scope="col">Medida Sanfona</th>
-									<th scope="col">Válvula</th>
-									<th scope="col">Medida Válvula</th>
-									<th scope="col">Lyner</th>
-									<th scope="col">largura</th>
-									<th scope="col">comprimento</th>
-									<th scope="col">Estado Destino</th>
-									<th scope="col">Gramatura</th>
-								</tr>
-							</thead>
-							<tbody id="linhaTableRafiaEdicao">
-							</tbody>
-						</table>
-					</div>
+					<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark">Adicionar Item</button>
+					<br>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-						onclick="limparLinhasEdicao()">Fechar</button>
-					<button id="atualizaOctBaseClic" type="submit" class="btn btn-primary"
-						onclick="atualizarItensBaseClicRafia()">Atualizar</button>
-					<button type="button" class="btn btn-success"
-						onclick="enviarWebServiceMaxiplastRafia()">Enviar</button>
+				<br>
+				<div style="overflow-x: scroll">
+					<table id="tableRafiaEdicao" class="table table-bordered border-dark" style="font-size: small">
+						<thead>
+							<tr style="text-align: center;vertical-align: middle;">
+								<th scope="col">Item</th>
+								<th scope="col">Unid. Medida</th>
+								<th scope="col">Quantidade</th>
+								<th scope="col">Preço</th>
+								<th scope="col">Total</th>
+								<th scope="col">Tipo Embalagem</th>
+								<th scope="col">Convencional / Laminado</th>
+								<th scope="col">Pigmentado / Transparente</th>
+								<th scope="col">Liso / Impresso</th>
+								<th scope="col">Quantidade Cores Frente </th>
+								<th scope="col">Quantidade Cores Verso</th>
+								<th scope="col">Gramatura Laminado</th>
+								<th scope="col">Gramatura Convencional</th>
+								<th scope="col">Cor Trama</th>
+								<th scope="col">Cor Urdame</th>
+								<th scope="col">Sanfona</th>
+								<th scope="col">Medida Sanfona</th>
+								<th scope="col">Válvula</th>
+								<th scope="col">Medida Válvula</th>
+								<th scope="col">Lyner</th>
+								<th scope="col">largura</th>
+								<th scope="col">comprimento</th>
+								<th scope="col">Estado Destino</th>
+								<th scope="col">Gramatura</th>
+							</tr>
+						</thead>
+						<tbody id="linhaTableRafiaEdicao">						
+						</tbody>
+					</table>
 				</div>
-			</div>|
-		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+					onclick="limparLinhasEdicao()">Fechar</button>
+				<button id="atualizaOctBaseClic" type="submit" class="btn btn-primary">Atualizar</button>
+				<button type="button" class="btn btn-success" onclick="enviarWebServiceMaxiplastRafia()">Enviar</button>
+			</div>
+		</div>|
 	</div>
+ </div>
 </form>
 
 
@@ -577,14 +574,12 @@
 					</div>
 					<div>
 						<br>
-						<button id="addItensSerafinaEdicao" type="submit" class="btn btn-outline-dark">Adicionar
-							Item</button>
+						<button id="addItensSerafinaEdicao" type="submit" class="btn btn-outline-dark" >Adicionar Item</button>
 						<br>
 					</div>
 					<br>
 					<div style="overflow-x: scroll">
-						<table id="tableEdicaoSerafina" class="table table-bordered border-dark"
-							style="font-size: small">
+						<table id="tableEdicaoSerafina" class="table table-bordered border-dark" style="font-size: small">
 							<thead>
 								<tr style="text-align: center;vertical-align: middle;">
 									<th scope="col"></th>
@@ -608,18 +603,15 @@
 								</tr>
 							</thead>
 							<tbody id="linhaTableSerafinaEdicao">
-
+								
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-						onclick="limparLinhasEdicaoSerafina()">Fechar</button>
-					<button type="button" class="btn btn-primary"
-						onclick="atualizarItensBaseClicSerafina()">Atualizar</button>
-					<button onclick="enviarWebServiceMaxiplastSerafina()" type="button"
-						class="btn btn-success">Enviar</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="limparLinhasEdicaoSerafina()">Fechar</button>
+					<button type="button" class="btn btn-primary"onclick="atualizarItensBaseClicSerafina()">Atualizar</button>
+					<button onclick="enviarWebServiceMaxiplastSerafina()" type="button" class="btn btn-success">Enviar</button>
 				</div>
 			</div>|
 		</div>
@@ -689,22 +681,20 @@
 					<div>
 						<div class="mb-3">
 							<label for="filtroClienteMatriz" class="form-label">Cliente</label>
-							<input id="filtroClienteMatriz" type="text" class="form-control"
-								placeholder="Buscar cliente" list="clientes" required />
+							<input id="filtroClienteMatriz" type="text" class="form-control" placeholder="Buscar cliente"
+								list="clientes" required />
 							<datalist id="clientes"></datalist>
 						</div>
 						<div class="mb-3">
 							<label for="inputOrcamentoMatriz" class="form-label">Orçamento</label>
-							<input class="form-control" id="inputOrcamentoMatriz"
-								placeholder="Informe o tipo de orçamento">
+							<input class="form-control" id="inputOrcamentoMatriz" placeholder="Informe o tipo de orçamento">
 						</div>
 						<div class="mb-3">
 							<label for="filtroVendedorMatriz" class="form-label">Vendedor</label>
 							<select name="filtroVendedorMatriz" class="form-select" id="selectVendedorMatriz"></select>
 						</div>
 						<br>
-						<button id="addItensMatrizEdicao" type="submit" class="btn btn-outline-dark">Adicionar
-							Item</button>
+						<button id="addItensMatrizEdicao" type="submit" class="btn btn-outline-dark">Adicionar Item</button>
 						<br>
 					</div>
 					<br>
@@ -814,8 +804,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" onclick="fecharModalExcluir()">Não</button>
-				<button type="submit" class="btn btn-primary"
-					onclick="cancelaOrcamentoBaseClic(idCancelado, unidadeCancelado)">Sim</button>
+				<button type="submit" class="btn btn-primary" onclick="cancelaOrcamentoBaseClic(idCancelado, unidadeCancelado)">Sim</button>
 			</div>
 		</div>
 	</div>
@@ -907,8 +896,7 @@
 			</div>
 			<div id="corpoModalVisualizarSerafina" class="modal-body">
 				<div style="overflow-x: scroll">
-					<table id="tableVisualizarSerafina" class="table table-bordered border-dark"
-						style="font-size: small">
+					<table id="tableVisualizarSerafina" class="table table-bordered border-dark" style="font-size: small">
 						<thead>
 							<tr style="text-align: center;vertical-align: middle;">
 								<th scope="col">Item</th>
@@ -1007,13 +995,13 @@
 	var linhasMatriz = [];
 	var linhasMatrizEdicao;
 	var linhasTableMatrizEdicao = "";
-
+	
 	var idCancelado;
 	var unidadeCancelado;
-
+	
 	var idRecusado;
 	var unidadeRecusado;
-
+	
 	var linhasTableRafiaVisualizar = "";
 
 	var linhasTableSerafinaVisualizar = "";
@@ -1021,7 +1009,7 @@
 	var linhasTableMatrizVisualizar = "";
 
 	var options;
-
+	
 	window.addEventListener("load", function preencheVendedorRafia() {
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
 		var vendedorId = parent.dadosUserLogadoPersonalizado().rId;
@@ -1789,7 +1777,7 @@
 		}
 	});
 
-	function visualizarOrc(_id, _unidade) {
+	function visualizarOrc(_id, _unidade){
 
 		idSel = _id;
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
@@ -1823,7 +1811,7 @@
 		clienteSel = orcamento.cliente;
 		orcamentoSel = orcamento.orcamento;
 		vendedorSel = orcamento.vendedor;
-
+		
 		if (_unidade == "Rafia") {
 			var index;
 			orcamento.itens.map((prod, indice) => {
@@ -1917,7 +1905,7 @@
 			$("#modalVisualizar").modal('show');
 			linhasTableRafiaVisualizar = [];
 		}
-		else if (_unidade == "Serafina") {
+		else if(_unidade == "Serafina") {
 			var index;
 			orcamento.itens.map((prod, indice) => {
 				index = indice;
@@ -1983,7 +1971,7 @@
 			$("#modalVisualizarSerafina").modal('show');
 			linhasTableSerafinaVisualizar = [];
 		}
-		else if (_unidade == "Matriz") {
+		else if(_unidade == "Matriz") {
 			var index;
 			orcamento.itens.map((prod, indice) => {
 				index = indice;
@@ -2050,7 +2038,7 @@
 			linhasTableMatrizVisualizar = [];
 		}
 
-
+		
 	}
 </script>
 
@@ -2152,7 +2140,7 @@
 	function limparLinhasEdicao() {
 		linhasTableRafiaEdicao = "";
 	}
-	$("#addItensRafiaEdicao").click(function () {
+	$("#addItensRafiaEdicao").click(function () {	
 		var formulario = document.getElementById("formRafiaEdicao");
 		if (!formulario.checkValidity()) {
 		}
@@ -2160,9 +2148,9 @@
 			formulario.addEventListener('submit', function (e) {
 				e.preventDefault();
 			});
-			$("#modalSelectTipoItemRafiaEdicao").modal('show');
-			document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
-			document.getElementById("modalEdicao").style.filter = "blur(2px)";
+		$("#modalSelectTipoItemRafiaEdicao").modal('show');
+		document.getElementById("modalSelectTipoItemRafiaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
+		document.getElementById("modalEdicao").style.filter = "blur(2px)";
 		}
 	});
 	$("#cancelModalProdutoRafiaEdicao").click(function () {
@@ -2393,43 +2381,46 @@
 		var orcamentoSel = document.getElementById("inputOrcamentoEdicao").value;
 		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Rafia", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
 	}
+
+	$("#atualizaOctBaseClic").click(function () {
+		var formulario = document.getElementById("formProdutoRafiaEdicao");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+			atualizarItensBaseClicRafia();
+		}
+	});
+
 	function atualizarItensBaseClicRafia() {
 
-		$("#atualizaOctBaseClic").click(function () {
-			var formulario = document.getElementById("formProdutoRafiaEdicao");
-			if (!formulario.checkValidity()) {
-			}
-			else {
-				formulario.addEventListener('submit', function (e) {
-					e.preventDefault();
+		montaJsonRafiaEdicao();
+		
+		var parametros = {
+			"cnpj": {
+				"id": parent.dadosUserLogado().cId
+			},
+			"jsonDocs": JSON.stringify(jsonFormatado)
+		};
+
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				$("#modalEdicao").modal('hide');
+				$('#formRafia').each(function () {
+					this.reset();
 				});
-
-				montaJsonRafiaEdicao();
-
-				var parametros = {
-					"cnpj": {
-						"id": parent.dadosUserLogado().cId
-					},
-					"jsonDocs": JSON.stringify(jsonFormatado)
-				};
-
-				$.ajax({
-					url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
-					type: "POST",
-					data: JSON.stringify(parametros),
-					success: function (response) {
-						$("#modalEdicao").modal('hide');
-						$('#formRafia').each(function () {
-							this.reset();
-						});
-						linhasRafiaEdicao = [];
-						atualizarTabelaRafiaEdicao();
-						document.location.reload();
-					}
-				});
+				linhasRafiaEdicao = [];
+				atualizarTabelaRafiaEdicao();
+				document.location.reload();
 			}
 		});
 	}
+
 
 	function enviarWebServiceMaxiplastRafia() {
 
@@ -2987,9 +2978,9 @@
 			formulario.addEventListener('submit', function (e) {
 				e.preventDefault();
 			});
-			$("#modalSelectTipoItemSerafinaEdicao").modal('show');
-			document.getElementById("modalSelectTipoItemSerafinaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
-			document.getElementById("modalEdicaoSerafina").style.filter = "blur(2px)";
+		$("#modalSelectTipoItemSerafinaEdicao").modal('show');
+		document.getElementById("modalSelectTipoItemSerafinaEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
+		document.getElementById("modalEdicaoSerafina").style.filter = "blur(2px)";
 		}
 	});
 	$("#cancelModalProdutoSerafinaEdicao").click(function () {
@@ -3723,9 +3714,9 @@
 			formulario.addEventListener('submit', function (e) {
 				e.preventDefault();
 			});
-			$("#modalSelectTipoItemMatrizEdicao").modal('show');
-			document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
-			document.getElementById("modalEdicaoMatriz").style.filter = "blur(2px)";
+		$("#modalSelectTipoItemMatrizEdicao").modal('show');
+		document.getElementById("modalSelectTipoItemMatrizEdicao").style.filter = "drop-shadow(2px 4px 6px black)";
+		document.getElementById("modalEdicaoMatriz").style.filter = "blur(2px)";
 		}
 	});
 	$("#cancelModalProdutoMatrizEdicao").click(function () {
