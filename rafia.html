@@ -489,7 +489,7 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
 					onclick="limparLinhasEdicao()">Fechar</button>
-				<button type="button" class="btn btn-primary" onclick="atualizarItensBaseClicRafia()">Atualizar</button>
+				<button id="atualizaOctBaseClic" type="submit" class="btn btn-primary" onclick="atualizarItensBaseClicRafia()">Atualizar</button>
 				<button type="button" class="btn btn-success" onclick="enviarWebServiceMaxiplastRafia()">Enviar</button>
 			</div>
 		</div>|
@@ -2382,7 +2382,21 @@
 		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Rafia", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
 	}
 	function atualizarItensBaseClicRafia() {
+
+		$("#atualizaOctBaseClic").click(function () {
+		var formulario = document.getElementById("formProdutoRafiaEdicao");
+		if (!formulario.checkValidity()) {
+		}
+		else {
+			formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
+		}
+		
 		montaJsonRafiaEdicao();
+
+
+
 		var parametros = {
 			"cnpj": {
 				"id": parent.dadosUserLogado().cId
@@ -2403,6 +2417,7 @@
 				document.location.reload();
 			}
 		});
+	});
 	}
 
 	function enviarWebServiceMaxiplastRafia() {
