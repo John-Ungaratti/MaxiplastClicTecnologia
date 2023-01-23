@@ -2590,7 +2590,7 @@
 			success: function (response) {
 				var objRetorno = JSON.parse(response);
 				document.querySelector('#linhaTableRafia').innerHTML = linhasRafia.map(function (prod, indice) {
-					console.log('entrouu')
+					console.log('entrouuu')
 					console.log(linhasRafia)
 					index = indice;
 
@@ -2664,7 +2664,7 @@
 						</td>
 						<td >
 							<select  ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
-							  <option selected disabled>"${prod.gramaturaConvencional.replace(",",".")}"</option>
+							  <option selected disabled>"${prod.gramaturaConvencional}"</option>
 							  <option value="1">54</option>
 							  <option value="2">58</option>
 							  <option value="3">62</option>
