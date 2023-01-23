@@ -3085,7 +3085,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				var objRetorno = JSON.parse(response);
+				var objRetorno = response;
 				var produtoSel = document.getElementById("inputProdutoSerafinaEdicao").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafinaEdicao"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
@@ -3415,7 +3415,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				var objRetorno = JSON.parse(response);
+				var objRetorno = response;
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
@@ -3835,7 +3835,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				var objRetorno = JSON.parse(response);
+				var objRetorno = response;
 				var produtoSel = document.getElementById("inputProdutoMatrizEdicao").value;
 				var checkBox = document.querySelector(`input[name="flexRadioMatrizEdicao"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
@@ -4160,7 +4160,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				var objRetorno = JSON.parse(response);
+				var objRetorno = response;
 				var produtoSel = document.getElementById("inputProdutoMatriz").value;
 				var checkBox = document.querySelector(`input[name="flexRadioMatriz"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
