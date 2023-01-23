@@ -426,6 +426,7 @@
 </form>
 
 <!-- MODAL EDIÇÃO -->
+<form id="formRafiaEdicao">
 <div id="modalEdicao" class="modal" tabindex="-1" data-bs-backdrop="static">
 	<div class="modal-dialog modal-fullscreen">
 		<div class="modal-content">
@@ -448,7 +449,7 @@
 					<label for="vendedorInput" class="form-label">Vendedor</label>
 					<select name="vendedorInput" class="form-select" id="selectVendedor"></select>
 				</div>
-				<div style="margin-bottom: 10px">
+				<div>
 					<br>
 					<button id="addItensRafiaEdicao" type="submit" class="btn btn-outline-dark"
 						onclick="mostraModalProdutos()">Adicionar Item</button>
@@ -497,7 +498,9 @@
 			</div>
 		</div>|
 	</div>
-</div>
+ </div>
+</form>
+
 
 <!-- MODAL EDICAO PRODUTOS RAFIA -->
 <form id="formProdutoRafiaEdicao">
