@@ -613,12 +613,9 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-						onclick="limparLinhasEdicaoSerafina()">Fechar</button>
-					<button type="button" class="btn btn-primary"
-						onclick="atualizarItensBaseClicSerafina()">Atualizar</button>
-					<button onclick="enviarWebServiceMaxiplastSerafina()" type="button"
-						class="btn btn-success">Enviar</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="limparLinhasEdicaoSerafina()">Fechar</button>
+					<button type="button" class="btn btn-primary"onclick="atualizarItensBaseClicSerafina()">Atualizar</button>
+					<button onclick="enviarWebServiceMaxiplastSerafina()" type="button" class="btn btn-success">Enviar</button>
 				</div>
 			</div>|
 		</div>
@@ -2384,6 +2381,8 @@
 		atualizarTabelaRafiaEdicao();
 	}
 	function montaJsonRafiaEdicao() {
+		var clienteSel = document.getElementById("filtroCliente").value;
+		var orcamentoSel = document.getElementById("inputOrcamento").value;
 		jsonFormatado = { "idCvtccnpj": parent.dadosUserLogadoPersonalizado().cId, "id": idSel.toString(), "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": "Rafia", "cliente": clienteSel, "orcamento": orcamentoSel, "vendedor": vendedorSel, "itens": linhasRafiaEdicao };
 	}
 	function atualizarItensBaseClicRafia() {
