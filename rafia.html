@@ -3416,6 +3416,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				var objRetorno = response;
+				console.log("objRetorno", objRetorno);
 				var produtoSel = document.getElementById("inputProdutoSerafina").value;
 				var checkBox = document.querySelector(`input[name="flexRadioSerafina"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
