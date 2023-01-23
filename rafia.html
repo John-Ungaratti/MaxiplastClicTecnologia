@@ -2735,7 +2735,7 @@
 			data: JSON.stringify(parametros),
 			success: function (response) {
 				console.log("response", response);
-				var objRetorno = response;
+				var objRetorno = response[0];
 				console.log("objRetorno", objRetorno);
 				var produtoSel = document.getElementById("inputProdutoRafia").value;
 				var checkBox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
