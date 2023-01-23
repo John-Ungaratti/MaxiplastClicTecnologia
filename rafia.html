@@ -2313,7 +2313,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				var objRetorno = JSON.parse(response);
+				var objRetorno = response;
 				var produtoSel = document.getElementById("inputProdutoRafiaEdicao").value;
 				var checkBox = document.querySelector(`input[name="flexRadioRafiaEdicao"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
@@ -2734,8 +2734,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log("response", response);
-				var objRetorno = JSON.parse(response);
+				var objRetorno = response;
 				var produtoSel = document.getElementById("inputProdutoRafia").value;
 				var checkBox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
