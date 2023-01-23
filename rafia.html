@@ -2736,8 +2736,6 @@
 			success: function (response) {	
 
 				console.log("response", response);
-				
-				var objRetorno = JSON.parse(response);
 
 				var produtoSel = document.getElementById("inputProdutoRafia").value;
 				var checkBox = document.querySelector(`input[name="flexRadioRafia"]:checked`).value;
@@ -2745,9 +2743,8 @@
 					linhasRafia.push({ "empresa": "1", "tipoItem": "Branco", "idPro": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "tipoLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
-					console.log(response);
-					var prod = response;
-					console.log("prod", prod.item);
+					var prod = response.find(({ item }) => item == produtoSel);
+					console.log(prod);
 					linhasRafia.push({ "empresa": "1", "tipoItem": "Copiar", "idPro": prod[0].codPro, "item": prod.item, "unidMed": prod.unidMed, "quantidade": prod.quantidade, "preco": "", "total": "", "tipoEmbalagem": prod.tipoEmbalagem, "tipoLaminado": prod.tipoLaminado, "pigmentadoTransparente": prod.pigmentadoTransparente, "lisoImpresso": prod.lisoImpresso, "qtdCoresFrente": prod.qtdCoresFrente, "qtdCoresVerso": prod.qtdCoresVerso, "gramaturaLaminado": prod.gramaturaLaminado, "gramaturaConvencional": prod.gramaturaConvencional, "sanfona": prod.sanfona, "medidaSanfona": prod.medidaSanfona, "valvula": prod.valvula, "medidaValvula": prod.medidaValvula, "estadoDestino": "", "gramatura": prod.gramatura, "corTrama": prod.corTrama, "corUrdume": prod.corUrdume, "lyner": prod.lyner, "largura": prod.largura, "comprimento": prod.comprimento });
 				}
 				else if (checkBox == "Produto já existente") {
