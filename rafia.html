@@ -2591,7 +2591,7 @@
 				var objRetorno = JSON.parse(response);
 				document.querySelector('#linhaTableRafia').innerHTML = linhasRafia.map(function (prod, indice) {
 					index = indice;
-					console.log(prod.largura);
+					console.log(prod);
 					console.log(parseFloat(prod.largura.replace(',','.')));
 					var largura = prod.largura;
 					largura.replace(",",".");
