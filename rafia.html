@@ -2593,11 +2593,7 @@
 					console.log('entrou')
 					console.log(linhasRafia)
 					index = indice;
-					console.log(prod);
-					console.log(parseFloat(prod.largura.replace(',','.')));
-					var largura = prod.largura;
-					largura.replace(",",".");
-					largura = parseFloat(largura);
+
 					return `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
 						<th scope="row">
 						<span type="button">
@@ -2715,7 +2711,7 @@
 							  <option value="2">N</option>
 							</select>
 						</td>
-						<td><input type="number"  oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${largura}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
+						<td><input type="number"  oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura.replace(",",".")}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
 						<td><input type="number" min="0" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
 						<td><input type="number" min="0" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
