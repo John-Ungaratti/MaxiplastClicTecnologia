@@ -1107,7 +1107,7 @@
 												<span id="recusar" type="submit" title="Cancelar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
 												   <i class="bi bi-x-lg" style="color: red""></i>
 												</span>
-												<span id="aceitar${id}" type="button" title="Aceitar">
+												<span id="aceitar${id}" type="button" title="Aceitar" onclick="enviarPedido(${id}, ${json.unidade})">
 												   <i class="bi bi-check2" style="color: green""></i>
 												</span>
 												<span id="reabrir" type="button" title="Reabrir">
@@ -1810,10 +1810,6 @@
 				index = indice;
 				linhasTableRafiaVisualizar += `
 								<tr id="${indice}" style="text-align: center;vertical-align: middle;">
-								<th scope="row">
-								<span type="button">
-								</span>
-								</th>
 								<td><input disabled value= "${prod.item}" onkeyup="escreverValorEdicao('item',${indice},this.value)"></input></td>
 								<td><input disabled value= "${prod.unidMed}" onkeyup="escreverValorEdicao('unidMed',${indice},this.value)"></input></td>
 								<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" value="${prod.quantidade}" onkeyup="escreverValorEdicao('quantidade',${indice},this.value)"></input></td>
@@ -1902,8 +1898,6 @@
 			orcamento.itens.map((prod, indice) => {
 				index = indice;
 				linhasTableSerafinaVisualizar += `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
-					<th scope="row">
-					</th>
 					<td><input disabled ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoSerafina('item',${indice},this.value)"></input></td>
 					<td><input disabled  type="number" min="0" oninput="validity.valid || (value='');" min"0" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoSerafina('largura',${indice},this.value)"></input></td>
 					<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" min"0" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoSerafina('altura',${indice},this.value)"></input></td>
@@ -1968,8 +1962,6 @@
 			orcamento.itens.map((prod, indice) => {
 				index = indice;
 				linhasTableMatrizVisualizar += `<tr id="${indice}" style="text-align: center;vertical-align: middle;">
-					<th scope="row">
-					</th>
 					<td><input disabled ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoSerafina('item',${indice},this.value)"></input></td>
 					<td><input disabled  type="number" min="0" oninput="validity.valid || (value='');" min"0" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoSerafina('largura',${indice},this.value)"></input></td>
 					<td><input disabled type="number" min="0" oninput="validity.valid || (value='');" min"0" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoSerafina('altura',${indice},this.value)"></input></td>
