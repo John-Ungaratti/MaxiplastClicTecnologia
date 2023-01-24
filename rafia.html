@@ -2287,10 +2287,10 @@
 							  <option value="2">N</option>
 							</select>
 						</td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura.replace(",",".")}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');"${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
+						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura.replace(",",".")}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');"${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
 				}).join("");
 			},
@@ -3011,9 +3011,9 @@
 						</span>
 					</th>
 					<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoSerafina('item',${indice},this.value)"></input></td>
-					<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoSerafina('largura',${indice},this.value)"></input></td>
-					<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoSerafina('altura',${indice},this.value)"></input></td>
-					<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoSerafina('espessura',${indice},this.value)"></input></td>
+					<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura.replace(",",".")}" onkeyup="escreverValorEdicaoSerafina('largura',${indice},this.value)"></input></td>
+					<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura.replace(",",".")}" onkeyup="escreverValorEdicaoSerafina('altura',${indice},this.value)"></input></td>
+					<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura.replace(",",".")}" onkeyup="escreverValorEdicaoSerafina('espessura',${indice},this.value)"></input></td>
 					<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoSerafina('unidMed',${indice},this.value)"></input></td>
 					<td><input type="number" min="0" oninput="validity.valid || (value='');" value="${prod.quantidade}" onkeyup="escreverValorEdicaoSerafina('quantidade',${indice},this.value)"></input></td>
 					<td>
@@ -3465,9 +3465,9 @@
 							</span>
 						</th>
 						<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorSerafina('item',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorSerafina('largura',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorSerafina('altura',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorSerafina('espessura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura.replace(",",".")}" onkeyup="escreverValorSerafina('largura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura.replace(",",".")}" onkeyup="escreverValorSerafina('altura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura.replace(",",".")}" onkeyup="escreverValorSerafina('espessura',${indice},this.value)"></input></td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorSerafina('unidMed',${indice},this.value)"></input></td>
 						<td><input type="number" min="0" oninput="validity.valid || (value='');" value="${prod.quantidade}" onkeyup="escreverValorSerafina('quantidade',${indice},this.value)"></input></td>
 						<td>
@@ -3761,9 +3761,9 @@
 								</span>
 							</th>
 							<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorEdicaoMatriz('item',${indice},this.value)"></input></td>
-							<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorEdicaoMatriz('largura',${indice},this.value)"></input></td>
-							<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorEdicaoMatriz('altura',${indice},this.value)"></input></td>
-							<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorEdicaoMatriz('espessura',${indice},this.value)"></input></td>
+							<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura.replace(",",".")}" onkeyup="escreverValorEdicaoMatriz('largura',${indice},this.value)"></input></td>
+							<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura.replace(",",".")}" onkeyup="escreverValorEdicaoMatriz('altura',${indice},this.value)"></input></td>
+							<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura.replace(",",".")}" onkeyup="escreverValorEdicaoMatriz('espessura',${indice},this.value)"></input></td>
 							<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorEdicaoMatriz('unidMed',${indice},this.value)"></input></td>
 							<td><input type="number" min="0" oninput="validity.valid || (value='');" value= "${prod.quantidade}" onkeyup="escreverValorEdicaoMatriz('quantidade',${indice},this.value)"></input></td>
 							<td>
@@ -4206,9 +4206,9 @@
 							</span>
 						</th>
 						<td><input ${prod.tipoItem != "Branco" && "disabled"} value= "${prod.item}" onkeyup="escreverValorMatriz('item',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura}" onkeyup="escreverValorMatriz('largura',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura}" onkeyup="escreverValorMatriz('altura',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura}" onkeyup="escreverValorMatriz('espessura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.largura.replace(",",".")}" onkeyup="escreverValorMatriz('largura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.altura.replace(",",".")}" onkeyup="escreverValorMatriz('altura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.1" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.espessura.replace(",",".")}" onkeyup="escreverValorMatriz('espessura',${indice},this.value)"></input></td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value= "${prod.unidMed}" onkeyup="escreverValorMatriz('unidMed',${indice},this.value)"></input></td>
 						<td><input type="number" min="0" oninput="validity.valid || (value='');" value="${prod.quantidade}" onkeyup="escreverValorMatriz('quantidade',${indice},this.value)"></input></td>
 						<td>
