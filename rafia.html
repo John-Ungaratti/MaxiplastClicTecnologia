@@ -2708,10 +2708,10 @@
 							  <option value="2">N</option>
 							</select>
 						</td>
-						<td><input type="number" min="0"  oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura.replace(",",".")}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
+						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura.replace(",",".")}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
-						<td><input type="number" min="0" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
 				}).join("");
 			},
