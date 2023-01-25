@@ -964,12 +964,11 @@
 </div>
 
 <!-- MODAL REABRIR ORÇAMENTO-->
-<div id="modalReabrir" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+<div id="modalReabrir" class="modal fade" id="modalExemplo" tabindex="-1">
+	<div class="modal-dialog modal-fullscreen">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Cancelar Orçamento</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Reabrir Orçamento</h5>
 			</div>
 			<div class="modal-body">
 				Deseja reabrir este orçamento?
@@ -2093,6 +2092,8 @@
 	}
 
 	function abrirModalReabrirOct(_id, _unidade){
+		console.log("abriu modal");
+
 		$("modalReabrir").modal('show');
 
 		contratoSelReabrir = _id;
