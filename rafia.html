@@ -2032,8 +2032,13 @@
 		var listaOrcMatriz;
 		var jsonFormatadoAtualizado;
 
+		console.log(_unidade);
+		console.log(_id);
+
 		idSel = _id;
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
+
+		console.log(orcamento);
 
 		if (_unidade == "Rafia") {
 			listaOrcRafia = [...orcamento.itens];
