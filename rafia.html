@@ -963,6 +963,25 @@
 	</div>
 </div>
 
+<!-- MODAL REABRIR ORÇAMENTO-->
+<div id="modalReabrir" class="modal fade" id="modalExemplo" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Cancelar Orçamento</h5>
+			</div>
+			<div class="modal-body">
+				Deseja reabrir este orçamento?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+				<button type="submit" class="btn btn-primary" onclick="reabrirOrc(contratoSelReabrir, unidadeSelReabrir)">Sim</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 </html>
 
@@ -1110,7 +1129,7 @@
 												<span id="aceitar${id}" type="button" title="Aceitar" onclick="enviarPedido(${id}, '${json.unidade}')">
 												   <i class="bi bi-check2" style="color: green""></i>
 												</span>
-												<span id="reabrir${id}" type="button" title="Reabrir" onclick="reabrirOrc(${id}, '${json.unidade}')">
+												<span id="reabrir${id}" type="button" title="Reabrir" onclick="abrirModalReabrirOct(${id}, '${json.unidade}')">
 													<i class="bi bi-arrow-left-right"></i>
 												</span>
 											 </td>	
@@ -2025,8 +2044,11 @@
 		
 	}
 
-	function reabrirOrc(_id, _unidade){
+	var contratoSelReabrir;
+	var unidadeSelReabrir;
 
+	function reabrirOrc(_id, _unidade){
+		
 		var listaOrcRafia;
 		var listaOrcSerafina;
 		var listaOrcMatriz;
@@ -2069,6 +2091,14 @@
 		});
 
 	}
+
+	function abrirModalReabrirOct(_id, _unidade){
+		$("modalReabrir").modal('show');
+
+		contratoSelReabrir = _id;
+		unidadeSelReabrir = _unidade;
+	}
+
 </script>
 
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
