@@ -1110,7 +1110,7 @@
 												<span id="aceitar${id}" type="button" title="Aceitar" onclick="enviarPedido(${id}, ${json.unidade})">
 												   <i class="bi bi-check2" style="color: green""></i>
 												</span>
-												<span id="reabrir" type="button" title="Reabrir">
+												<span id="reabrir" type="button" title="Reabrir" onclick="reabrirOrc(${id}, ${json.unidade})">
 													<i class="bi bi-arrow-left-right"></i>
 												</span>
 											 </td>	
@@ -2023,6 +2023,46 @@
 		}
 
 		
+	}
+
+	function reabrirOrc(_id, _unidade){
+
+		var listaOrcRafia;
+		var listaOrcSerafina;
+		var listaOrcMatriz;
+		var jsonFormatadoAtualizado;
+
+		idSel = _id;
+		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
+
+		if (_unidade == "Rafia") {
+			listaOrcRafia = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
+		}
+		else if (_unidade == "Serafina") {
+			listaOrcSerafina = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcSerafina };
+		}
+		else if (_unidade == "Matriz") {
+			listaOrcMatriz = [...orcamento.itens];
+			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcMatriz };
+		}
+
+		var parametros = {
+			"cnpj": {
+				"id": parent.dadosUserLogado().cId
+			},
+			"jsonDocs": JSON.stringify(jsonFormatadoAtualizado)
+		};
+		$.ajax({
+			url: 'https://maxiplast.clicvenda.com.br/clicVendas/rest/pedidov2/salvar/' + idSel,
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				document.location.reload();
+			}
+		});
+
 	}
 </script>
 
