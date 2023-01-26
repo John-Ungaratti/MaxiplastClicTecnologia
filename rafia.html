@@ -129,7 +129,6 @@
 									<th scope="col">Largura</th>
 									<th scope="col">Comprimento</th>
 									<th scope="col">Estado Destino</th>
-									<th scope="col">Gramatura</th>
 								</tr>
 							</thead>
 							<tbody id="linhaTableRafia">
@@ -1017,6 +1016,9 @@
 	var linhasTableMatrizVisualizar = "";
 
 	var options;
+
+	var contratoSelReabrir;
+	var unidadeSelReabrir;
 	
 	window.addEventListener("load", function preencheVendedorRafia() {
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
@@ -1412,14 +1414,7 @@
 									<option value="5">72</option>
 									</select>
 								</td>
-								<td >
-									<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
-									<option selected disabled>"${prod.gramaturaConvencional}"</option>
-									<option value="1">54</option>
-									<option value="2">58</option>
-									<option value="3">62</option>
-									</select>
-								</td>
+								<td><input ${prod.tipoItem === "Existente" && "disabled"} type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corTrama}" onkeyup="escreverValorEdicao('corTrama',${indice},this.value)"></input></td>
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValorEdicao('corUrdume',${indice},this.value)"></input></td>
 								<td>
@@ -1464,7 +1459,6 @@
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.largura.replace(",",".")}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValorEdicao('comprimento',${indice},this.value)" ></input></td>
 								<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValorEdicao('estadoDestino',${indice},this.value)"></input></td>
-								<td><input ${prod.tipoItem === "Existente" && "disabled"} type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
 							</tr>`;
 			}).join("");
 			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
@@ -2043,9 +2037,6 @@
 
 		
 	}
-
-	var contratoSelReabrir;
-	var unidadeSelReabrir;
 
 	function reabrirOrc(_id, _unidade){
 		
