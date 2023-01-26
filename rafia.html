@@ -959,7 +959,7 @@
 
 <!-- MODAL REABRIR ORÇAMENTO-->
 <div id="modalAprovarOct" class="modal fade" id="modalExemplo" tabindex="-1">
-	<div class="modal-dialog modal-fullscreen">
+	<div class="modal-dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -1109,7 +1109,7 @@
 												<span id="recusar" type="submit" title="Cancelar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
 												   <i class="bi bi-x-lg" style="color: red""></i>
 												</span>
-												<span id="aceitar${id}" type="button" title="Aceitar" onclick="aprovarOct()">
+												<span id="aceitar${id}" type="button" title="Aceitar" onclick="abrirModalAprovarOct()">
 												   <i class="bi bi-check2" style="color: green""></i>
 												</span>
 												<span id="reabrir${id}" type="button" title="Reabrir" onclick="abrirModalReabrirOct(${id}, '${json.unidade}')">
@@ -2009,7 +2009,7 @@
 		unidadeSelReabrir = _unidade;
 	}
 
-	function aprovarOct(){
+	function abrirModalAprovarOct(){
 		console.log("abriu modal");
 		$("#modalAprovarOct").modal('show');
 		
