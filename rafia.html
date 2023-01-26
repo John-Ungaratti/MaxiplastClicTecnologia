@@ -129,6 +129,7 @@
 									<th scope="col">Largura</th>
 									<th scope="col">Comprimento</th>
 									<th scope="col">Estado Destino</th>
+									<th scope="col">Gramatura</th>
 								</tr>
 							</thead>
 							<tbody id="linhaTableRafia">
@@ -477,6 +478,7 @@
 								<th scope="col">largura</th>
 								<th scope="col">comprimento</th>
 								<th scope="col">Estado Destino</th>
+								<th scope="col">Gramatura</th>
 							</tr>
 						</thead>
 						<tbody id="linhaTableRafiaEdicao">						
@@ -858,6 +860,7 @@
 								<th scope="col">largura</th>
 								<th scope="col">comprimento</th>
 								<th scope="col">Estado Destino</th>
+								<th scope="col">Gramatura</th>
 							</tr>
 						</thead>
 						<tbody id="linhaTableRafiaVisualizar">
@@ -1014,7 +1017,7 @@
 	var linhasTableMatrizVisualizar = "";
 
 	var options;
-
+	
 	var contratoSelReabrir;
 	var unidadeSelReabrir;
 	
@@ -1412,7 +1415,14 @@
 									<option value="5">72</option>
 									</select>
 								</td>
-								<td><input ${prod.tipoItem === "Existente" && "disabled"} type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
+								<td >
+									<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValorEdicao('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.gramaturaConvencional}"</option>
+									<option value="1">54</option>
+									<option value="2">58</option>
+									<option value="3">62</option>
+									</select>
+								</td>
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corTrama}" onkeyup="escreverValorEdicao('corTrama',${indice},this.value)"></input></td>
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValorEdicao('corUrdume',${indice},this.value)"></input></td>
 								<td>
@@ -1457,6 +1467,7 @@
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.largura.replace(",",".")}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
 								<td><input ${prod.tipoItem === "Existente" && "disabled"} type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValorEdicao('comprimento',${indice},this.value)" ></input></td>
 								<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValorEdicao('estadoDestino',${indice},this.value)"></input></td>
+								<td><input ${prod.tipoItem === "Existente" && "disabled"} type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
 							</tr>`;
 			}).join("");
 			document.getElementById("linhaTableRafiaEdicao").innerHTML = linhasTableRafiaEdicao;
@@ -1862,7 +1873,11 @@
 									<option selected disabled>"${prod.gramaturaLaminado}"</option>
 									</select>
 								</td>
-								<td><input disabled type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
+								<td >
+									<select disabled onchange="escreverValorEdicao('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
+									<option selected disabled>"${prod.gramaturaConvencional}"</option>
+									</select>
+								</td>
 								<td><input disabled value="${prod.corTrama}" onkeyup="escreverValorEdicao('corTrama',${indice},this.value)"></input></td>
 								<td><input disabled value="${prod.corUrdume}" onkeyup="escreverValorEdicao('corUrdume',${indice},this.value)"></input></td>
 								<td>
@@ -1893,6 +1908,7 @@
 								<td><input disabled type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.largura.replace(",",".")}" onkeyup="escreverValorEdicao('largura',${indice},this.value)"></input></td>
 								<td><input disabled type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValorEdicao('comprimento',${indice},this.value)" ></input></td>
 								<td><input disabled value="${prod.estadoDestino}" onkeyup="escreverValorEdicao('estadoDestino',${indice},this.value)"></input></td>
+								<td><input disabled type="number" min="0" step="0.01" oninput="validity.valid || (value='');" value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValorEdicao('gramatura',${indice},this.value)"></input></td>
 							</tr>`;
 			}).join("");
 			document.getElementById("linhaTableRafiaVisualizar").innerHTML = linhasTableRafiaVisualizar;
@@ -2294,7 +2310,14 @@
 							  <option value="5">72</option>
 							</select>
 						</td>
-						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+						<td >
+							<select  ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.gramaturaConvencional}"</option>
+							  <option value="1">54</option>
+							  <option value="2">58</option>
+							  <option value="3">62</option>
+							</select>
+						</td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corTrama}" onkeyup="escreverValor('corTrama',${indice},this.value)"></input></td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValor('corUrdume',${indice},this.value)"></input></td>
 						<td>
@@ -2338,6 +2361,8 @@
 						</td>
 						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura.replace(",",".")}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
 						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');"${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
+						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');" ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
 				}).join("");
 			},
@@ -2364,15 +2389,15 @@
 				var produtoSel = document.getElementById("inputProdutoRafiaEdicao").value;
 				var checkBox = document.querySelector(`input[name="flexRadioRafiaEdicao"]:checked`).value;
 				if (checkBox == "Novo Produto - Branco") {
-					linhasRafiaEdicao.push({ "empresa": "1", "tipoItem": "Branco", "idPro": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "tipoLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "corTrama": "", "corUrdume": "", "lyner": "" });
+					linhasRafiaEdicao.push({ "empresa": "1", "tipoItem": "Branco", "idPro": "", "item": "", "unidMed": "", "quantidade": "", "preco": "", "total": "", "tipoEmbalagem": " ", "tipoLaminado": "", "pigmentadoTransparente": "", "lisoImpresso": "", "qtdCoresFrente": "", "qtdCoresVerso": "", "tipoSolda": "", "largura": "", "comprimento": "", "espessura": "", "gramaturaLaminado": "", "gramaturaConvencional": "", "sanfona": "", "medidaSanfona": "", "valvula": "", "medidaValvula": "", "estadoDestino": "", "gramatura": "", "corTrama": "", "corUrdume": "", "lyner": "" });
 				}
 				else if (checkBox == "Novo Produto - Copiar") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasRafiaEdicao.push({ "empresa": "1", "tipoItem": "Copiar", "idPro": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramatura, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": "", "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+					linhasRafiaEdicao.push({ "empresa": "1", "tipoItem": "Copiar", "idPro": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": "", "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				else if (checkBox == "Produto já existente") {
 					var prod = objRetorno.filter(({ item }) => item == produtoSel);
-					linhasRafiaEdicao.push({ "empresa": "1", "tipoItem": "Existente", "idPro": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": "",  "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
+					linhasRafiaEdicao.push({ "empresa": "1", "tipoItem": "Existente", "idPro": prod[0].codPro, "item": prod[0].item, "unidMed": prod[0].unidMed, "quantidade": prod[0].quantidade, "preco": "", "total": "", "tipoEmbalagem": prod[0].tipoEmbalagem, "tipoLaminado": prod[0].tipoLaminado, "pigmentadoTransparente": prod[0].pigmentadoTransparente, "lisoImpresso": prod[0].lisoImpresso, "qtdCoresFrente": prod[0].qtdCoresFrente, "qtdCoresVerso": prod[0].qtdCoresVerso, "gramaturaLaminado": prod[0].gramaturaLaminado, "gramaturaConvencional": prod[0].gramaturaConvencional, "sanfona": prod[0].sanfona, "medidaSanfona": prod[0].medidaSanfona, "valvula": prod[0].valvula, "medidaValvula": prod[0].medidaValvula, "estadoDestino": "", "gramatura": prod[0].gramatura, "corTrama": prod[0].corTrama, "corUrdume": prod[0].corUrdume, "lyner": prod[0].lyner, "largura": prod[0].largura, "comprimento": prod[0].comprimento });
 				}
 				atualizarTabelaRafiaEdicao();
 			}
@@ -2706,7 +2731,14 @@
 							  <option value="5">72</option>
 							</select>
 						</td>
-						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
+						<td >
+							<select  ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.gramaturaConvencional}"</option>
+							  <option value="1">54</option>
+							  <option value="2">58</option>
+							  <option value="3">62</option>
+							</select>
+						</td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corTrama}" onkeyup="escreverValor('corTrama',${indice},this.value)"></input></td>
 						<td><input ${prod.tipoItem === "Existente" && "disabled"} value="${prod.corUrdume}" onkeyup="escreverValor('corUrdume',${indice},this.value)"></input></td>
 						<td>
@@ -2751,6 +2783,7 @@
 						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.largura.replace(",",".")}" onkeyup="escreverValor('largura',${indice},this.value)"></input></td>
 						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.comprimento.replace(",",".")}" onkeyup="escreverValor('comprimento',${indice},this.value)" ></input></td>
 						<td><input ${(prod.tipoItem === "Existente" || prod.tipoItem === "Branco" || prod.tipoItem === "Copiar") && "disabled"} value="${prod.estadoDestino}" onkeyup="escreverValor('estadoDestino',${indice},this.value)"></input></td>
+						<td><input type="number" min="0" step="0.01" oninput="validity.valid || (value='');"  ${prod.tipoItem === "Existente" && "disabled"} value="${prod.gramatura.replace(",",".")}" onkeyup="escreverValor('gramatura',${indice},this.value)"></input></td>
 					</tr>`;
 				}).join("");
 			},
