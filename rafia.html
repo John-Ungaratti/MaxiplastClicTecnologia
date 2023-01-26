@@ -2018,7 +2018,6 @@
 		idOctEnviado = _id;
 		unidadeOctEnviado = _unidade;
 
-		console.log(orcamento);
 		console.log("abriu modal 2");
 		$("#modalAprovarOct").modal('show');
 		
@@ -2030,6 +2029,7 @@ function enviarOctOrcado(_id, _unidade){
 	var parametros;
 	var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
 	
+
 	if(_unidade == "Rafia" ){
 		parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
