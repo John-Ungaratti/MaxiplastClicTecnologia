@@ -971,7 +971,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-					<button type="submit" class="btn btn-primary" onclick="">Sim</button>
+					<button type="submit" class="btn btn-primary" onclick="enviarOctOrcado(idOctEnviado, unidadeOctEnviado)">Sim</button>
 				</div>
 			</div>
 		</div>
@@ -2010,16 +2010,81 @@
 		contratoSelReabrir = _id;
 		unidadeSelReabrir = _unidade;
 	}
+	var idOctEnviado;
+	var unidadeOctEnviado;
 
 	function abrirModalAprovarOct(_id, _unidade){
 
-		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
+		idOctEnviado = _id;
+		unidadeOctEnviado = _unidade;
 
 		console.log(orcamento);
 		console.log("abriu modal 2");
 		$("#modalAprovarOct").modal('show');
 		
 	}
+
+
+function enviarOctOrcado(_id, _unidade){
+
+	var parametros;
+	var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
+	
+	if(_unidade == "Rafia" ){
+		parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 995,
+			pRotina: "enviarPedidoRafia",
+			pItem: orcamento
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				if (response.substring(0, 4) == "ERRO") {
+					enviarOrcErro(jsonFormatado.id, jsonFormatado.unidade, response);
+				}
+				else {
+					enviarOrcSucesso(jsonFormatado.id, jsonFormatado.unidade);
+				}
+			},
+			beforeSend: function () {
+			},
+			complete: function () {
+			},
+			error: function () {
+			}
+		});
+	} 
+	else {
+		parametros = {
+			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
+			numreg: 994,
+			pRotina: "enviarPedidoFlexivel",
+			pItem: orcamento
+		};
+
+		$.ajax({
+			url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+			type: "POST",
+			data: JSON.stringify(parametros),
+			success: function (response) {
+				if (response.substring(0, 4) == "ERRO") {
+				}
+				else {
+				}
+			},
+			beforeSend: function () {
+			},
+			complete: function () {
+			},
+			error: function () {
+			}
+		});
+	}
+}
 
 </script>
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
@@ -3093,8 +3158,8 @@
 		montaJsonMatrizEdicao();
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 996,
-			pRotina: "enviarOrcRafia",
+			numreg: 998,
+			pRotina: "enviarOrcFlexivel",
 			pItem: jsonFormatado
 		};
 		$.ajax({
@@ -3788,8 +3853,8 @@
 		montaJsonMatrizEdicao();
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
-			numreg: 996,
-			pRotina: "enviarOrcRafia",
+			numreg: 998,
+			pRotina: "enviarOrcFlexivel",
 			pItem: jsonFormatado
 		};
 		$.ajax({
