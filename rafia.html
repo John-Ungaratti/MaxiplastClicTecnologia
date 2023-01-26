@@ -956,6 +956,26 @@
 		</div>
 	</div>
 </div>
+
+<!-- MODAL REABRIR ORÇAMENTO-->
+<div id="modalAprovarOct" class="modal fade" id="modalExemplo" tabindex="-1">
+	<div class="modal-dialog modal-fullscreen">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Aprovar Orçamento</h5>
+			</div>
+			<div class="modal-body">
+				Deseja aprovar este orçamento? (Ao clicar "Sim" um pedido será gerado).
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+				<button type="submit" class="btn btn-primary" onclick="reabrirOrc(contratoSelReabrir, unidadeSelReabrir)">Sim</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 </html>
 <!--          						S C R I P T S - LOAD           						-->
 <script>
@@ -1089,7 +1109,7 @@
 												<span id="recusar" type="submit" title="Cancelar" onclick="abrirModalRecusarOrcamentoOrcado(${id}, '${json.unidade}')">
 												   <i class="bi bi-x-lg" style="color: red""></i>
 												</span>
-												<span id="aceitar${id}" type="button" title="Aceitar" onclick="enviarPedido(${id}, '${json.unidade}')">
+												<span id="aceitar${id}" type="button" title="Aceitar" onclick="aprovarOct()">
 												   <i class="bi bi-check2" style="color: green""></i>
 												</span>
 												<span id="reabrir${id}" type="button" title="Reabrir" onclick="abrirModalReabrirOct(${id}, '${json.unidade}')">
@@ -1981,12 +2001,20 @@
 			}
 		});
 	}
+	
 	function abrirModalReabrirOct(_id, _unidade){
 		console.log("abriu modal");
 		$("#modalReabrir").modal('show');
 		contratoSelReabrir = _id;
 		unidadeSelReabrir = _unidade;
 	}
+
+	function aprovarOct(){
+		console.log("abriu modal");
+		$("#modalAprovarOct").modal('show');
+		
+	}
+
 </script>
 <!--          						S C R I P T S  -  R A F I A  - EDICAO				-->
 <script>
