@@ -1013,6 +1013,7 @@
 	var unidadeSelReabrir;
 	
 	window.addEventListener("load", function preencheVendedorRafia() {
+		console.log("commit 598");
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
 		var vendedorId = parent.dadosUserLogadoPersonalizado().rId;
 		let optionVendedor = document.createElement('option');
@@ -2442,6 +2443,9 @@ function enviarOctOrcado(_id, _unidade){
 	}
 	function enviarWebServiceMaxiplastRafia() {
 		montaJsonRafiaEdicao();
+
+		console.log("jsonFormatado", jsonFormatado);
+		
 		var parametros = {
 			idCvtccnpj: parent.dadosUserLogadoPersonalizado().cId,
 			numreg: 996,
