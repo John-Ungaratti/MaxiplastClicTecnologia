@@ -2008,7 +2008,8 @@
 		$("#modalReabrir").modal('show');
 		contratoSelReabrir = _id;
 		unidadeSelReabrir = _unidade;
-	}
+	}.;
+
 	var idOctEnviado;
 	var unidadeOctEnviado;
 
@@ -2651,8 +2652,8 @@ function enviarOctOrcado(_id, _unidade){
 							</select>
 						</td>
 						<td >
-							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
-							  <option selected disabled>"${prod.gramaturaLaminado}"</option>
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramatura',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.gramatura}"</option>
 							  <option value="1">59</option>
 							  <option value="2">63</option>
 							  <option value="3">66</option>
