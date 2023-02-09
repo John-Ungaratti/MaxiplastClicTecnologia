@@ -1034,8 +1034,6 @@
 		document.getElementById('selectVendedorMatriz').appendChild(optionVendedor);
 	}, false);
 	window.addEventListener("load", function listaItensBaseClic() {
-		console.log("commit 601");
-
 		var parametros = {
 			"param": {
 				"idCvTccnpj": parent.dadosUserLogado().cId
@@ -1050,6 +1048,7 @@
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
+				console.log("commit não sei quanto");
 				var array = response.data;
 				array.map(({ id, jsonDocs, dataAlteracao }) => {
 					var dataAlteracao = new Date();
@@ -1973,11 +1972,10 @@
 		var listaOrcSerafina;
 		var listaOrcMatriz;
 		var jsonFormatadoAtualizado;
-		console.log(_unidade);
-		console.log(_id);
+
 		idSel = _id;
 		var orcamento = orcamentosClicJson.find(({ id }) => id == _id);
-		console.log(orcamento);
+
 		if (_unidade == "Rafia") {
 			listaOrcRafia = [...orcamento.itens];
 			jsonFormatadoAtualizado = { "numOrcamentoERP": 0, "numPedidoERP": 0, "situacao": "EM EDIÇÃO", "unidade": orcamento.unidade, "cliente": orcamento.cliente, "vendedor": orcamento.vendedor, "itens": listaOrcRafia };
@@ -2007,7 +2005,6 @@
 	}
 	
 	function abrirModalReabrirOct(_id, _unidade){
-		console.log("abriu modal");
 		$("#modalReabrir").modal('show');
 		contratoSelReabrir = _id;
 		unidadeSelReabrir = _unidade;
@@ -2016,8 +2013,6 @@
 	var unidadeOctEnviado;
 
 	function abrirModalAprovarOct(_id, _unidade){
-
-		console.log("abriu modal 3");
 
 		idOctEnviado = _id;
 		unidadeOctEnviado = _unidade;
@@ -2418,7 +2413,6 @@ function enviarOctOrcado(_id, _unidade){
 		}
 	});
 	function atualizarItensBaseClicRafia() {
-		console.log("atualizou");
 		montaJsonRafiaEdicao();
 		
 		var parametros = {
@@ -2741,7 +2735,7 @@ function enviarOctOrcado(_id, _unidade){
 			type: "POST",
 			data: JSON.stringify(parametros),
 			success: function (response) {
-				console.log(response);
+
 				// response.replace(",", ".");
 				var objRetorno = JSON.parse(response);
 				var produtoSel = document.getElementById("inputProdutoRafia").value;
