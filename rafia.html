@@ -1013,7 +1013,6 @@
 	var unidadeSelReabrir;
 	
 	window.addEventListener("load", function preencheVendedorRafia() {
-		console.log("commit 599");
 		var vendedor = parent.dadosUserLogadoPersonalizado().rNome;
 		var vendedorId = parent.dadosUserLogadoPersonalizado().rId;
 		let optionVendedor = document.createElement('option');
@@ -1035,6 +1034,8 @@
 		document.getElementById('selectVendedorMatriz').appendChild(optionVendedor);
 	}, false);
 	window.addEventListener("load", function listaItensBaseClic() {
+		console.log("commit 599");
+
 		var parametros = {
 			"param": {
 				"idCvTccnpj": parent.dadosUserLogado().cId
