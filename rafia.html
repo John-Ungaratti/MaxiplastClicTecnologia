@@ -2271,8 +2271,8 @@ function enviarOctOrcado(_id, _unidade){
 							</select>
 						</td>
 						<td >
-							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramaturaLaminado',${indice},this.options[this.selectedIndex].text)">
-							  <option selected disabled>"${prod.gramaturaLaminado}"</option>
+							<select ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramatura',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.gramatura}"</option>
 							  <option value="1">59</option>
 							  <option value="2">63</option>
 							  <option value="3">66</option>
@@ -2662,8 +2662,8 @@ function enviarOctOrcado(_id, _unidade){
 							</select>
 						</td>
 						<td >
-							<select  ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramaturaConvencional',${indice},this.options[this.selectedIndex].text)">
-							  <option selected disabled>"${prod.gramaturaConvencional}"</option>
+							<select  ${prod.tipoItem === "Existente" && "disabled"} onchange="escreverValor('gramatura',${indice},this.options[this.selectedIndex].text)">
+							  <option selected disabled>"${prod.gramatura}"</option>
 							  <option value="1">54</option>
 							  <option value="2">58</option>
 							  <option value="3">62</option>
